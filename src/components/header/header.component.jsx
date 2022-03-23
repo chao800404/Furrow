@@ -10,7 +10,7 @@ import MenuContainer from "../Menu/menu.componet";
 
 const Header = () => {
   const dispath = useDispatch();
-  const toggleTheme = useSelector((state) => state.themeReducer.currentTheme);
+  const toggleTheme = useSelector((state) => state.theme.currentTheme);
   const handleClick = () => {
     dispath(toggleThemeStyle(themeType(toggleTheme)));
   };

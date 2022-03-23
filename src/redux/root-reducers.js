@@ -2,9 +2,19 @@
 
 import { combineReducers } from "redux";
 import themeReducer from "./theme/theme.reducers";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const rootReducers = combineReducers({
-  themeReducer,
+  theme: themeReducer,
 });
 
-export default rootReducers;
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["theme"],
+};
+
+const persistorReducer = persistReducer(persistConfig, rootReducers);
+
+export default persistorReducer;

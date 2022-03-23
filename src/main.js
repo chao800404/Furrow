@@ -14,9 +14,10 @@ import themeType from "./theme/theme.styles";
 import { initialThemeStyle } from "./redux/theme/theme.actions";
 
 const Main = () => {
-  const toggleTheme = useSelector((state) => state.themeReducer.currentTheme);
+  const toggleTheme = useSelector((state) => state.theme.currentTheme);
   const dispatch = useDispatch();
-  const theme = useSelector((state) => state.themeReducer.themeStyle);
+  const theme = useSelector((state) => state.theme.themeStyle);
+  console.log(theme);
   useEffect(() => {
     dispatch(initialThemeStyle(themeType(toggleTheme)));
   }, [dispatch, toggleTheme]);

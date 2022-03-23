@@ -14,3 +14,9 @@ export const HomeContainer = styled.section`
     margin-bottom: 5rem;
   }
 `;
+
+export const BannerVideo = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+`;

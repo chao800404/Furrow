@@ -1,11 +1,14 @@
 /** @format */
 
-import { HomeContainer } from "./home.styles";
+import { HomeContainer, BannerVideo } from "./home.styles";
+import videoPath from "../../assets/bannerVideo.mp4";
 
 const HomePage = () => {
   return (
     <HomeContainer>
-      <h1>Hello world</h1>
+      <BannerVideo>
+        <video height="100%" width="100%" loop autoPlay muted src={videoPath} />
+      </BannerVideo>
     </HomeContainer>
   );
 };

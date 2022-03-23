@@ -1,7 +1,7 @@
 /** @format */
 
 import { Cursor } from "./curstomCursor.styles";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import primaryColor from "../../theme/priamry.styles";

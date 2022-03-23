@@ -5,6 +5,8 @@ import { HeaderNav, LinkStyle, Logo } from "./header.styles";
 import { Flex } from "../Flex/flex.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleThemeStyle } from "../../redux/theme/theme.actions";
+import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
+
 import themeType from "../../theme/theme.styles.js";
 import MenuContainer from "../Menu/menu.componet";
 
@@ -15,6 +17,10 @@ const Header = () => {
     dispath(toggleThemeStyle(themeType(toggleTheme)));
   };
 
+  const handleHover = () => {
+    dispath(toggleCursorStyle());
+  };
+
   return (
     <HeaderNav
       animate={{ y: 0, opacity: 1 }}
@@ -22,7 +28,7 @@ const Header = () => {
       transition={{ duration: 0.9, ease: [0.6, 0.1, 0.1, 0.9] }}
     >
       <Flex>
-        <Logo>
+        <Logo onMouseEnter={handleHover} onMouseLeave={handleHover}>
           <LinkStyle to="/">FURR</LinkStyle>
           <span onClick={handleClick}></span>
           <LinkStyle to="/">W</LinkStyle>

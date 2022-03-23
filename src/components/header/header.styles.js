@@ -18,7 +18,6 @@ export const HeaderNav = styled(motion.header)`
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-  cursor: pointer;
   span {
     width: 1.2rem;
     height: 1.2rem;

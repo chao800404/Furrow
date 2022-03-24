@@ -1,7 +1,7 @@
 /** @format */
 
 import Header from "./components/header/header.component";
-import HomePage from "./components/home/home.component";
+import HomeBanner from "./components/home/homeBanner.component";
 import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
@@ -17,7 +17,7 @@ const App = () => {
       <CurstomCursor />
       <Header />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomeBanner />} />
       </Routes>
     </AppContainer>
   );

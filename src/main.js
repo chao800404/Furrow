@@ -17,7 +17,6 @@ const Main = () => {
   const toggleTheme = useSelector((state) => state.theme.currentTheme);
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.themeStyle);
-  console.log(theme);
   useEffect(() => {
     dispatch(initialThemeStyle(themeType(toggleTheme)));
   }, [dispatch, toggleTheme]);

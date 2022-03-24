@@ -19,18 +19,18 @@ export const Logo = styled.div`
   display: flex;
   align-items: center;
   span {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border-radius: 50%;
     background: ${primaryColor["logoPointColor"]};
     display: block;
-    margin: 0 3px;
+    margin: 0 5px;
   }
 `;
 
 export const LinkStyle = styled(Link)`
   text-decoration: none;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weigth: 1200;
   color: inherit;
 `;

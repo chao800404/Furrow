@@ -29,9 +29,9 @@ const Header = () => {
     >
       <Flex>
         <Logo onMouseEnter={handleHover} onMouseLeave={handleHover}>
-          <LinkStyle to="/">FURR</LinkStyle>
+          <LinkStyle to="/">ONE</LinkStyle>
           <span onClick={handleClick}></span>
-          <LinkStyle to="/">W</LinkStyle>
+          <LinkStyle to="/">SEC</LinkStyle>
         </Logo>
         <MenuContainer />
       </Flex>

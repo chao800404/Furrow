@@ -7,6 +7,7 @@ const themeType = (darkTheme) => {
     buttonBackgroundColor: "",
     buttonFontColor: "",
     menuColor: "",
+    bannerTitle: "",
   };
   darkTheme === "darkTheme" ? darkThemes() : lightThemes();
 
@@ -16,6 +17,7 @@ const themeType = (darkTheme) => {
     theme["buttonBackgroundColor"] = "#fff";
     theme["buttonFontColor"] = "#111";
     theme["menuColor"] = "#fff";
+    theme["bannerTitle"] = "#fff";
   }
 
   function lightThemes() {
@@ -24,6 +26,7 @@ const themeType = (darkTheme) => {
     theme["buttonBackgroundColor"] = "#111";
     theme["buttonFontColor"] = "#fff";
     theme["menuColor"] = "#111";
+    theme["bannerTitle"] = "#111";
   }
 
   return theme;

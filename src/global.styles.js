@@ -19,10 +19,7 @@ export const GlobalStyle = createGlobalStyle`
   
   body { 
       box-sizing: border-box;
-      background-color:${(props) => {
-        console.log(props);
-        return props.theme.backgroundColor;
-      }};
+      background-color:${(props) => props.theme.backgroundColor};
       color: ${({ theme: { color } }) => color};
       font-family: 'Anton', sans-serif;
       
@@ -39,6 +36,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size: 5rem;
+    font-size: ${({ theme: { bannerTitle } }) => bannerTitle};
+    pointer-events: none;
   }
 `;

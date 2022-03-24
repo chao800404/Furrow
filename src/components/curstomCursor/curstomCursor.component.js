@@ -33,7 +33,7 @@ const CurstomCursor = () => {
       scale: 1.5,
       x: "-50%",
       y: "-50%",
-      border: `4px solid ${primaryColor.cursorColor}`,
+      border: `3px solid ${primaryColor.cursorColor}`,
     },
     unHover: {
       scale: 1,

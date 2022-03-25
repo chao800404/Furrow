@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const MenuContainer = () => {
   const toggleTheme = useSelector((state) => state.theme.themeStyle);
+
   const menuMotion = (right) => {
     const rotateDirection = right ? 45 : -45;
     const transformY = right ? "-50%" : "50%";

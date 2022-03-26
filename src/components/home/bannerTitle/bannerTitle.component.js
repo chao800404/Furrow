@@ -2,11 +2,12 @@
 
 import { Title } from "./bannerTitle.style";
 import { useSelector } from "react-redux";
+import { selectBannerDrawing } from "../../../redux/banner/banner.select";
 
 const title = "A breakthrough innovation glasses lenses";
 
 const BannerTitle = () => {
-  const drawn = useSelector(({ banner: { drawing } }) => drawing) || false;
+  const drawn = useSelector(selectBannerDrawing) || false;
 
   console.log(drawn);
   const variants = {

@@ -3,6 +3,7 @@
 import { Cursor } from "./curstomCursor.styles";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { selectCursorHover } from "../../redux/cursor/cursor.select";
 
 import primaryColor from "../../theme/priamry.styles";
 
@@ -24,9 +25,7 @@ const CurstomCursor = () => {
     };
   }, []);
 
-  const cursorType = useSelector(
-    ({ cursor: { toggleHovered } }) => toggleHovered
-  );
+  const cursorType = useSelector(selectCursorHover);
 
   const variants = {
     onHover: {

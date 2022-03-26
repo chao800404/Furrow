@@ -3,7 +3,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const Menu = styled(motion.div)`
+export const Hamburger = styled(motion.div)`
   width: 5rem;
   height: 4rem;
   display: flex;
@@ -12,7 +12,7 @@ export const Menu = styled(motion.div)`
   justify-content: center;
 `;
 
-export const MenuLine = styled(motion.div)`
+export const HamburgerLine = styled(motion.div)`
   width: 4rem;
   height: 0.9rem;
   flex-direction: column;

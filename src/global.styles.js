@@ -1,7 +1,7 @@
 /** @format */
 
 import { createGlobalStyle } from "styled-components";
-
+import screenSize from "./theme/screenSize";
 // const toggleTheme = (theme, style) =>
 //   theme === "darkTheme" ? lightTheme[style] : darkTheme[style];
 
@@ -15,6 +15,9 @@ export const GlobalStyle = createGlobalStyle`
 
   html{ 
       font-size: 62.5%;
+      @media only screen and (max-width: ${`${screenSize.medium}px`}) {
+        font-size:50%;
+      }
   } 
   
   body { 
@@ -36,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size: ${({ theme: { bannerTitle } }) => bannerTitle};
+    color: ${({ theme: { bannerTitle } }) => bannerTitle};
     pointer-events: none;
   }
 `;

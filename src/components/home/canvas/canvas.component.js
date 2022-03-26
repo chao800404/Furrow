@@ -8,7 +8,7 @@ import { Canvas } from "./canvas.style";
 const CanvasBanner = () => {
   const canvas = useRef(null);
   const theme = useSelector(({ theme: { themeStyle } }) => themeStyle);
-  const [windowSizes, setWindowSizes] = useState(getSize);
+  const [windowSizes, setWindowSizes] = useState(getSize());
   const [isDrawing, setIsDrawing] = useState(false);
   const [titlePosition, setTitlePosition] = useState(0);
   const [drawn, setDrawn] = useState(false);
@@ -21,6 +21,17 @@ const CanvasBanner = () => {
     };
   }
 
+  useEffect(() => {
+    const events = ["load", "resize"];
+    function setSize() {
+      const size = getSize();
+      setWindowSizes(size);
+    }
+    events.forEach((event) => window.addEventListener(event, setSize));
+    return () =>
+      events.forEach((event) => window.removeEventListener(event, setSize));
+  }, []);
+
   const callDawn = useCallback(() => {
     if (drawn) return;
     dispatch(bannerAction());
@@ -31,23 +42,25 @@ const CanvasBanner = () => {
       { text: "What's", baseline: "bottom" },
       { text: "Electrochromic ?", baseline: "top" },
     ];
-    const events = ["load", "resize"];
-    events.forEach((event) => window.addEventListener(event, setSize));
 
-    function setSize() {
-      const size = getSize();
-      setWindowSizes(size);
-    }
+    const radio = () => {
+      return windowSizes.width / windowSizes.height > 1
+        ? windowSizes.width
+        : windowSizes.height / 1.2;
+    };
 
     function renderText(text, baseline) {
       renderCtx.font =
         text === "What's"
-          ? `${windowSizes.width / 9}px Anton`
-          : `${windowSizes.width / 12}px Anton`;
+          ? `${radio() / 9}px Anton`
+          : `${radio() / 12}px Anton`;
       renderCtx.textAlign = "center";
       renderCtx.fillStyle = theme.color;
 
-      renderCtx.translate(windowSizes.width, text === "What's" ? 50 : 20);
+      renderCtx.translate(
+        windowSizes.width,
+        text === "What's" ? radio() / 30 : 20
+      );
       renderCtx.translate(-titlePosition, 0);
 
       renderCtx.textBaseline = baseline;
@@ -60,7 +73,6 @@ const CanvasBanner = () => {
 
       renderCtx.globalCompositeOperation = "destination-out";
     }
-
     const renderElem = canvas.current;
     const renderCtx = renderElem.getContext("2d");
     renderElem.width = windowSizes.width * 2;
@@ -71,11 +83,7 @@ const CanvasBanner = () => {
     renderCtx.fillStyle = theme.backgroundColor;
     renderCtx.fillRect(0, 0, windowSizes.width, windowSizes.height);
     elec.forEach(({ text, baseline }) => renderText(text, baseline));
-
     renderCtx.translate(0, -80);
-
-    return () =>
-      events.forEach((event) => window.removeEventListener(event, setSize));
   }, [windowSizes, theme, titlePosition]);
 
   useEffect(() => {

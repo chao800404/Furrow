@@ -8,7 +8,7 @@ import { toggleThemeStyle } from "../../redux/theme/theme.actions";
 import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
 
 import themeType from "../../theme/theme.styles.js";
-import MenuContainer from "../Menu/menu.componet";
+import HamburgerBox from "../hamburger/hamburger.componet";
 
 const Header = () => {
   const dispath = useDispatch();
@@ -33,7 +33,7 @@ const Header = () => {
           <span onClick={handleClick}></span>
           <LinkStyle to="/">SEC</LinkStyle>
         </Logo>
-        <MenuContainer />
+        <HamburgerBox />
       </Flex>
     </HeaderNav>
   );

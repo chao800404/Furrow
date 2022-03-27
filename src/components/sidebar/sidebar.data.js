@@ -2,22 +2,22 @@
 
 const sidebarData = [
   {
-    name: "about",
+    name: "about us",
     id: 0,
     link: "/about",
   },
   {
-    name: "feature",
+    name: "glasses feature",
     id: 1,
     link: "/feature",
   },
   {
-    name: "shop",
+    name: "go shop",
     id: 2,
     link: "/shop",
   },
   {
-    name: "virtual",
+    name: "virtual Try-on",
     id: 3,
     link: "/virtual",
   },

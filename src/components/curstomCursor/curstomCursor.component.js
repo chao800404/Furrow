@@ -4,10 +4,14 @@ import { Cursor } from "./curstomCursor.styles";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectCursorHover } from "../../redux/cursor/cursor.select";
+import { sidebarStauts } from "../../redux/sidebar/sidebar.select";
+import { selectThemeStyle } from "../../redux/theme/theme.select";
 
 import primaryColor from "../../theme/priamry.styles";
 
 const CurstomCursor = () => {
+  const status = useSelector(sidebarStauts);
+  const theme = useSelector(selectThemeStyle);
   const [mousePosition, setMousePosition] = useState({
     x: 400,
     y: 400,
@@ -39,12 +43,18 @@ const CurstomCursor = () => {
       x: "-50%",
       y: "-50%",
     },
+    sidebarOpen: {
+      backgroundColor: theme.backgroundColor,
+      scale: 1.5,
+    },
   };
 
   return (
     <>
       <Cursor
-        animate={cursorType ? "onHover" : "unHover"}
+        animate={
+          cursorType ? "onHover" : "unHover" && status ? "sidebarOpen" : ""
+        }
         variants={variants}
         mousepositions={mousePosition}
         className={cursorType ? "hovered" : ""}

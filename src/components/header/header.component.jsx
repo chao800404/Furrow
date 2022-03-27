@@ -6,19 +6,18 @@ import { Flex } from "../Flex/flex.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleThemeStyle } from "../../redux/theme/theme.actions";
 import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
-
 import themeType from "../../theme/theme.styles.js";
 import HamburgerBox from "../hamburger/hamburger.componet";
 
 const Header = () => {
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const toggleTheme = useSelector((state) => state.theme.currentTheme);
   const handleClick = () => {
-    dispath(toggleThemeStyle(themeType(toggleTheme)));
+    dispatch(toggleThemeStyle(themeType(toggleTheme)));
   };
 
   const handleHover = () => {
-    dispath(toggleCursorStyle());
+    dispatch(toggleCursorStyle());
   };
 
   return (

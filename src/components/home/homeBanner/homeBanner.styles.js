@@ -10,6 +10,7 @@ export const HomeContainer = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 `;
 
 export const BannerVideo = styled.div`

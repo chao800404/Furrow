@@ -13,19 +13,31 @@ const CurstomCursor = () => {
   const status = useSelector(sidebarStauts);
   const theme = useSelector(selectThemeStyle);
   const [mousePosition, setMousePosition] = useState({
-    x: 400,
-    y: 400,
+    x: 0,
+    y: 0,
   });
 
-  const onMouseMove = (event) => {
-    const { clientX: x, clientY: y } = event;
-    setMousePosition({ x, y });
-  };
+  const [scollY, setSrollY] = useState({ ys: 0 });
 
   useEffect(() => {
+    const onMouseMove = (event) => {
+      const { clientX: x, clientY: y } = event;
+      setMousePosition({ x, y });
+    };
     document.addEventListener("mousemove", onMouseMove);
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onScroll = (event) => {
+      const y = document.documentElement.scrollTop;
+      setSrollY({ ys: y });
+    };
+    document.addEventListener("scroll", onScroll);
+    return () => {
+      document.removeEventListener("scroll", onScroll);
     };
   }, []);
 
@@ -57,6 +69,7 @@ const CurstomCursor = () => {
         }
         variants={variants}
         mousepositions={mousePosition}
+        scrolly={scollY}
         className={cursorType ? "hovered" : ""}
       />
     </>

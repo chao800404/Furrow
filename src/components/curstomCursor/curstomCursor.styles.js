@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import primaryColor from "../../theme/priamry.styles";
 
 export const Cursor = styled(motion.div).attrs(
-  ({ mousepositions: { x, y } }) => {
+  ({ mousepositions: { x, y }, scrolly: { ys } }) => {
     return {
       style: {
-        top: `${y}px`,
+        top: `${y + ys}px`,
         left: `${x}px`,
       },
     };

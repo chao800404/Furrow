@@ -4,22 +4,20 @@ import { Title } from "./bannerTitle.style";
 import { useSelector } from "react-redux";
 import { selectBannerDrawing } from "../../../redux/banner/banner.select";
 
-const title = "A breakthrough innovation glasses lenses";
+const title = "SmartWear";
 
 const BannerTitle = () => {
   const drawn = useSelector(selectBannerDrawing) || false;
 
-  console.log(drawn);
   const variants = {
     visible: {
       opacity: 1,
-      bottom: 150,
+      bottom: "-10%",
       visibility: "visible",
     },
     hidden: {
       opacity: 0,
       bottom: 0,
-
       visibility: "hidden",
     },
   };
@@ -30,7 +28,8 @@ const BannerTitle = () => {
       animate={drawn ? "visible" : "hidden"}
       intial="hidden"
     >
-      {title}
+      <span>{title.slice(0, 5).toUpperCase()}</span>
+      <span>{title.slice(5, 10).toUpperCase()}</span>
     </Title>
   );
 };

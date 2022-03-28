@@ -13,6 +13,8 @@ export const SidebarContainer = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
   backdrop-filter: blur(0.3rem);
+  display: grid;
+  grid-template-columns: 1.5fr 3fr;
 
   &::before {
     content: "";
@@ -28,6 +30,15 @@ export const SidebarContainer = styled(motion.div)`
   }
 `;
 
+export const SidebarImage = styled(motion.div)`
+ 
+  height: auto
+  z-index: 40;
+  img {
+    width: 20vw;
+  }
+`;
+
 export const Sidebar = styled.ul`
   height: 100%;
   z-index: 40;
@@ -37,6 +48,6 @@ export const Sidebar = styled.ul`
   flex-direction: column;
   position: absolute;
   top: 0;
-  left: calc(100vw - 65%);
   margin-top: 5rem;
+  grid-column: 2 / -1;
 `;

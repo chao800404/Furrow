@@ -6,18 +6,27 @@ import primaryColor from "../../../theme/priamry.styles";
 import screenSize from "../../../theme/screenSize";
 
 export const Title = styled(motion.h1)`
-  font-size: 4rem;
+  font-size: 20rem;
   position: absolute;
-  left: 50%;
+  left: 0;
   z-index: 30;
-  letter-spacing: 0.3rem;
-  transform: translateX(-50%);
+  letter-spacing: -1rem;
   color: ${primaryColor.titleColor};
-  text-align: center;
   opacity: 0,
   visibility: hidden;
   will-change: bottom;
-  transition: unset;
+  display:flex;
+  flex-direction: column;
+  text-align: start;
+  
+  span {
+    font-size:inherit;
+    display:block;
+
+    &:not(:first-child) {
+      margin-top: -26%;
+    }
+  }
 
   @media only screen and (max-width: ${`${screenSize.medium}px`}){
     font-size:3rem;

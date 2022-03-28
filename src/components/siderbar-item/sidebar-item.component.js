@@ -37,6 +37,7 @@ const SidebarItemLi = ({ link, name, index }) => {
       <SidebarItem
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
+        data-target={name}
         to={link}
       >
         {isHover ? <AiFillCaretRight style={{ fontSize: "5rem" }} /> : null}

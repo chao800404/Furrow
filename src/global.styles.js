@@ -35,11 +35,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p,div {
-    font-size:1.6rem;
+    font-size:2.5rem;
+    font-family: 'Oswald', sans-serif;
   }
 
   h1 {
     color: ${({ theme: { bannerTitle } }) => bannerTitle};
     pointer-events: none;
+  }
+
+  h2 {
+    font-size:3rem;
   }
 `;

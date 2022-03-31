@@ -35,3 +35,23 @@ export const LinkStyle = styled(Link)`
   font-weigth: 1200;
   color: inherit;
 `;
+
+export const HeaderMenu = styled.div`
+  display: flex;
+  align-items: center;
+
+  .menu {
+    display: flex;
+    align-items: center;
+    margin-right: 5rem;
+  }
+
+  svg {
+    font-size: 2.5rem;
+    margin-right: 1rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+`;

@@ -28,6 +28,11 @@ export const GlobalStyle = createGlobalStyle`
       
   }
 
+  a,a:active,a:focus {
+    color: ${({ theme: { bannerTitle } }) => bannerTitle};
+    text-decoration: none;
+  }
+
   button {
     background-color:${({ theme: { buttonBackgroundColor } }) =>
       buttonBackgroundColor};
@@ -59,4 +64,5 @@ export const GlobalStyle = createGlobalStyle`
     font-size:2rem;
 
   }
+
 `;

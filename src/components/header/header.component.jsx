@@ -1,13 +1,15 @@
 /** @format */
 
 import React from "react";
-import { HeaderNav, LinkStyle, Logo } from "./header.styles";
+import { HeaderNav, LinkStyle, Logo, HeaderMenu } from "./header.styles";
 import { Flex } from "../Flex/flex.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleThemeStyle } from "../../redux/theme/theme.actions";
 import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
 import themeType from "../../theme/theme.styles.js";
 import HamburgerBox from "../hamburger/hamburger.componet";
+import { BiStore } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -32,7 +34,13 @@ const Header = () => {
           <span onClick={handleClick}></span>
           <LinkStyle to="/">SEC</LinkStyle>
         </Logo>
-        <HamburgerBox />
+        <HeaderMenu>
+          <Link to="/shop" className="menu">
+            <BiStore />
+            <h3>SHOP</h3>
+          </Link>
+          <HamburgerBox />
+        </HeaderMenu>
       </Flex>
     </HeaderNav>
   );

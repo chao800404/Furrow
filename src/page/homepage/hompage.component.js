@@ -13,7 +13,6 @@ const Homepage = () => {
       <HomeContent />
       <HomeFeature />
       <HomeArticle />
-      <div style={{ height: "200vh" }}></div>
     </>
   );
 };

@@ -7,7 +7,7 @@ import { selectCursorHover } from "../../redux/cursor/cursor.select";
 import { sidebarStauts } from "../../redux/sidebar/sidebar.select";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
 
-import primaryColor from "../../theme/priamry.styles";
+// import primaryColor from "../../theme/priamry.styles";
 
 const CurstomCursor = () => {
   const status = useSelector(sidebarStauts);
@@ -49,7 +49,7 @@ const CurstomCursor = () => {
       scale: 1.5,
       x: "-50%",
       y: "-50%",
-      border: `3px solid ${primaryColor.cursorColor}`,
+      border: `3px solid ${theme.color}`,
     },
     unHover: {
       scale: 1,

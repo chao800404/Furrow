@@ -37,6 +37,7 @@ export const GlobalStyle = createGlobalStyle`
   p,div {
     font-size:2.5rem;
     font-family: 'Oswald', sans-serif;
+    color: ${({ theme: { bannerTitle } }) => bannerTitle};
   }
 
   h1 {

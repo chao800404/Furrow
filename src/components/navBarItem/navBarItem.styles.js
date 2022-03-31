@@ -22,9 +22,3 @@ export const NavBarIcon = styled(motion.div)`
   font-size: 1.8rem;
   padding: 1rem;
 `;
-
-export const NavList = styled(motion.p)`
-  font-size: 1.5rem;
-  padding: 1rem 2rem;
-  user-select: none;
-`;

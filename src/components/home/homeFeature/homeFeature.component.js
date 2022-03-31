@@ -15,6 +15,8 @@ import { Flex } from "../../Flex/flex.styles";
 import useVideoShouldPlay from "../../../utils/useVideoShouldPlay";
 import feature from "../../../assets/video/featureVideo_sd.mp4";
 import { BsFillForwardFill, BsSunglasses } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { toggleCursorStyle } from "../../../redux/cursor/cursor.actions";
 
 const variants = {
   isView: {
@@ -43,6 +45,11 @@ const titleMovtion = {
 
 const HomeFeature = () => {
   const { videoEl, ref, inView } = useVideoShouldPlay();
+  const dispatch = useDispatch();
+
+  const handleHover = () => {
+    dispatch(toggleCursorStyle());
+  };
 
   return (
     <Flex direction="column">
@@ -52,7 +59,10 @@ const HomeFeature = () => {
           <HomeFeatureSecondParagraph>
             NEW ARRIVALS 2022
           </HomeFeatureSecondParagraph>
-          <HomeFeatureTitle>
+          <HomeFeatureTitle
+            onMouseEnter={handleHover}
+            onMouseLeave={handleHover}
+          >
             <span>OUR</span>
             <span>PRODUCTION</span>
             <HomeFeatureIcon variants={titleMovtion}>
@@ -70,7 +80,10 @@ const HomeFeature = () => {
         </HomeFeatureVideo>
       </HomeFeatureSection>
       <HomeFeatureNews>
-        <HomeFeatureNewsBtn>
+        <HomeFeatureNewsBtn
+          onMouseEnter={handleHover}
+          onMouseLeave={handleHover}
+        >
           <BsSunglasses className="button_icon" />
           <p>Virtual Try-On</p>
         </HomeFeatureNewsBtn>

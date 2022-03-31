@@ -4,16 +4,13 @@ import {
   NavBarCollapsed,
   NavBarContainer,
   NavBarIcon,
-  NavList,
 } from "./navBarItem.styles";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 
-import {
-  actionTargetNav,
-  actionToggleNav,
-} from "../../redux/article/article.action";
+import { actionToggleNav } from "../../redux/article/article.action";
 import primaryColor from "../../theme/priamry.styles";
+import NavBarItemSplit from "../navBarItemSplit/navBarItemSplit.component";
 
 const variants = {
   display: {
@@ -28,11 +25,6 @@ const variants = {
 
 const NavBarItem = ({ name, data, toggle }) => {
   const dispatch = useDispatch();
-
-  const handleClickFilterArticle = (e) => {
-    const navTarget = e.target.dataset.nav;
-    dispatch(actionTargetNav(navTarget));
-  };
 
   const handleClickCollapsed = (e) => {
     const navTitle = e.target.dataset.name;
@@ -60,14 +52,7 @@ const NavBarItem = ({ name, data, toggle }) => {
         animate={toggle ? "display" : "hidden"}
       >
         {data.map(({ title, id }) => (
-          <NavList
-            onClick={handleClickFilterArticle}
-            whileHover={{ color: primaryColor.titleColor }}
-            data-nav={id}
-            key={id}
-          >
-            {title}
-          </NavList>
+          <NavBarItemSplit key={id} title={title} id={id} />
         ))}
       </NavBarCollapsed>
     </NavBarContainer>

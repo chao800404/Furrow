@@ -4,8 +4,8 @@ import { HamburgerLine, Hamburger } from "./hamburger.styles";
 import { useSelector, useDispatch } from "react-redux";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
 import { sidebarStauts } from "../../redux/sidebar/sidebar.select";
-
 import { toggleSidebar } from "../../redux/sidebar/sidebar.actions";
+import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
 
 const menuMotion = (right) => {
   const rotateDirection = right ? 45 : -45;
@@ -30,8 +30,18 @@ const HamburgerBox = () => {
     dispatch(toggleSidebar());
   };
 
+  const handleHover = () => {
+    dispatch(toggleCursorStyle());
+  };
+
   return (
-    <Hamburger initial="rest" animate="rest" onClick={handleSidebarClick}>
+    <Hamburger
+      initial="rest"
+      animate="rest"
+      onClick={handleSidebarClick}
+      onMouseEnter={handleHover}
+      onMouseLeave={handleHover}
+    >
       <HamburgerLine
         variants={menuMotion(false)}
         animate={toggle ? "click" : "rest"}

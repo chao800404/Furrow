@@ -5,6 +5,7 @@ import styled from "styled-components";
 export const Flex = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: ${({ direction }) => direction || "row"};
   margin: 0 auto;
   height: 100%;
   align-items: center;

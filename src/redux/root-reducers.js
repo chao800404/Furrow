@@ -5,6 +5,7 @@ import themeReducer from "./theme/theme.reducers";
 import cursorReducer from "./cursor/cursor.reducers";
 import bannerReducer from "./banner/banner.reducer";
 import sidebarReducer from "./sidebar/sidebar.reducer";
+import articleReducer from "./article/article.reducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -14,6 +15,7 @@ const rootReducers = combineReducers({
   cursor: cursorReducer,
   banner: bannerReducer,
   sidebar: sidebarReducer,
+  article: articleReducer,
 });
 
 const persistConfig = {

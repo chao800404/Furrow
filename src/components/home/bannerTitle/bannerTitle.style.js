@@ -19,6 +19,8 @@ export const Title = styled(motion.h1)`
   flex-direction: column;
   text-align: start;
   
+  user-select: none;
+
   span {
     font-size:inherit;
     display:block;

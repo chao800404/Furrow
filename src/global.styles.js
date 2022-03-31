@@ -46,5 +46,16 @@ export const GlobalStyle = createGlobalStyle`
 
   h2 {
     font-size:3rem;
+    color: ${({ theme: { bannerTitle } }) => bannerTitle};
+  }
+  h3 {
+    font-size: 2.5rem;
+    color: ${({ theme: { bannerTitle } }) => bannerTitle};
+  }
+  button {
+    color: ${({ theme: { color } }) => color};
+    font-family: 'Anton', sans-serif;
+    font-size:2rem;
+
   }
 `;

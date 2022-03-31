@@ -57,7 +57,7 @@ export const MarkSvgContainer = styled(motion.div)`
   align-self: end;
   .markSvg {
     fill: none;
-    stroke: white;
+    stroke: ${({ color }) => color.color};
     stroke-width: 0.5;
     stroke-linejoin: round;
     stroke-miterlimit: 10;
@@ -79,7 +79,7 @@ export const MarkSvgContainer = styled(motion.div)`
 
 export const MarkSvgSideContainer = styled(ReactSVG)`
   fill: none;
-  stroke: white;
+  stroke: ${({ color }) => color.color};
   stroke-width: 0.2;
   stroke-linejoin: round;
 `;

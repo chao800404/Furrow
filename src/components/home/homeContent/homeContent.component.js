@@ -14,13 +14,16 @@ import { Flex } from "../../Flex/flex.styles";
 import markSvg from "../../../assets/svg/markSvg.svg";
 import markSvgSide from "../../../assets/svg/markSvgSide.svg";
 import { useInView } from "react-intersection-observer";
+import { useSelector } from "react-redux";
+import { selectThemeStyle } from "../../../redux/theme/theme.select";
 
 const HomeContent = () => {
   const { ref, inView } = useInView({
-    // rootMargin: window.innerHeight / 3 + "px",
     threshold: 0,
     delay: 300,
   });
+
+  const theme = useSelector(selectThemeStyle);
 
   return (
     <Flex>
@@ -42,7 +45,7 @@ const HomeContent = () => {
           and look cool without breaking a sweat.
         </Paragraph>
 
-        <MarkSvgContainer ref={ref}>
+        <MarkSvgContainer ref={ref} color={theme}>
           <ReactSVG
             className={`markSvgMg ${inView ? "markSvg" : "hidden"} ${
               inView ? "markSvgAnstart" : ""
@@ -55,7 +58,11 @@ const HomeContent = () => {
           initial={{ opacity: 0, x: 200 }}
           viewport={{ once: false }}
         >
-          <MarkSvgSideContainer className="svgMarkSide" src={markSvgSide} />
+          <MarkSvgSideContainer
+            color={theme}
+            className="svgMarkSide"
+            src={markSvgSide}
+          />
         </MarkSvgSideContent>
       </HomeContainer>
     </Flex>

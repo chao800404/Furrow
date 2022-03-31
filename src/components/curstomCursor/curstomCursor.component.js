@@ -17,7 +17,7 @@ const CurstomCursor = () => {
     y: 0,
   });
 
-  const [scollY, setSrollY] = useState({ ys: 0 });
+  const [scrollY, setSrollY] = useState({ ys: 0 });
 
   useEffect(() => {
     const onMouseMove = (event) => {
@@ -31,15 +31,16 @@ const CurstomCursor = () => {
   }, []);
 
   useEffect(() => {
-    const onScroll = (event) => {
+    const onScroll = () => {
       const y = document.documentElement.scrollTop;
+      if (y === scrollY) return;
       setSrollY({ ys: y });
     };
     document.addEventListener("scroll", onScroll);
     return () => {
       document.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [scrollY]);
 
   const cursorType = useSelector(selectCursorHover);
 
@@ -69,7 +70,7 @@ const CurstomCursor = () => {
         }
         variants={variants}
         mousepositions={mousePosition}
-        scrolly={scollY}
+        scrolly={scrollY}
         className={cursorType ? "hovered" : ""}
       />
     </>

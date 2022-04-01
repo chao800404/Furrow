@@ -101,9 +101,6 @@ const CanvasBanner = () => {
 
   const startDrawing = () => {
     setIsDrawing(true);
-    const renderElem = canvas.current;
-    const renderCtx = renderElem.getContext("2d");
-    renderCtx.beginPath();
   };
 
   const finishDrawing = () => {
@@ -134,9 +131,9 @@ const CanvasBanner = () => {
   return (
     <Canvas
       ref={canvas}
-      onMouseDown={startDrawing}
-      onMouseUp={finishDrawing}
-      onMouseMove={drawing}
+      onPointerDown={startDrawing}
+      onPointerUp={finishDrawing}
+      onPointerMove={drawing}
     ></Canvas>
   );
 };

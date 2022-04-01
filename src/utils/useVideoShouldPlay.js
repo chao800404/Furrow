@@ -11,8 +11,11 @@ const useVideoShouldPlay = () => {
   });
 
   useEffect(() => {
-    const video = videoEl.current;
-    inView ? video.play() : video.pause();
+    setTimeout(() => {
+      const video = videoEl.current;
+      video.defaultMuted = true;
+      inView ? video.play() : video.pause();
+    }, 0);
   });
 
   return { videoEl, ref, inView };

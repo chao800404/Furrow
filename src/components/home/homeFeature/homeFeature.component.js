@@ -73,10 +73,17 @@ const HomeFeature = () => {
         <HomeFeatureVideo
           animate={inView ? "inView" : "moveoutView"}
           variants={variants}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.4 }}
           ref={ref}
         >
-          <video ref={videoEl} loop autoPlay muted src={feature} />
+          <video
+            style={{ willChange: "transfrom" }}
+            ref={videoEl}
+            loop
+            autoPlay
+            muted
+            src={feature}
+          />
         </HomeFeatureVideo>
       </HomeFeatureSection>
       <HomeFeatureNews>

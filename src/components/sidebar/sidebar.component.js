@@ -7,6 +7,7 @@ import { sidebarStauts } from "../../redux/sidebar/sidebar.select";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Tilt from "react-parallax-tilt";
+import { AnimatePresence } from "framer-motion";
 
 const sidebarImage = async (index) => {
   if (index) {
@@ -36,33 +37,42 @@ const Sidebars = () => {
     setImageName(image.split(" ").join(""));
   };
 
-  return status ? (
-    <SidebarContainer
-      initial={{ scaleX: 0.2, transformOrigin: "left" }}
-      animate={{ scaleX: 1 }}
-      onMouseOver={handleMouseEnter}
-    >
-      <Tilt
-        perspective={400}
-        tiltAngleYInitial={10}
-        tiltAngleXInitial={10}
-        style={{
-          zIndex: 50,
-          gridColumn: "1 / 2",
-          alignSelf: "center",
-          justifySelf: "center",
-        }}
-      >
-        <SidebarImage>
-          <img alt={imageName} src={imageUrl} />
-        </SidebarImage>
-      </Tilt>
-      <Sidebar>
-        {sidebarData.map(({ id, ...otherSidebarProps }, index) => (
-          <SidebarItemLi key={id} index={index} {...otherSidebarProps} />
-        ))}
-      </Sidebar>
-    </SidebarContainer>
-  ) : null;
+  return (
+    <AnimatePresence>
+      {status && (
+        <SidebarContainer
+          initial={{ scaleX: 0.2, transformOrigin: "left" }}
+          animate={{ scaleX: 1 }}
+          exit={{
+            x: -2000,
+            opacity: 0,
+            transition: { ease: "easeOut" },
+          }}
+          onMouseOver={handleMouseEnter}
+        >
+          <Tilt
+            perspective={400}
+            tiltAngleYInitial={10}
+            tiltAngleXInitial={10}
+            style={{
+              zIndex: 50,
+              gridColumn: "1 / 2",
+              alignSelf: "center",
+              justifySelf: "center",
+            }}
+          >
+            <SidebarImage>
+              <img alt={imageName} src={imageUrl} />
+            </SidebarImage>
+          </Tilt>
+          <Sidebar>
+            {sidebarData.map(({ id, ...otherSidebarProps }, index) => (
+              <SidebarItemLi key={id} index={index} {...otherSidebarProps} />
+            ))}
+          </Sidebar>
+        </SidebarContainer>
+      )}
+    </AnimatePresence>
+  );
 };
 export default Sidebars;

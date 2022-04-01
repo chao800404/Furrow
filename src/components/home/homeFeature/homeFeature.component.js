@@ -2,7 +2,6 @@
 
 import {
   HomeFeatureSection,
-  HomeFeatureVideo,
   HomeFeatureContent,
   HomeFeatureTitle,
   HomeFeatureParagraph,
@@ -12,22 +11,10 @@ import {
   HomeFeatureNewsBtn,
 } from "./homeFeature.styles";
 import { Flex } from "../../Flex/flex.styles";
-import useVideoShouldPlay from "../../../utils/useVideoShouldPlay";
-import feature from "../../../assets/video/featureVideo_sd.mp4";
+import FeatureVidoe from "../featureVideo/featureVideo.component";
 import { BsFillForwardFill, BsSunglasses } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { toggleCursorStyle } from "../../../redux/cursor/cursor.actions";
-
-const variants = {
-  isView: {
-    scale: 1,
-    opacity: 1,
-  },
-  moveoutView: {
-    scale: 0.8,
-    opacity: 0,
-  },
-};
 
 const titleMovtion = {
   rest: {
@@ -44,7 +31,6 @@ const titleMovtion = {
 };
 
 const HomeFeature = () => {
-  const { videoEl, ref, inView } = useVideoShouldPlay();
   const dispatch = useDispatch();
 
   const handleHover = () => {
@@ -54,7 +40,7 @@ const HomeFeature = () => {
   return (
     <Flex direction="column">
       <HomeFeatureSection initial="rest" whileHover="hover" animate="rest">
-        <HomeFeatureContent variants={variants}>
+        <HomeFeatureContent>
           <HomeFeatureParagraph>ELECTROCHROMIC LENSES</HomeFeatureParagraph>
           <HomeFeatureSecondParagraph>
             NEW ARRIVALS 2022
@@ -70,21 +56,7 @@ const HomeFeature = () => {
             </HomeFeatureIcon>
           </HomeFeatureTitle>
         </HomeFeatureContent>
-        <HomeFeatureVideo
-          animate={inView ? "inView" : "moveoutView"}
-          variants={variants}
-          transition={{ delay: 0.4 }}
-          ref={ref}
-        >
-          <video
-            style={{ willChange: "transfrom" }}
-            ref={videoEl}
-            loop
-            autoPlay
-            muted
-            src={feature}
-          />
-        </HomeFeatureVideo>
+        <FeatureVidoe />
       </HomeFeatureSection>
       <HomeFeatureNews>
         <HomeFeatureNewsBtn

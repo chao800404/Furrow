@@ -13,8 +13,8 @@ const CurstomCursor = () => {
   const status = useSelector(sidebarStauts);
   const theme = useSelector(selectThemeStyle);
   const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
+    x: 400,
+    y: 400,
   });
 
   const [scrollY, setSrollY] = useState({ ys: 0 });
@@ -47,8 +47,6 @@ const CurstomCursor = () => {
   const variants = {
     onHover: {
       scale: 1.5,
-      x: "-50%",
-      y: "-50%",
       border: `3px solid ${theme.color}`,
     },
     unHover: {

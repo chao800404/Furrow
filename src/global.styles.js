@@ -2,15 +2,13 @@
 
 import { createGlobalStyle } from "styled-components";
 import screenSize from "./theme/screenSize";
-// const toggleTheme = (theme, style) =>
-//   theme === "darkTheme" ? lightTheme[style] : darkTheme[style];
 
 export const GlobalStyle = createGlobalStyle`
   *,*::before,*::after {
       padding:0;
       margin:0;
       box-sizing:inherit;
-      cursor:none; 
+      cursor:none;
   }
 
   html{ 

@@ -16,7 +16,11 @@ const HomeArticle = () => {
 
   return (
     <Flex>
-      <HomeArticleSection>
+      <HomeArticleSection
+        initial={{ y: 250, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+      >
         <HomeArticleItem />
       </HomeArticleSection>
     </Flex>

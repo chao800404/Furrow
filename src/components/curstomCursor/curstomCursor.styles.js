@@ -8,8 +8,8 @@ export const Cursor = styled(motion.div).attrs(
   ({ mousepositions: { x, y }, scrolly: { ys } }) => {
     return {
       style: {
-        top: `${y + ys}px`,
-        left: `${x}px`,
+        top: `${y + ys - 15}px`,
+        left: `${x - 15}px`,
       },
     };
   }
@@ -19,7 +19,6 @@ export const Cursor = styled(motion.div).attrs(
   background-color: ${primaryColor.cursorColor};
   position: absolute;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
   transition-property: width, height, border, bottom, top;
   will-change: transform, width, height, border, bottom, top;
   pointer-events: none;

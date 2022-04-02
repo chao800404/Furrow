@@ -21,6 +21,7 @@ const HomeContent = () => {
   const { ref, inView } = useInView({
     threshold: 0,
     delay: 300,
+    triggerOnce: true,
   });
 
   const theme = useSelector(selectThemeStyle);
@@ -38,7 +39,7 @@ const HomeContent = () => {
         <Paragraph
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 100 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
         >
           We’re constantly striving to redefine the eyewear
           landscape---demonstrating that sunglasses can protect, be functional
@@ -56,7 +57,7 @@ const HomeContent = () => {
         <MarkSvgSideContent
           whileInView={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: 200 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
         >
           <MarkSvgSideContainer
             color={theme}

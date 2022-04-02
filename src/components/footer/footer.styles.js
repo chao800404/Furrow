@@ -4,10 +4,11 @@ import styled from "styled-components";
 export const FooterContainer = styled.footer`
   width: 100%;
   display: flex;
-  height: 20rem;
+  height: 15rem;
 
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
+  margin-bottom: 3rem;
   p {
     width: 50rem;
     font-size: 1.4rem;
@@ -50,5 +51,20 @@ export const FooterMenu = styled.div`
     nth-child(6) {
       grid-column: 6 / 7;
     }
+  }
+`;
+
+export const AuthorLink = styled.div`
+  display: flex;
+  width: 12rem;
+  height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.2rem;
   }
 `;

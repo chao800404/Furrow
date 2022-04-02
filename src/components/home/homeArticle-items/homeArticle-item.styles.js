@@ -1,8 +1,9 @@
 /** @format */
 import styled from "styled-components";
 import primaryColor from "../../../theme/priamry.styles";
+import { motion } from "framer-motion";
 
-export const HomeArticleSide = styled.article`
+export const HomeArticleSide = styled(motion.article)`
   grid-column: 1 / 2;
   height: 35rem;
   display: flex;
@@ -28,13 +29,4 @@ export const HomeArticleDownContainer = styled.div`
   width: 100%;
   height: 3rem;
   display: flex;
-  .svgIcon {
-    width: 10rem;
-    height: 10rem;
-  }
-
-  svg {
-    fill: white;
-    font-size: 5rem;
-  }
 `;

@@ -39,7 +39,13 @@ const HomeFeature = () => {
 
   return (
     <Flex direction="column">
-      <HomeFeatureSection initial="rest" whileHover="hover" animate="rest">
+      <HomeFeatureSection
+        initial="rest"
+        whileHover="hover"
+        animate="rest"
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+      >
         <HomeFeatureContent>
           <HomeFeatureParagraph>ELECTROCHROMIC LENSES</HomeFeatureParagraph>
           <HomeFeatureSecondParagraph>

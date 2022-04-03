@@ -9,7 +9,6 @@ export const Title = styled(motion.h1)`
   font-size: 20rem;
   position: absolute;
   left: 0;
-  z-index: 30;
   letter-spacing: -1rem;
   color: ${primaryColor.titleColor};
   opacity: 0,

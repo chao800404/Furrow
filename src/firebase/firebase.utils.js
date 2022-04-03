@@ -1,9 +1,7 @@
 /** @format */
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, getDocs, addDoc, writeBatch } from "firebase/firestore";
-
-import { doc, collection } from "firebase/firestore";
+import { getFirestore, getDocs, collection } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBNL_a7tt8kKKxsZ0lPIhKy7Ot0YT7bdps",
@@ -15,5 +13,26 @@ const firebaseConfig = {
   measurementId: "G-6YP5G65346",
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore();
+initializeApp(firebaseConfig);
+export const db = getFirestore();
+
+export const collectionSnapshot = async () =>
+  await getDocs(collection(db, "collections"));
+
+export const collectionToMap = (collectionSnapshot) => {
+  let map = [];
+  collectionSnapshot.forEach((collection) => {
+    map.push(collection);
+  });
+  return map.map((collection) => {
+    const { title, item, colorType, statement } = collection.data();
+    return {
+      title,
+      item,
+      id: collection.id,
+      colorType,
+      statement,
+      routeName: encodeURI(title.toUpperCase()),
+    };
+  });
+};

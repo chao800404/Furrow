@@ -14,11 +14,13 @@ const BannerTitle = () => {
       opacity: 1,
       bottom: "-10%",
       visibility: "visible",
+      zIndex: 30,
     },
     hidden: {
       opacity: 0,
       bottom: 0,
       visibility: "hidden",
+      zIndex: -1,
     },
   };
 

@@ -17,8 +17,10 @@ const Main = () => {
   const toggleTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
   const theme = useSelector(selectThemeStyle);
+
   useEffect(() => {
     dispatch(initialThemeStyle(themeType(toggleTheme)));
+    window.history.scrollRestoration = "manual";
   }, [dispatch, toggleTheme]);
 
   return (

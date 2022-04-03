@@ -6,6 +6,7 @@ import ShopPage from "./page/shoppage/shopPage.component";
 import AboutPage from "./page/aboutpage/aboutPage.component";
 import FeaturePage from "./page/featurepage/featurePage.component";
 import NewsPage from "./page/newspage/newsPage.component";
+import Sidebars from "./components/sidebar/sidebar.component";
 import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
 import Footer from "./components/footer/footer.component";
 import { Routes, Route } from "react-router-dom";
@@ -21,12 +22,13 @@ const App = () => {
     <AppContainer>
       <CurstomCursor />
       <Header />
+      <Sidebars />
       <Routes>
-        <Route exact path="/" element={<Homepage />} />
-        <Route path="shop" element={<ShopPage />} />
-        <Route exact path="about" element={<AboutPage />} />
-        <Route exact path="feature" element={<FeaturePage />} />
-        <Route exact path="news" element={<NewsPage />} />
+        <Route index path="/" element={<Homepage />} />
+        <Route path="/shop/*" element={<ShopPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/feature" element={<FeaturePage />} />
+        <Route path="/news" element={<NewsPage />} />
       </Routes>
       <Footer />
     </AppContainer>

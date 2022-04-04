@@ -11,12 +11,11 @@ import { useState } from "react";
 const Card = ({ title, item, routeName, colorType, statement }) => {
   const [colorIndex, setColorIndex] = useState(1);
 
-  const { color, id, imageUrl, price } = item[colorIndex];
+  const { color, imageUrl, price } = item[colorIndex];
 
   const handleClick = (event) => {
-    const filterColor = event.target.dataset.color;
-    console.log(item);
-    const colorIndex = item.findIndex((item) => item.rgb === filterColor);
+    const targetColor = event.target.dataset.color;
+    const colorIndex = item.findIndex((item) => item.rgb === targetColor);
     setColorIndex(colorIndex);
   };
 

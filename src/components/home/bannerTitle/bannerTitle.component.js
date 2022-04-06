@@ -17,14 +17,11 @@ const BannerTitle = () => {
       zIndex: 30,
     },
     hidden: {
-      opacity: 0,
-      bottom: 0,
       visibility: "hidden",
-      zIndex: -1,
     },
   };
 
-  return (
+  return drawn ? (
     <Title
       variants={variants}
       animate={drawn ? "visible" : "hidden"}
@@ -33,7 +30,7 @@ const BannerTitle = () => {
       <span>{title.slice(0, 5).toUpperCase()}</span>
       <span>{title.slice(5, 10).toUpperCase()}</span>
     </Title>
-  );
+  ) : null;
 };
 
 export default BannerTitle;

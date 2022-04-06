@@ -10,17 +10,38 @@ import Card from "../card/card.component";
 import { ReactSVG } from "react-svg";
 import mclarenXOnesecLogo from "../../assets/svg/mclaren_x_onesec.svg";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
+import Spinner from "../spinner/spinner.component";
+import { selectCardLoad } from "../../redux/card/card.select";
 
 const CollectionPreview = () => {
   const collections = useSelector(selectShopCollectionPreview);
 
   const theme = useSelector(selectThemeStyle);
+  const imageLoad = useSelector(selectCardLoad);
 
-  console.log(collections);
-
-  return (
+  return collections ? (
     <Flex>
-      <CollectionPreviewContainer>
+      {imageLoad ? null : (
+        <div
+          style={{
+            width: "100%",
+            height: "100vh",
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
+        >
+          <Spinner />
+        </div>
+      )}
+      <CollectionPreviewContainer
+        initial={{ visibility: "hidden", y: 10, opacity: 0 }}
+        animate={
+          imageLoad
+            ? { visibility: "visible", y: 0, height: "auto", opacity: 1 }
+            : { visibility: "hidden" }
+        }
+      >
         <h2>McLaren Vision x ONESEC</h2>
         <CollectionPreviewTitle>
           <p style={{ fontSize: "2rem" }}>
@@ -37,11 +58,13 @@ const CollectionPreview = () => {
           />
         </CollectionPreviewTitle>
 
-        {collections.map(({ id, ...otherProps }) => (
+        {collections?.map(({ id, ...otherProps }) => (
           <Card key={id} {...otherProps} />
         ))}
       </CollectionPreviewContainer>
     </Flex>
+  ) : (
+    <Spinner />
   );
 };
 

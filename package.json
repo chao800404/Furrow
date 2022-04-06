@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "lodash.memoize": "^4.1.2",
     "redux-logger": "^3.0.6"
   }
 }

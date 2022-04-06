@@ -14,11 +14,10 @@ export const Title = styled(motion.h1)`
   opacity: 0,
   visibility: hidden;
   will-change: bottom;
-  display:flex;
-  flex-direction: column;
-  text-align: start;
-  
+  zIndex:-2000;
   user-select: none;
+  bottom: 0;
+
 
   span {
     font-size:inherit;

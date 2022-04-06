@@ -7,6 +7,7 @@ import bannerReducer from "./banner/banner.reducer";
 import sidebarReducer from "./sidebar/sidebar.reducer";
 import articleReducer from "./article/article.reducer";
 import shopReducer from "./shop/shop.reudcer";
+import cardReducer from "./card/card.reducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -18,6 +19,7 @@ const rootReducers = combineReducers({
   sidebar: sidebarReducer,
   article: articleReducer,
   shop: shopReducer,
+  card: cardReducer,
 });
 
 const persistConfig = {

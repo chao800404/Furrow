@@ -1,15 +1,13 @@
 /** @format */
-import {
-  CardContainer,
-  CardTitle,
-  CardFeature,
-  CartImgContainer,
-} from "./card.styles";
+import { CardContainer, CardTitle, CardFeature } from "./card.styles";
 import Button from "../button/button.component";
 import { useState } from "react";
+import ImageContainer from "../imageContainer/imageContainer.component";
 
-const Card = ({ title, item, routeName, colorType, statement }) => {
-  const [colorIndex, setColorIndex] = useState(1);
+const Card = ({ title, item, colorType, routeName, statement }) => {
+  const [colorIndex, setColorIndex] = useState(0);
+
+  const [hovered, setHovered] = useState(false);
 
   const { color, imageUrl, price } = item[colorIndex];
 
@@ -20,21 +18,23 @@ const Card = ({ title, item, routeName, colorType, statement }) => {
   };
 
   return (
-    <CardContainer>
-      <CartImgContainer>
-        <img alt={title} src={imageUrl} />
-      </CartImgContainer>
+    <CardContainer
+      onMouseEnter={() => setHovered(1)}
+      onMouseLeave={() => setHovered(0)}
+      data-type="card"
+    >
+      <ImageContainer props={{ title, imageUrl, hovered }} />
       <CardTitle>
         <h3>
           {title}
           <span>{color}</span>
         </h3>
-        <div>AR</div>
+        <div style={{ color: "#fff" }}>AR</div>
       </CardTitle>
       <CardFeature>
         <div
           style={{
-            height: "1.5rem",
+            height: "2rem",
             width: "50%",
             display: "flex",
             marginTop: "1rem",
@@ -45,11 +45,12 @@ const Card = ({ title, item, routeName, colorType, statement }) => {
               key={index}
               style={{
                 backgroundColor: color,
-                width: "1.2rem",
-                height: "1.2rem",
+                width: "1.5rem",
+                height: "1.5rem",
                 borderRadius: "50%",
                 marginRight: ".5rem",
               }}
+              data-type="color-option"
               data-color={color}
               onClick={handleClick}
             ></span>
@@ -58,7 +59,7 @@ const Card = ({ title, item, routeName, colorType, statement }) => {
         <p>NT${price.toLocaleString("en-US")}</p>
       </CardFeature>
       <p>{statement}</p>
-      <Button>Add To Cart</Button>
+      <Button path={routeName}>Check More</Button>
     </CardContainer>
   );
 };

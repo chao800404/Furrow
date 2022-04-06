@@ -29,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
   a,a:active,a:focus {
     color: ${({ theme: { bannerTitle } }) => bannerTitle};
     text-decoration: none;
+    outline:none;
   }
 
   button {

@@ -3,9 +3,13 @@
 import { SidebarItem, SidebarLi } from "./sidebar-item.style";
 import { useState } from "react";
 import { AiFillCaretRight } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "../../redux/sidebar/sidebar.actions";
 
 const SidebarItemLi = ({ link, name, index }) => {
   const [isHover, setIsHover] = useState(false);
+
+  const dispatch = useDispatch();
 
   const variants = {
     rest: {
@@ -33,6 +37,7 @@ const SidebarItemLi = ({ link, name, index }) => {
       initial="initial"
       variants={variants}
       animate={isHover ? "hover" : "rest"}
+      onClick={() => dispatch(toggleSidebar())}
     >
       <SidebarItem
         onMouseEnter={() => setIsHover(true)}

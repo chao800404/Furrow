@@ -19,7 +19,7 @@ const ShopPage = () => {
     <div>
       <Routes>
         <Route path="*" element={<CollectionPreview />} />
-        <Route path=":collectionId" element={<CollectionOverView />} />
+        <Route path=":collectionId/*" element={<CollectionOverView />}></Route>
       </Routes>
     </div>
   );

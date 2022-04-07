@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { fetchCollectionStart } from "../../redux/shop/shop.actions";
-
+import { fetchShopPageStart } from "../../redux/shopPage/shopPage.action";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import CollectionPreview from "../../components/collection-preview/collection-preview.component";
@@ -13,6 +13,7 @@ const ShopPage = () => {
 
   useEffect(() => {
     dispatch(fetchCollectionStart());
+    dispatch(fetchShopPageStart());
   }, [dispatch]);
 
   return (

@@ -3,6 +3,7 @@
 import { useParams, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectOverViewPage } from "../../redux/shop/shop.select";
+import { selectShopPageContainer } from "../../redux/shopPage/shopPage.select";
 import SecondTypeCard from "../secondTypeCard/secondTypeCard.component";
 import { Flex } from "../Flex/flex.styles";
 import {
@@ -11,15 +12,17 @@ import {
 } from "./collection-overview.styles";
 import Spinner from "../spinner/spinner.component";
 import Popup from "../popup/popup.component";
+import ShopPage from "../shopPage/shopPage.component";
+
 const CollectionOverView = () => {
   const { collectionId } = useParams();
   const collection = useSelector(selectOverViewPage(collectionId));
+  const shopPageData = useSelector(selectShopPageContainer(collectionId));
 
-  return collection ? (
-    <section style={{ height: "100vh" }}>
+  return collection && shopPageData ? (
+    <section style={{ paddingTop: "25rem", paddingBottom: "25rem" }}>
       <Flex>
         <CollectionOverViewContainer>
-          <h1>{collectionId}</h1>
           <OverViewCardContainer>
             {collection?.item.map(({ id, ...otherProps }) => (
               <SecondTypeCard
@@ -29,6 +32,8 @@ const CollectionOverView = () => {
               />
             ))}
           </OverViewCardContainer>
+          <h1>{collectionId}</h1>
+          <ShopPage shopPageData={shopPageData} collectionId={collectionId} />
         </CollectionOverViewContainer>
       </Flex>
 

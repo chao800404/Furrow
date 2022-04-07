@@ -16,8 +16,8 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 export const db = getFirestore();
 
-export const collectionSnapshot = async () =>
-  await getDocs(collection(db, "collections"));
+export const snapshot = async (collections) =>
+  await getDocs(collection(db, collections));
 
 export const collectionToMap = (collectionSnapshot) => {
   let map = [];
@@ -35,4 +35,15 @@ export const collectionToMap = (collectionSnapshot) => {
       routeName: encodeURI(title.toUpperCase()),
     };
   });
+};
+
+export const shopPageToMap = (ref) => {
+  let map = [];
+  ref.forEach((shopPageData) => {
+    map = [...map, shopPageData.data()];
+  });
+  return map.reduce((acc, item) => {
+    acc[item.sunGlassesType.toUpperCase()] = item;
+    return acc;
+  }, {});
 };

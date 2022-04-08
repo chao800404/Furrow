@@ -11,6 +11,11 @@ const SidebarItemLi = ({ link, name, index }) => {
 
   const dispatch = useDispatch();
 
+  const hanldeClick = () => {
+    dispatch(toggleSidebar());
+    dispatch(toggleSidebar());
+  };
+
   const variants = {
     rest: {
       x: 0,
@@ -37,7 +42,7 @@ const SidebarItemLi = ({ link, name, index }) => {
       initial="initial"
       variants={variants}
       animate={isHover ? "hover" : "rest"}
-      onClick={() => dispatch(toggleSidebar())}
+      onClick={hanldeClick}
     >
       <SidebarItem
         onMouseEnter={() => setIsHover(true)}

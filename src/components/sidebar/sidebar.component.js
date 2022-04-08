@@ -4,10 +4,11 @@ import sidebarData from "./sidebar.data.js";
 import { SidebarContainer, Sidebar, SidebarImage } from "./sidebar.styles";
 import SidebarItemLi from "../siderbar-item/sidebar-item.component.js";
 import { sidebarStauts } from "../../redux/sidebar/sidebar.select";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import Tilt from "react-parallax-tilt";
 import { AnimatePresence } from "framer-motion";
+import { toggleSidebar } from "../../redux/sidebar/sidebar.actions";
 
 const sidebarImage = async (index) => {
   if (index) {
@@ -24,6 +25,7 @@ const Sidebars = () => {
   const status = useSelector(sidebarStauts);
   const [imageUrl, setImageUrl] = useState();
   const [imageName, setImageName] = useState("aboutus");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (imageName)
@@ -39,6 +41,12 @@ const Sidebars = () => {
     setImageName(image.split(" ").join(""));
   };
 
+  const handleClick = (e) => {
+    const target = e.target.closest("div");
+    if (!target) return;
+    dispatch(toggleSidebar());
+  };
+
   return (
     <AnimatePresence>
       {status && (
@@ -51,6 +59,7 @@ const Sidebars = () => {
             transition: { ease: "easeOut" },
           }}
           onMouseOver={handleMouseEnter}
+          onClick={handleClick}
         >
           <Tilt
             perspective={400}

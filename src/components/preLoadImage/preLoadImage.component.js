@@ -15,6 +15,8 @@ const PreLoadImage = ({ text, url, className = null }) => {
             top: 0,
             left: 0,
             backgroundColor: "#999",
+            height: "100%",
+            zIndex: 30,
           }}
         />
       )}

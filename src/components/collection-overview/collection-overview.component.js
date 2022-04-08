@@ -20,9 +20,14 @@ const CollectionOverView = () => {
   const shopPageData = useSelector(selectShopPageContainer(collectionId));
 
   return collection && shopPageData ? (
-    <section style={{ paddingTop: "25rem", paddingBottom: "25rem" }}>
+    <section
+      style={{
+        paddingTop: "25rem",
+        paddingBottom: "10rem",
+      }}
+    >
       <Flex>
-        <CollectionOverViewContainer>
+        <CollectionOverViewContainer style={{ overflow: "hidden" }}>
           <OverViewCardContainer>
             {collection?.item.map(({ id, ...otherProps }) => (
               <SecondTypeCard
@@ -42,7 +47,7 @@ const CollectionOverView = () => {
       </Routes>
     </section>
   ) : (
-    <Spinner />
+    <Spinner style={{ minHeight: "100vh" }} />
   );
 };
 

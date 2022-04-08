@@ -28,20 +28,22 @@ const Header = () => {
       initial={{ y: -72, opactio: 0 }}
       transition={{ duration: 0.9, ease: [0.6, 0.1, 0.1, 0.9] }}
     >
-      <Flex>
-        <Logo onMouseEnter={handleHover} onMouseLeave={handleHover}>
-          <LinkStyle to="/">ONE</LinkStyle>
-          <span onClick={handleClick}></span>
-          <LinkStyle to="/">SEC</LinkStyle>
-        </Logo>
-        <HeaderMenu>
-          <Link to="/shop" className="menu">
-            <BiStore />
-            <h3>SHOP</h3>
-          </Link>
-          <HamburgerBox />
-        </HeaderMenu>
-      </Flex>
+      <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
+        <Flex>
+          <Logo onMouseEnter={handleHover} onMouseLeave={handleHover}>
+            <LinkStyle to="/">ONE</LinkStyle>
+            <span onClick={handleClick}></span>
+            <LinkStyle to="/">SEC</LinkStyle>
+          </Logo>
+          <HeaderMenu>
+            <Link to="/shop" className="menu">
+              <BiStore />
+              <h3>SHOP</h3>
+            </Link>
+            <HamburgerBox />
+          </HeaderMenu>
+        </Flex>
+      </div>
     </HeaderNav>
   );
 };

@@ -7,7 +7,6 @@ export const Flex = styled.div`
   justify-content: space-between;
   flex-direction: ${({ direction }) => direction || "row"};
   margin: 0 auto;
-  height: 100%;
   align-items: center;
   width: 110rem;
 

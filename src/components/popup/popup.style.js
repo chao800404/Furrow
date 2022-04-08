@@ -5,14 +5,41 @@ import { motion } from "framer-motion";
 
 export const PopupContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   backdrop-filter: blur(1rem);
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 200;
+  height: 100%;
   display: grid;
+  grid-template-columns: 1fr;
+  overflow-y: scroll;
+
+  ul {
+    justify-self: center;
+    width: 50%;
+    transform: translateY(-60%);
+
+    h3 {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    li {
+      font-size: 2rem;
+      transform: translateX(3rem);
+    }
+  }
+`;
+
+export const PopupBoxContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PopupBox = styled(motion.div)`

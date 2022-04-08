@@ -8,9 +8,12 @@ import {
   ShopPageProduct,
 } from "./shopPage.styles";
 
+import PreLoadImage from "../preLoadImage/preLoadImage.component";
+
 const ShopPage = ({ shopPageData, collectionId }) => {
   const { bettery, electrochromic, feature, imageUrl, product } = shopPageData;
-  return (
+
+  return shopPageData ? (
     <ShopPageContainer>
       <ShopPageBanner>
         <h4>{electrochromic?.title}</h4>
@@ -31,22 +34,29 @@ const ShopPage = ({ shopPageData, collectionId }) => {
           <h4>{feature?.[0]}</h4>
           <h4>{feature?.[1]}</h4>
         </div>
-        <img
+        <PreLoadImage
           className="firstImg"
-          alt={`${collectionId}-2`}
-          src={imageUrl?.[1]}
+          text={`${collectionId}-2`}
+          url={imageUrl?.[1]}
         />
-        <img alt={`${collectionId}-2`} src={imageUrl?.[2]} />
-        <img alt={`${collectionId}-2`} src={imageUrl?.[3]} />
-        <img alt={`${collectionId}-2`} src={imageUrl?.[4]} />
-        <img alt={`${collectionId}-2`} src={imageUrl?.[5]} />
+        <PreLoadImage text={`${collectionId}-3`} url={imageUrl?.[2]} />
+        <PreLoadImage text={`${collectionId}-4`} url={imageUrl?.[3]} />
+        <PreLoadImage text={`${collectionId}-5`} url={imageUrl?.[4]} />
+        <PreLoadImage text={`${collectionId}-6`} url={imageUrl?.[5]} />
+
+        {/* <img alt={`${collectionId}-2`} src={imageUrl?.[2]} />
+        <img alt={`${collectionId}-3`} src={imageUrl?.[3]} />
+        <img alt={`${collectionId}-4`} src={imageUrl?.[4]} />
+        <img alt={`${collectionId}-5`} src={imageUrl?.[5]} /> */}
       </ShopPageImgContainer>
       <ShopPageProduct>
         <h4>{product?.title}</h4>
         <p>{product?.content}</p>
+        <PreLoadImage text="product" url={product?.image} />
+        {/* <img alt="product" src={product?.image} /> */}
       </ShopPageProduct>
     </ShopPageContainer>
-  );
+  ) : null;
 };
 
 export default ShopPage;

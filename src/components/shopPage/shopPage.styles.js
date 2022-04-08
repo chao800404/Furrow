@@ -58,9 +58,17 @@ export const ShopPageImgContainer = styled.div`
   img {
     width: 100%;
   }
+  .fir {
+    grid-column: 1/ 3;
+    grid-row: 2 /-1;
+  }
 `;
 
 export const ShopPageProduct = styled.div`
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 8rem;
+  img {
+    width: 100%;
+    margin-top: 2rem;
+  }
 `;

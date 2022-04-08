@@ -11,7 +11,9 @@ import { AnimatePresence } from "framer-motion";
 
 const sidebarImage = async (index) => {
   if (index) {
-    const image = import(`../../assets/homePhoto/homePhoto__${index}.webp`);
+    const image = await import(
+      `../../assets/homePhoto/homePhoto__${index}.webp`
+    );
     if (image) return image;
   }
 

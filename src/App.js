@@ -11,6 +11,10 @@ import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
 import Footer from "./components/footer/footer.component";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCardBtn } from "./redux/card/card.select";
+import { useEffect } from "react";
+import { cardClickToggle } from "./redux/card/card.action";
 
 const AppContainer = styled.main`
   overflow: hidden;
@@ -18,8 +22,15 @@ const AppContainer = styled.main`
 `;
 
 const App = () => {
+  const popupToggleClick = useSelector(selectCardBtn);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(cardClickToggle(false));
+  }, [dispatch]);
+
   return (
-    <AppContainer>
+    <AppContainer style={{ height: `${popupToggleClick ? "100vh" : "auto"}` }}>
       <CurstomCursor />
       <Header />
       <Sidebars />

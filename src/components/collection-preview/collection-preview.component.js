@@ -25,13 +25,12 @@ const CollectionPreview = () => {
         <div
           style={{
             width: "100%",
-            height: "100vh",
             position: "absolute",
             top: 0,
             left: 0,
           }}
         >
-          <Spinner />
+          <Spinner style={{ minHeight: "100vh" }} />
         </div>
       )}
       <CollectionPreviewContainer
@@ -64,7 +63,7 @@ const CollectionPreview = () => {
       </CollectionPreviewContainer>
     </Flex>
   ) : (
-    <Spinner />
+    <Spinner style={{ minHeight: "100vh", height: "100%" }} />
   );
 };
 

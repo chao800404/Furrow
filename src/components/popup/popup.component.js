@@ -69,16 +69,16 @@ const Popup = ({ collection }) => {
               <div style={{ transform: "translateY(-2rem)" }}>
                 <p>Quantity</p>
                 <div className="popup_calculator-item">
-                  <AiOutlinePlus onClick={() => setQuantity(quantity + 1)} />
-                  <input
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                  />
                   <AiOutlineMinus
                     onClick={() =>
                       quantity > 0 ? setQuantity(quantity - 1) : null
                     }
                   />
+                  <input
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                  <AiOutlinePlus onClick={() => setQuantity(quantity + 1)} />
                 </div>
               </div>
             </div>

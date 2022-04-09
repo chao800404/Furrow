@@ -16,7 +16,4 @@ export const CollectionOverViewContainer = styled(motion.section)`
 
 export const OverViewCardContainer = styled(motion.div)`
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 4rem 2rem;
 `;

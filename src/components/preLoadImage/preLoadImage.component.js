@@ -21,7 +21,12 @@ const PreLoadImage = ({ text, url, className = null }) => {
           }}
         />
       )}
-      <img alt={text} src={url} onLoad={() => setLoading(1)} />
+      <img
+        style={{ width: "100%", height: "100%" }}
+        alt={text}
+        src={url}
+        onLoad={() => setLoading(1)}
+      />
     </div>
   );
 };

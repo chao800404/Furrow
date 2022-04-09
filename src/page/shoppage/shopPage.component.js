@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import CollectionPreview from "../../components/collection-preview/collection-preview.component";
 import CollectionOverView from "../../components/collection-overview/collection-overview.component";
+import Cart from "../../components/cart/cart.component";
 
 const ShopPage = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const ShopPage = () => {
 
   return (
     <div>
+      <Cart />
       <Routes>
         <Route path="*" element={<CollectionPreview />} />
         <Route path=":collectionId/*" element={<CollectionOverView />}></Route>

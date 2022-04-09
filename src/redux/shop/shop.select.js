@@ -31,3 +31,7 @@ export const selectPopupView = (path, colorType) => {
       .reduce((acc, item) => acc + item)
   );
 };
+
+export const selectOverViewLink = createSelector([selectShop], (collection) =>
+  collection ? collection.map((collection) => collection.title) : []
+);

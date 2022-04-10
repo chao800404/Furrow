@@ -28,7 +28,7 @@ export const CartContainer = styled(motion.div)`
   }
   h5 {
     width: 100%;
-    bottom: -15%;
+    bottom: -20%;
     color: white;
   }
 `;

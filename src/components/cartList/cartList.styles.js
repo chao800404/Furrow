@@ -4,13 +4,13 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const CartItemContainer = styled(motion.div)`
-  width: 29rem;
+  width: 28rem;
   height: 35rem;
   background-color: #fff;
   filter: drop-shadow(0rem 0rem 0.4rem rgba(0, 0, 0, 0.5));
   position: absolute;
   top: -300%;
-  left: -320%;
+  left: -315%;
   z-index: 21;
   border-radius: 0.8rem;
   display: grid;
@@ -45,6 +45,7 @@ export const CartTotal = styled.div`
   h3 {
     font-size: 1.8rem;
     color: #161616;
+    font-weight: 400;
   }
 
   span {
@@ -52,5 +53,23 @@ export const CartTotal = styled.div`
     color: #161616;
     margin-right: 0.5rem;
     font-weight: bold;
+  }
+`;
+
+export const CartListItem = styled.div`
+  grid-row: 1/ 2;
+  grid-column: 1/ -1;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 1.2rem;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: #161616;
   }
 `;

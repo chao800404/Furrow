@@ -59,7 +59,7 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
         <p>NT${price.toLocaleString("en-US")}</p>
       </CardFeature>
       <p>{statement}</p>
-      <Button path={routeName}>Check More</Button>
+      <Button path={routeName}>CHECK MORE</Button>
     </CardContainer>
   );
 };

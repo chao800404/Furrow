@@ -15,17 +15,21 @@ import { useState } from "react";
 import Button from "../button/button.component";
 import { useDispatch } from "react-redux";
 import { cardClickToggle } from "../../redux/card/card.action";
+import UserGuide from "../userGuilde/userGuide.component";
+import { cartAddItem } from "../../redux/cart/cart.action";
 
 const Popup = ({ collection }) => {
   const { colorType } = useParams();
   const [currentColor, setCurrentColor] = useState(colorType);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { rgb, price, imageUrl, id, color } = useSelector(
     selectPopupView(collection.title, currentColor)
   );
+
+  console.log(quantity);
 
   const title = `${collection.title}-${color}`;
 
@@ -37,7 +41,9 @@ const Popup = ({ collection }) => {
       dispatch(cardClickToggle(false));
     }
     if (addToCartBtn !== "add-cart-btn") return;
-    console.log("add to cart", { rgb, price, id, imageUrl, color, quantity });
+    dispatch(cartAddItem({ rgb, price, id, imageUrl, color, quantity, title }));
+
+    // console.log("add to cart", { rgb, price, id, imageUrl, color, quantity });
   };
 
   return (
@@ -77,6 +83,7 @@ const Popup = ({ collection }) => {
                   <input
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
+                    type="number"
                   />
                   <AiOutlinePlus onClick={() => setQuantity(quantity + 1)} />
                 </div>
@@ -86,36 +93,7 @@ const Popup = ({ collection }) => {
           </PopupForm>
         </PopupBox>
       </PopupBoxContainer>
-      <ul>
-        <h3>User Guide:</h3>
-        <li>
-          Please wipe down lenses with a microfiber cloth before and after use.
-        </li>
-        <li>The lenses are not user replaceable.</li>
-        <li>
-          Always store in the provided eyewear case after use to avoid breakage.
-        </li>
-        <li>Keep away from hard or sharp objects.</li>
-        <li>
-          It is typical for the lenses to display a colored hue when looking at
-          electronic displays.
-        </li>
-        <li>
-          When the battery reached EOL (End of Life), the dark state will become
-          the lenses's default state.
-        </li>
-        <li>
-          Do not store this product in a vehicle to avoid prolonged high
-          temperature exposure.
-        </li>
-        <li>
-          This product is water-resistant, not water-proof, do not submerge into
-          liquids.
-        </li>
-        <li> Avoid sungazing while using the product.</li>
-        <li>Avoid using if the lenses are cracked or damaged.</li>
-        <li>Avoid storing close to high temperature environments.</li>
-      </ul>
+      <UserGuide />
     </PopupContainer>
   );
 };

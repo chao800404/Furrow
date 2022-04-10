@@ -1,0 +1,10 @@
+/** @format */
+
+const cartActionType = {
+  TOGGLE_CART_HIDDEN: "TOGGLE_CART_HIDDEN",
+  ONSCROLL_CART_HIDDEN: "ONSCROLL_CART_HIDDEN",
+  ADD_CART_ITEM: "ADD_CART_ITEM",
+  HOVER_CART_POPUP: "HOVER_CART_POPUP",
+};
+
+export default cartActionType;

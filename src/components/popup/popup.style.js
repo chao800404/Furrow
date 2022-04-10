@@ -112,6 +112,13 @@ export const PopupBox = styled(motion.div)`
       border: 1px solid #161616;
     }
 
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
     svg {
       fill: #161616;
       border: 1px solid #161616;

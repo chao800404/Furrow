@@ -32,7 +32,7 @@ const SecondTypeCard = ({ title, color, price, imageUrl }) => {
 
       <p>NT${price.toLocaleString("US")}</p>
       <Button path={color} type="secondCard">
-        Add To Cart
+        ADD TO CART
       </Button>
     </SecondCardContainer>
   );

@@ -51,7 +51,7 @@ const CollectionOverView = () => {
               type="secondBtn"
               path={collection.item[0].color}
             >
-              Add To Cart
+              ADD TO CART
             </Button>
           )}
 

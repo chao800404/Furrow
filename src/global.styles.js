@@ -26,6 +26,12 @@ export const GlobalStyle = createGlobalStyle`
       
   }
 
+  
+  ::-webkit-scrollbar {
+    width: 0;
+  } 
+
+
   a,a:active,a:focus {
     color: ${({ theme: { bannerTitle } }) => bannerTitle};
     text-decoration: none;

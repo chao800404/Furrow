@@ -5,18 +5,18 @@ import {
   PopupForm,
   PopupBoxContainer,
 } from "./popup.style";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ImageContainer from "../imageContainer/imageContainer.component";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { selectPopupView } from "../../redux/shop/shop.select";
-import { useState } from "react";
 import Button from "../button/button.component";
 import { useDispatch } from "react-redux";
 import { cardClickToggle } from "../../redux/card/card.action";
 import UserGuide from "../userGuilde/userGuide.component";
-import { cartAddItem } from "../../redux/cart/cart.action";
+import { cartAddItem, cartShouldDisplays } from "../../redux/cart/cart.action";
 
 const Popup = ({ collection }) => {
   const { colorType } = useParams();
@@ -29,21 +29,33 @@ const Popup = ({ collection }) => {
     selectPopupView(collection.title, currentColor)
   );
 
-  console.log(quantity);
-
   const title = `${collection.title}-${color}`;
 
   const handleClick = (e) => {
     const target = e.target.dataset.item;
     const addToCartBtn = e.target.dataset.type;
+    const parseIntQuantity = Number.parseInt(quantity);
     if (target === "popup-close" || target === "popup-bg") {
       navigate(-1);
       dispatch(cardClickToggle(false));
+      dispatch(cartShouldDisplays(true));
     }
-    if (addToCartBtn !== "add-cart-btn") return;
-    dispatch(cartAddItem({ rgb, price, id, imageUrl, color, quantity, title }));
-
-    // console.log("add to cart", { rgb, price, id, imageUrl, color, quantity });
+    if (addToCartBtn === "add-cart-btn" && quantity > 0) {
+      dispatch(
+        cartAddItem({
+          rgb,
+          price,
+          id,
+          imageUrl,
+          color,
+          quantity: parseIntQuantity,
+          title,
+        })
+      );
+      dispatch(cardClickToggle(false));
+      dispatch(cartShouldDisplays(true));
+      navigate(-1);
+    }
   };
 
   return (
@@ -72,20 +84,25 @@ const Popup = ({ collection }) => {
             </div>
             <div className="popup_price">NT$ {price.toLocaleString("US")}</div>
             <div className="popup_calculator">
-              <div style={{ transform: "translateY(-2rem)" }}>
+              <div style={{ transform: "translateY(-2rem)", width: "100%" }}>
                 <p>Quantity</p>
                 <div className="popup_calculator-item">
-                  <AiOutlineMinus
-                    onClick={() =>
-                      quantity > 0 ? setQuantity(quantity - 1) : null
-                    }
-                  />
-                  <input
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    type="number"
-                  />
-                  <AiOutlinePlus onClick={() => setQuantity(quantity + 1)} />
+                  <div className="popup_calculator">
+                    <AiOutlineMinus
+                      onClick={() =>
+                        quantity > 0 ? setQuantity(quantity - 1) : null
+                      }
+                    />
+                    <input
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
+                      type="number"
+                    />
+                    <AiOutlinePlus onClick={() => setQuantity(quantity + 1)} />
+                  </div>
+                  {quantity <= 0 ? (
+                    <span className="popup_warm">Can not less than 1</span>
+                  ) : null}
                 </div>
               </div>
             </div>

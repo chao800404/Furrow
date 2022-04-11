@@ -1,14 +1,27 @@
 /** @format */
 import cartActionType from "./cart.type";
+import {
+  addItemToCart,
+  removeItemToCart,
+  updateItemToCart,
+} from "./cart.utils";
 
 const INITIAL_STATE = {
   hidden: true,
   hovered: false,
+  cartDisplay: true,
   cartItem: [],
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
+  const { payload } = action;
   switch (action.type) {
+    case cartActionType.SET_INIT_CART:
+      return {
+        ...state,
+        hovered: false,
+      };
+
     case cartActionType.TOGGLE_CART_HIDDEN:
       return {
         ...state,
@@ -24,11 +37,27 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hovered: !state.hovered,
       };
+    case cartActionType.CART_SHOULD_DESPLAY:
+      return {
+        ...state,
+        cartDisplay: payload,
+      };
     case cartActionType.ADD_CART_ITEM:
       return {
         ...state,
-        cartItem: [...state.cartItem, action.payload],
+        cartItem: addItemToCart(state.cartItem, payload),
       };
+    case cartActionType.REMOVE_CART_ITEM:
+      return {
+        ...state,
+        cartItem: removeItemToCart(state.cartItem, payload),
+      };
+    case cartActionType.UPDATE_CART_ITEM:
+      return {
+        ...state,
+        cartItem: updateItemToCart(state.cartItem, payload),
+      };
+
     default:
       return state;
   }

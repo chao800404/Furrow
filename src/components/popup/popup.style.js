@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import primaryColor from "../../theme/priamry.styles";
 
 export const PopupContainer = styled.div`
   width: 100%;
@@ -31,6 +32,9 @@ export const PopupContainer = styled.div`
       font-size: 2rem;
       transform: translateX(3rem);
     }
+  }
+  button {
+    margin-top: 3rem;
   }
 `;
 
@@ -71,9 +75,10 @@ export const PopupBox = styled(motion.div)`
   }
 
   h3 {
-    font-size: 5rem;
+    font-size: 3.5rem;
     font-weight: 500;
     letter-spacing: 0.2rem;
+    margin-bottom: 2rem;
   }
 
   p {
@@ -98,11 +103,21 @@ export const PopupBox = styled(motion.div)`
     font-size: 2.5rem;
     text-align: end;
   }
-  .popup_calculator-item {
+
+  .popup_warm {
+    color: ${primaryColor.cursorColor};
+    font-size: 1.5rem;
+    display: block;
+    width: 15rem;
+    margin-top: 1rem;
+  }
+
+  .popup_calculator {
     display: flex;
     align-items: center;
     height: 3rem;
     margin-top: 1rem;
+    width: 100%;
 
     input {
       display: flex;
@@ -118,7 +133,6 @@ export const PopupBox = styled(motion.div)`
       -moz-appearance: none;
       appearance: none;
     }
-
     svg {
       fill: #161616;
       border: 1px solid #161616;
@@ -133,6 +147,12 @@ export const PopupBox = styled(motion.div)`
         border-radius: 0 0.5rem 0.5rem 0;
       }
     }
+  }
+
+  .popup_calculator-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   .color_container {
     display: flex;

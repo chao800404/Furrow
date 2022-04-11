@@ -6,6 +6,7 @@ import { useState } from "react";
 import Button from "../button/button.component";
 import { useDispatch } from "react-redux";
 import { cardClickToggle } from "../../redux/card/card.action";
+import { cartShouldDisplays } from "../../redux/cart/cart.action";
 
 const SecondTypeCard = ({ title, color, price, imageUrl }) => {
   const [hovered, setHovered] = useState(false);
@@ -15,6 +16,7 @@ const SecondTypeCard = ({ title, color, price, imageUrl }) => {
     const btn = e.target.closest("button");
     if (!btn) return;
     dispatch(cardClickToggle(true));
+    dispatch(cartShouldDisplays(true));
   };
 
   return (

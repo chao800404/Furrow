@@ -23,12 +23,6 @@ const ShopPage = ({ shopPageData, collectionId }) => {
           src={[imageUrl?.[0], imageUrl?.[7]]}
           alt={`${collectionId}-1`}
         />
-
-        {/* <img
-          style={{ width: "100%" }}
-          alt={`${collectionId}-1`}
-          src={imageUrl?.[0]}
-        /> */}
       </ShopPageBanner>
       <ShopPageSubtitle>
         <h4>{bettery?.title}</h4>
@@ -53,7 +47,6 @@ const ShopPage = ({ shopPageData, collectionId }) => {
         <h4>{product?.title}</h4>
         <p>{product?.content}</p>
         <PreLoadImage text="product" url={product?.image} />
-        {/* <img alt="product" src={product?.image} /> */}
       </ShopPageProduct>
     </ShopPageContainer>
   ) : null;

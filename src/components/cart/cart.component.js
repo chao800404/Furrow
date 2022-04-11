@@ -13,26 +13,37 @@ import {
   selectCartAmount,
   selectCartToggleHovered,
 } from "../../redux/cart/cart.select";
+import { selectCartShouldDisplay } from "../../redux/cart/cart.select";
+import { cartShouldDisplays } from "../../redux/cart/cart.action";
 
 const Cart = () => {
   const [position, setPosition] = useState({
     current: 0,
     delay: 0,
   });
+  const [displayCart, setDisplayCart] = useState(true);
   const { current, delay } = position;
   const dispatch = useDispatch();
   const cartAmount = useSelector(selectCartAmount);
   const hovered = useSelector(selectCartToggleHovered);
+  const cartShouldDisplay = useSelector(selectCartShouldDisplay);
 
   const handleScroll = useCallback(() => {
     const currentPostion = document.documentElement.scrollTop;
     setPosition({ ...position, current: currentPostion });
+    if (cartShouldDisplay) dispatch(cartShouldDisplays(false));
+
     const timeOut = setTimeout(
       () => setPosition({ ...position, delay: position.current }),
       500
     );
     if (current === delay) clearTimeout(timeOut);
-  }, [current, delay, position]);
+  }, [current, delay, position, dispatch, cartShouldDisplay]);
+
+  useEffect(() => {
+    setDisplayCart(position.current === position.delay);
+    if (cartShouldDisplay) setDisplayCart(true);
+  }, [position, cartShouldDisplay]);
 
   useEffect(() => {
     if (current === delay) {
@@ -44,15 +55,11 @@ const Cart = () => {
     if (hovered) return;
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll, hovered]);
+  }, [handleScroll, hovered, cartShouldDisplay]);
 
   return (
     <CartContainer
-      animate={
-        position.current === position.delay
-          ? { x: 0, opacity: 1 }
-          : { x: 500, opacity: 0 }
-      }
+      animate={displayCart ? { x: 0, opacity: 1 } : { x: 500, opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
     >
       <CardList />

@@ -10,6 +10,7 @@ export const CartContainer = styled(motion.div)`
   right: 1%;
   bottom: 1.5%;
   z-index: 30;
+  user-select: none;
   h5,
   p {
     position: absolute;

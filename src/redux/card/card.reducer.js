@@ -4,7 +4,7 @@ import CardActionType from "./card,type";
 
 const INITIAL_STATE = {
   imageLoad: false,
-  toggleClick: false,
+  toggleClick: null,
 };
 
 const cardReducer = (state = INITIAL_STATE, action) => {

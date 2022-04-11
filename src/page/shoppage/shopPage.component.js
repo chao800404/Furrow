@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import CollectionPreview from "../../components/collection-preview/collection-preview.component";
 import CollectionOverView from "../../components/collection-overview/collection-overview.component";
 import Cart from "../../components/cart/cart.component";
+import { cartInit } from "../../redux/cart/cart.action";
 
 const ShopPage = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,10 @@ const ShopPage = () => {
   useEffect(() => {
     dispatch(fetchCollectionStart());
     dispatch(fetchShopPageStart());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(cartInit());
   }, [dispatch]);
 
   return (

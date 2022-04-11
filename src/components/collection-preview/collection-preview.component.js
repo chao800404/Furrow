@@ -20,48 +20,50 @@ const CollectionPreview = () => {
   const imageLoad = useSelector(selectCardLoad);
 
   return collections ? (
-    <Flex>
-      {imageLoad ? null : (
-        <div
-          style={{
-            width: "100%",
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        >
-          <Spinner style={{ minHeight: "100vh" }} />
-        </div>
-      )}
-      <CollectionPreviewContainer
-        initial={{ visibility: "hidden", y: 10, opacity: 0 }}
-        animate={
-          imageLoad
-            ? { visibility: "visible", y: 0, height: "auto", opacity: 1 }
-            : { visibility: "hidden" }
-        }
-      >
-        <h2>McLaren Vision x ONESEC</h2>
-        <CollectionPreviewTitle>
-          <p style={{ fontSize: "2rem" }}>
-            Since partnering with McLaren Vision, the McLaren x ONESEC lineup
-            has received widely favourable reviews from both American and
-            European audiences for its combination of stunning aesthetics and
-            innovation.
-          </p>
-          <ReactSVG
-            beforeInjection={(svg) => {
-              svg.setAttribute("style", `height:20rem; fill:${theme.color}`);
+    <section style={{ padding: "20rem 0" }}>
+      <Flex>
+        {imageLoad ? null : (
+          <div
+            style={{
+              width: "100%",
+              position: "absolute",
+              top: 0,
+              left: 0,
             }}
-            src={mclarenXOnesecLogo}
-          />
-        </CollectionPreviewTitle>
+          >
+            <Spinner style={{ minHeight: "100vh" }} />
+          </div>
+        )}
+        <CollectionPreviewContainer
+          initial={{ visibility: "hidden", y: 10, opacity: 0 }}
+          animate={
+            imageLoad
+              ? { visibility: "visible", y: 0, height: "auto", opacity: 1 }
+              : { visibility: "hidden" }
+          }
+        >
+          <h2>McLaren Vision x ONESEC</h2>
+          <CollectionPreviewTitle>
+            <p style={{ fontSize: "2rem" }}>
+              Since partnering with McLaren Vision, the McLaren x ONESEC lineup
+              has received widely favourable reviews from both American and
+              European audiences for its combination of stunning aesthetics and
+              innovation.
+            </p>
+            <ReactSVG
+              beforeInjection={(svg) => {
+                svg.setAttribute("style", `height:20rem; fill:${theme.color}`);
+              }}
+              src={mclarenXOnesecLogo}
+            />
+          </CollectionPreviewTitle>
 
-        {collections?.map(({ id, ...otherProps }) => (
-          <Card key={id} {...otherProps} />
-        ))}
-      </CollectionPreviewContainer>
-    </Flex>
+          {collections?.map(({ id, ...otherProps }) => (
+            <Card key={id} {...otherProps} />
+          ))}
+        </CollectionPreviewContainer>
+      </Flex>
+    </section>
   ) : (
     <Spinner style={{ minHeight: "100vh", height: "100%" }} />
   );

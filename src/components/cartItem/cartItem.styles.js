@@ -12,6 +12,7 @@ export const CartItemContainer = styled.div`
   color: #161616;
   grid-column-gap: 0.5rem;
   padding: 0.5rem 0;
+  position: relative;
 
   img {
     flex: 1;
@@ -28,6 +29,38 @@ export const CartItemContainer = styled.div`
   }
   span {
     font-size: 1.5rem;
+  }
+
+  .CartItem-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #fff 35%, transparent);
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr;
+    p {
+      grid-row: 1 / 2;
+      font-size: 1.2rem;
+      width: 100%;
+      align-self: center;
+    }
+    button {
+      font-size: 1rem;
+      width: 85%;
+      letter-spacing: 0.2rem;
+      align-self: center;
+      justify-self: center;
+      grid-row: 2 / 3;
+
+      &:nth-of-type(1) {
+        background-color: rgba(255, 255, 255);
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        color: #161616;
+      }
+    }
   }
 
   .CartItem-title {

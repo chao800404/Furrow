@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { cardClickToggle } from "../../redux/card/card.action";
 import UserGuide from "../userGuilde/userGuide.component";
 import { cartAddItem, cartShouldDisplays } from "../../redux/cart/cart.action";
+import ColorBox from "../colorBox/colorBox.component";
 
 const Popup = ({ collection }) => {
   const { colorType } = useParams();
@@ -50,6 +51,7 @@ const Popup = ({ collection }) => {
           color,
           quantity: parseIntQuantity,
           title,
+          statement: collection.statement,
         })
       );
       dispatch(cardClickToggle(false));
@@ -72,13 +74,19 @@ const Popup = ({ collection }) => {
               <p>{collection.statement}</p>
               <div className="color_container">
                 {collection.colorType.map((rgb, index) => (
-                  <span
+                  <ColorBox
                     onClick={(e) => setCurrentColor(e.target.dataset.color)}
-                    className="color_option"
+                    style={{
+                      width: "2rem",
+                      height: "2rem",
+                      display: "block",
+                      borderRadius: "50%",
+                      backgroundColor: `${rgb}`,
+                    }}
                     key={index}
-                    data-color={collection.item[index].color}
-                    style={{ backgroundColor: `${rgb}` }}
-                  ></span>
+                    color={collection.item[index].color}
+                    active={collection.item[index].color === currentColor}
+                  ></ColorBox>
                 ))}
               </div>
             </div>

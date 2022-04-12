@@ -55,7 +55,7 @@ export const PopupBox = styled(motion.div)`
   justify-self: center;
   border-radius: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr;
   position: relative;
   grid-gap: 1rem 5rem;
 
@@ -157,15 +157,11 @@ export const PopupBox = styled(motion.div)`
   .color_container {
     display: flex;
     padding-bottom: 1rem;
-  }
-  .color_option {
-    width: 2rem;
-    height: 2rem;
-    display: block;
-    border-radius: 50%;
 
-    &:not(:last-child) {
-      margin-right: 1rem;
+    span {
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
     }
   }
 `;

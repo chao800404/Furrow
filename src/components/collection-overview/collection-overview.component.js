@@ -22,6 +22,7 @@ import Button from "../button/button.component";
 import LinkBtn from "../linkButton/linkButton.component";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { cartShouldDisplays } from "../../redux/cart/cart.action";
 
 const CollectionOverView = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const CollectionOverView = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
+    dispatch(cartShouldDisplays(true));
   }, [dispatch]);
 
   return collection && shopPageData ? (

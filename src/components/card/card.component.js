@@ -3,6 +3,7 @@ import { CardContainer, CardTitle, CardFeature } from "./card.styles";
 import Button from "../button/button.component";
 import { useState } from "react";
 import ImageContainer from "../imageContainer/imageContainer.component";
+import ColorBox from "../colorBox/colorBox.component";
 
 const Card = ({ title, item, colorType, routeName, statement }) => {
   const [colorIndex, setColorIndex] = useState(0);
@@ -35,25 +36,26 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
         <div
           style={{
             height: "2rem",
-            width: "50%",
+            maxWidth: "100%",
             display: "flex",
             marginTop: "1rem",
           }}
         >
           {colorType.map((color, index) => (
-            <span
+            <ColorBox
               key={index}
               style={{
                 backgroundColor: color,
                 width: "1.5rem",
                 height: "1.5rem",
                 borderRadius: "50%",
-                marginRight: ".5rem",
+                marginRight: ".8rem",
               }}
-              data-type="color-option"
-              data-color={color}
+              dataType="color-option"
+              color={color}
               onClick={handleClick}
-            ></span>
+              active={index === colorIndex}
+            ></ColorBox>
           ))}
         </div>
         <p>NT${price.toLocaleString("en-US")}</p>

@@ -4,7 +4,6 @@ import CardActionType from "./card,type";
 
 const INITIAL_STATE = {
   imageLoad: false,
-  toggleClick: null,
 };
 
 const cardReducer = (state = INITIAL_STATE, action) => {
@@ -13,11 +12,6 @@ const cardReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         imageLoad: true,
-      };
-    case CardActionType.BUTTON_TOGGLE_CLICK:
-      return {
-        ...state,
-        toggleClick: action.payload,
       };
     default:
       return state;

@@ -7,6 +7,7 @@ const routes = {
   FEATURE: "/feature",
   NEWS: "/news",
   CHECKOUT: "/checkout",
+  SIGNIN: "/signin",
 };
 
 export default routes;

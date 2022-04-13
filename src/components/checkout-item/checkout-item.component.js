@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { removeCartItem, cartItemUpdate } from "../../redux/cart/cart.action";
 import Button from "../../components/button/button.component";
-import { cardClickToggle } from "../../redux/card/card.action";
 
 const btnStyle = (type) => {
   return {
@@ -36,7 +35,6 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
 
   const handleDisplayCover = () => {
     setDisplayCover(1);
-    dispatch(cardClickToggle(true));
   };
 
   useEffect(() => {
@@ -55,7 +53,6 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
     if (!btn) return;
     if (btn.dataset.type === "cancel") setDisplayCover(0);
     if (btn.dataset.type === "remove") dispatch(removeCartItem(id));
-    dispatch(cardClickToggle(false));
     setHovered(0);
   };
 

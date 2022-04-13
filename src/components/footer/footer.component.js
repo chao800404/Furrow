@@ -10,11 +10,7 @@ import { selectThemeStyle } from "../../redux/theme/theme.select";
 import { BsGithub, BsFacebook, BsMedium } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
-
-const statement = `This page does not sell any products, it is a sample page, if you need
-to buy it, Please go to <a style="color:#9b2226" href="https://www.oneseceyewear.com.tw">https://www.oneseceyewear.com.tw</a> <br/> In case of
-any infringement, please contact yuho0298@gmail.com.<br/> Author - Chao,
-2022 / 03 / 31`;
+import { statement } from "./footer.data";
 
 const Footer = () => {
   const theme = useSelector(selectThemeStyle);

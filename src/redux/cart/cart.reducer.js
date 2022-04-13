@@ -37,11 +37,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hovered: !state.hovered,
       };
-    case cartActionType.CART_SHOULD_DESPLAY:
-      return {
-        ...state,
-        cartDisplay: payload,
-      };
+
     case cartActionType.ADD_CART_ITEM:
       return {
         ...state,

@@ -13,53 +13,52 @@ import {
   selectCartAmount,
   selectCartToggleHovered,
 } from "../../redux/cart/cart.select";
-import { selectCartShouldDisplay } from "../../redux/cart/cart.select";
-import { cartShouldDisplays } from "../../redux/cart/cart.action";
+
+import { useLocation } from "react-router-dom";
 
 const Cart = () => {
   const [position, setPosition] = useState({
     current: 0,
     delay: 0,
   });
-  const [displayCart, setDisplayCart] = useState(true);
   const { current, delay } = position;
+  const [tranaslateCart, settranaslateCart] = useState(true);
   const dispatch = useDispatch();
   const cartAmount = useSelector(selectCartAmount);
   const hovered = useSelector(selectCartToggleHovered);
-  const cartShouldDisplay = useSelector(selectCartShouldDisplay);
+  const location = useLocation();
 
   const handleScroll = useCallback(() => {
     const currentPostion = document.documentElement.scrollTop;
     setPosition({ ...position, current: currentPostion });
-    if (cartShouldDisplay) dispatch(cartShouldDisplays(false));
-
     const timeOut = setTimeout(
       () => setPosition({ ...position, delay: position.current }),
       500
     );
-    if (current === delay) clearTimeout(timeOut);
-  }, [current, delay, position, dispatch, cartShouldDisplay]);
-
-  useEffect(() => {
-    setDisplayCart(position.current === position.delay);
-    if (cartShouldDisplay) setDisplayCart(true);
-  }, [position, cartShouldDisplay]);
-
-  useEffect(() => {
     if (current === delay) {
       dispatch(cartOnScrollHidden());
+      clearTimeout(timeOut);
     }
-  }, [current, delay, dispatch]);
+  }, [current, delay, position, dispatch]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => settranaslateCart(true), 10);
+    return () => clearTimeout(timeout);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    settranaslateCart(position.current === position.delay);
+  }, [position]);
 
   useEffect(() => {
     if (hovered) return;
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll, hovered, cartShouldDisplay]);
+  }, [handleScroll, hovered]);
 
   return (
     <CartContainer
-      animate={displayCart ? { x: 0, opacity: 1 } : { x: 500, opacity: 0 }}
+      animate={tranaslateCart ? { x: 0, opacity: 1 } : { x: 500, opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
     >
       <CardList />

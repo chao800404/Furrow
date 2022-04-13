@@ -1,4 +1,5 @@
 /** @format */
+import data from "./checkoutPage.data";
 import { Flex } from "../../components/Flex/flex.styles";
 import { useSelector } from "react-redux";
 import {
@@ -12,40 +13,53 @@ import {
   CheckoutHeader,
   CheckoutSignIn,
 } from "./checkoutpage.styles";
+import { useNavigate } from "react-router-dom";
 import CheckoutList from "../../components/checkout-list/checkout-list.component";
 import Button from "../../components/button/button.component";
+import { useState } from "react";
 
 const CheckOutPage = () => {
   const cartItem = useSelector(selectClassificationCartItem);
   const totalQuantity = useSelector(selectCartAmount);
+  const navigate = useNavigate();
+  const [signIn, setSignIn] = useState(false);
+
+  const handleTransferSignIn = (e) => {
+    const btnType = e.target.dataset.type;
+    if (btnType === "sign-in") navigate("/signin", { replace: true });
+    if (btnType === "reject") setSignIn(true);
+  };
+
   return (
     <section style={{ minHeight: "100vh", padding: "20rem 0" }}>
       <Flex>
         <CheckoutContainer>
-          <CheckoutSignIn>
-            <span>
-              Already a member? Login for easier order tracking and
-              fastercheckout!
-            </span>
-            <Button
-              style={{
-                backgroundColor: "#fff",
-                border: "1px solid #161616",
-                color: "#161616",
-              }}
-            >
-              REJECT
-            </Button>
-            <Button>SIGN IN</Button>
-          </CheckoutSignIn>
+          {signIn ? null : (
+            <CheckoutSignIn onClick={handleTransferSignIn}>
+              <span>
+                Already a member? Login for easier order tracking and
+                fastercheckout!
+              </span>
+              <Button
+                data="reject"
+                style={{
+                  backgroundColor: "#fff",
+                  border: "1px solid #161616",
+                  color: "#161616",
+                }}
+              >
+                REJECT
+              </Button>
+              <Button data="sign-in">SIGN IN</Button>
+            </CheckoutSignIn>
+          )}
+
           <CheckoutListContainer>
-            <h1>Shipping & Delivery:</h1>
+            <h1>{data.title}</h1>
             <p>
-              Domestic orders for Taiwan area are expected to be processed
-              within seven business days.
+              {data.shippingStatement[0]}
               <br />
-              For shipping and delivery policies for overseas regions, please
-              visit the online store relevant to your location of residence.
+              {data.shippingStatement[1]}
             </p>
             <CheckoutHeader>
               <span>ITEM(S) &nbsp; {totalQuantity}</span>

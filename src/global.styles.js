@@ -23,12 +23,12 @@ export const GlobalStyle = createGlobalStyle`
       background-color:${(props) => props.theme.backgroundColor};
       color: ${({ theme: { color } }) => color};
       font-family: 'Anton', sans-serif;
-      
   }
 
   
   ::-webkit-scrollbar {
     width: 0;
+    height: 0;  
   } 
 
 
@@ -65,9 +65,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   button {
     color: ${({ theme: { color } }) => color};
-    font-family: 'Anton', sans-serif;
-    font-size:2rem;
-
   }
 
 `;

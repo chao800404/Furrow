@@ -15,6 +15,15 @@ export const HeaderNav = styled(motion.header)`
   z-index: 100;
 `;
 
+export const SignIn = styled(motion.div)`
+  font-size: 2rem;
+  margin-right: 2.5rem;
+  background-color: ${({ theme }) => theme.color};
+  color: ${({ theme }) => theme.backgroundColor};
+  padding: 0.2rem 1.5rem;
+  border-radius: 0.5rem;
+`;
+
 export const Logo = styled.div`
   display: flex;
   align-items: center;

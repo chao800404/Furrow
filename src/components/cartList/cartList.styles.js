@@ -15,7 +15,7 @@ export const CartItemContainer = styled(motion.div)`
   border-radius: 0.8rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 4.5rem 4.5rem;
+  grid-template-rows: 1.5rem 1fr 4.5rem 4.5rem;
   padding: 1.5rem;
   grid-gap: 1rem;
 
@@ -33,7 +33,7 @@ export const CartItemContainer = styled(motion.div)`
 `;
 
 export const CartTotal = styled.div`
-  grid-row: 2/ 3;
+  grid-row: 3/ 4;
   grid-column: 1/ -1;
   width: 100%;
   display: flex;
@@ -57,7 +57,7 @@ export const CartTotal = styled.div`
 `;
 
 export const CartListItem = styled.div`
-  grid-row: 1/ 2;
+  grid-row: 2/ 3;
   grid-column: 1/ -1;
   overflow-y: scroll;
 

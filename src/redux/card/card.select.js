@@ -8,8 +8,3 @@ export const selectCardLoad = createSelector(
   [selectCard],
   (selectCard) => selectCard.imageLoad
 );
-
-export const selectCardBtn = createSelector(
-  [selectCard],
-  (selectCard) => selectCard.toggleClick
-);

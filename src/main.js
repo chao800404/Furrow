@@ -12,6 +12,7 @@ import {
   selectCurrentTheme,
   selectThemeStyle,
 } from "./redux/theme/theme.select";
+import WrapperScrollTop from "./components/wrapper/wraper.component";
 
 const Main = () => {
   const toggleTheme = useSelector(selectCurrentTheme);
@@ -20,14 +21,15 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(initialThemeStyle(themeType(toggleTheme)));
-    window.history.scrollRestoration = "manual";
   }, [dispatch, toggleTheme]);
 
   return (
     <>
       <GlobalStyle theme={theme} />
       <BrowserRouter>
-        <App />
+        <WrapperScrollTop>
+          <App />
+        </WrapperScrollTop>
       </BrowserRouter>
     </>
   );

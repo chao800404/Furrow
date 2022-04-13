@@ -20,22 +20,13 @@ import { InView } from "react-intersection-observer";
 import { useState } from "react";
 import Button from "../button/button.component";
 import LinkBtn from "../linkButton/linkButton.component";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { cartShouldDisplays } from "../../redux/cart/cart.action";
 
 const CollectionOverView = () => {
-  const dispatch = useDispatch();
   const { collectionId } = useParams();
   const collection = useSelector(selectOverViewPage(collectionId));
   const shopPageData = useSelector(selectShopPageContainer(collectionId));
   const collections = useSelector(selectOverViewLink);
   const [inView, setInView] = useState(true);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-    dispatch(cartShouldDisplays(true));
-  }, [dispatch]);
 
   return collection && shopPageData ? (
     <section

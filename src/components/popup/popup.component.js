@@ -14,9 +14,8 @@ import { useSelector } from "react-redux";
 import { selectPopupView } from "../../redux/shop/shop.select";
 import Button from "../button/button.component";
 import { useDispatch } from "react-redux";
-import { cardClickToggle } from "../../redux/card/card.action";
 import UserGuide from "../userGuilde/userGuide.component";
-import { cartAddItem, cartShouldDisplays } from "../../redux/cart/cart.action";
+import { cartAddItem } from "../../redux/cart/cart.action";
 import ColorBox from "../colorBox/colorBox.component";
 
 const Popup = ({ collection }) => {
@@ -37,9 +36,8 @@ const Popup = ({ collection }) => {
     const addToCartBtn = e.target.dataset.type;
     const parseIntQuantity = Number.parseInt(quantity);
     if (target === "popup-close" || target === "popup-bg") {
-      navigate(-1);
-      dispatch(cardClickToggle(false));
-      dispatch(cartShouldDisplays(true));
+      navigate("shop", { replace: false });
+      document.body.style.overflow = "unset";
     }
     if (addToCartBtn === "add-cart-btn" && quantity > 0) {
       dispatch(
@@ -54,9 +52,8 @@ const Popup = ({ collection }) => {
           statement: collection.statement,
         })
       );
-      dispatch(cardClickToggle(false));
-      dispatch(cartShouldDisplays(true));
-      navigate(-1);
+      navigate("shop", { replace: false });
+      document.body.style.overflow = "unset";
     }
   };
 

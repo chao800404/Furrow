@@ -9,8 +9,12 @@ import {
   selectCartItem,
   selectCartItemTotalPrice,
 } from "../../redux/cart/cart.select";
-import { cartToggleHoverd } from "../../redux/cart/cart.action";
+import {
+  cartToggleHoverd,
+  cartToggleHidden,
+} from "../../redux/cart/cart.action";
 import { useNavigate } from "react-router-dom";
+import { IoClose } from "react-icons/io5";
 
 const CardList = () => {
   const hidden = useSelector(selectCartToggleHidden);
@@ -26,8 +30,18 @@ const CardList = () => {
       onClick={(e) => {
         if (e.target.dataset.type !== "check-out") return;
         navigate("/checkout");
+        dispatch(cartToggleHidden());
       }}
     >
+      <IoClose
+        style={{
+          color: "#161616",
+          gridRow: "1 / 2",
+          gridColumn: "1/-1",
+          fontSize: "2rem",
+        }}
+        onClick={() => dispatch(cartToggleHidden())}
+      />
       <CartListItem>
         {cartItem?.map((cartItem) => {
           const { id } = cartItem;
@@ -40,7 +54,7 @@ const CardList = () => {
       </CartTotal>
       <Button
         style={{
-          gridRow: "3/ 4",
+          gridRow: "4/ 5",
           gridColumn: "1 / -1",
           letterSpacing: ".2rem",
           fontWeight: "300",

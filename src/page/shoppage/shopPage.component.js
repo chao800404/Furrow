@@ -16,20 +16,17 @@ const ShopPage = () => {
   useEffect(() => {
     dispatch(fetchCollectionStart());
     dispatch(fetchShopPageStart());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(cartInit());
   }, [dispatch]);
 
   return (
-    <div>
+    <section style={{ overflowX: "hidden" }}>
       <Cart />
       <Routes>
         <Route path="*" element={<CollectionPreview />} />
         <Route path=":collectionId/*" element={<CollectionOverView />}></Route>
       </Routes>
-    </div>
+    </section>
   );
 };
 

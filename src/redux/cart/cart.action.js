@@ -33,8 +33,3 @@ export const cartItemUpdate = (cartItem) => ({
   type: cartActionType.UPDATE_CART_ITEM,
   payload: cartItem,
 });
-
-export const cartShouldDisplays = (cartDisplay) => ({
-  type: cartActionType.CART_SHOULD_DESPLAY,
-  payload: cartDisplay,
-});

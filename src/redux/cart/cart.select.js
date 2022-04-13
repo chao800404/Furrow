@@ -19,11 +19,6 @@ export const selectCartToggleHovered = createSelector(
   (selectCart) => selectCart.hovered
 );
 
-export const selectCartShouldDisplay = createSelector(
-  [selectCart],
-  (selectCart) => selectCart.cartDisplay
-);
-
 export const selectCartAmount = createSelector(
   [selectCartItem],
   (selectCartItem) =>

@@ -13,8 +13,17 @@ import SignInPage from "./page/signInPage/signInPage.component";
 import Footer from "./components/footer/footer.component";
 import { Routes, Route } from "react-router-dom";
 import routes from "./router.config";
+import { useEffect } from "react";
+import { checkUserSession } from "./redux/user/user.actions";
+import { useDispatch } from "react-redux";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserSession());
+  });
+
   return (
     <section>
       <CurstomCursor />

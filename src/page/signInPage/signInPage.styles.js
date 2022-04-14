@@ -7,6 +7,7 @@ export const SignInUpContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  margin-top: 6rem;
 `;
 
 export const SignInUpContent = styled.div`

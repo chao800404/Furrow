@@ -10,6 +10,7 @@ import shopReducer from "./shop/shop.reudcer";
 import cardReducer from "./card/card.reducer";
 import shopPageReducer from "./shopPage/shopPage.reducer";
 import cartReducer from "./cart/cart.reducer";
+import userReducer from "./user/user.reducer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -24,6 +25,7 @@ const rootReducers = combineReducers({
   card: cardReducer,
   shopPage: shopPageReducer,
   cart: cartReducer,
+  user: userReducer,
 });
 
 const persistConfig = {

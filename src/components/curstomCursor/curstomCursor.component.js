@@ -18,6 +18,7 @@ const CurstomCursor = () => {
   });
 
   const [scrollY, setSrollY] = useState({ ys: 0 });
+  const cursorType = useSelector(selectCursorHover);
 
   useEffect(() => {
     const onMouseMove = (event) => {
@@ -41,8 +42,6 @@ const CurstomCursor = () => {
       document.removeEventListener("scroll", onScroll);
     };
   }, [scrollY]);
-
-  const cursorType = useSelector(selectCursorHover);
 
   const variants = {
     onHover: {

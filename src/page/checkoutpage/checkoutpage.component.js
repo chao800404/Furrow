@@ -13,6 +13,7 @@ import {
   CheckoutHeader,
   CheckoutSignIn,
 } from "./checkoutpage.styles";
+import { selectCurrentUser } from "../../redux/user/user.select";
 import { useNavigate } from "react-router-dom";
 import CheckoutList from "../../components/checkout-list/checkout-list.component";
 import Button from "../../components/button/button.component";
@@ -22,19 +23,20 @@ const CheckOutPage = () => {
   const cartItem = useSelector(selectClassificationCartItem);
   const totalQuantity = useSelector(selectCartAmount);
   const navigate = useNavigate();
-  const [signIn, setSignIn] = useState(false);
+
+  const [existUser, setExistUser] = useState(useSelector(selectCurrentUser));
 
   const handleTransferSignIn = (e) => {
     const btnType = e.target.dataset.type;
     if (btnType === "sign-in") navigate("/signin", { replace: true });
-    if (btnType === "reject") setSignIn(true);
+    if (btnType === "reject") setExistUser(() => false);
   };
 
   return (
     <section style={{ minHeight: "100vh", padding: "20rem 0" }}>
       <Flex>
         <CheckoutContainer>
-          {signIn ? null : (
+          {existUser ? null : (
             <CheckoutSignIn onClick={handleTransferSignIn}>
               <span>
                 Already a member? Login for easier order tracking and

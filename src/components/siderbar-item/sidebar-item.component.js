@@ -45,8 +45,8 @@ const SidebarItemLi = ({ link, name, index }) => {
       onClick={hanldeClick}
     >
       <SidebarItem
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
+        onMouseEnter={() => setIsHover((prevHovered) => !prevHovered)}
+        onMouseLeave={() => setIsHover((prevHovered) => !prevHovered)}
         data-target={name}
         to={link}
       >

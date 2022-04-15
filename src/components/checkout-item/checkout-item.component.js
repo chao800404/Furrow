@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { removeCartItem, cartItemUpdate } from "../../redux/cart/cart.action";
 import Button from "../../components/button/button.component";
+import { memo, useCallback } from "react";
 
 const btnStyle = (type) => {
   return {
@@ -24,18 +25,10 @@ const btnStyle = (type) => {
 };
 
 const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
-  const [hovered, setHovered] = useState(0);
-  const [displayCover, setDisplayCover] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [displayCover, setDisplayCover] = useState(false);
   const [quantityTotal, setQuantityTotal] = useState(quantity);
   const dispatch = useDispatch();
-
-  const handlehover = () => {
-    setHovered(!hovered);
-  };
-
-  const handleDisplayCover = () => {
-    setDisplayCover(1);
-  };
 
   useEffect(() => {
     if (!quantityTotal || quantityTotal < 1) return;
@@ -43,17 +36,31 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
     dispatch(cartItemUpdate({ id, quantity: parseInt }));
   }, [quantityTotal, dispatch, id]);
 
+  const handlehover = () => {
+    setHovered((prevHovered) => !prevHovered);
+  };
+
+  const onDisplayCover = useCallback(() => {
+    document.body.style.overflow = `${displayCover ? "unset" : "hidden"}`;
+  }, [displayCover]);
+
+  const handleDisplayCover = () => {
+    setDisplayCover((prevDisplay) => (prevDisplay = true));
+    onDisplayCover();
+  };
+
   const handleUpdateQuantity = (e) => {
     const value = e.target.value;
-    setQuantityTotal(value);
+    setQuantityTotal((prevQuantity) => (prevQuantity = value));
   };
 
   const handleRemoveCartItem = (e) => {
     const btn = e.target.closest("button");
     if (!btn) return;
-    if (btn.dataset.type === "cancel") setDisplayCover(0);
     if (btn.dataset.type === "remove") dispatch(removeCartItem(id));
-    setHovered(0);
+    setHovered((prevHovered) => !prevHovered);
+    setDisplayCover((prevDisplay) => (prevDisplay = false));
+    onDisplayCover();
   };
 
   return (
@@ -93,4 +100,4 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
   );
 };
 
-export default CheckoutItem;
+export default memo(CheckoutItem);

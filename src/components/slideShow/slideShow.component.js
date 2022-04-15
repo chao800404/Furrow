@@ -64,8 +64,8 @@ const SlideShow = ({ src, alt }) => {
 
   return (
     <SlideContainer
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => setHovered((prevHovered) => !prevHovered)}
+      onMouseLeave={() => setHovered((prevHovered) => !prevHovered)}
     >
       <div
         style={btnStyle(1, hovered)}

@@ -24,7 +24,10 @@ const SignInOutButton = ({ theme }) => {
     >
       {existUser ? (
         <>
-          <img alt={existUser?.displayName} src={existUser?.photoURL} />
+          {existUser?.photoURL ? (
+            <img alt={existUser?.displayName} src={existUser?.photoURL} />
+          ) : null}
+
           <span>{existUser?.email?.split("@")[0]} / SIGNOUT</span>
         </>
       ) : (

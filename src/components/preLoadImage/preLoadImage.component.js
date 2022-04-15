@@ -4,7 +4,7 @@ import { useState } from "react";
 import Spinner from "../spinner/spinner.component";
 
 const PreLoadImage = ({ text, url, className = null }) => {
-  const [loading, setLoading] = useState(0);
+  const [loading, setLoading] = useState(false);
   return (
     <div className={className} style={{ position: "relative" }}>
       {loading ? null : (
@@ -25,7 +25,7 @@ const PreLoadImage = ({ text, url, className = null }) => {
         style={{ width: "100%", height: "100%" }}
         alt={text}
         src={url}
-        onLoad={() => setLoading(1)}
+        onLoad={() => setLoading((preLoad) => (preLoad = true))}
       />
     </div>
   );

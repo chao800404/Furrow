@@ -8,12 +8,27 @@ export const expressSignInStart = (expressType) => ({
 });
 
 export const expressSignInSuccess = (user) => ({
-  type: ActionUserType.EXPRESS_SIGNIN_SUCESS,
+  type: ActionUserType.EXPRESS_SIGNIN_SUCCESS,
   payload: user,
 });
 
-export const expressSignInFailure = (error) => ({
-  type: ActionUserType.EXPRESS_SIGNIN_FAILURE,
+export const createAccountStart = (userData) => ({
+  type: ActionUserType.CREATE_ACCOUNT_START,
+  payload: userData,
+});
+
+export const sendChangePasswordEmailStart = (userEmail) => ({
+  type: ActionUserType.SEND_CHANGE_PASSWORD_EMAIL,
+  payload: userEmail,
+});
+
+export const signWithEmailStart = (userData) => ({
+  type: ActionUserType.SIGN_IN_WITH_EMAIL_START,
+  payload: userData,
+});
+
+export const signInFailure = (error) => ({
+  type: ActionUserType.SING_IN_FAILURE,
   payload: error,
 });
 

@@ -13,12 +13,12 @@ const HomeBanner = () => {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
   const checkSidebarOpenFirst = useCallback(() => {
-    if (!sidebarIsOpen) setSidebarIsOpen(visible);
-  }, [sidebarIsOpen, visible]);
+    setSidebarIsOpen((prev) => (prev = true));
+  }, []);
 
   useEffect(() => {
-    checkSidebarOpenFirst();
-  }, [checkSidebarOpenFirst]);
+    if (visible) checkSidebarOpenFirst();
+  }, [checkSidebarOpenFirst, visible]);
 
   return (
     <HomeContainer>

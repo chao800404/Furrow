@@ -20,8 +20,8 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
 
   return (
     <CardContainer
-      onMouseEnter={() => setHovered(1)}
-      onMouseLeave={() => setHovered(0)}
+      onMouseEnter={() => setHovered((prevHovered) => !prevHovered)}
+      onMouseLeave={() => setHovered((prevHovered) => !prevHovered)}
       data-type="card"
     >
       <ImageContainer props={{ title, imageUrl, hovered }} />

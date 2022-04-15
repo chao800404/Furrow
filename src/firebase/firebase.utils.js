@@ -115,7 +115,7 @@ export const createUserProfileDoc = async (userData) => {
       await setDoc(doc(db, "user", uid), {
         name,
         email,
-        photoURL,
+        photoURL: photoURL ? photoURL : null,
         creationDate: new Date(),
         id: uid,
       });
@@ -156,7 +156,7 @@ export const sendRestEmail = async ({ auth, email }) => {
   try {
     await sendPasswordResetEmail(auth, email);
   } catch (error) {
-    checkExistEmail(error);
+    throw new Error(error);
   }
 };
 

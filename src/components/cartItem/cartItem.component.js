@@ -1,11 +1,12 @@
 /** @format */
 
 import { CartItemContainer } from "./cartItem.styles";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { IoTrashSharp } from "react-icons/io5";
 import Button from "../../components/button/button.component";
 import { useDispatch } from "react-redux";
 import { removeCartItem, cartItemUpdate } from "../../redux/cart/cart.action";
+import { memo } from "react";
 
 const CartItem = ({ imageUrl, price, quantity, title, id }) => {
   const [quantitys, setQuantity] = useState(quantity);
@@ -20,13 +21,9 @@ const CartItem = ({ imageUrl, price, quantity, title, id }) => {
       dispatch(cartItemUpdate({ quantity: parseIntQuantity, id }));
   };
 
-  useEffect(() => {
-    setQuantity(quantity);
-  }, [quantity]);
-
   const handleClick = (e) => {
     const coverBtn = e.target.closest("[data-type]");
-    if (coverBtn.dataset.type === "cancel") setRemoveItem(false);
+    if (coverBtn.dataset.type === "cancel") setRemoveItem((prev) => !prev);
     if (coverBtn.dataset.type === "remove") dispatch(removeCartItem(id));
   };
 
@@ -55,10 +52,10 @@ const CartItem = ({ imageUrl, price, quantity, title, id }) => {
           justifySelf: "end",
           marginRight: "1rem",
         }}
-        onClick={(e) => setRemoveItem(true)}
+        onClick={(e) => setRemoveItem((prev) => !prev)}
       />
     </CartItemContainer>
   );
 };
 
-export default CartItem;
+export default memo(CartItem);

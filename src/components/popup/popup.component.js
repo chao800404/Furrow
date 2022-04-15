@@ -5,7 +5,7 @@ import {
   PopupForm,
   PopupBoxContainer,
 } from "./popup.style";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ImageContainer from "../imageContainer/imageContainer.component";
 import { IoCloseCircleSharp } from "react-icons/io5";
@@ -28,16 +28,20 @@ const Popup = ({ collection }) => {
   const { rgb, price, imageUrl, id, color } = useSelector(
     selectPopupView(collection.title, currentColor)
   );
-
   const title = `${collection.title}-${color}`;
+
+  const goToPrevPage = useCallback(() => {
+    navigate("shop", { replace: false });
+    document.body.style.overflow = "unset";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = (e) => {
     const target = e.target.dataset.item;
     const addToCartBtn = e.target.dataset.type;
     const parseIntQuantity = Number.parseInt(quantity);
     if (target === "popup-close" || target === "popup-bg") {
-      navigate("shop", { replace: false });
-      document.body.style.overflow = "unset";
+      goToPrevPage();
     }
     if (addToCartBtn === "add-cart-btn" && quantity > 0) {
       dispatch(
@@ -52,8 +56,7 @@ const Popup = ({ collection }) => {
           statement: collection.statement,
         })
       );
-      navigate("shop", { replace: false });
-      document.body.style.overflow = "unset";
+      goToPrevPage();
     }
   };
 

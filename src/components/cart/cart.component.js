@@ -42,12 +42,15 @@ const Cart = () => {
   }, [current, delay, position, dispatch]);
 
   useEffect(() => {
-    const timeout = setTimeout(() => settranaslateCart(true), 10);
+    const timeout = setTimeout(
+      () => settranaslateCart((prev) => (prev = true)),
+      10
+    );
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
   useEffect(() => {
-    settranaslateCart(position.current === position.delay);
+    settranaslateCart((prev) => (prev = position.current === position.delay));
   }, [position]);
 
   useEffect(() => {

@@ -1,20 +1,22 @@
 /** @format */
 import { FindPassword } from "./forgotPasswordCover.styles";
 import Button from "../button/button.component";
-import { sendRestEmail, auth } from "../../firebase/firebase.utils";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { sendChangePasswordEmailStart } from "../../redux/user/user.actions";
 
 const FindPasswordCover = ({ seToggleForotCover }) => {
   const [userEmail, setUserEmail] = useState("");
+  const dispatch = useDispatch();
 
   const handleToggleCover = async (e) => {
     e.preventDefault();
-    await sendRestEmail({ auth, email: userEmail });
-    seToggleForotCover(false);
+    dispatch(sendChangePasswordEmailStart({ email: userEmail }));
+    seToggleForotCover((prevToggle) => (prevToggle = false));
   };
   const handleClcik = (e) => {
     const form = e.target.closest("form");
-    if (!form) seToggleForotCover(false);
+    if (!form) seToggleForotCover((prevToggle) => (prevToggle = false));
   };
 
   return (

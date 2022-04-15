@@ -16,8 +16,8 @@ const SecondTypeCard = ({ title, color, price, imageUrl }) => {
 
   return (
     <SecondCardContainer
-      onMouseEnter={() => setHovered(1)}
-      onMouseLeave={() => setHovered(0)}
+      onMouseEnter={() => setHovered((prevHovered) => !prevHovered)}
+      onMouseLeave={() => setHovered((prevHovered) => !prevHovered)}
       whileHover={{ scale: 1.03 }}
       transition={{ default: { duration: 0.3 } }}
       onClick={handleClick}

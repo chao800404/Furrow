@@ -100,11 +100,11 @@ const CanvasBanner = () => {
   }, [titlePosition, windowSizes.width]);
 
   const startDrawing = () => {
-    setIsDrawing(true);
+    setIsDrawing((prev) => (prev = true));
   };
 
   const finishDrawing = () => {
-    setIsDrawing(false);
+    setIsDrawing((prev) => (prev = false));
     const renderElem = canvas.current;
     const renderCtx = renderElem.getContext("2d");
     renderCtx.closePath();
@@ -112,7 +112,7 @@ const CanvasBanner = () => {
 
   const drawing = (event) => {
     if (isDrawing) {
-      setDrawn(true);
+      setDrawn((prev) => (prev = true));
       callDawn();
       const { clientX, clientY } = event;
       const renderElem = canvas.current;

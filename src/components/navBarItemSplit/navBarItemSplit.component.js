@@ -26,8 +26,8 @@ const NavBarItemSplit = ({ title, id }) => {
       }
       data-nav={id}
       key={id}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => setHovered((prev) => !prev)}
+      onMouseLeave={() => setHovered((prev) => !prev)}
     >
       {title}
     </NavList>

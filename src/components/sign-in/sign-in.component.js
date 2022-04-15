@@ -8,17 +8,13 @@ import {
 } from "./sign-in.styles";
 import Button from "../button/button.component";
 import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
-// import {
-//   googleProvider,
-//   facebookProvider,
-//   signInWithExpress,
-//   auth,
-//   createUserWithEmail,
-//   signInWithEmail,
-// } from "../../firebase/firebase.utils";
 import FindPasswordCover from "../forgotPasswordCover/fortgotPasswordCover.component";
 import { useDispatch } from "react-redux";
-import { expressSignInStart } from "../../redux/user/user.actions";
+import {
+  expressSignInStart,
+  createAccountStart,
+  signWithEmailStart,
+} from "../../redux/user/user.actions";
 
 const expressBtnStyle = {
   background: "#fff",
@@ -41,8 +37,7 @@ const SignInUpFrom = ({ animate, initial }) => {
     password: "",
   });
   const [toggleSignInUp, setToggleSignInUp] = useState(false);
-  const [toggleForgotCover, seToggleForotCover] = useState(false);
-  const { email, password } = userData;
+  const [toggleForgotCover, setToggleForotCover] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,14 +56,17 @@ const SignInUpFrom = ({ animate, initial }) => {
   const handleTransferSignInOutOption = (e) => {
     const type = e.target.dataset.type;
     if (!type) return;
-    if (type === "sign-in") setToggleSignInUp(false);
-    if (type === "sign-up") setToggleSignInUp(true);
+    if (type === "sign-in")
+      setToggleSignInUp((prevToggle) => (prevToggle = false));
+    if (type === "sign-up")
+      setToggleSignInUp((prevToggle) => (prevToggle = true));
     setUserData({ ...userData, email: "", password: "" });
   };
 
   const handleSignInWithExpress = async (e) => {
     e.preventDefault();
     const btnType = e.target.dataset.type;
+    const { email, password } = userData;
     if (!btnType) return;
     switch (btnType) {
       case "google-sign-in":
@@ -77,13 +75,13 @@ const SignInUpFrom = ({ animate, initial }) => {
       case "facebook-sign-in":
         dispatch(expressSignInStart("facebook"));
         break;
-      // case "data-email-password-signInUp":
-      //   toggleSignInUp
-      //     ? await createUserWithEmail({ auth, email, password, type: "email" })
-      //     : await signInWithEmail({ auth, email, password, type: "email" });
-      //   break;
+      case "data-email-password-signInUp":
+        toggleSignInUp
+          ? dispatch(createAccountStart({ email, password }))
+          : dispatch(signWithEmailStart({ email, password }));
+        break;
       case "display-forgot-cover":
-        seToggleForotCover(!toggleForgotCover);
+        setToggleForotCover(!toggleForgotCover);
         break;
       default:
         break;
@@ -95,9 +93,8 @@ const SignInUpFrom = ({ animate, initial }) => {
   return (
     <>
       {toggleForgotCover ? (
-        <FindPasswordCover seToggleForotCover={seToggleForotCover} />
+        <FindPasswordCover seToggleForotCover={setToggleForotCover} />
       ) : null}
-
       <SignInContainer
         initial={initial}
         animate={animate}
@@ -132,7 +129,7 @@ const SignInUpFrom = ({ animate, initial }) => {
           <SignInOutBtnBg
             animate={{
               x: `${
-                toggleSignInUp ? "calc(100% + 1.56rem)" : "calc(0% + 0rem)"
+                toggleSignInUp ? "calc(100% + 1.55rem)" : "calc(0% + 0rem)"
               }`,
             }}
             transition={{ ease: [0.17, 0.67, 0.83, 0.67], duration: ".2" }}

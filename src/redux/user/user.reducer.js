@@ -9,18 +9,17 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ActionUserType.EXPRESS_SIGNIN_START:
-      return state;
-    case ActionUserType.EXPRESS_SIGNIN_SUCESS:
+    case ActionUserType.EXPRESS_SIGNIN_SUCCESS:
       return {
         ...state,
         currentUser: action.payload,
       };
-    case ActionUserType.EXPRESS_SIGNIN_FAILURE:
+    case ActionUserType.SING_IN_FAILURE:
       return {
         ...state,
         errorMessage: action.payload,
       };
+
     case ActionUserType.SIGN_OUT_SUCCESS:
       return {
         ...state,

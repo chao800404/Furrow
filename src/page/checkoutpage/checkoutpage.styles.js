@@ -56,10 +56,11 @@ export const CheckoutListContainer = styled.div`
 export const CheckoutPament = styled.div`
   grid-column: 2 / 3;
   background-color: #fff;
-  height: 40rem;
   align-self: start;
   position: sticky;
   top: 5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
 `;
 
 export const CheckoutHeader = styled.div`

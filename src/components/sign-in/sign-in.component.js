@@ -31,6 +31,12 @@ const expressBtnStyle = {
   justifyContent: "space-between",
 };
 
+const expressBtnIconStyle = {
+  fontSize: "3rem",
+  marginRight: "1rem",
+  pointerEvents: "none",
+};
+
 const SignInUpFrom = ({ animate, initial }) => {
   const [userData, setUserData] = useState({
     email: "",
@@ -104,11 +110,11 @@ const SignInUpFrom = ({ animate, initial }) => {
         <div className="expressBtn">
           <Button data="google-sign-in" style={expressBtnStyle}>
             GOOGLE
-            <FaGooglePlusG style={{ fontSize: "3rem", marginRight: "1rem" }} />
+            <FaGooglePlusG style={expressBtnIconStyle} />
           </Button>
           <Button data="facebook-sign-in" style={expressBtnStyle}>
             FACEBOOK
-            <FaFacebookF style={{ fontSize: "2.2rem", marginRight: "1rem" }} />
+            <FaFacebookF style={expressBtnIconStyle} />
           </Button>
         </div>
         <SignInOutOption onClick={handleTransferSignInOutOption}>

@@ -1,25 +1,24 @@
 /** @format */
 
-import Lottie from "react-lottie";
-import * as finishIconAn from "../../assets/lottie-json/99551-tick-interaction-to-show-success.json";
+import Lottie from "react-lottie-player";
+import { useState, useEffect } from "react";
 
-const FinishIconAn = ({ height, width, isStopped, isPaused }) => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: finishIconAn,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+const FinishIconAn = ({ height, width, play }) => {
+  const [animationData, setAnimationData] = useState();
+
+  useEffect(() => {
+    import(
+      "../../assets/lottie-json/99551-tick-interaction-to-show-success.json"
+    ).then(setAnimationData);
+  }, []);
 
   return (
     <Lottie
-      options={defaultOptions}
-      height={height}
-      width={width}
-      isStopped={isStopped}
-      isPaused={isPaused}
+      animationData={animationData}
+      style={{ width: width, height: height }}
+      play={play}
+      rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+      loop={false}
     />
   );
 };

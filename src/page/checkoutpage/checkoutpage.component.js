@@ -18,6 +18,9 @@ import { useNavigate } from "react-router-dom";
 import CheckoutList from "../../components/checkout-list/checkout-list.component";
 import Button from "../../components/button/button.component";
 import { useState } from "react";
+import Payment from "../../components/payment/payment.component";
+import { Elements } from "@stripe/react-stripe-js";
+import getStripe from "../../utils/stripe.utils";
 
 const CheckOutPage = () => {
   const cartItem = useSelector(selectClassificationCartItem);
@@ -75,7 +78,9 @@ const CheckOutPage = () => {
             ))}
           </CheckoutListContainer>
           <CheckoutPament>
-            <div>hellow</div>
+            <Elements stripe={getStripe()}>
+              <Payment />
+            </Elements>
           </CheckoutPament>
         </CheckoutContainer>
       </Flex>

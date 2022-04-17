@@ -38,6 +38,13 @@ export const GlobalStyle = createGlobalStyle`
     outline:none;
   }
 
+  input {
+    &:active,$:focus {
+      outline: none;
+      border:none;
+    }
+  }
+
   button {
     background-color:${({ theme: { buttonBackgroundColor } }) =>
       buttonBackgroundColor};

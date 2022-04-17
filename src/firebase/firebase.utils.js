@@ -17,7 +17,6 @@ import {
   onAuthStateChanged,
   signInWithRedirect,
   getRedirectResult,
-  linkWithRedirect,
   createUserWithEmailAndPassword,
   sendEmailVerification,
   signInWithEmailAndPassword,
@@ -80,19 +79,15 @@ const signInType = {
   email: (result) => EmailAuthProvider.credentialFromResult(result),
 };
 
-const checkExistEmail = (error, type = null, provider = null) => {
+export const checkExistEmail = async (error) => {
   switch (error.code) {
     case "auth/account-exists-with-different-credential":
-      return async () => {
-        try {
-          const result = await linkWithRedirect(auth.currentUser, provider);
-          signInType[type](result);
-          const user = result.user;
-          return user;
-        } catch (error) {
-          console.log(error);
-        }
-      };
+      try {
+      } catch (error) {
+        throw error;
+      }
+
+      break;
     case "auth/email-already-in-use":
       return alert("Email already in use");
     case "auth/user-not-found":
@@ -131,7 +126,8 @@ export const signInWithExpress = async ({ auth, provider, type }) => {
     const result = await getRedirectResult(auth);
     signInType[type](result);
   } catch (error) {
-    checkExistEmail(error, type, provider);
+    checkExistEmail(error, type, provider, auth);
+    throw new Error(error);
   }
 };
 
@@ -166,8 +162,6 @@ export const currentUser = () =>
       if (user) {
         const uid = user.uid;
         resolve({ uid, user });
-      } else {
-        reject("not sign in");
       }
     });
   });

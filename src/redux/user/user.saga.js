@@ -13,6 +13,7 @@ import {
   createUserWithEmail,
   signInWithEmail,
   sendRestEmail,
+  checkExistEmail,
 } from "../../firebase/firebase.utils";
 import {
   expressSignInSuccess,
@@ -28,6 +29,7 @@ function* expressUserSignIn({ payload: expressType }) {
       type: expressType,
     });
   } catch (error) {
+    yield checkExistEmail(error);
     yield put(signInFailure(error));
   }
 }

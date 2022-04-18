@@ -11,16 +11,16 @@ export const SpinnerContainer = styled.div`
 `;
 
 export const SpinnerMotion = styled(motion.div)`
-  width: 5rem;
-  height: 5rem;
+  width: ${({ width }) => (width ? width : "5rem")};
+  height: ${({ height }) => (height ? height : "5rem")};
   border-radius: 50%;
   border: 0.5rem solid rgba(255, 255, 255, 0.4);
   position: relative;
 
   &:before {
     content: "";
-    width: 5rem;
-    height: 5rem;
+    width: ${({ width }) => (width ? width : "5rem")};
+    height: ${({ height }) => (height ? height : "5rem")};
     position: absolute;
     box-sizing: border-box;
     border-radius: 100%;

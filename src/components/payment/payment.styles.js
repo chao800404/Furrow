@@ -45,6 +45,12 @@ export const PaymentContainer = styled.form`
     text-align: center;
   }
 
+  p {
+    font-size: 1.5rem;
+    color: #161616;
+    margin-top: 1rem;
+  }
+
   span {
     font-size: 5rem;
     font-weight: bold;

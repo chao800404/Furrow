@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 export const PaymentFromContainer = styled.div`
-  height: 32rem;
+  height: 30rem;
   h3,
   span,
   label {
@@ -45,7 +45,7 @@ export const PaymentFromContainer = styled.div`
   }
 
   span {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: bold;
     margin-bottom: 1rem;
   }
@@ -63,6 +63,7 @@ export const PaymentFromContainer = styled.div`
   }
 
   .ShippingDestination {
-    font-size: 4rem;
+    font-size: 3.8rem;
+    line-height: 5rem;
   }
 `;

@@ -27,19 +27,20 @@ const CheckOutPage = () => {
   const totalQuantity = useSelector(selectCartAmount);
   const navigate = useNavigate();
 
-  const [existUser, setExistUser] = useState(useSelector(selectCurrentUser));
+  const existUser = useSelector(selectCurrentUser);
+  const [toggleHidden, setToggleHidden] = useState(false);
 
   const handleTransferSignIn = (e) => {
     const btnType = e.target.dataset.type;
     if (btnType === "sign-in") navigate("/signin", { replace: true });
-    if (btnType === "reject") setExistUser(() => false);
+    if (btnType === "reject") setToggleHidden((prev) => (prev = true));
   };
 
   return (
     <section style={{ minHeight: "100vh", padding: "20rem 0" }}>
       <Flex>
         <CheckoutContainer>
-          {existUser ? null : (
+          {existUser || toggleHidden ? null : (
             <CheckoutSignIn onClick={handleTransferSignIn}>
               <span>
                 Already a member? Login for easier order tracking and

@@ -9,7 +9,6 @@ import {
   doc,
   setDoc,
   getDoc,
-  addDoc,
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,

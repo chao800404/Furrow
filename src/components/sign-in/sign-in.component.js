@@ -9,12 +9,14 @@ import {
 import Button from "../button/button.component";
 import { FaFacebookF, FaGooglePlusG } from "react-icons/fa";
 import FindPasswordCover from "../forgotPasswordCover/fortgotPasswordCover.component";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   expressSignInStart,
   createAccountStart,
   signWithEmailStart,
 } from "../../redux/user/user.actions";
+import { selectCurrentUserLoading } from "../../redux/user/user.select";
+import Spinner from "../spinner/spinner.component";
 
 const expressBtnStyle = {
   background: "#fff",
@@ -45,6 +47,7 @@ const SignInUpFrom = ({ animate, initial }) => {
   const [toggleSignInUp, setToggleSignInUp] = useState(false);
   const [toggleForgotCover, setToggleForotCover] = useState(false);
   const dispatch = useDispatch();
+  const userIsLoading = useSelector(selectCurrentUserLoading);
 
   useEffect(() => {
     toggleForgotCover
@@ -173,7 +176,7 @@ const SignInUpFrom = ({ animate, initial }) => {
           }}
           data="data-email-password-signInUp"
         >
-          SIGN IN
+          {userIsLoading ? <Spinner height="3rem" width="3rem" /> : "SIGN IN"}
         </Button>
         <p data-type="display-forgot-cover">Forgot Password ?</p>
       </SignInContainer>

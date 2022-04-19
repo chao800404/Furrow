@@ -1,6 +1,7 @@
 /** @format */
 
 import { initializeApp } from "firebase/app";
+import firebaseConfig from "./firebase.config";
 import {
   getFirestore,
   getDocs,
@@ -23,16 +24,6 @@ import {
   EmailAuthProvider,
   sendPasswordResetEmail,
 } from "firebase/auth";
-
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: "onesec-859e7.firebaseapp.com",
-  projectId: "onesec-859e7",
-  storageBucket: "onesec-859e7.appspot.com",
-  messagingSenderId: "341526711924",
-  appId: process.env.REACT_APP_FIREBAE_API_ID,
-  measurementId: "G-6YP5G65346",
-};
 
 initializeApp(firebaseConfig);
 export const db = getFirestore();
@@ -79,10 +70,11 @@ const signInType = {
   email: (result) => EmailAuthProvider.credentialFromResult(result),
 };
 
-export const checkExistEmail = async (error) => {
+export const checkExistEmail = async (error, auth) => {
   switch (error.code) {
     case "auth/account-exists-with-different-credential":
       try {
+        console.log(error.customData.email);
       } catch (error) {
         throw error;
       }
@@ -116,7 +108,7 @@ export const createUserProfileDoc = async (userData) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -126,8 +118,12 @@ export const signInWithExpress = async ({ auth, provider, type }) => {
     const result = await getRedirectResult(auth);
     signInType[type](result);
   } catch (error) {
-    checkExistEmail(error, type, provider, auth);
-    throw new Error(error);
+    if (error.code === "auth/account-exists-with-different-credential") {
+      console.log(FacebookAuthProvider.credentialFromError(error));
+      console.log(error.customData.email);
+    }
+    await checkExistEmail(error, type, provider, auth);
+    throw error;
   }
 };
 

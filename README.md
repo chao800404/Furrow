@@ -18,4 +18,4 @@ In case of any infringement, please contact [chao](yuho0298@gmail.com).
 * firbase -  03 / 25 / 2022
 * react-lottie-player - 04 / 17 / 2022
 * stripe - 04 / 19 / 2022 
-* netfily-cli - 04 / 19 / 2022
+* netlify-cli - 04 / 19 / 2022

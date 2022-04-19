@@ -39,7 +39,11 @@ const CheckOutPage = () => {
   return (
     <section style={{ minHeight: "100vh", padding: "20rem 0" }}>
       <Flex>
-        <CheckoutContainer>
+        <CheckoutContainer
+          initial={{ y: 50 }}
+          transition={{ ease: "easeOut" }}
+          animate={{ y: 0 }}
+        >
           {existUser || toggleHidden ? null : (
             <CheckoutSignIn onClick={handleTransferSignIn}>
               <span>

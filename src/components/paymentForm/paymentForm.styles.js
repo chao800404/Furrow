@@ -44,12 +44,6 @@ export const PaymentFromContainer = styled.div`
     text-align: center;
   }
 
-  span {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-
   input:-webkit-autofill {
     background-color: transparent !important;
     -webkit-box-shadow: 0 0 0 50px #fff inset;
@@ -65,5 +59,11 @@ export const PaymentFromContainer = styled.div`
   .ShippingDestination {
     font-size: 3.8rem;
     line-height: 5rem;
+  }
+
+  .total-price {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
   }
 `;

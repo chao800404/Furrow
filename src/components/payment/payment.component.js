@@ -8,6 +8,7 @@ import PaymentForm from "../paymentForm/paymentForm.component";
 import { useSelector } from "react-redux";
 import { selectCartItemTotalPrice } from "../../redux/cart/cart.select";
 import Spinner from "../../components/spinner/spinner.component";
+import primaryColor from "../../theme/priamry.styles";
 
 const formType = ["firstForm", "secondForm", "secondForm"];
 
@@ -30,6 +31,7 @@ const Payment = () => {
   const elements = useElements();
   const [currentStep, setCurrentStep] = useState(0);
   const [userDataComplete, setUserDataComplete] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const totalPrice = useSelector(selectCartItemTotalPrice);
   const elemRef = useRef(null);
@@ -50,8 +52,14 @@ const Payment = () => {
 
     if (currentStep < 1) trasnfrerStep();
     if (!stripe || !elements || currentStep < 1) return;
+    if (userData.addressLine !== userData.ConfirmAddressLine) {
+      setErrorMessage(
+        (prevError) => (prevError = "Please enter correct address line")
+      );
+      return;
+    }
     if (!userDataComplete) {
-      alert("Incomplete information");
+      setErrorMessage((prevError) => (prevError = "Incomplete information"));
       return;
     }
     setLoading((prev) => (prev = true));
@@ -128,6 +136,7 @@ const Payment = () => {
   const handleOnChange = (e) => {
     const name = e.target.name;
     setUserData({ ...userData, [name]: e.target.value });
+    setErrorMessage((prevError) => (prevError = undefined));
   };
 
   return (
@@ -157,7 +166,10 @@ const Payment = () => {
       />
 
       <CardElement options={CARD_OPTIONS} />
-      <p>Plaese Enter full information</p>
+      <p style={{ letterSpacing: ".05rem", color: primaryColor.cursorColor }}>
+        {errorMessage ? errorMessage : ""}
+      </p>
+
       <Button
         data=""
         style={{ marginTop: "1rem", paddingTop: "1.5rem", height: "5rem" }}

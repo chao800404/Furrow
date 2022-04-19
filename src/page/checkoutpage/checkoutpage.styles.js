@@ -1,8 +1,9 @@
 /** @format */
 
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const CheckoutContainer = styled.div`
+export const CheckoutContainer = styled(motion.div)`
   display: grid;
   grid-template-columns: 1.8fr 1fr;
   grid-gap: 2rem;

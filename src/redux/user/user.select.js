@@ -2,8 +2,14 @@
 
 import { createSelector } from "reselect";
 
-const selectUser = ({ user }) => user.currentUser;
+const selectUser = ({ user }) => user;
 
-export const selectCurrentUser = createSelector([selectUser], (user) =>
-  user ? user.user : null
+export const selectCurrentUser = createSelector(
+  [selectUser],
+  (user) => user.currentUser?.user
+);
+
+export const selectCurrentUserLoading = createSelector(
+  [selectUser],
+  (user) => user.isLoading
 );

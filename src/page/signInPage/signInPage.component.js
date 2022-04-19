@@ -18,7 +18,7 @@ const variants = {
   },
   finish: {
     scale: 1.05,
-    y: [100, 20],
+    y: [0, 20, 0],
   },
 };
 

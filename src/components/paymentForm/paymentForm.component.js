@@ -28,7 +28,9 @@ const PaymentForm = ({ type, value, totalPrice }) => {
   return (
     <PaymentFromContainer>
       <h3 className={title?.split(" ").join("")}>{title}</h3>
-      {payment ? <span>NT$: {totalPrice.toLocaleString()}</span> : null}
+      {payment ? (
+        <span className="total-price">NT$: {totalPrice.toLocaleString()}</span>
+      ) : null}
 
       <div id="fullName">
         <input
@@ -50,14 +52,14 @@ const PaymentForm = ({ type, value, totalPrice }) => {
         name={thirdInput[0]}
         type={thirdInput[1]}
         id={thirdInput[0]}
-        placeholder={thirdInput[0]}
+        placeholder={thirdInput[0].toUpperCase()}
         defaultValue={value[thirdInput[0]]}
       />
       <input
         name={forthInput[0]}
         type={forthInput[1]}
         id={forthInput[0]}
-        placeholder={forthInput[0]}
+        placeholder={forthInput[0].toUpperCase()}
         defaultValue={value[thirdInput[0]]}
       />
     </PaymentFromContainer>

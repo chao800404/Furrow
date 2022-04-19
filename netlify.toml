@@ -7,5 +7,5 @@
     [headers.values]
     Access-Control-Allow-Origin = "*"
 [build]
-	functions = "netlify/functions/"
-	publish = "netlify/"
+ Functions="functions-build"
+ command ="npm run build"

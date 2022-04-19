@@ -53,6 +53,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItem: updateItemToCart(state.cartItem, payload),
       };
+    case cartActionType.CART_CLEAN_ITEM:
+      return {
+        ...state,
+        cartItem: [],
+      };
 
     default:
       return state;

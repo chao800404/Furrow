@@ -9,6 +9,7 @@ import {
   doc,
   setDoc,
   getDoc,
+  addDoc,
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,
@@ -110,6 +111,10 @@ export const createUserProfileDoc = async (userData) => {
   } catch (error) {
     throw error;
   }
+};
+
+export const createOrderProfileDoc = async ({ order, id, customData }) => {
+  await setDoc(doc(db, "order", id), { order, customData });
 };
 
 export const signInWithExpress = async ({ auth, provider, type }) => {

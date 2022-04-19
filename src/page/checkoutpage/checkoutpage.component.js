@@ -39,11 +39,7 @@ const CheckOutPage = () => {
   return (
     <section style={{ minHeight: "100vh", padding: "20rem 0" }}>
       <Flex>
-        <CheckoutContainer
-          initial={{ y: 50 }}
-          transition={{ ease: "easeOut" }}
-          animate={{ y: 0 }}
-        >
+        <CheckoutContainer>
           {existUser || toggleHidden ? null : (
             <CheckoutSignIn onClick={handleTransferSignIn}>
               <span>
@@ -84,7 +80,7 @@ const CheckOutPage = () => {
           </CheckoutListContainer>
           <CheckoutPament>
             <Elements stripe={getStripe()}>
-              <Payment />
+              <Payment cartItem={cartItem} />
             </Elements>
           </CheckoutPament>
         </CheckoutContainer>

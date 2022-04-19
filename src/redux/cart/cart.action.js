@@ -33,3 +33,12 @@ export const cartItemUpdate = (cartItem) => ({
   type: cartActionType.UPDATE_CART_ITEM,
   payload: cartItem,
 });
+
+export const cartPayment = (order) => ({
+  type: cartActionType.CART_PAYMENT_START,
+  payload: order,
+});
+
+export const cartCleanItem = () => ({
+  type: cartActionType.CART_CLEAN_ITEM,
+});

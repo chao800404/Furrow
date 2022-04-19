@@ -6,6 +6,3 @@
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
-[build]
- Functions="functions-build"
- command ="npm run build"

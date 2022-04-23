@@ -26,7 +26,6 @@ const Popup = ({ collection }) => {
   const [transitionEnd, setTransitionEnd] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const { rgb, price, imageUrl, id, color } = useSelector(
     selectPopupView(collection.title, currentColor)
   );

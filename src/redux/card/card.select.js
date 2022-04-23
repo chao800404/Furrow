@@ -8,3 +8,8 @@ export const selectCardLoad = createSelector(
   [selectCard],
   (selectCard) => selectCard.imageLoad
 );
+
+export const selectCardIsPointer = createSelector(
+  [selectCard],
+  (selectCard) => selectCard.isPointer
+);

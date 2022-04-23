@@ -25,6 +25,10 @@ export const GlobalStyle = createGlobalStyle`
       font-family: 'Anton', sans-serif;
   }
 
+  section {
+    min-height:100vh;
+  }
+
   
   ::-webkit-scrollbar {
     width: 0;

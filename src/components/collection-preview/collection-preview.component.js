@@ -10,8 +10,8 @@ import Card from "../card/card.component";
 import { ReactSVG } from "react-svg";
 import mclarenXOnesecLogo from "../../assets/svg/mclaren_x_onesec.svg";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
-import Spinner from "../spinner/spinner.component";
 import { selectCardLoad } from "../../redux/card/card.select";
+import CubeSpinner from "../cube-spinner/cube-spinner.component";
 
 const CollectionPreview = () => {
   const collections = useSelector(selectShopCollectionPreview);
@@ -19,21 +19,11 @@ const CollectionPreview = () => {
   const theme = useSelector(selectThemeStyle);
   const imageLoad = useSelector(selectCardLoad);
 
-  return collections ? (
-    <section style={{ padding: "20rem 0" }}>
+  return (
+    <section style={imageLoad ? { padding: "20rem 0" } : null}>
+      {imageLoad ? null : <CubeSpinner />}
+
       <Flex>
-        {imageLoad ? null : (
-          <div
-            style={{
-              width: "100%",
-              position: "absolute",
-              top: 0,
-              left: 0,
-            }}
-          >
-            <Spinner style={{ minHeight: "100vh" }} />
-          </div>
-        )}
         <CollectionPreviewContainer
           initial={{ visibility: "hidden", y: 10, opacity: 0 }}
           animate={
@@ -64,8 +54,6 @@ const CollectionPreview = () => {
         </CollectionPreviewContainer>
       </Flex>
     </section>
-  ) : (
-    <Spinner style={{ minHeight: "100vh", height: "100%" }} />
   );
 };
 

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import {
   OrbitControls,
   Environment,
@@ -15,9 +15,14 @@ import {
 } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { checkARIsPointer } from "../../redux/card/card.action";
+import { selectCardIsPointer } from "../../redux/card/card.select";
+import Spinner from "../spinner/spinner.component";
 
-const GlassesModel = ({ type, color, transitionEnd }) => {
+const GlassesModel = ({ type, color }) => {
   const curType = type.toLowerCase();
+  const dispatch = useDispatch();
   const curColor = color
     .split(" ")
     .reduce(
@@ -28,8 +33,8 @@ const GlassesModel = ({ type, color, transitionEnd }) => {
           : txt.split("")[0].toUpperCase() + txt.slice(1)),
       ""
     );
-  const [pointDown, setPointDown] = useState(false);
   const CurGlassesModel = glassesModel[curType][curColor];
+  const pointDown = useSelector(selectCardIsPointer);
 
   return (
     <ClassesModelContainer>
@@ -46,8 +51,8 @@ const GlassesModel = ({ type, color, transitionEnd }) => {
           position={[10, 15, 10]}
           castShadow
         />
-        <Suspense fallback={null}>
-          <CurGlassesModel onPointerDown={() => setPointDown(true)} />
+        <Suspense fallback={<Spinner />}>
+          <CurGlassesModel onPointerDown={() => dispatch(checkARIsPointer())} />
           <ContactShadows
             rotation-x={Math.PI / 2}
             position={[0, -2.5, 0]}

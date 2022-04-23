@@ -4,7 +4,7 @@ import Header from "./components/header/header.component";
 import Homepage from "./page/homepage/hompage.component";
 import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
 import Sidebars from "./components/sidebar/sidebar.component";
-// import ShopPage from "./page/shoppage/shopPage.component";
+import ShopPage from "./page/shoppage/shopPage.component";
 // import AboutPage from "./page/aboutpage/aboutPage.component";
 // import FeaturePage from "./page/featurepage/featurePage.component";
 // import CheckOutPage from "./page/checkoutpage/checkoutpage.component";
@@ -19,7 +19,7 @@ import { checkUserSession } from "./redux/user/user.actions";
 import { useDispatch } from "react-redux";
 import CubeSpinner from "./components/cube-spinner/cube-spinner.component";
 
-const ShopPage = lazy(() => import("./page/shoppage/shopPage.component"));
+// const ShopPage = lazy(() => import("./page/shoppage/shopPage.component"));
 const AboutPage = lazy(() => import("./page/aboutpage/aboutPage.component"));
 const FeaturePage = lazy(() =>
   import("./page/featurepage/featurePage.component")

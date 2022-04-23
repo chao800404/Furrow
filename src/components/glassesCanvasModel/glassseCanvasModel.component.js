@@ -18,7 +18,6 @@ import svg from "../../assets/svgIcon/AR-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { checkARIsPointer } from "../../redux/card/card.action";
 import { selectCardIsPointer } from "../../redux/card/card.select";
-import Spinner from "../spinner/spinner.component";
 
 const GlassesModel = ({ type, color }) => {
   const curType = type.toLowerCase();

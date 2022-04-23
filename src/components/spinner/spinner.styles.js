@@ -14,7 +14,7 @@ export const SpinnerMotion = styled(motion.div)`
   width: ${({ width }) => (width ? width : "5rem")};
   height: ${({ height }) => (height ? height : "5rem")};
   border-radius: 50%;
-  border: 0.5rem solid rgba(255, 255, 255, 0.4);
+  border: 0.5rem solid #cecece;
   position: relative;
 
   &:before {
@@ -30,8 +30,8 @@ export const SpinnerMotion = styled(motion.div)`
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 20;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box,
-      linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#e7e7e7 0 0) padding-box,
+      linear-gradient(#e7e7e7 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }

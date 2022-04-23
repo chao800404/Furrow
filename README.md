@@ -19,3 +19,6 @@ In case of any infringement, please contact [chao](yuho0298@gmail.com).
 * react-lottie-player - 04 / 17 / 2022
 * stripe - 04 / 19 / 2022 
 * netlify-cli - 04 / 19 / 2022
+* react-three/fiber - 04 / 23 / 2022 
+* react-three/drei - 04 / 23 / 2022
+* 

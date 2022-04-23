@@ -55,9 +55,9 @@ export const PopupBox = styled(motion.div)`
   justify-self: center;
   border-radius: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 1fr;
   position: relative;
-  grid-gap: 1rem 5rem;
+  grid-gap: 0 5rem;
 
   .popup_close {
     width: 5rem;
@@ -95,8 +95,10 @@ export const PopupBox = styled(motion.div)`
     align-items: center;
     border-bottom: 1px solid #111;
   }
-  .popup-image {
+  .popup-canvas {
     align-self: center;
+    width: 100%;
+    height: 100%;
   }
   .popup_price {
     color: #161616;

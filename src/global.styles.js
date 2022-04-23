@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
       padding:0;
       margin:0;
       box-sizing:inherit;
-      cursor:none
+      cursor:none 
   }
 
   html{ 

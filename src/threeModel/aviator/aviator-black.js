@@ -23,6 +23,7 @@ export default function AviatorBlackModel({ ...props }) {
       {...props}
       dispose={null}
       scale={0.1}
+      position={[0, -2.5, 0]}
     >
       <mesh
         geometry={nodes.Object_2.geometry}

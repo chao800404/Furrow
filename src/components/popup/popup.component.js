@@ -7,7 +7,6 @@ import {
 } from "./popup.style";
 import { useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ImageContainer from "../imageContainer/imageContainer.component";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -17,11 +16,14 @@ import { useDispatch } from "react-redux";
 import UserGuide from "../userGuilde/userGuide.component";
 import { cartAddItem } from "../../redux/cart/cart.action";
 import ColorBox from "../colorBox/colorBox.component";
+import GlassesModel from "../glassesCanvasModel/glassseCanvasModel.component";
+import Spinner from "../spinner/spinner.component";
 
 const Popup = ({ collection }) => {
   const { colorType } = useParams();
   const [currentColor, setCurrentColor] = useState(colorType);
   const [quantity, setQuantity] = useState(1);
+  const [transitionEnd, setTransitionEnd] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -63,11 +65,17 @@ const Popup = ({ collection }) => {
   return (
     <PopupContainer data-item="popup-bg" onClick={handleClick}>
       <PopupBoxContainer data-item="popup-bg">
-        <PopupBox initial={{ scale: 0.5 }} animate={{ scale: 1 }}>
+        <PopupBox
+          initial={{ scale: 0.5 }}
+          animate={{ scale: 1 }}
+          onAnimationComplete={() => setTransitionEnd(true)}
+        >
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
-          <div className="popup-image">
-            <ImageContainer props={{ imageUrl, title }} />
-          </div>
+          {transitionEnd ? (
+            <GlassesModel type={collection.title} color={color} />
+          ) : (
+            <Spinner />
+          )}
           <PopupForm>
             <h3>{title}</h3>
             <div className="popup-text_container">

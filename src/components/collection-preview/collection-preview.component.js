@@ -21,7 +21,9 @@ const CollectionPreview = () => {
 
   return (
     <section style={imageLoad ? { padding: "20rem 0" } : null}>
-      {imageLoad ? null : <CubeSpinner />}
+      {imageLoad ? null : (
+        <CubeSpinner style={{ width: "100%", height: "100vh" }} />
+      )}
 
       <Flex>
         <CollectionPreviewContainer

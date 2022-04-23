@@ -51,7 +51,7 @@ const GlassesModel = ({ type, color }) => {
           position={[10, 15, 10]}
           castShadow
         />
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={null}>
           <CurGlassesModel onPointerDown={() => dispatch(checkARIsPointer())} />
           <ContactShadows
             rotation-x={Math.PI / 2}

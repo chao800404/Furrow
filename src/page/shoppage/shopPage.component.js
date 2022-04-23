@@ -27,7 +27,9 @@ const ShopPage = () => {
   }, [dispatch]);
 
   return (
-    <Suspense fallback={<CubeSpinner />}>
+    <Suspense
+      fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
+    >
       <section style={{ overflowX: "hidden" }}>
         <Cart />
         <Routes>

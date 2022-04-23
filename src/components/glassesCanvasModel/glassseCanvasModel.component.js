@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import {
   OrbitControls,
   Environment,
@@ -8,7 +8,13 @@ import {
   Loader,
 } from "@react-three/drei";
 import { glassesModel } from "./glassesCanvasToMaps";
-import { Canvas } from "@react-three/fiber";
+import {
+  CanvasContainer,
+  SvgIcon,
+  ClassesModelContainer,
+} from "./glassesCanvasModel.styles";
+import { ReactSVG } from "react-svg";
+import svg from "../../assets/svgIcon/AR-icon.svg";
 
 const GlassesModel = ({ type, color, transitionEnd }) => {
   const curType = type.toLowerCase();
@@ -22,11 +28,16 @@ const GlassesModel = ({ type, color, transitionEnd }) => {
           : txt.split("")[0].toUpperCase() + txt.slice(1)),
       ""
     );
+  const [pointDown, setPointDown] = useState(false);
   const CurGlassesModel = glassesModel[curType][curColor];
 
   return (
-    <>
-      <Canvas shadows camera={{ position: [0, 20, 0], fov: 30 }} dpr={[1, 2]}>
+    <ClassesModelContainer>
+      <CanvasContainer
+        shadows
+        camera={{ position: [0, 20, 0], fov: 30 }}
+        dpr={[1, 2]}
+      >
         <ambientLight intensity={0.2} />
         <spotLight
           intensity={0.5}
@@ -36,8 +47,7 @@ const GlassesModel = ({ type, color, transitionEnd }) => {
           castShadow
         />
         <Suspense fallback={null}>
-          <CurGlassesModel />
-
+          <CurGlassesModel onPointerDown={() => setPointDown(true)} />
           <ContactShadows
             rotation-x={Math.PI / 2}
             position={[0, -2.5, 0]}
@@ -54,9 +64,28 @@ const GlassesModel = ({ type, color, transitionEnd }) => {
           maxPolarAngle={Math.PI / 3}
           enablePan={false}
         />
-      </Canvas>
+      </CanvasContainer>
+      {pointDown ? null : (
+        <SvgIcon
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+        >
+          <ReactSVG
+            src={svg}
+            fontSize="1rem"
+            beforeInjection={(svg) =>
+              svg.setAttribute(
+                "style",
+                "display:flex;align-items:center;justify-content:center;width:3.5rem;height:3.5rem"
+              )
+            }
+          />
+        </SvgIcon>
+      )}
+
       <Loader />
-    </>
+    </ClassesModelContainer>
   );
 };
 

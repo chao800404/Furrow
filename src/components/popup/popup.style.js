@@ -20,7 +20,7 @@ export const PopupContainer = styled.div`
 
   ul {
     justify-self: center;
-    width: 50%;
+    width: 100rem;
     transform: translateY(-60%);
 
     h3 {
@@ -47,7 +47,7 @@ export const PopupBoxContainer = styled.div`
 `;
 
 export const PopupBox = styled(motion.div)`
-  width: 50%;
+  width: 100rem;
   min-width: 40rem;
   padding: 2em;
   background-color: #fff;

@@ -76,7 +76,7 @@ export const PopupBox = styled(motion.div)`
 
   h3 {
     font-size: 3.5rem;
-    font-weight: 500;
+    font-weight: 800;
     letter-spacing: 0.2rem;
     margin-bottom: 2rem;
   }
@@ -165,6 +165,12 @@ export const PopupBox = styled(motion.div)`
         margin-right: 1rem;
       }
     }
+  }
+
+  .button_container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-column-gap: 1rem;
   }
 `;
 export const PopupForm = styled.div`

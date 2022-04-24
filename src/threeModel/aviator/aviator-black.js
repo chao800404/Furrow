@@ -91,7 +91,11 @@ export default function AviatorBlackModel({ ...props }) {
         geometry={nodes.Object_18.geometry}
         material={materials["footright3ptc-ceramic255255242"]}
       />
-      <mesh geometry={nodes.Object_19.geometry} material={materials.material} />
+      <mesh
+        geometry={nodes.Object_19.geometry}
+        material={materials.material}
+        material-opacity={0.3}
+      />
       <mesh
         geometry={nodes.Object_20.geometry}
         material={materials.Chrome_Brushed_90X_3}

@@ -13,13 +13,13 @@ import {
   CollectionOverViewContainer,
   OverViewCardContainer,
 } from "./collection-overview.styles";
-import Spinner from "../spinner/spinner.component";
 import Popup from "../popup/popup.component";
 import ShopPage from "../shopPage/shopPage.component";
 import { InView } from "react-intersection-observer";
 import { useState } from "react";
 import Button from "../button/button.component";
 import LinkBtn from "../linkButton/linkButton.component";
+import CubeSpinner from "../cube-spinner/cube-spinner.component";
 
 const CollectionOverView = () => {
   const { collectionId } = useParams();
@@ -92,7 +92,7 @@ const CollectionOverView = () => {
       </Routes>
     </section>
   ) : (
-    <Spinner style={{ minHeight: "100vh" }} />
+    <CubeSpinner style={{ height: "100vh" }} />
   );
 };
 

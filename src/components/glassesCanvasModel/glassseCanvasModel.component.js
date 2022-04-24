@@ -1,12 +1,12 @@
 /** @format */
 
-import React, { Suspense } from "react";
 import {
   OrbitControls,
   Environment,
   ContactShadows,
   Loader,
 } from "@react-three/drei";
+import { Suspense } from "react";
 import { glassesModel } from "./glassesCanvasToMaps";
 import {
   CanvasContainer,
@@ -22,6 +22,7 @@ import { selectCardIsPointer } from "../../redux/card/card.select";
 const GlassesModel = ({ type, color }) => {
   const curType = type.toLowerCase();
   const dispatch = useDispatch();
+  const pointDown = useSelector(selectCardIsPointer);
   const curColor = color
     .split(" ")
     .reduce(
@@ -33,7 +34,6 @@ const GlassesModel = ({ type, color }) => {
       ""
     );
   const CurGlassesModel = glassesModel[curType][curColor];
-  const pointDown = useSelector(selectCardIsPointer);
 
   return (
     <ClassesModelContainer>

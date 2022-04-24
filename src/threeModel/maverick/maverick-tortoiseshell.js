@@ -114,7 +114,11 @@ export default function MaverickTortoiseshellModel({ ...props }) {
         geometry={nodes.Object_23.geometry}
         material={materials["vrcLe3aPeptc-ceramic255255242"]}
       />
-      <mesh geometry={nodes.Object_24.geometry} material={materials.material} />
+      <mesh
+        geometry={nodes.Object_24.geometry}
+        material={materials.material}
+        material-opacity={0.3}
+      />
     </group>
   );
 }

@@ -33,6 +33,7 @@ export default function MarkIUltraVioletModel({ ...props }) {
       <mesh
         geometry={nodes.Object_3.geometry}
         material={materials.material_8}
+        material-opacity={0.3}
       />
       <mesh
         geometry={nodes.Object_4.geometry}

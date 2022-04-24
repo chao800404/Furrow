@@ -64,7 +64,11 @@ export default function NomadRedModel({ ...props }) {
         geometry={nodes.Object_11.geometry}
         material={materials.Gold_24k_Polished_1}
       />
-      <mesh geometry={nodes.Object_12.geometry} material={materials.material} />
+      <mesh
+        geometry={nodes.Object_12.geometry}
+        material={materials.material}
+        material-opacity={0.3}
+      />
       <mesh
         geometry={nodes.Object_13.geometry}
         material={materials.Aluminum_Polished_1}

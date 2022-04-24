@@ -61,6 +61,7 @@ export default function MenpoCamoBlueModel({ ...props }) {
       <mesh
         geometry={nodes.Object_10.geometry}
         material={materials.glasscolor128128128}
+        material-opacity={0.3}
       />
       <mesh
         geometry={nodes.Object_11.geometry}

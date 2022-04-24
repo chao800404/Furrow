@@ -94,7 +94,11 @@ export default function NomadTortoiseshellModel({ ...props }) {
         geometry={nodes.Object_18.geometry}
         material={materials.Paint_Gloss_Black_1}
       />
-      <mesh geometry={nodes.Object_19.geometry} material={materials.material} />
+      <mesh
+        geometry={nodes.Object_19.geometry}
+        material={materials.material}
+        material-opacity={0.3}
+      />
       <mesh
         geometry={nodes.Object_20.geometry}
         material={materials["pbc1-2ptc-painted-green02550"]}

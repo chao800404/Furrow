@@ -90,7 +90,11 @@ export default function MaverickSilverModel({ ...props }) {
         geometry={nodes.Object_17.geometry}
         material={materials["vrcLe3aPeptc-ceramic255255242"]}
       />
-      <mesh geometry={nodes.Object_18.geometry} material={materials.material} />
+      <mesh
+        geometry={nodes.Object_18.geometry}
+        material={materials.material}
+        material-opacity={0.3}
+      />
     </group>
   );
 }

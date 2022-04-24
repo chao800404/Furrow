@@ -2,7 +2,7 @@
 
 import Header from "./components/header/header.component";
 import Homepage from "./page/homepage/hompage.component";
-import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
+// import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
 import Sidebars from "./components/sidebar/sidebar.component";
 import ShopPage from "./page/shoppage/shopPage.component";
 
@@ -33,10 +33,12 @@ const App = () => {
 
   return (
     <section>
-      <CurstomCursor />
+      {/* <CurstomCursor /> */}
       <Header />
       <Sidebars />
-      <Suspense fallback={<CubeSpinner />}>
+      <Suspense
+        fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
+      >
         <Routes>
           <Route index path={routes.HOME} element={<Homepage />} />
           <Route path={`${routes.SHOPPAGE}/*`} element={<ShopPage />} />

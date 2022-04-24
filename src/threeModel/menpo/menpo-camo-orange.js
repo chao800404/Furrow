@@ -66,7 +66,11 @@ export default function MenpoCamoOrangeModel({ ...props }) {
         geometry={nodes.Object_11.geometry}
         material={materials.Paint_Metallic_Orange_peel_Dark_Cool_Grey}
       />
-      <mesh geometry={nodes.Object_12.geometry} material={materials.material} />
+      <mesh
+        geometry={nodes.Object_12.geometry}
+        material={materials.material}
+        material-opacity={0.3}
+      />
       <mesh
         geometry={nodes.Object_13.geometry}
         material={materials.Paint_Gloss_Yellow_1}

@@ -18,12 +18,34 @@ import { cartAddItem } from "../../redux/cart/cart.action";
 import ColorBox from "../colorBox/colorBox.component";
 import GlassesModel from "../glassesCanvasModel/glassseCanvasModel.component";
 import Spinner from "../spinner/spinner.component";
+import glassesIcon from "../../assets/svgIcon/glasses-icon.svg";
+import glassesIconDark from "../../assets/svgIcon/glasses-icon-dark.svg";
+import { ReactSVG } from "react-svg";
+
+const SvgIcon = ({ src }) => (
+  <ReactSVG
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      pointerEvents: "none",
+    }}
+    src={src}
+    beforeInjection={(svg) =>
+      svg.setAttribute(
+        "style",
+        "display:flex;align-items:center;justify-content:center;width:100%;height:3rem;fill:#fff"
+      )
+    }
+  />
+);
 
 const Popup = ({ collection }) => {
   const { colorType } = useParams();
   const [currentColor, setCurrentColor] = useState(colorType);
   const [quantity, setQuantity] = useState(1);
   const [transitionEnd, setTransitionEnd] = useState(false);
+  const [toggleElectrochromic, setToggleElectrochromic] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { rgb, price, imageUrl, id, color } = useSelector(
@@ -43,6 +65,11 @@ const Popup = ({ collection }) => {
     const parseIntQuantity = Number.parseInt(quantity);
     if (target === "popup-close" || target === "popup-bg") {
       goToPrevPage();
+      return;
+    }
+    if (addToCartBtn === "electrochromic") {
+      setToggleElectrochromic((prev) => !prev);
+      return;
     }
     if (addToCartBtn === "add-cart-btn" && quantity > 0) {
       dispatch(
@@ -58,6 +85,7 @@ const Popup = ({ collection }) => {
         })
       );
       goToPrevPage();
+      return;
     }
   };
 
@@ -121,7 +149,16 @@ const Popup = ({ collection }) => {
                 </div>
               </div>
             </div>
-            <Button data="add-cart-btn">Add To Cart</Button>
+            <div className="button_container">
+              <Button data="electrochromic">
+                <SvgIcon
+                  src={toggleElectrochromic ? glassesIconDark : glassesIcon}
+                />
+              </Button>
+              <Button style={{ fontSize: "2rem" }} data="add-cart-btn">
+                Add To Cart
+              </Button>
+            </div>
           </PopupForm>
         </PopupBox>
       </PopupBoxContainer>

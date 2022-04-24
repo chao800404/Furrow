@@ -83,6 +83,7 @@ export default function AviatorTortoiseshellModel({ ...props }) {
       <mesh
         geometry={nodes.Object_17.geometry}
         material={materials.material_23}
+        material-opacity={0.3}
       />
       <mesh
         geometry={nodes.Object_18.geometry}

@@ -18,21 +18,13 @@ import svg from "../../assets/svgIcon/AR-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { checkARIsPointer } from "../../redux/card/card.action";
 import { selectCardIsPointer } from "../../redux/card/card.select";
+import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 
-const GlassesModel = ({ type, color }) => {
-  const curType = type.toLowerCase();
+const GlassesModel = ({ type, color, toggleElectrochromic }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
-  const curColor = color
-    .split(" ")
-    .reduce(
-      (acc, txt, index) =>
-        acc +
-        (index === 0
-          ? txt.toLowerCase()
-          : txt.split("")[0].toUpperCase() + txt.slice(1)),
-      ""
-    );
+  const { curType, curColor } = transferClassesTypeName({ type, color });
+
   const CurGlassesModel = glassesModel[curType][curColor];
 
   return (
@@ -51,7 +43,10 @@ const GlassesModel = ({ type, color }) => {
           castShadow
         />
         <Suspense fallback={null}>
-          <CurGlassesModel onPointerDown={() => dispatch(checkARIsPointer())} />
+          <CurGlassesModel
+            onPointerDown={() => dispatch(checkARIsPointer())}
+            mode={toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3}
+          />
           <ContactShadows
             rotation-x={Math.PI / 2}
             position={[0, -2.5, 0]}

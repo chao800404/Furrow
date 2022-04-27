@@ -17,7 +17,7 @@ const sidebarData = [
     link: "/shop",
   },
   {
-    name: "virtual Try-on",
+    name: "VIEW 3D virtual",
     id: 3,
     link: "/virtual",
   },

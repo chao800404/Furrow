@@ -90,7 +90,7 @@ export default function LynxPinkYarrowModel({ ...props }) {
       <mesh
         geometry={nodes.Object_18.geometry}
         material={materials.material_18}
-        material-opacity={0.3}
+        material-opacity={props.mode}
       />
       <mesh
         geometry={nodes.Object_19.geometry}

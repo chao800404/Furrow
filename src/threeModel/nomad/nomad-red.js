@@ -67,7 +67,7 @@ export default function NomadRedModel({ ...props }) {
       <mesh
         geometry={nodes.Object_12.geometry}
         material={materials.material}
-        material-opacity={0.3}
+        material-opacity={props.mode}
       />
       <mesh
         geometry={nodes.Object_13.geometry}

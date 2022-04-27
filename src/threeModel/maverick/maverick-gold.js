@@ -91,7 +91,7 @@ export default function MaverickGoldtModel({ ...props }) {
       <mesh
         geometry={nodes.Object_18.geometry}
         material={materials.material}
-        material-opacity={0.3}
+        material-opacity={props.mode}
       />
     </group>
   );

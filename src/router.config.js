@@ -8,6 +8,7 @@ const routes = {
   NEWS: "/news",
   CHECKOUT: "/checkout",
   SIGNIN: "/signin",
+  VIRTUAL: "/virtual",
 };
 
 export default routes;

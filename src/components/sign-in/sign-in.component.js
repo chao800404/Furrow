@@ -90,7 +90,7 @@ const SignInUpFrom = ({ animate, initial }) => {
           : dispatch(signWithEmailStart({ email, password }));
         break;
       case "display-forgot-cover":
-        setToggleForotCover(!toggleForgotCover);
+        setToggleForotCover((prev) => (prev = !toggleForgotCover));
         break;
       default:
         break;
@@ -102,7 +102,7 @@ const SignInUpFrom = ({ animate, initial }) => {
   return (
     <>
       {toggleForgotCover ? (
-        <FindPasswordCover seToggleForotCover={setToggleForotCover} />
+        <FindPasswordCover setToggleForotCover={setToggleForotCover} />
       ) : null}
       <SignInContainer
         initial={initial}

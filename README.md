@@ -1,6 +1,8 @@
-# The Onesec Eyewear Sample Web 
+# The Onesec Eyewear Sample Web [![Netlify Status](https://api.netlify.com/api/v1/badges/6546cff2-8f39-40d6-a0ad-28e91890da82/deploy-status)](https://app.netlify.com/sites/glittery-nasturtium-4d4eb2/deploys)
 
 This page does not sell any products, it is a sample page, if you need to buy it, Please go to  [Onesec Website](https://www.oneseceyewear.com.tw).
+
+
 
 ## Statement
 

@@ -99,7 +99,11 @@ const Popup = ({ collection }) => {
         >
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
           {transitionEnd ? (
-            <GlassesModel type={collection.title} color={color} />
+            <GlassesModel
+              type={collection.title}
+              color={color}
+              toggleElectrochromic={toggleElectrochromic}
+            />
           ) : (
             <Spinner />
           )}
@@ -151,9 +155,11 @@ const Popup = ({ collection }) => {
             </div>
             <div className="button_container">
               <Button data="electrochromic">
-                <SvgIcon
-                  src={toggleElectrochromic ? glassesIconDark : glassesIcon}
-                />
+                {toggleElectrochromic ? (
+                  <SvgIcon src={glassesIconDark} />
+                ) : (
+                  <SvgIcon src={glassesIcon} />
+                )}
               </Button>
               <Button style={{ fontSize: "2rem" }} data="add-cart-btn">
                 Add To Cart

@@ -1,7 +1,6 @@
 /** @format */
 
 import { useEffect, lazy, Suspense } from "react";
-import { fetchCollectionStart } from "../../redux/shop/shop.actions";
 import { fetchShopPageStart } from "../../redux/shopPage/shopPage.action";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
@@ -21,7 +20,6 @@ const ShopPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCollectionStart());
     dispatch(fetchShopPageStart());
     dispatch(cartInit());
   }, [dispatch]);

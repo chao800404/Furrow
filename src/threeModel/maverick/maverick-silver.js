@@ -93,7 +93,7 @@ export default function MaverickSilverModel({ ...props }) {
       <mesh
         geometry={nodes.Object_18.geometry}
         material={materials.material}
-        material-opacity={0.3}
+        material-opacity={props.mode}
       />
     </group>
   );

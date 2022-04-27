@@ -5,22 +5,23 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sendChangePasswordEmailStart } from "../../redux/user/user.actions";
 
-const FindPasswordCover = ({ seToggleForotCover }) => {
+const FindPasswordCover = ({ setToggleForotCover }) => {
   const [userEmail, setUserEmail] = useState("");
   const dispatch = useDispatch();
+  console.log(setToggleForotCover);
 
   const handleToggleCover = async (e) => {
     e.preventDefault();
     dispatch(sendChangePasswordEmailStart({ email: userEmail }));
-    seToggleForotCover((prevToggle) => (prevToggle = false));
+    setToggleForotCover((prevToggle) => (prevToggle = false));
   };
-  const handleClcik = (e) => {
+  const handleClick = (e) => {
     const form = e.target.closest("form");
-    if (!form) seToggleForotCover((prevToggle) => (prevToggle = false));
+    if (!form) setToggleForotCover((prevToggle) => (prevToggle = false));
   };
 
   return (
-    <FindPassword onClick={handleClcik} onSubmit={handleToggleCover}>
+    <FindPassword onClick={handleClick} onSubmit={handleToggleCover}>
       <form>
         <h3>FORGOT YOUR PASSWORD?</h3>
         <label htmlFor="sendPassworForEmail">

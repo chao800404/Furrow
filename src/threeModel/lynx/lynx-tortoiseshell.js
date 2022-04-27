@@ -97,7 +97,7 @@ export default function LynxTortoiseshellModel({ ...props }) {
       <mesh
         geometry={nodes.Object_19.geometry}
         material={materials.material_26}
-        material-opacity={0.3}
+        material-opacity={props.mode}
       />
       <mesh
         geometry={nodes.Object_20.geometry}

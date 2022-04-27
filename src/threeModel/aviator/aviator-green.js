@@ -81,7 +81,7 @@ export default function AviatorGreenModel({ ...props }) {
       <mesh
         geometry={nodes.Object_17.geometry}
         material={materials.material_23}
-        material-opacity={0.3}
+        material-opacity={props.mode}
       />
       <mesh
         geometry={nodes.Object_18.geometry}

@@ -117,7 +117,7 @@ export default function MaverickTortoiseshellModel({ ...props }) {
       <mesh
         geometry={nodes.Object_24.geometry}
         material={materials.material}
-        material-opacity={0.3}
+        material-opacity={props.mode}
       />
     </group>
   );

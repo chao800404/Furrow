@@ -28,8 +28,8 @@ export const VirtualContainer = styled.section`
   }
 
   .virtual-VR {
-    width: 100%;
     height: 100vh;
+    width: 75rem;
     margin-left: 2rem;
     h1 {
       font-size: 5rem;
@@ -39,6 +39,26 @@ export const VirtualContainer = styled.section`
       font-size: 2rem;
       font-weight: 300;
       letter-spacing: 0.1rem;
+    }
+  }
+
+  .virtual-Btn-container {
+    width: inherit;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 1rem;
+    margin-top: 2rem;
+
+    h3 {
+      grid-column: 1 / -1;
+      font-size: 4rem;
+    }
+
+    button {
+      background-color: #fff;
+      color: #161616;
+      margin-top: 2rem;
     }
   }
 `;

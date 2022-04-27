@@ -4,5 +4,8 @@ import styled from "styled-components";
 
 export const VirtualSideCt = styled.div`
   width: inherit;
-  margin-top: 3rem;
+
+  &:not(:first-child) {
+    margin-top: 3rem;
+  }
 `;

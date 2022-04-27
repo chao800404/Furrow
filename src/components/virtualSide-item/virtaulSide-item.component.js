@@ -1,9 +1,10 @@
 /** @format */
-
+import { useState } from "react";
 import { VirtualSideItemContainer } from "./virtualSide-item.styles";
 
 const VirtualSideItem = ({ item, title }) => {
   const { color, imageUrl } = item;
+  const [hover, setHovered] = useState("light");
 
   return (
     <VirtualSideItemContainer
@@ -11,8 +12,10 @@ const VirtualSideItem = ({ item, title }) => {
       className="virtual-glasses-card"
       data-glasses-type={title}
       data-glasses-color={color}
+      onMouseEnter={() => setHovered((prev) => (prev = "dark"))}
+      onMouseLeave={() => setHovered((prev) => (prev = "light"))}
     >
-      <img alt={title} src={imageUrl["dark"]} />
+      <img alt={title} src={imageUrl[hover]} />
       <h3>{title}</h3>
       <span>{color}</span>
     </VirtualSideItemContainer>

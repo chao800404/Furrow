@@ -6,6 +6,14 @@ import { useSelector } from "react-redux";
 import { selectShopCollectionPreview } from "../../redux/shop/shop.select";
 import VirtualSide from "../../components/virtual-side/virtualSide.component";
 import VirtualScene from "../../components/virtual-scene/virtual-secne.component";
+import Button from "../../components/button/button.component";
+
+const environment = {
+  "riverside-morning": "sunset",
+  "mountain-night": "night",
+  "forest-morning": "forest",
+  "parl-noon": "park",
+};
 
 const VirtualPage = () => {
   const collections = useSelector(selectShopCollectionPreview);
@@ -13,6 +21,7 @@ const VirtualPage = () => {
     type: "marki",
     color: "black",
   });
+  const [currentEnvironment, setCurrentEnvironment] = useState("sunset");
 
   const handleGlassesClick = (event) => {
     const glassesItemCard = event.target.closest(".virtual-glasses-card");
@@ -22,6 +31,14 @@ const VirtualPage = () => {
     setCurrentGlasses(
       (prevGlasses) => (prevGlasses = { ...prevGlasses, type, color })
     );
+  };
+
+  const handleEvironmentClick = (event) => {
+    const environmentBtn = event.target.closest("button");
+    if (!environmentBtn) return;
+    const environmentType =
+      environment[environmentBtn.textContent.toLowerCase()];
+    setCurrentEnvironment((prev) => (prev = environmentType));
   };
 
   return (
@@ -35,7 +52,20 @@ const VirtualPage = () => {
           <p>
             Pick your favorite sunglasses and experience the virtual environment
           </p>
-          <VirtualScene {...currentGlasses} view3d={true} />
+          <VirtualScene
+            {...currentGlasses}
+            view3d={true}
+            currentEnvironment={currentEnvironment}
+          />
+          <div
+            className="virtual-Btn-container"
+            onClick={handleEvironmentClick}
+          >
+            <h3>Environment</h3>
+            {Object.keys(environment).map((txt, index) => (
+              <Button key={index}>{txt.toUpperCase()}</Button>
+            ))}
+          </div>
         </div>
       </Flex>
     </VirtualContainer>

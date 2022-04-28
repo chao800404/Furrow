@@ -35,7 +35,7 @@ export const VirtualSideItemContainer = styled(motion.div)`
     align-self: start;
   }
 
-  img {
+  .virtual-img {
     width: inherit;
     grid-column: 1 / 2;
     grid-row: 1 / -1;

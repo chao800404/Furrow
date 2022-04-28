@@ -8,3 +8,8 @@ export const sidebarStauts = createSelector(
   [sidebarToggle],
   (sidebar) => sidebar.visible
 );
+
+export const sidebarAnStatus = createSelector(
+  [sidebarToggle],
+  (sidebar) => sidebar.animateEnd
+);

@@ -1,10 +1,9 @@
 /** @format */
 
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const SidebarItem = styled(Link)`
+export const SidebarItem = styled.div`
   font-size: 6rem;
   text-decoration: none;
   color: inherit;

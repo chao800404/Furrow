@@ -3,11 +3,15 @@
 import { VirtualSideContainer } from "./virtualSide.styles";
 import VirtualSideContent from "../vlrtualSideContent/virtualSideContent.component";
 
-const VirtualSide = ({ collections }) => {
+const VirtualSide = ({ collections, setImageLoad }) => {
   return (
     <VirtualSideContainer>
       {collections.map((collection) => (
-        <VirtualSideContent key={collection.id} collection={collection} />
+        <VirtualSideContent
+          key={collection.id}
+          collection={collection}
+          setImageLoad={setImageLoad}
+        />
       ))}
     </VirtualSideContainer>
   );

@@ -3,6 +3,7 @@ import SidebarType from "./sidebar.type";
 
 const INITIAL_STATE = {
   visible: false,
+  animateEnd: false,
 };
 
 const sidebarReducer = (state = INITIAL_STATE, action) => {
@@ -11,6 +12,11 @@ const sidebarReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         visible: !state.visible,
+      };
+    case SidebarType.ANIMATE_END:
+      return {
+        ...state,
+        animateEnd: action.payload,
       };
     default:
       return state;

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { VirtualSideItemContainer } from "./virtualSide-item.styles";
 
-const VirtualSideItem = ({ item, title }) => {
+const VirtualSideItem = ({ item, title, setImageLoad }) => {
   const { color, imageUrl } = item;
   const [hover, setHovered] = useState("light");
 
@@ -15,7 +15,12 @@ const VirtualSideItem = ({ item, title }) => {
       onMouseEnter={() => setHovered((prev) => (prev = "dark"))}
       onMouseLeave={() => setHovered((prev) => (prev = "light"))}
     >
-      <img alt={title} src={imageUrl[hover]} />
+      <img
+        className="virtual-img"
+        alt={title}
+        src={imageUrl[hover]}
+        onLoad={() => setImageLoad((prev) => (prev = true))}
+      />
       <h3>{title}</h3>
       <span>{color}</span>
     </VirtualSideItemContainer>

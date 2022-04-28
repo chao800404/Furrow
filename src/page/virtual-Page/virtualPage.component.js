@@ -1,5 +1,5 @@
 /** @format */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Flex } from "../../components/Flex/flex.styles";
 import { VirtualContainer } from "./virtualPage.styles";
 import { useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { selectShopCollectionPreview } from "../../redux/shop/shop.select";
 import VirtualSide from "../../components/virtual-side/virtualSide.component";
 import VirtualScene from "../../components/virtual-scene/virtual-secne.component";
 import Button from "../../components/button/button.component";
+import CubeSpinner from "../../components/cube-spinner/cube-spinner.component";
 
 const environment = {
   "riverside-morning": "sunset",
@@ -22,6 +23,8 @@ const VirtualPage = () => {
     color: "black",
   });
   const [currentEnvironment, setCurrentEnvironment] = useState("sunset");
+  const [onTimeout, setOnTimeout] = useState(false);
+  const [imageLoad, setImageLoad] = useState(false);
 
   const handleGlassesClick = (event) => {
     const glassesItemCard = event.target.closest(".virtual-glasses-card");
@@ -32,6 +35,14 @@ const VirtualPage = () => {
       (prevGlasses) => (prevGlasses = { ...prevGlasses, type, color })
     );
   };
+
+  useEffect(() => {
+    const timeOut = setTimeout(
+      () => setOnTimeout((prev) => (prev = true)),
+      100
+    );
+    return () => clearTimeout(timeOut);
+  }, []);
 
   const handleEvironmentClick = (event) => {
     const environmentBtn = event.target.closest("button");
@@ -44,19 +55,40 @@ const VirtualPage = () => {
   return (
     <VirtualContainer>
       <Flex style={{ gap: "1rem" }}>
+        {imageLoad ? null : (
+          <div
+            style={{
+              backgroundColor: "#161616",
+              width: "100vw",
+              height: "100vh",
+              position: "fixed",
+              top: 0,
+              left: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 50,
+            }}
+          >
+            <CubeSpinner />
+          </div>
+        )}
         <div className="virtaul-side" onClick={handleGlassesClick}>
-          <VirtualSide collections={collections} />
+          <VirtualSide setImageLoad={setImageLoad} collections={collections} />
         </div>
         <div className="virtual-VR">
           <h1>VIEW 3D VIRTUAL </h1>
           <p>
             Pick your favorite sunglasses and experience the virtual environment
           </p>
+
           <VirtualScene
             {...currentGlasses}
             view3d={true}
             currentEnvironment={currentEnvironment}
+            onTimeout={onTimeout}
           />
+
           <div
             className="virtual-Btn-container"
             onClick={handleEvironmentClick}

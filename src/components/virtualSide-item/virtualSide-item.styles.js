@@ -4,17 +4,18 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const VirtualSideItemContainer = styled(motion.div)`
-  width: inherit;
+  width: 98%;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-column-gap: 1rem;
-  padding: 1rem;
+  margin: 0 auto;
   background-color: #fff;
   border-radius: 0.5rem;
   height: 8rem;
   overflow: hidden;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 
   &:not(:first-child) {
     margin-top: 0.5rem;
@@ -37,6 +38,7 @@ export const VirtualSideItemContainer = styled(motion.div)`
 
   .virtual-img {
     width: inherit;
+    padding: 0 1rem;
     grid-column: 1 / 2;
     grid-row: 1 / -1;
     align-self: center;

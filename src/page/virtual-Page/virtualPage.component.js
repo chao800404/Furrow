@@ -8,6 +8,7 @@ import VirtualSide from "../../components/virtual-side/virtualSide.component";
 import VirtualScene from "../../components/virtual-scene/virtual-secne.component";
 import Button from "../../components/button/button.component";
 import CubeSpinner from "../../components/cube-spinner/cube-spinner.component";
+import { selectThemeStyle } from "../../redux/theme/theme.select";
 
 const environment = {
   "riverside-morning": "sunset",
@@ -18,6 +19,7 @@ const environment = {
 
 const VirtualPage = () => {
   const collections = useSelector(selectShopCollectionPreview);
+  const theme = useSelector(selectThemeStyle);
   const [currentGlasses, setCurrentGlasses] = useState({
     type: "marki",
     color: "black",
@@ -39,7 +41,7 @@ const VirtualPage = () => {
   useEffect(() => {
     const timeOut = setTimeout(
       () => setOnTimeout((prev) => (prev = true)),
-      100
+      150
     );
     return () => clearTimeout(timeOut);
   }, []);
@@ -53,7 +55,7 @@ const VirtualPage = () => {
   };
 
   return (
-    <VirtualContainer>
+    <VirtualContainer theme={theme}>
       <Flex style={{ gap: "1rem" }}>
         {imageLoad ? null : (
           <div

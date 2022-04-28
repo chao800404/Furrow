@@ -14,13 +14,6 @@ export const Flex = styled.div`
     max-width: 100rem;
   }
 
-  @media only screen and (max-width: 1200px) {
-    max-width: 80rem;
-  }
-
-  @media only screen and (max-width: 1000px) {
-    max-width: 80rem;
-  }
   @media only screen and (max-width: 850px) {
     width: 100%;
     padding: 0 5rem;

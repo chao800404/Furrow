@@ -18,12 +18,12 @@ export const VirtualContainer = styled.section`
       width: 1.2rem;
     }
     ::-webkit-scrollbar-track {
-      background-color: #161616;
+      background-color: ${({ theme }) => theme.backgroundColor};
     }
 
     ::-webkit-scrollbar-thumb {
       border-radius: 1rem;
-      background-color: #fff;
+      background-color: ${({ theme }) => theme.color};
     }
   }
 
@@ -56,8 +56,8 @@ export const VirtualContainer = styled.section`
     }
 
     button {
-      background-color: #fff;
-      color: #161616;
+      background-color: ${({ theme }) => theme.color};
+      color: ${({ theme }) => theme.backgroundColor};
       margin-top: 2rem;
     }
   }

@@ -35,7 +35,7 @@ const VirtualScene = ({
           <div />
         )}
       </Suspense>
-      <Loader />
+      <Loader barStyles={{ width: "100%" }} />
     </VirtualSceneContainer>
   );
 };

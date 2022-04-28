@@ -7,6 +7,7 @@ export const VirtualSceneContainer = styled.div`
   width: 100%;
   height: 50rem;
   margin-top: 2rem;
+  position: relative;
 `;
 
 export const VirtualCanvas = styled(Canvas)`

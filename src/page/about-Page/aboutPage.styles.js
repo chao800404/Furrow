@@ -18,7 +18,7 @@ const DescriptionTemplage = css`
 `;
 
 export const AboutUsPageContainer = styled.section`
-  padding: 20rem 0;
+  padding: 15rem 0;
   min-height: 100vh;
 `;
 
@@ -76,4 +76,10 @@ export const AboutStorySketchs = styled(motion.img)`
   grid-column: 1 / 3;
   grid-row: 4 / 5;
   width: 100%;
+`;
+
+export const FirmLogoContainer = styled(motion.div)`
+  width: 100%;
+  display: flex;
+  align-items: center;
 `;

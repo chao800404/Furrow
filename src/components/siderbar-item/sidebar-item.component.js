@@ -1,30 +1,22 @@
 /** @format */
 
 import { SidebarItem, SidebarLi } from "./sidebar-item.style";
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../../redux/sidebar/sidebar.actions";
-import { useNavigate } from "react-router-dom";
+
 import { sidebarAnEnd } from "../../redux/sidebar/sidebar.actions";
 
 const SidebarItemLi = ({ link, name, index }) => {
   const [isHover, setIsHover] = useState(false);
-  const [curLink, setCurLink] = useState(undefined);
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const hanldeClick = (e) => {
-    setCurLink((prev) => (prev = e.target.dataset.link));
     dispatch(toggleSidebar());
     dispatch(toggleSidebar());
   };
-
-  useLayoutEffect(() => {
-    if (curLink) {
-      navigate(curLink);
-    }
-  }, [curLink, navigate, dispatch]);
 
   useEffect(() => {
     dispatch(sidebarAnEnd(false));
@@ -62,7 +54,7 @@ const SidebarItemLi = ({ link, name, index }) => {
         onMouseEnter={() => setIsHover((prevHovered) => !prevHovered)}
         onMouseLeave={() => setIsHover((prevHovered) => !prevHovered)}
         data-target={name}
-        data-link={link}
+        to={link}
       >
         {isHover ? <AiFillCaretRight style={{ fontSize: "5rem" }} /> : null}
         {name.toUpperCase()}

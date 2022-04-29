@@ -16,6 +16,7 @@ import BasicBanner from "../../components/basicBanner/basicBanner.component";
 import glassesSketch from "../../assets/aboutPhoto/glasses- sketch.webp";
 import glassesSketch_1 from "../../assets/aboutPhoto/glasses-sketch-1.webp";
 import about from "./about-data";
+import FirmLogoContent from "../../components/firmLogo/firmLogo.component";
 
 const AboutPage = () => {
   const theGlassesSketch = useRef();
@@ -88,6 +89,10 @@ const AboutPage = () => {
             <p>{about["joint"]["description"][touchImageBounding ? 1 : 0]}</p>
           </AboutJointDescription>
         </AboutStory>
+        <div style={{ width: "100%", overflow: "hidden", display: "flex" }}>
+          <FirmLogoContent />
+          <FirmLogoContent />
+        </div>
       </Flex>
     </AboutUsPageContainer>
   );

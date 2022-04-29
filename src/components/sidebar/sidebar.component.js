@@ -8,7 +8,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import Tilt from "react-parallax-tilt";
 import { AnimatePresence } from "framer-motion";
-import { toggleSidebar } from "../../redux/sidebar/sidebar.actions";
+import {
+  toggleSidebar,
+  sidebarAnEnd,
+} from "../../redux/sidebar/sidebar.actions";
 
 const sidebarImage = async (index) => {
   if (index) {
@@ -48,7 +51,10 @@ const Sidebars = () => {
   };
 
   return (
-    <AnimatePresence>
+    <AnimatePresence
+      onExitComplete={() => dispatch(sidebarAnEnd(true))}
+      initial={false}
+    >
       {status && (
         <SidebarContainer
           initial={{ scaleX: 0.2, transformOrigin: "left" }}

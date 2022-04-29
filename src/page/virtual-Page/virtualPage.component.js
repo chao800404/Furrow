@@ -1,14 +1,16 @@
 /** @format */
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Flex } from "../../components/Flex/flex.styles";
 import { VirtualContainer } from "./virtualPage.styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectShopCollectionPreview } from "../../redux/shop/shop.select";
 import VirtualSide from "../../components/virtual-side/virtualSide.component";
 import VirtualScene from "../../components/virtual-scene/virtual-secne.component";
 import Button from "../../components/button/button.component";
 import CubeSpinner from "../../components/cube-spinner/cube-spinner.component";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
+import { sidebarAnStatus } from "../../redux/sidebar/sidebar.select";
+import { sidebarAnEnd } from "../../redux/sidebar/sidebar.actions";
 
 const environment = {
   "riverside-morning": "sunset",
@@ -25,8 +27,14 @@ const VirtualPage = () => {
     color: "black",
   });
   const [currentEnvironment, setCurrentEnvironment] = useState("sunset");
-  const [onTimeout, setOnTimeout] = useState(false);
   const [imageLoad, setImageLoad] = useState(false);
+  const sidebarAnEnds = useSelector(sidebarAnStatus);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => dispatch(sidebarAnEnd(true)), 100);
+    return () => clearTimeout(timeOut);
+  }, [dispatch]);
 
   const handleGlassesClick = (event) => {
     const glassesItemCard = event.target.closest(".virtual-glasses-card");
@@ -37,14 +45,6 @@ const VirtualPage = () => {
       (prevGlasses) => (prevGlasses = { ...prevGlasses, type, color })
     );
   };
-
-  useEffect(() => {
-    const timeOut = setTimeout(
-      () => setOnTimeout((prev) => (prev = true)),
-      150
-    );
-    return () => clearTimeout(timeOut);
-  }, []);
 
   const handleEvironmentClick = (event) => {
     const environmentBtn = event.target.closest("button");
@@ -84,12 +84,17 @@ const VirtualPage = () => {
             Pick your favorite sunglasses and experience the virtual environment
           </p>
 
-          <VirtualScene
-            {...currentGlasses}
-            view3d={true}
-            currentEnvironment={currentEnvironment}
-            onTimeout={onTimeout}
-          />
+          {sidebarAnEnds ? (
+            <VirtualScene
+              {...currentGlasses}
+              view3d={true}
+              currentEnvironment={currentEnvironment}
+            />
+          ) : (
+            <div
+              style={{ width: "100%", height: "50rem", marginTop: "2rem" }}
+            />
+          )}
 
           <div
             className="virtual-Btn-container"

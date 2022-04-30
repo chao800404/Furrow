@@ -4,6 +4,7 @@ import shopSagas from "./shop/shop.saga";
 import shopPageSaga from "./shopPage/shopPage.saga";
 import userSagas from "./user/user.saga";
 import cartSagas from "./cart/cart.saga";
+import aboutPageSaga from "./aboutPage/aboutPage.saga";
 
 function* rootSaga() {
   yield all([
@@ -11,6 +12,7 @@ function* rootSaga() {
     call(shopPageSaga),
     call(userSagas),
     call(cartSagas),
+    call(aboutPageSaga),
   ]);
 }
 

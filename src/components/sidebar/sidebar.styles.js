@@ -11,7 +11,7 @@ export const SidebarContainer = styled(motion.div)`
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 50;
+  z-index: 2000;
   backdrop-filter: blur(0.3rem);
   display: grid;
   grid-template-columns: 1.5fr 3fr;

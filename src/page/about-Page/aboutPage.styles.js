@@ -78,8 +78,7 @@ export const AboutStorySketchs = styled(motion.img)`
   width: 100%;
 `;
 
-export const FirmLogoContainer = styled(motion.div)`
-  width: 100%;
-  display: flex;
-  align-items: center;
+export const AboutBussiness = styled(motion.h3)`
+  font-size: 4rem;
+  margin-bottom: 5rem;
 `;

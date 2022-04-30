@@ -49,6 +49,15 @@ export const collectionToMap = (collectionSnapshot) => {
   });
 };
 
+export const aboutPageToMap = (ref) => {
+  let map = {};
+  ref.forEach((shopPageData) => {
+    const data = shopPageData.data();
+    map = { ...map, data };
+  });
+  return map;
+};
+
 export const shopPageToMap = (ref) => {
   let map = [];
   ref.forEach((shopPageData) => {

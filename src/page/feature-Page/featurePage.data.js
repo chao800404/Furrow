@@ -9,28 +9,6 @@ import UVProofIcon from "../../assets/svg/UV.svg";
 import dustProofIcon from "../../assets/svg/dust_proof.svg";
 import coldProtectionIcon from "../../assets/svg/cold_protection.svg";
 
-export const feature = {
-  bannerStatement: {
-    0: "Patented Technology",
-    1: "Shade shift technology for instant lens tint. Patented in the US,Japan and Korea.",
-  },
-  story: {
-    title: "BRAND VALUES",
-    0: "Featuring electrochromic liquid crystal technology with an inbuilt photosensitive chipset to deliver instantaneous transitions.",
-    1: "Dynamic transitions enable protection from ambient light sources precisely when needed.",
-    2: "Breakthrough eyewear technology featuring instantaneous lens transitions.",
-    3: "99% filtration efficiency (UVA/ UVB) in both shades and specs modes.",
-  },
-  property: {
-    0: "Unprecedented battery life",
-    1: "Special material",
-    2: "Reducing reflective light for comfort and clarity",
-  },
-  function: {
-    0: "Good function, stylish form",
-  },
-};
-
 export const imgArr = [
   {
     status: "Worn prior to high brightness conditions",

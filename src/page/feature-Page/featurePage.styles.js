@@ -7,6 +7,8 @@ import primaryColor from "../../theme/priamry.styles";
 export const FeatureContainer = styled.section`
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
 `;
 
 export const FeatureStory = styled.div`

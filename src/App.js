@@ -5,6 +5,7 @@ import Homepage from "./page/home-Page/hompage.component";
 // import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
 import Sidebars from "./components/sidebar/sidebar.component";
 import ShopPage from "./page/shop-Page/shopPage.component";
+import BackgroundNoise from "./components/background-noise/backgroundNoise.component";
 
 import Footer from "./components/footer/footer.component";
 import { Routes, Route } from "react-router-dom";
@@ -46,6 +47,7 @@ const App = () => {
       {/* <CurstomCursor /> */}
       <Header />
       <Sidebars />
+      <BackgroundNoise />
       <Suspense
         fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
       >
@@ -60,6 +62,7 @@ const App = () => {
           <Route path={routes.VIRTUAL} element={<VirtualPage />} />
         </Routes>
       </Suspense>
+
       <Footer />
     </section>
   );

@@ -59,6 +59,10 @@ a,button {
     }
   }
 
+  img {
+    user-select: none;
+  }
+
   button {
     background-color:${({ theme: { buttonBackgroundColor } }) =>
       buttonBackgroundColor};

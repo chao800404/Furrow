@@ -7,10 +7,10 @@ import {
   AboutBannerTxt2,
 } from "./baiscBanner.styles";
 
-const BasicBanner = ({ img, title, txt }) => {
+const BasicBanner = ({ img, title, txt, onLoad }) => {
   return (
     <AboutBanner initial={{ scale: 0.5 }} animate={{ scale: 1 }}>
-      <img alt="about-banner" src={img} />
+      <img onLoad={onLoad} alt="about-banner" src={img} />
       <AboutTitle
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

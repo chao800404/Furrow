@@ -10,7 +10,7 @@ import {
   FeatureTitle,
 } from "./featureBanner.styles";
 
-const FeatureBanner = ({ feature }) => {
+const FeatureBanner = ({ feature, onLoad }) => {
   return (
     <FeatureBannerContainer>
       <FeatureBannerImgContainer>
@@ -18,16 +18,19 @@ const FeatureBanner = ({ feature }) => {
           initial={{ y: -80 }}
           animate={{ y: 0 }}
           src={featureImg_1}
+          onLoad={onLoad}
         />
         <motion.img
           initial={{ y: 80 }}
           animate={{ y: 30 }}
           src={featureImg_2}
+          onLoad={onLoad}
         />
         <motion.img
           initial={{ y: -80 }}
           animate={{ y: -20 }}
           src={featureImg_3}
+          onLoad={onLoad}
         />
       </FeatureBannerImgContainer>
 
@@ -37,14 +40,14 @@ const FeatureBanner = ({ feature }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          {feature?.bannerStatement?.[0]}
+          {feature.bannerStatement[0]}
         </motion.h1>
         <motion.span
           initial={{ opacity: 0, y: -80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          {feature?.bannerStatement?.[1]}
+          {feature.bannerStatement[1]}
         </motion.span>
       </FeatureTitle>
     </FeatureBannerContainer>

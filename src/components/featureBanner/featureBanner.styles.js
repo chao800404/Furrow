@@ -18,6 +18,7 @@ export const FeatureTitle = styled.div`
   width: 100%;
   text-align: center;
   text-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.5);
+
   h1 {
     font-size: calc(5rem + 4vw);
   }
@@ -26,4 +27,5 @@ export const FeatureTitle = styled.div`
 export const FeatureBannerImgContainer = styled.div`
   display: flex;
   gap: 1.5rem;
+  min-height: calc(100vh - 40rem);
 `;

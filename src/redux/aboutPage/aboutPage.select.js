@@ -2,9 +2,9 @@
 
 import { createSelector } from "reselect";
 
-const selectAboutPage = ({ about }) => about.aboutData;
+const selectAboutPage = ({ about }) => about;
 
 export const selectAboutPageData = createSelector(
   [selectAboutPage],
-  (aboutData) => (aboutData ? aboutData : null)
+  (about) => about?.aboutData
 );

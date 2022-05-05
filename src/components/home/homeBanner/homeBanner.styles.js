@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import maxWidth from "../../../config/screen.size";
 
 export const HomeContainer = styled.section`
   width: 100%;
@@ -18,7 +19,8 @@ export const BannerVideo = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  overflow: hidden;
+  overflow-x: hidden;
+  position: absolute;
 
   video {
     height: auto;
@@ -28,6 +30,10 @@ export const BannerVideo = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     object-fit: cover;
+
+    @media only screen and (max-width: ${maxWidth.small}) {
+      height: 100%;
+    }
   }
 `;
 

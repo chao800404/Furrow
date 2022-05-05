@@ -1,4 +1,5 @@
 /** @format */
+import maxWidth from "../../config/screen.size";
 
 import styled from "styled-components";
 
@@ -10,11 +11,11 @@ export const Flex = styled.div`
   align-items: center;
   width: 110rem;
 
-  @media only screen and (max-width: 1450px) {
+  @media only screen and (max-width: ${maxWidth.large}) {
     max-width: 100rem;
   }
 
-  @media only screen and (max-width: 850px) {
+  @media only screen and (max-width: ${maxWidth.medium}) {
     width: 100%;
     padding: 0 5rem;
   }

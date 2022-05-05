@@ -1,5 +1,6 @@
 /** @format */
 import styled from "styled-components";
+import maxWidth from "../../config/screen.size";
 
 export const FooterContainer = styled.footer`
   width: 100%;
@@ -9,9 +10,27 @@ export const FooterContainer = styled.footer`
   justify-content: space-between;
   align-items: end;
   margin-bottom: 3rem;
+
   p {
     width: 50rem;
     font-size: 1.4rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    flex-direction: column;
+    height: 100%;
+
+    p {
+      line-height: 3rem;
+      font-size: 1.6rem;
+      width: 100%;
+    }
+  }
+`;
+
+export const FooterDesc = styled.div`
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 100%;
   }
 `;
 
@@ -52,6 +71,27 @@ export const FooterMenu = styled.div`
       grid-column: 6 / 7;
     }
   }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 100%;
+    transform: translateY(-40%);
+
+    a {
+      justify-self: center;
+    }
+  }
+`;
+
+export const FooterLogo = styled.div`
+  grid-column: 1 / -1;
+  justify-self: end;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    svg {
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+  }
 `;
 
 export const AuthorLink = styled.div`
@@ -66,5 +106,14 @@ export const AuthorLink = styled.div`
     width: 3rem;
     height: 3rem;
     padding: 0.2rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 16rem;
+    height: 10rem;
+    svg {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 `;

@@ -2,7 +2,13 @@
 
 import { Flex } from "../Flex/flex.styles";
 import { Link } from "react-router-dom";
-import { FooterContainer, FooterMenu, AuthorLink } from "./footer.styles";
+import {
+  FooterContainer,
+  FooterMenu,
+  AuthorLink,
+  FooterDesc,
+  FooterLogo,
+} from "./footer.styles";
 import { ReactSVG } from "react-svg";
 import onesecLogo from "../../assets/svg/onesec-logo.svg";
 import { useSelector } from "react-redux";
@@ -29,19 +35,18 @@ const Footer = () => {
   return (
     <Flex>
       <FooterContainer onMouseEnter={handleHover} onMouseLeave={handleHover}>
-        <div>
+        <FooterDesc>
           <p dangerouslySetInnerHTML={{ __html: statement }} />
           <AuthorLink>
             <BsGithub onClick={hanleClickGithub} />
             <BsFacebook />
             <BsMedium onClick={hanleClickMedium} />
           </AuthorLink>
-        </div>
+        </FooterDesc>
         <FooterMenu theme={theme}>
-          <ReactSVG
-            style={{ gridColumn: " 1 / -1", justifySelf: "end" }}
-            src={onesecLogo}
-          />
+          <FooterLogo>
+            <ReactSVG src={onesecLogo} />
+          </FooterLogo>
           <Link to="/">Home</Link>
           <Link to="/shop">Shop</Link>
           <Link to="/about">About</Link>

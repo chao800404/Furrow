@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import primaryColor from "../../../theme/priamry.styles";
 import { motion } from "framer-motion";
+import maxWidth from "../../../config/screen.size";
 
 export const HomeArticleSide = styled(motion.article)`
   grid-column: 1 / 2;
@@ -9,6 +10,11 @@ export const HomeArticleSide = styled(motion.article)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-row: 2 / 3;
+    height: auto;
+  }
 
   h2 {
     font-size: 4.5rem;
@@ -29,4 +35,9 @@ export const HomeArticleDownContainer = styled.div`
   width: 100%;
   height: 3rem;
   display: flex;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    height: 10rem;
+    margin-top: 5rem;
+  }
 `;

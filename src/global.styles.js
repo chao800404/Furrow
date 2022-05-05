@@ -1,7 +1,7 @@
 /** @format */
 
 import { createGlobalStyle } from "styled-components";
-import screenSize from "./theme/screenSize";
+import maxWidth from "./config/screen.size";
 
 export const GlobalStyle = createGlobalStyle`
   *,*::before,*::after {
@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
 
   html{ 
       font-size: 62.5%;
-      @media only screen and (max-width: ${`${screenSize.medium}px`}) {
+      @media only screen and (max-width: ${maxWidth.mediumBelta}) {
         font-size:50%;
       }
   } 

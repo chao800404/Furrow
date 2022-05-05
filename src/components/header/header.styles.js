@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import primaryColor from "../../theme/priamry.styles";
+import maxWidth from "../../config/screen.size";
 
 export const HeaderNav = styled(motion.header)`
   width: 100%;
@@ -13,6 +14,10 @@ export const HeaderNav = styled(motion.header)`
   height: 15rem;
   will-change: transform;
   z-index: 100;
+
+  @media only screen and (max-width: ${maxWidth.medium}) {
+    height: 10rem;
+  }
 `;
 
 export const Logo = styled.div`
@@ -53,5 +58,11 @@ export const HeaderMenu = styled.div`
 
   h3 {
     font-size: 2rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.medium}) {
+    .menu {
+      margin-right: 2rem;
+    }
   }
 `;

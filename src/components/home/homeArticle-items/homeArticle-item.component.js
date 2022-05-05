@@ -15,19 +15,12 @@ import coldProtectionIcon from "../../../assets/svg/cold_protection.svg";
 import dustProofIcon from "../../../assets/svg/dust_proof.svg";
 import React from "react";
 
-const svgIconStyle = (color) => ({
-  fill: color,
-  width: "10rem",
-  height: "10rem",
-  fontSize: "5rem",
-});
-
 const HomeArticleIconContainer = React.memo(({ theme }) => (
-  <HomeArticleDownContainer>
-    <ReactSVG style={svgIconStyle(theme.color)} src={uvSvgIcon} />
-    <ReactSVG style={svgIconStyle(theme.color)} src={waterProofIcon} />
-    <ReactSVG style={svgIconStyle(theme.color)} src={coldProtectionIcon} />
-    <ReactSVG style={svgIconStyle(theme.color)} src={dustProofIcon} />
+  <HomeArticleDownContainer theme={theme}>
+    <ReactSVG className="svgIcon" src={uvSvgIcon} />
+    <ReactSVG className="svgIcon" src={waterProofIcon} />
+    <ReactSVG className="svgIcon" src={coldProtectionIcon} />
+    <ReactSVG className="svgIcon" src={dustProofIcon} />
   </HomeArticleDownContainer>
 ));
 

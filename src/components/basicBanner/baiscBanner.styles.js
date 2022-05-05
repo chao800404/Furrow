@@ -2,6 +2,7 @@
 
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
 
 const AboutBannerTxt = css`
   position: absolute;
@@ -18,13 +19,32 @@ export const AboutBanner = styled(motion.div)`
   align-items: center;
   justify-content: center;
   position: relative;
-  img {
-    width: 100%;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    height: 100vh;
+  }
+`;
+
+export const AboutBannerBG = styled.img`
+  width: 100%;
+  @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
+    height: 100vh;
+    position: absolute;
+    object-fit: cover;
+    width: auto;
   }
 `;
 
 export const AboutTitle = styled(motion.img)`
   position: absolute;
+  width: 100%;
+  @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+    width: 150%;
+    top: -10%;
+  }
+  @media only screen and (max-width: ${maxWidth.small}) {
+    top: 15%;
+  }
 `;
 
 export const AboutBannerTxt1 = styled(motion.span)`

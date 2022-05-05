@@ -17,6 +17,6 @@ export const Flex = styled.div`
 
   @media only screen and (max-width: ${maxWidth.medium}) {
     width: 100%;
-    padding: 0 5rem;
+    padding: 0 3rem;
   }
 `;

@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 const FirmLogoContent = () => {
   return (
     <motion.div
-      initial={{ x: 0, width: "100%", display: "flex", align: "center" }}
+      initial={{ x: 0, width: "auto", display: "flex", align: "center" }}
       animate={{ x: "-100%" }}
       transition={{
         repeat: Infinity,
@@ -28,7 +28,7 @@ const FirmLogoContent = () => {
           beforeInjection={(svg) =>
             svg.setAttribute(
               "style",
-              "width:20rem; height:5rem; display:flex ; align-items:center; justify-content:center;"
+              "width:16rem; height:5rem; display:flex ; align-items:center; justify-content:center;"
             )
           }
           src={logo}

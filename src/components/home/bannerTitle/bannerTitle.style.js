@@ -31,12 +31,15 @@ export const Title = styled(motion.h1)`
     z-index:100;
     visibility: visible;
     opacity: 1;
+    width:100%;
+    overflow: hidden;
 
     span {
     text-shadow:1rem 1rem 1rem rgba(0,0,0,.4);
 
     &:not(:first-child) {
-      transform: translateX(50%);
+      transform: translateX(40%);
+    
     }
   }
   }

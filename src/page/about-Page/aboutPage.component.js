@@ -11,6 +11,7 @@ import {
 } from "./aboutPage.styles";
 
 import { useEffect, useState, useRef, useCallback } from "react";
+import { motion } from "framer-motion";
 import aboutBanner from "../../assets/aboutPhoto/about-us-Banner.webp";
 import aboutTitle from "../../assets/aboutPhoto/about-us-title.webp";
 import { Flex } from "../../components/Flex/flex.styles";
@@ -22,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { aboutPageAction } from "../../redux/aboutPage/aboutPage.actions";
 import { selectAboutPageData } from "../../redux/aboutPage/aboutPage.select";
 import CubeSpinner from "../../components/cube-spinner/cube-spinner.component";
+import maxWidth from "../../config/screen.size";
 
 const AboutPage = () => {
   const theGlassesSketch = useRef();
@@ -29,8 +31,9 @@ const AboutPage = () => {
   const [onLoaded, setOnLoaded] = useState(null);
   const dispatch = useDispatch();
   const about = useSelector(selectAboutPageData);
+  const isMobile = window.innerWidth <= maxWidth.small.replace("px", "");
 
-  const bounding = useCallback((event) => {
+  const bounding = useCallback(() => {
     const imgRect = theGlassesSketch.current.getBoundingClientRect();
     const { top, height } = imgRect;
     if (top > height) return;
@@ -68,55 +71,66 @@ const AboutPage = () => {
           txt={about?.["bannerStatement"]}
           onLoad={() => setOnLoaded((prev) => (prev = true))}
         />
-        <Flex style={{ flexDirection: "column" }}>
-          <AboutStatement
+
+        <AboutStatement>
+          <motion.div
             initial={{ opacity: 0 }}
             transition={{ delay: 0.2 }}
             whileInView={{ opacity: 1 }}
           >
             <span>{about?.["statement"]?.[0]}</span>
             <h3>{about?.["statement"]?.[1]}</h3>
-          </AboutStatement>
-
+          </motion.div>
+        </AboutStatement>
+        <Flex style={{ flexDirection: "column" }}>
           <AboutStory>
-            <AboutStoryDescription
-              initial={{ x: -200, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ amount: 0.3, once: true }}
-            >
-              <h2>{about?.["story"]?.["title"]}</h2>
-              <p>{about?.["story"]?.["description"]?.[0]}</p>
-              <p>{about?.["story"]?.["description"]?.[1]}</p>
+            <AboutStoryDescription>
+              <motion.div
+                initial={{ x: -200, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ amount: 0.1, once: true }}
+              >
+                <h2>{about?.["story"]?.["title"]}</h2>
+                <p>{about?.["story"]?.["description"]?.[0]}</p>
+                <p>{about?.["story"]?.["description"]?.[1]}</p>
+              </motion.div>
             </AboutStoryDescription>
-            <AboutStorySketch
-              initial={{ opacity: 0, x: 200 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ amount: 0.3, once: true }}
-              alt="glasses-sketch"
-              src={glassesSketch}
-            />
+            <AboutStorySketch>
+              <motion.img
+                initial={{ opacity: 0, x: 200 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ amount: 0.1, once: true }}
+                alt="glasses-sketch"
+                src={glassesSketch}
+              />
+            </AboutStorySketch>
             <AboutStorySketchs
-              initial={{ opacity: 0, x: 200 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={isMobile ? { opacity: 0 } : { opacity: 0, x: 200 }}
+              whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
               viewport={{ amount: 0.3, once: true }}
               alt="glasses-sketch"
               src={glassesSketch_1}
               ref={theGlassesSketch}
             />
 
-            <AboutJointDescription
-              initial={{ opacity: 0, x: -200 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ amount: 0.3, once: true }}
-            >
-              <h2>{about?.["joint"]?.["title"]}</h2>
-              <p>
-                {
-                  about?.["joint"]?.["description"]?.[
-                    touchImageBounding ? 1 : 0
-                  ]
+            <AboutJointDescription>
+              <motion.div
+                initial={
+                  isMobile ? { opacity: 0, x: 0 } : { opacity: 0, x: -200 }
                 }
-              </p>
+                whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                viewport={{ amount: 0.3, once: true }}
+              >
+                <h2>{about?.["joint"]?.["title"]}</h2>
+                {console.log(isMobile)}
+                <p>
+                  {
+                    about?.["joint"]?.["description"]?.[
+                      touchImageBounding ? 1 : 0
+                    ]
+                  }
+                </p>
+              </motion.div>
             </AboutJointDescription>
           </AboutStory>
           <AboutBussiness
@@ -126,7 +140,14 @@ const AboutPage = () => {
           >
             BUSINESSES TRUST ONESEC
           </AboutBussiness>
-          <div style={{ width: "100%", overflow: "hidden", display: "flex" }}>
+          <div
+            style={{
+              width: "100%",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
             <FirmLogoContent />
             <FirmLogoContent />
           </div>

@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import primaryColor from "../../theme/priamry.styles";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
 
 export const SidebarContainer = styled(motion.div)`
   width: 100%;
@@ -28,6 +29,16 @@ export const SidebarContainer = styled(motion.div)`
     z-index: 31;
     box-shadow: 5rem 0 2rem rgba(0, 0, 0, 0.6);
   }
+
+  @media only screen and (max-width: ${maxWidth.medium}) {
+    grid-template-columns: minmax(30rem, 1fr) minmax(20rem, 1.3fr);
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 4rem;
+  }
 `;
 
 export const SidebarImage = styled(motion.div)`
@@ -36,6 +47,10 @@ export const SidebarImage = styled(motion.div)`
   z-index: 40;
   img {
     width: 20vw;
+
+    @media only screen and (max-width: ${maxWidth.medium}){
+      width:calc(12rem + 15vh);
+    }
   }
 `;
 
@@ -50,4 +65,11 @@ export const Sidebar = styled.ul`
   top: 0;
   margin-top: 5rem;
   grid-column: 2 / -1;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-column: span 1;
+    grid-row: 2 /3;
+    justify-self: center;
+    margin-top: 0;
+  }
 `;

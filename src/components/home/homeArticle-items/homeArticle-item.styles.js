@@ -36,8 +36,20 @@ export const HomeArticleDownContainer = styled.div`
   height: 3rem;
   display: flex;
 
+  .svgIcon {
+    fill: ${(props) => props.theme.color};
+    width: 10rem;
+    height: 10rem;
+    fontsize: 5rem;
+  }
+
   @media only screen and (max-width: ${maxWidth.small}) {
     height: 10rem;
     margin-top: 5rem;
+
+    .svgIcon {
+      width: 9rem;
+      height: 9rem;
+    }
   }
 `;

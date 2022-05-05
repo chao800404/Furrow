@@ -3,11 +3,16 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import maxWidth from "../../config/screen.size";
 
 export const SidebarItem = styled(Link)`
   font-size: 6rem;
   text-decoration: none;
   color: inherit;
+
+  @media only screen and (max-width: ${maxWidth.medium}) {
+    font-size: calc(3.5rem + 2.5vw);
+  }
 `;
 
 export const SidebarLi = styled(motion.li)`

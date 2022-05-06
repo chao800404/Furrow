@@ -11,9 +11,10 @@ export const FeatureBannerContainer = styled.div`
   position: relative;
   width: 100%;
   height: auto;
+`;
 
+export const FeatureBannerOverFlow = styled.div`
   @media only screen and (max-width: ${maxWidth.small}) {
-    justify-content: start;
     overflow-x: scroll;
     height: 87rem;
   }
@@ -35,10 +36,15 @@ export const FeatureTitle = styled.div`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     width: 90%;
-    bottom: 15%;
-    font-size: 2rem;
+    bottom: 20%;
+    font-size: 1.8rem;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     h1 {
-      font-size: 4rem;
+      font-size: 3rem;
     }
   }
 `;

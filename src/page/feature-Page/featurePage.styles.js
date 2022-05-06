@@ -23,12 +23,32 @@ export const FeatureStory = styled.div`
   grid-template-columns: 1.5fr 1fr;
   grid-template-rows: repeat(4, 30rem);
   margin-top: 20rem;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-template-rows: repeat(4, auto);
+    margin-top: 0;
+  }
+`;
+
+export const FeatureStoryContainer = styled.div`
+  display: grid;
+  grid-template-columns: inherit;
+  grid-column: 1/ -1;
+  position: sticky;
+  top: calc(50% - 15rem);
+  width: 90%;
+  margin: 0 auto;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: 100%;
+    top: calc(50% - 30rem);
+  }
 `;
 
 export const FeatureContent = styled.div`
-  width: 90%;
-  position: sticky;
-  top: calc(50% - 15rem);
+  position: relative;
   h3 {
     font-size: 4.5rem;
   }
@@ -46,11 +66,33 @@ export const FeatureContent = styled.div`
       left: 4.5rem;
     }
   }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    h3 {
+      height: 8rem;
+    }
+    p {
+      height: 10rem;
+    }
+    span {
+      bottom: 0;
+      position: sticky;
+    }
+  }
+`;
+
+export const FeatureStoryBtnContainer = styled.div`
+  margin-top: 3rem;
+  display: flex;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    margin-top: 0;
+    height: 5rem;
+  }
 `;
 
 export const FeatureImgContainer = styled.div`
-  position: sticky;
-  top: calc(50% - 15rem);
+  position: relative;
   img {
     width: 100%;
     height: 100%;
@@ -73,15 +115,19 @@ export const FeatureImgContainer = styled.div`
     box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.6);
     text-align: center;
   }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    span {
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
 `;
 
 export const FeatureGlassesBtn = styled(motion.div)`
   position: absolute;
   opacity: 0.9;
-  top: ${({ top }) => (top ? top : null)};
-  left: ${({ left }) => (left ? left : null)};
-  right: ${({ right }) => (right ? right : null)};
-  bottom: ${({ bottom }) => (bottom ? bottom : null)};
   borderradius: 50%;
   boxshadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 
@@ -120,6 +166,16 @@ export const ProofIconContainer = styled.div`
     display: block;
     width: 100%;
   }
+
+  .proof_icon {
+    width: 15rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    .proof_icon {
+      width: 10rem;
+    }
+  }
 `;
 
 export const FeatureFunction = styled.div`
@@ -133,5 +189,99 @@ export const FeatureFunction = styled.div`
     font-size: 5rem;
     width: 100%;
     margin-bottom: 5rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    height: auto;
+    margin-top: 10rem;
+    h4 {
+      width: 70%;
+      font-size: 4.5rem;
+      margin: 0 auto 2rem 0;
+    }
+  }
+`;
+
+export const FeatureFunctionContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const FeatureGlassesContainer = styled.div`
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    width: 150%;
+  }
+
+  [data-type="featureBtn-0"] {
+    top: 35%;
+    left: 50%;
+  }
+
+  [data-type="featureBtn-1"] {
+    top: 25%;
+    left: 33%;
+  }
+
+  [data-type="featureBtn-2"] {
+    top: 40%;
+    right: 25%;
+  }
+
+  .function-desc-1 {
+    top: -10rem;
+  }
+  .function-desc-2 {
+    left: -14rem;
+  }
+  .function-desc-3 {
+    top: -5rem;
+    right: -20rem;
+    width: 20rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    img {
+    }
+    [data-type="featureBtn-0"] {
+      top: 35%;
+      left: 22%;
+    }
+
+    [data-type="featureBtn-1"] {
+      top: 25%;
+      left: 10%;
+    }
+
+    [data-type="featureBtn-2"] {
+      top: 40%;
+      right: 45%;
+    }
+
+    .function-desc-1 {
+      top: -10rem;
+    }
+    .function-desc-2 {
+      left: 0;
+      top: -5rem;
+    }
+    .function-desc-3 {
+      bottom: -6rem;
+      top: unset;
+      right: -15rem;
+      width: 20rem;
+    }
   }
 `;

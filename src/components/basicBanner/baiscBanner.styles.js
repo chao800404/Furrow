@@ -21,7 +21,7 @@ export const AboutBanner = styled(motion.div)`
   position: relative;
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    height: 100%;
+    height: 80rem;
   }
 `;
 

@@ -11,6 +11,10 @@ import {
   FeatureGlassesBtn,
   ProofIconContainer,
   FeatureFunction,
+  FeatureStoryContainer,
+  FeatureStoryBtnContainer,
+  FeatureFunctionContainer,
+  FeatureGlassesContainer,
 } from "./featurePage.styles";
 import {
   BsArrowRightSquareFill,
@@ -30,6 +34,7 @@ const FeaturePage = () => {
   const [inView, setInView] = useState(0);
   const [displayProperty, setDisplayProperty] = useState(0);
   const [onLoaded, setOnLoaded] = useState(null);
+
   const featureBtnContainer = useRef();
   const theme = useSelector(selectThemeStyle);
   const dispatch = useDispatch();
@@ -90,43 +95,44 @@ const FeaturePage = () => {
         )}
         {feature && (
           <>
-            {" "}
             <FeatureBanner
               onLoad={() => setOnLoaded((prev) => (prev = true))}
               feature={feature}
             />
             <FeatureStory>
-              <FeatureContent>
-                <h3>{feature["story"]["title"]}</h3>
-                <p>{feature["story"][inView]}</p>
-                <div
-                  style={{ marginTop: "3rem", display: "flex" }}
-                  onClick={handleClick}
-                >
-                  <motion.span
-                    style={{ display: "block", width: "4.5rem" }}
-                    whileTap={{ x: -2, scale: 0.95 }}
-                    data-type="leftArrow"
-                  >
-                    <BsArrowLeftSquareFill style={{ width: "100%" }} />
-                  </motion.span>
-                  <motion.span
-                    style={{ display: "block", width: "4.5rem" }}
-                    whileTap={{ x: 2, scale: 0.95 }}
-                    data-type="rightArrow"
-                  >
-                    <BsArrowRightSquareFill />
-                  </motion.span>
-                </div>
-              </FeatureContent>
-              <FeatureImgContainer>
-                <span>{imgArr[inView]["status"]}</span>
-                <img alt="glasses-filter" src={imgArr[inView]["img"]} />
-              </FeatureImgContainer>
+              <FeatureStoryContainer>
+                <FeatureContent>
+                  <h3>{feature["story"]["title"]}</h3>
+                  <p>{feature["story"][inView]}</p>
+                  <FeatureStoryBtnContainer onClick={handleClick}>
+                    <motion.span
+                      style={{ display: "block", width: "4.5rem" }}
+                      whileTap={{ x: -2, scale: 0.95 }}
+                      data-type="leftArrow"
+                    >
+                      <BsArrowLeftSquareFill style={{ width: "100%" }} />
+                    </motion.span>
+                    <motion.span
+                      style={{ display: "block", width: "4.5rem" }}
+                      whileTap={{ x: 2, scale: 0.95 }}
+                      data-type="rightArrow"
+                    >
+                      <BsArrowRightSquareFill />
+                    </motion.span>
+                  </FeatureStoryBtnContainer>
+                </FeatureContent>
+                <FeatureImgContainer>
+                  <span>{imgArr[inView]["status"]}</span>
+                  <img alt="glasses-filter" src={imgArr[inView]["img"]} />
+                </FeatureImgContainer>
+              </FeatureStoryContainer>
               {imgArr.map((_, index) => (
                 <motion.div
                   key={index}
-                  style={{ gridColumn: "1 / -1", height: "40rem" }}
+                  style={{
+                    gridColumn: "1 / -1",
+                    height: "40rem",
+                  }}
                   data-item={index}
                   onViewportEnter={() => setInView((prev) => (prev = index))}
                   viewport={{ amount: 0.5 }}
@@ -135,17 +141,12 @@ const FeaturePage = () => {
             </FeatureStory>
             <FeatureFunction>
               <h4>{feature["function"][0]}</h4>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 2fr",
-                }}
-              >
+              <FeatureFunctionContainer>
                 <div>
                   {imgArr1.map((data, index) => (
                     <ProofIconContainer key={index}>
                       <ReactSVG
-                        style={{ width: "15rem" }}
+                        className="proof_icon"
                         src={data["img"]}
                         beforeInjection={(svg) =>
                           svg.setAttribute(
@@ -159,18 +160,15 @@ const FeaturePage = () => {
                   ))}
                 </div>
 
-                <div
-                  style={{ width: "80%", position: "relative" }}
+                <FeatureGlassesContainer
                   onClick={handleGlassesFeatureDisplay}
                   ref={featureBtnContainer}
                 >
                   <FeatureGlassesBtn
                     whileTap={{ scale: 0.95 }}
                     data-type="featureBtn-0"
-                    top="35%"
-                    left="50%"
                   >
-                    <span style={{ top: "-10rem" }}>
+                    <span className="function-desc-1">
                       {feature["property"][0]}
                     </span>
                     <BsPlusCircleFill />
@@ -179,10 +177,8 @@ const FeaturePage = () => {
                   <FeatureGlassesBtn
                     whileTap={{ scale: 0.95 }}
                     data-type="featureBtn-1"
-                    top="25%"
-                    left="33%"
                   >
-                    <span style={{ left: "-14rem" }}>
+                    <span className="function-desc-2">
                       {feature["property"][1]}
                     </span>
                     <BsPlusCircleFill />
@@ -190,28 +186,16 @@ const FeaturePage = () => {
                   <FeatureGlassesBtn
                     whileTap={{ scale: 0.95 }}
                     data-type="featureBtn-2"
-                    top="40%"
-                    right="25%"
                   >
-                    <span
-                      style={{
-                        top: "-5rem",
-                        right: "-20rem",
-                        width: "20rem",
-                      }}
-                    >
+                    <span className="function-desc-3">
                       {feature["property"][2]}
                     </span>
                     <BsPlusCircleFill />
                   </FeatureGlassesBtn>
 
-                  <img
-                    style={{ width: "150%" }}
-                    alt="glasses"
-                    src={featureImg}
-                  />
-                </div>
-              </div>
+                  <img alt="glasses" src={featureImg} />
+                </FeatureGlassesContainer>
+              </FeatureFunctionContainer>
             </FeatureFunction>
           </>
         )}

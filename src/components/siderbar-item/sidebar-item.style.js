@@ -11,7 +11,7 @@ export const SidebarItem = styled(Link)`
   color: inherit;
 
   @media only screen and (max-width: ${maxWidth.medium}) {
-    font-size: calc(3.5rem + 2.5vw);
+    font-size: calc(3rem + 2.5vw);
   }
 `;
 

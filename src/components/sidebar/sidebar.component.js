@@ -66,6 +66,7 @@ const Sidebars = () => {
           }}
           onMouseOver={handleMouseEnter}
           onClick={handleClick}
+          windowHeight={window.innerHeight}
         >
           <Tilt
             perspective={400}

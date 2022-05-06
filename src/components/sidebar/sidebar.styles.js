@@ -7,7 +7,11 @@ import maxWidth from "../../config/screen.size";
 
 export const SidebarContainer = styled(motion.div)`
   width: 100%;
-  height: 100vh;
+  ${
+    "" /* height: ${({ windowHeight }) => windowHeight + "px"};
+  min-height: -webkit-fill-available; */
+  }
+  height: calc(100vh - calc(100vh - 100%));
   position: fixed;
   top: 0;
   left: 0;

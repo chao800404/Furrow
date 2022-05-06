@@ -55,6 +55,9 @@ export const SidebarImage = styled(motion.div)`
     @media only screen and (max-width: ${maxWidth.medium}){
       width:calc(12rem + 15vh);
     }
+    @media only screen and (max-width: ${maxWidth.small}){
+      display:none;
+    }
   }
 `;
 
@@ -72,7 +75,7 @@ export const Sidebar = styled.ul`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     grid-column: span 1;
-    grid-row: 2 /3;
+    grid-row: 1 /3;
     justify-self: center;
     margin-top: 0;
   }

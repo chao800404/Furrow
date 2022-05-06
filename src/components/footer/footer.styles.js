@@ -85,6 +85,7 @@ export const FooterMenu = styled.div`
 export const FooterLogo = styled.div`
   grid-column: 1 / -1;
   justify-self: end;
+  grid-row: 1 / 2;
 
   @media only screen and (max-width: ${maxWidth.small}) {
     svg {

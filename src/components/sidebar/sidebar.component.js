@@ -31,6 +31,14 @@ const Sidebars = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (status) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [status]);
+
+  useEffect(() => {
     if (imageName)
       sidebarImage(imageName)
         .then((data) => data.default)
@@ -66,7 +74,6 @@ const Sidebars = () => {
           }}
           onMouseOver={handleMouseEnter}
           onClick={handleClick}
-          windowHeight={window.innerHeight}
         >
           <Tilt
             perspective={400}

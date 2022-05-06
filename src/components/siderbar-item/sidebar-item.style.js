@@ -13,6 +13,9 @@ export const SidebarItem = styled(Link)`
   @media only screen and (max-width: ${maxWidth.medium}) {
     font-size: calc(3rem + 2.5vw);
   }
+  @media only screen and (max-width: ${maxWidth.medium}) {
+    font-size: calc(3rem+1vw);
+  }
 `;
 
 export const SidebarLi = styled(motion.li)`

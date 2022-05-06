@@ -88,6 +88,7 @@ export const FooterLogo = styled.div`
   grid-row: 1 / 2;
 
   @media only screen and (max-width: ${maxWidth.small}) {
+    width: 15rem;
     svg {
       width: 100%;
       margin-bottom: 3rem;

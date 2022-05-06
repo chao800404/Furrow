@@ -63,11 +63,6 @@ const SidebarItemLi = ({ link, name, index }) => {
       >
         {isHover ? <AiFillCaretRight style={{ fontSize: "5rem" }} /> : null}
         {name.toUpperCase()}
-        {isMobile ? (
-          <span style={{ fontSize: "1rem", marginLeft: "1rem" }}>
-            0{index + 1}
-          </span>
-        ) : null}
       </SidebarItem>
     </SidebarLi>
   );

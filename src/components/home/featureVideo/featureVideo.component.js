@@ -1,6 +1,9 @@
 /** @format */
 
-import { HomeFeatureVideo } from "./featureVidoe.styles";
+import {
+  HomeFeatureVideo,
+  HomeFeatureVideoContainer,
+} from "./featureVidoe.styles";
 import feature from "../../../assets/video/featureVideo_sd.mp4";
 
 const FeauteVideo = () => {
@@ -11,7 +14,15 @@ const FeauteVideo = () => {
       transition={{ duraction: 100, ease: "easeInOut" }}
       viewport={{ once: true }}
     >
-      <video muted autoPlay loop src={feature} />
+      <HomeFeatureVideoContainer
+        type="video/mp4"
+        muted
+        autoPlay={true}
+        playsInline
+        controls={false}
+        loop
+        src={feature}
+      />
     </HomeFeatureVideo>
   );
 };

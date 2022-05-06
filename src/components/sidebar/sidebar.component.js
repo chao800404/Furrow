@@ -12,6 +12,7 @@ import {
   toggleSidebar,
   sidebarAnEnd,
 } from "../../redux/sidebar/sidebar.actions";
+import Div100vh from "react-div-100vh";
 
 const sidebarImage = async (index) => {
   if (index) {
@@ -64,38 +65,40 @@ const Sidebars = () => {
       initial={false}
     >
       {status && (
-        <SidebarContainer
-          initial={{ scaleX: 0.2, transformOrigin: "left" }}
-          animate={{ scaleX: 1 }}
-          exit={{
-            x: -2000,
-            opacity: 0,
-            transition: { ease: "easeOut" },
-          }}
-          onMouseOver={handleMouseEnter}
-          onClick={handleClick}
-        >
-          <Tilt
-            perspective={400}
-            tiltAngleYInitial={10}
-            tiltAngleXInitial={10}
-            style={{
-              zIndex: 50,
-              gridColumn: "1 / 2",
-              alignSelf: "center",
-              justifySelf: "center",
+        <Div100vh>
+          <SidebarContainer
+            initial={{ scaleX: 0.2, transformOrigin: "left" }}
+            animate={{ scaleX: 1 }}
+            exit={{
+              x: -2000,
+              opacity: 0,
+              transition: { ease: "easeOut" },
             }}
+            onMouseOver={handleMouseEnter}
+            onClick={handleClick}
           >
-            <SidebarImage>
-              <img alt={imageName} src={imageUrl} />
-            </SidebarImage>
-          </Tilt>
-          <Sidebar>
-            {sidebarData.map(({ id, ...otherSidebarProps }, index) => (
-              <SidebarItemLi key={id} index={index} {...otherSidebarProps} />
-            ))}
-          </Sidebar>
-        </SidebarContainer>
+            <Tilt
+              perspective={400}
+              tiltAngleYInitial={10}
+              tiltAngleXInitial={10}
+              style={{
+                zIndex: 50,
+                gridColumn: "1 / 2",
+                alignSelf: "center",
+                justifySelf: "center",
+              }}
+            >
+              <SidebarImage>
+                <img alt={imageName} src={imageUrl} />
+              </SidebarImage>
+            </Tilt>
+            <Sidebar>
+              {sidebarData.map(({ id, ...otherSidebarProps }, index) => (
+                <SidebarItemLi key={id} index={index} {...otherSidebarProps} />
+              ))}
+            </Sidebar>
+          </SidebarContainer>
+        </Div100vh>
       )}
     </AnimatePresence>
   );

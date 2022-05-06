@@ -1,7 +1,6 @@
 /** @format */
 
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import maxWidth from "../../../config/screen.size";
 
 export const HomeContainer = styled.section`
@@ -20,7 +19,7 @@ export const BannerVideo = styled.div`
   height: 100%;
   display: grid;
   overflow-x: hidden;
-  position: absolute;
+  position: relative;
 `;
 
 export const VideoContainer = styled.video`
@@ -38,9 +37,10 @@ export const VideoContainer = styled.video`
   }
 `;
 
-export const BannerTitle = styled(motion.h1)`
-  position: absolute;
-  font-size: 20rem;
-  left: 0rem;
-  bottom: -6rem;
-`;
+// export const BannerTitle = styled(motion.h1)`
+//   position: relative;
+//   font-size: 20rem;
+//   height: calc(100vh - calc(100vh - 100%));
+//   left: 0rem;
+//   bottom: -6rem;
+// `;

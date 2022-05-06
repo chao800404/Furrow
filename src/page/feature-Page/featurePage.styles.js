@@ -3,12 +3,18 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import primaryColor from "../../theme/priamry.styles";
+import maxWidth from "../../config/screen.size";
 
 export const FeatureContainer = styled.section`
   width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  padding: 20rem 0;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    padding: 10rem 0;
+  }
 `;
 
 export const FeatureStory = styled.div`

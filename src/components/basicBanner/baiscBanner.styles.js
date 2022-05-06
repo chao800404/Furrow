@@ -21,14 +21,14 @@ export const AboutBanner = styled(motion.div)`
   position: relative;
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    height: 100vh;
+    height: 100%;
   }
 `;
 
 export const AboutBannerBG = styled.img`
   width: 100%;
   @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
-    height: 100vh;
+    height: 100%;
     position: absolute;
     object-fit: cover;
     width: auto;

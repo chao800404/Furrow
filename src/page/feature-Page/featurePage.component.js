@@ -76,7 +76,7 @@ const FeaturePage = () => {
 
   return (
     <FeatureContainer>
-      <Flex style={{ padding: "20rem 0", flexDirection: "column" }}>
+      <Flex style={{ flexDirection: "column" }}>
         {feature && onLoaded ? null : (
           <CubeSpinner
             style={{

@@ -25,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
       background-color:${(props) => props.theme.backgroundColor};
       color: ${({ theme: { color } }) => color};
       font-family: 'Anton', sans-serif;
+      position:relative;
       
   }
 

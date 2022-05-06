@@ -21,19 +21,20 @@ export const BannerVideo = styled.div`
   display: grid;
   overflow-x: hidden;
   position: absolute;
+`;
 
-  video {
-    height: auto;
-    min-width: 192rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
+export const VideoContainer = styled.video`
+  height: auto;
+  min-width: 192rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  -o-object-fit: cover;
 
-    @media only screen and (max-width: ${maxWidth.small}) {
-      height: 100%;
-    }
+  @media only screen and (max-width: ${maxWidth.small}) {
+    height: 100%;
   }
 `;
 

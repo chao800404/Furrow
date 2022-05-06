@@ -122,7 +122,6 @@ const AboutPage = () => {
                 viewport={{ amount: 0.3, once: true }}
               >
                 <h2>{about?.["joint"]?.["title"]}</h2>
-                {console.log(isMobile)}
                 <p>
                   {
                     about?.["joint"]?.["description"]?.[

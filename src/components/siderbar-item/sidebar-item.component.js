@@ -7,16 +7,21 @@ import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../../redux/sidebar/sidebar.actions";
 
 import { sidebarAnEnd } from "../../redux/sidebar/sidebar.actions";
+import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 
 const SidebarItemLi = ({ link, name, index }) => {
   const [isHover, setIsHover] = useState(false);
 
   const dispatch = useDispatch();
 
-  const hanldeClick = (e) => {
+  const isMobile = useCheckScreenIsMobile();
+
+  const hanldeClick = () => {
     dispatch(toggleSidebar());
     dispatch(toggleSidebar());
   };
+
+  console.log(isMobile);
 
   useEffect(() => {
     dispatch(sidebarAnEnd(false));
@@ -58,6 +63,11 @@ const SidebarItemLi = ({ link, name, index }) => {
       >
         {isHover ? <AiFillCaretRight style={{ fontSize: "5rem" }} /> : null}
         {name.toUpperCase()}
+        {isMobile ? (
+          <span style={{ fontSize: "1rem", marginLeft: "1rem" }}>
+            0{index + 1}
+          </span>
+        ) : null}
       </SidebarItem>
     </SidebarLi>
   );

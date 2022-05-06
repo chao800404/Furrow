@@ -1,6 +1,10 @@
 /** @format */
 
-import { HomeContainer, BannerVideo } from "./homeBanner.styles";
+import {
+  HomeContainer,
+  BannerVideo,
+  VideoContainer,
+} from "./homeBanner.styles";
 import CanvasBanner from "../canvas/canvas.component";
 import homeBannerVideo from "../../../assets/video/bannerVideo.mp4";
 import BannerTitle from "../bannerTitle/bannerTitle.component";
@@ -24,7 +28,15 @@ const HomeBanner = () => {
     <HomeContainer>
       <BannerTitle />
       <BannerVideo>
-        <video muted autoPlay loop src={homeBannerVideo} />
+        <VideoContainer
+          type="video/mp4"
+          muted
+          autoPlay={true}
+          playsInline
+          controls={false}
+          loop
+          src={homeBannerVideo}
+        />
       </BannerVideo>
       {sidebarIsOpen ? null : <CanvasBanner />}
     </HomeContainer>

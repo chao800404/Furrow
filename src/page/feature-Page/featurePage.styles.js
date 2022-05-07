@@ -214,7 +214,6 @@ export const FeatureFunctionContainer = styled.div`
 export const FeatureGlassesContainer = styled.div`
   width: 80%;
   position: relative;
-  overflow: hidden;
 
   img {
     width: 150%;
@@ -253,7 +252,9 @@ export const FeatureGlassesContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 5rem;
+    overflow: hidden;
     img {
+      user-select: none;
     }
     [data-type="featureBtn-0"] {
       top: 35%;

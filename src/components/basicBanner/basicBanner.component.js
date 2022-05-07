@@ -9,7 +9,7 @@ import {
 } from "./baiscBanner.styles";
 import useWinowSize from "../../utils/useWindowSize";
 
-const BasicBanner = ({ img, title, txt, onLoad }) => {
+const BasicBanner = ({ img, title, txt }) => {
   const { height } = useWinowSize();
 
   return (
@@ -18,7 +18,7 @@ const BasicBanner = ({ img, title, txt, onLoad }) => {
       initial={{ scale: 0.5 }}
       animate={{ scale: 1 }}
     >
-      <AboutBannerBG onLoad={onLoad} alt="about-banner" src={img} />
+      <AboutBannerBG alt="about-banner" src={img} />
       <AboutTitle
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

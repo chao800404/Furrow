@@ -10,25 +10,26 @@ import {
   AboutBussiness,
 } from "./aboutPage.styles";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, lazy } from "react";
 import { motion } from "framer-motion";
 import aboutBanner from "../../assets/aboutPhoto/about-us-Banner.webp";
 import aboutTitle from "../../assets/aboutPhoto/about-us-title.webp";
 import { Flex } from "../../components/Flex/flex.styles";
-import BasicBanner from "../../components/basicBanner/basicBanner.component";
+// import BasicBanner from "../../components/basicBanner/basicBanner.component";
 import glassesSketch from "../../assets/aboutPhoto/glasses- sketch.webp";
 import glassesSketch_1 from "../../assets/aboutPhoto/glasses-sketch-1.webp";
 import FirmLogoContent from "../../components/firmLogo/firmLogo.component";
 import { useDispatch, useSelector } from "react-redux";
 import { aboutPageAction } from "../../redux/aboutPage/aboutPage.actions";
 import { selectAboutPageData } from "../../redux/aboutPage/aboutPage.select";
-import CubeSpinner from "../../components/cube-spinner/cube-spinner.component";
 import maxWidth from "../../config/screen.size";
+const BasicBanner = lazy(() =>
+  import("../../components/basicBanner/basicBanner.component")
+);
 
 const AboutPage = () => {
   const theGlassesSketch = useRef();
   const [touchImageBounding, setTouchImageBounding] = useState(false);
-  const [onLoaded, setOnLoaded] = useState(null);
   const dispatch = useDispatch();
   const about = useSelector(selectAboutPageData);
   const isMobile = window.innerWidth <= maxWidth.small.replace("px", "");
@@ -54,24 +55,11 @@ const AboutPage = () => {
   return (
     <AboutUsPageContainer>
       <>
-        {about && onLoaded ? null : (
-          <CubeSpinner
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100vh",
-            }}
-          />
-        )}
         <BasicBanner
           img={aboutBanner}
           title={aboutTitle}
           txt={about?.["bannerStatement"]}
-          onLoad={() => setOnLoaded((prev) => (prev = true))}
         />
-
         <AboutStatement>
           <motion.div
             initial={{ opacity: 0 }}

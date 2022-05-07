@@ -1,7 +1,7 @@
 /** @format */
 import { Flex } from "../../components/Flex/flex.styles";
 import { motion } from "framer-motion";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, lazy } from "react";
 import { ReactSVG } from "react-svg";
 import {
   FeatureContainer,
@@ -22,18 +22,19 @@ import {
   BsPlusCircleFill,
 } from "react-icons/bs";
 import featureImg from "../../assets/featurePhoto/feature_image_4.webp";
-import FeatureBanner from "../../components/featureBanner/featureBanner.component";
+// import FeatureBanner from "../../components/featureBanner/featureBanner.component";
 import { imgArr, imgArr1 } from "./featurePage.data";
 import { useSelector, useDispatch } from "react-redux";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
 import { fetchFeatureStart } from "../../redux/featuresPage/feature.action";
 import { featurePageData } from "../../redux/featuresPage/feature.select";
-import CubeSpinner from "../../components/cube-spinner/cube-spinner.component";
+const FeatureBanner = lazy(() =>
+  import("../../components/featureBanner/featureBanner.component")
+);
 
 const FeaturePage = () => {
   const [inView, setInView] = useState(0);
   const [displayProperty, setDisplayProperty] = useState(0);
-  const [onLoaded, setOnLoaded] = useState(null);
 
   const featureBtnContainer = useRef();
   const theme = useSelector(selectThemeStyle);
@@ -82,23 +83,9 @@ const FeaturePage = () => {
   return (
     <FeatureContainer>
       <Flex style={{ flexDirection: "column" }}>
-        {feature && onLoaded ? null : (
-          <CubeSpinner
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100vh",
-            }}
-          />
-        )}
         {feature && (
           <>
-            <FeatureBanner
-              onLoad={() => setOnLoaded((prev) => (prev = true))}
-              feature={feature}
-            />
+            <FeatureBanner feature={feature} />
             <FeatureStory>
               <FeatureStoryContainer>
                 <FeatureContent>

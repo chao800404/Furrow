@@ -1,16 +1,17 @@
 /** @format */
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy } from "react";
 import { Flex } from "../../components/Flex/flex.styles";
 import { VirtualContainer } from "./virtualPage.styles";
 import { useSelector, useDispatch } from "react-redux";
 import { selectShopCollectionPreview } from "../../redux/shop/shop.select";
 import VirtualSide from "../../components/virtual-side/virtualSide.component";
-import VirtualScene from "../../components/virtual-scene/virtual-secne.component";
+// import VirtualScene from "../../components/virtual-scene/virtual-secne.component";
 import Button from "../../components/button/button.component";
-import CubeSpinner from "../../components/cube-spinner/cube-spinner.component";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
-import { sidebarAnStatus } from "../../redux/sidebar/sidebar.select";
 import { sidebarAnEnd } from "../../redux/sidebar/sidebar.actions";
+const VirtualScene = lazy(() =>
+  import("../../components/virtual-scene/virtual-secne.component")
+);
 
 const environment = {
   "riverside-morning": "sunset",
@@ -27,8 +28,6 @@ const VirtualPage = () => {
     color: "black",
   });
   const [currentEnvironment, setCurrentEnvironment] = useState("sunset");
-  const [imageLoad, setImageLoad] = useState(false);
-  const sidebarAnEnds = useSelector(sidebarAnStatus);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,26 +56,8 @@ const VirtualPage = () => {
   return (
     <VirtualContainer theme={theme}>
       <Flex style={{ gap: "1rem" }}>
-        {imageLoad ? null : (
-          <div
-            style={{
-              backgroundColor: "#161616",
-              width: "100vw",
-              height: "100vh",
-              position: "fixed",
-              top: 0,
-              left: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 50,
-            }}
-          >
-            <CubeSpinner />
-          </div>
-        )}
         <div className="virtaul-side" onClick={handleGlassesClick}>
-          <VirtualSide setImageLoad={setImageLoad} collections={collections} />
+          <VirtualSide collections={collections} />
         </div>
         <div className="virtual-VR">
           <h1>VIEW 3D VIRTUAL </h1>
@@ -84,17 +65,17 @@ const VirtualPage = () => {
             Pick your favorite sunglasses and experience the virtual environment
           </p>
 
-          {sidebarAnEnds ? (
-            <VirtualScene
-              {...currentGlasses}
-              view3d={true}
-              currentEnvironment={currentEnvironment}
-            />
-          ) : (
+          {/* {sidebarAnEnds ? ( */}
+          <VirtualScene
+            {...currentGlasses}
+            view3d={true}
+            currentEnvironment={currentEnvironment}
+          />
+          {/* ) : (
             <div
               style={{ width: "100%", height: "50rem", marginTop: "2rem" }}
             />
-          )}
+          )} */}
 
           <div
             className="virtual-Btn-container"

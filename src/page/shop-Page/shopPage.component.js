@@ -1,6 +1,6 @@
 /** @format */
 
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, lazy } from "react";
 import { fetchShopPageStart } from "../../redux/shopPage/shopPage.action";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
@@ -8,7 +8,6 @@ import { Route, Routes } from "react-router-dom";
 // import CollectionOverView from "../../components/collection-overview/collection-overview.component";
 import Cart from "../../components/cart/cart.component";
 import { cartInit } from "../../redux/cart/cart.action";
-import CubeSpinner from "../../components/cube-spinner/cube-spinner.component";
 const CollectionPreview = lazy(() =>
   import("../../components/collection-preview/collection-preview.component")
 );
@@ -25,20 +24,13 @@ const ShopPage = () => {
   }, [dispatch]);
 
   return (
-    <Suspense
-      fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
-    >
-      <section style={{ overflowX: "hidden" }}>
-        <Cart />
-        <Routes>
-          <Route path="*" element={<CollectionPreview />} />
-          <Route
-            path=":collectionId/*"
-            element={<CollectionOverView />}
-          ></Route>
-        </Routes>
-      </section>
-    </Suspense>
+    <section style={{ overflowX: "hidden" }}>
+      <Cart />
+      <Routes>
+        <Route path="*" element={<CollectionPreview />} />
+        <Route path=":collectionId/*" element={<CollectionOverView />}></Route>
+      </Routes>
+    </section>
   );
 };
 

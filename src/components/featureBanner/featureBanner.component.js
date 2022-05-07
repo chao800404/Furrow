@@ -43,14 +43,14 @@ const FeatureBanner = ({ feature, onLoad }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          {feature.bannerStatement[0]}
+          {feature?.bannerStatement[0]}
         </motion.h1>
         <motion.span
           initial={{ opacity: 0, y: -80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          {feature.bannerStatement[1]}
+          {feature?.bannerStatement[1]}
         </motion.span>
       </FeatureTitle>
     </FeatureBannerContainer>

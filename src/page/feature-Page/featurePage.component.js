@@ -76,7 +76,7 @@ const FeaturePage = () => {
     [...btnContainer?.children].forEach((dom) =>
       dom.children[0]?.classList.remove("visible")
     );
-    const btnContent = btnContainer?.children[displayProperty]?.children?.[0];
+    const btnContent = btnContainer?.children?.[displayProperty]?.children?.[0];
     btnContent.classList.add("visible");
   }, [displayProperty, feature]);
 

@@ -19,7 +19,6 @@ import { InView } from "react-intersection-observer";
 import { useState } from "react";
 import Button from "../button/button.component";
 import LinkBtn from "../linkButton/linkButton.component";
-import CubeSpinner from "../cube-spinner/cube-spinner.component";
 
 const CollectionOverView = () => {
   const { collectionId } = useParams();
@@ -28,71 +27,75 @@ const CollectionOverView = () => {
   const collections = useSelector(selectOverViewLink);
   const [inView, setInView] = useState(true);
 
-  return collection && shopPageData ? (
-    <section
-      style={{
-        paddingTop: "25rem",
-        paddingBottom: "10rem",
-        position: "relative",
-      }}
-    >
-      <Flex>
-        <CollectionOverViewContainer style={{ position: "relative" }}>
-          {inView ? null : (
-            <Button
-              style={{
-                position: "fixed",
-                top: "5%",
-                right: "5%",
-                backgroundColor: "#000",
-                zIndex: 30,
-                width: "20rem",
-              }}
-              type="secondBtn"
-              path={collection.item[0].color}
-            >
-              ADD TO CART
-            </Button>
-          )}
+  return (
+    collection &&
+    shopPageData && (
+      <section
+        style={{
+          paddingTop: "25rem",
+          paddingBottom: "10rem",
+          position: "relative",
+        }}
+      >
+        <Flex>
+          <CollectionOverViewContainer style={{ position: "relative" }}>
+            {inView ? null : (
+              <Button
+                style={{
+                  position: "fixed",
+                  top: "5%",
+                  right: "5%",
+                  backgroundColor: "#000",
+                  zIndex: 30,
+                  width: "20rem",
+                }}
+                type="secondBtn"
+                path={collection.item[0].color}
+              >
+                ADD TO CART
+              </Button>
+            )}
 
-          <div style={{ height: "10rem" }}>
-            {collections.map((title, index) => (
-              <LinkBtn key={index} link={title}>
-                {title}
-              </LinkBtn>
-            ))}
-          </div>
-
-          <OverViewCardContainer>
-            <InView
-              as="div"
-              onChange={(inView) => setInView(inView)}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr 1fr",
-                gridGap: "4rem 2rem",
-              }}
-            >
-              {collection?.item.map(({ id, ...otherProps }) => (
-                <SecondTypeCard
-                  key={id}
-                  title={collection.title}
-                  {...otherProps}
-                />
+            <div style={{ height: "10rem" }}>
+              {collections.map((title, index) => (
+                <LinkBtn key={index} link={title}>
+                  {title}
+                </LinkBtn>
               ))}
-            </InView>
-          </OverViewCardContainer>
-          <h1>{collectionId}</h1>
-          <ShopPage shopPageData={shopPageData} collectionId={collectionId} />
-        </CollectionOverViewContainer>
-      </Flex>
+            </div>
 
-      <Routes>
-        <Route path=":colorType" element={<Popup collection={collection} />} />
-      </Routes>
-    </section>
-  ) : (
-    <CubeSpinner style={{ height: "100vh" }} />
+            <OverViewCardContainer>
+              <InView
+                as="div"
+                onChange={(inView) => setInView(inView)}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                  gridGap: "4rem 2rem",
+                }}
+              >
+                {collection?.item.map(({ id, ...otherProps }) => (
+                  <SecondTypeCard
+                    key={id}
+                    title={collection.title}
+                    {...otherProps}
+                  />
+                ))}
+              </InView>
+            </OverViewCardContainer>
+            <h1>{collectionId}</h1>
+            <ShopPage shopPageData={shopPageData} collectionId={collectionId} />
+          </CollectionOverViewContainer>
+        </Flex>
+
+        <Routes>
+          <Route
+            path=":colorType"
+            element={<Popup collection={collection} />}
+          />
+        </Routes>
+      </section>
+    )
   );
 };
 

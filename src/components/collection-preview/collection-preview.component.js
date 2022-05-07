@@ -10,29 +10,17 @@ import Card from "../card/card.component";
 import { ReactSVG } from "react-svg";
 import mclarenXOnesecLogo from "../../assets/svg/mclaren_x_onesec.svg";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
-import { selectCardLoad } from "../../redux/card/card.select";
-import CubeSpinner from "../cube-spinner/cube-spinner.component";
 
 const CollectionPreview = () => {
   const collections = useSelector(selectShopCollectionPreview);
-
   const theme = useSelector(selectThemeStyle);
-  const imageLoad = useSelector(selectCardLoad);
 
   return (
-    <section style={imageLoad ? { padding: "20rem 0" } : null}>
-      {imageLoad ? null : (
-        <CubeSpinner style={{ width: "100%", height: "100vh" }} />
-      )}
-
+    <section style={{ padding: "20rem 0" }}>
       <Flex>
         <CollectionPreviewContainer
           initial={{ visibility: "hidden", y: 10, opacity: 0 }}
-          animate={
-            imageLoad
-              ? { visibility: "visible", y: 0, height: "auto", opacity: 1 }
-              : { visibility: "hidden" }
-          }
+          animate={{ visibility: "visible", y: 0, height: "auto", opacity: 1 }}
         >
           <h2>McLaren Vision x ONESEC</h2>
           <CollectionPreviewTitle>

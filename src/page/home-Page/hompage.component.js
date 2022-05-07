@@ -1,7 +1,6 @@
 /** @format */
 // import HomeBanner from "../../components/home/homeBanner/homeBanner.component";
-import { lazy, Suspense } from "react";
-import BannerSpinner from "../../components/bannerSpinner/bannerSpinner.component";
+import { lazy } from "react";
 import HomeContent from "../../components/home/homeContent/homeContent.component";
 import HomeFeature from "../../components/home/homeFeature/homeFeature.component";
 import HomeArticle from "../../components/home/homArticle/homeArticle.component";
@@ -11,12 +10,12 @@ const HomeBanner = lazy(() =>
 
 const Homepage = () => {
   return (
-    <Suspense fallback={<BannerSpinner />}>
+    <>
       <HomeBanner />
       <HomeContent />
       <HomeFeature />
       <HomeArticle />
-    </Suspense>
+    </>
   );
 };
 

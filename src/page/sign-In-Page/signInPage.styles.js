@@ -2,6 +2,15 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
+
+export const SignInPageContainer = styled.section`
+  min-height: 100vh;
+  padding: 20rem 0;
+  @media only screen and (max-width: ${maxWidth.small}) {
+    padding: 20rem 0 10rem 0;
+  }
+`;
 
 export const SignInUpContainer = styled.div`
   height: 100%;
@@ -9,6 +18,11 @@ export const SignInUpContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 6rem;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    flex-direction: column-reverse;
+    margin-top: 0;
+  }
 `;
 
 export const SignInUpContent = styled(motion.div)`
@@ -30,5 +44,19 @@ export const SignInUpContent = styled(motion.div)`
   }
   h1 {
     font-size: 5rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    height: auto;
+    padding: 2rem;
+    margin-left: 0;
+
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
   }
 `;

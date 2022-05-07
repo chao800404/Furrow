@@ -1,7 +1,11 @@
 /** @format */
 import { Flex } from "../../components/Flex/flex.styles";
 import SignInUpFrom from "../../components/sign-in/sign-in.component";
-import { SignInUpContainer, SignInUpContent } from "./signInPage.styles";
+import {
+  SignInUpContainer,
+  SignInUpContent,
+  SignInPageContainer,
+} from "./signInPage.styles";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.select";
 import FinishIconAn from "../../components/finishIcon/finishIcon.component";
@@ -46,12 +50,7 @@ const SignInPage = () => {
   };
 
   return (
-    <section
-      style={{
-        minHeight: "100vh",
-        padding: "20rem 0",
-      }}
-    >
+    <SignInPageContainer>
       <Flex>
         <SignInUpContainer onClick={goHomePage}>
           {existUser ? null : (
@@ -151,7 +150,7 @@ const SignInPage = () => {
           </SignInUpContent>
         </SignInUpContainer>
       </Flex>
-    </section>
+    </SignInPageContainer>
   );
 };
 

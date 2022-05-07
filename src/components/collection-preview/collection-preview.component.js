@@ -5,6 +5,8 @@ import { Flex } from "../../components/Flex/flex.styles";
 import {
   CollectionPreviewContainer,
   CollectionPreviewTitle,
+  CollectionCartContainer,
+  CollectionPreviewPageContainer,
 } from "./collection-preview.styles";
 import Card from "../card/card.component";
 import { ReactSVG } from "react-svg";
@@ -16,7 +18,7 @@ const CollectionPreview = () => {
   const theme = useSelector(selectThemeStyle);
 
   return (
-    <section style={{ padding: "20rem 0" }}>
+    <CollectionPreviewPageContainer>
       <Flex>
         <CollectionPreviewContainer
           initial={{ visibility: "hidden", y: 10, opacity: 0 }}
@@ -37,13 +39,14 @@ const CollectionPreview = () => {
               src={mclarenXOnesecLogo}
             />
           </CollectionPreviewTitle>
-
-          {collections?.map(({ id, ...otherProps }) => (
-            <Card key={id} {...otherProps} />
-          ))}
+          <CollectionCartContainer>
+            {collections?.map(({ id, ...otherProps }) => (
+              <Card key={id} {...otherProps} />
+            ))}
+          </CollectionCartContainer>
         </CollectionPreviewContainer>
       </Flex>
-    </section>
+    </CollectionPreviewPageContainer>
   );
 };
 

@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
 
 export const SignInContainer = styled(motion.form)`
   display: grid;
@@ -75,6 +76,10 @@ export const SignInContainer = styled(motion.form)`
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     margin-bottom: 1rem;
     gap: 1rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 100%;
   }
 `;
 

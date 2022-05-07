@@ -24,7 +24,10 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
       onMouseLeave={() => setHovered((prevHovered) => !prevHovered)}
       data-type="card"
     >
-      <ImageContainer props={{ title, imageUrl, hovered }} />
+      <ImageContainer
+        props={{ title, imageUrl, hovered }}
+        className="card-img"
+      />
       <CardTitle>
         <h3>
           {title}
@@ -36,7 +39,7 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
         <div
           style={{
             height: "2rem",
-            maxWidth: "100%",
+            width: "100%",
             display: "flex",
             marginTop: "1rem",
           }}
@@ -46,8 +49,6 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
               key={index}
               style={{
                 backgroundColor: color,
-                width: "1.5rem",
-                height: "1.5rem",
                 borderRadius: "50%",
                 marginRight: ".8rem",
               }}
@@ -55,7 +56,7 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
               color={color}
               onClick={handleClick}
               active={index === colorIndex}
-            ></ColorBox>
+            />
           ))}
         </div>
         <p>NT${price.toLocaleString("en-US")}</p>

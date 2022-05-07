@@ -1,6 +1,7 @@
 /** @format */
 
 import styled, { css } from "styled-components";
+import maxWidth from "../../config/screen.size";
 
 const mixin = css`
   display: flex;
@@ -25,6 +26,26 @@ export const CardContainer = styled.div`
   button {
     margin-top: 3rem;
     letter-spacing: 0.1rem;
+  }
+
+  [data-type="color-option"] {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    .card-img {
+      width: 25rem;
+      height: 25rem;
+    }
+    [data-type="color-option"] {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    button {
+      margin-top: 2rem;
+    }
   }
 `;
 
@@ -52,5 +73,8 @@ export const CardFeature = styled.div`
   ${mixin}
   p {
     font-size: 1.5rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
   }
 `;

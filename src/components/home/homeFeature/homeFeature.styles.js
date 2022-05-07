@@ -29,7 +29,6 @@ export const HomeFeatureContent = styled(motion.div)`
   flex-direction: column;
   justify-content: space-between;
   p {
-    letter-spacing: 0.2rem;
     text-shadow: 0.5rem 0.5rem 0.2rem rgba(1, 1, 1, 0.5);
   }
 
@@ -103,6 +102,5 @@ export const HomeFeatureNewsBtn = styled(motion.button)`
   }
   P {
     font-size: 1.5rem;
-    letter-spacing: 0.2rem;
   }
 `;

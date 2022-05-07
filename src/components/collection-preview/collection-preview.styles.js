@@ -6,6 +6,7 @@ import maxWidth from "../../config/screen.size";
 
 export const CollectionPreviewPageContainer = styled.section`
   padding: 20rem 0;
+  min-height: 100vh;
 
   @media only screen and (max-width: ${maxWidth.small}) {
     padding: 15rem 0 10rem 0;
@@ -55,5 +56,6 @@ export const CollectionCartContainer = styled.div`
   @media only screen and (max-width: ${maxWidth.small}) {
     display: flex;
     overflow-x: scroll;
+    padding: 1.5rem;
   }
 `;

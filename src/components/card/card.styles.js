@@ -6,7 +6,7 @@ import maxWidth from "../../config/screen.size";
 const mixin = css`
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: center;
 `;
 
 export const CardContainer = styled.div`
@@ -33,10 +33,14 @@ export const CardContainer = styled.div`
     height: 1.5rem;
   }
 
+  .card-img {
+    height: 20rem;
+  }
+
   @media only screen and (max-width: ${maxWidth.small}) {
     .card-img {
-      width: 25rem;
-      height: 25rem;
+      width: 23rem;
+      height: 23rem;
     }
     [data-type="color-option"] {
       width: 2rem;
@@ -45,6 +49,11 @@ export const CardContainer = styled.div`
 
     button {
       margin-top: 2rem;
+    }
+
+    .card-desc {
+      height: 3.5rem;
+      margin-top: 1.5rem;
     }
   }
 `;
@@ -76,5 +85,10 @@ export const CardFeature = styled.div`
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
+    margin-top: 1rem;
+    p {
+      font-size: 2rem;
+      margin-top: 0;
+    }
   }
 `;

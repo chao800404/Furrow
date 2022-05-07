@@ -62,6 +62,7 @@ export const CheckoutPament = styled.div`
   top: 5rem;
   border-radius: 0.5rem;
   overflow: hidden;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
 `;
 
 export const CheckoutHeader = styled.div`

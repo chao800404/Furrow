@@ -27,7 +27,6 @@ export const HomeArticleSide = styled(motion.article)`
   p {
     margin-top: 1rem;
     font-size: 2rem;
-    letter-spacing: 0.2rem;
   }
 `;
 

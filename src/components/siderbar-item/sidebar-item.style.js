@@ -9,6 +9,7 @@ export const SidebarItem = styled(Link)`
   font-size: 6rem;
   text-decoration: none;
   color: inherit;
+  font-weight: 500;
 
   @media only screen and (max-width: ${maxWidth.medium}) {
     font-size: calc(3rem + 2.5vw);

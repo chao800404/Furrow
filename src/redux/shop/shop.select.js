@@ -2,11 +2,11 @@
 
 import { createSelector } from "reselect";
 import memoize from "lodash/memoize";
-const selectShop = ({ shop }) => shop.collection;
+const selectShop = ({ shop }) => shop?.collection;
 
 export const selectShopCollectionPreview = createSelector(
   [selectShop],
-  (collection) => (collection ? collection : [])
+  (collection) => collection
 );
 
 export const selectOverViewPage = memoize((path) =>

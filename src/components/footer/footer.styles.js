@@ -18,7 +18,6 @@ export const FooterContainer = styled.footer`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     flex-direction: column;
-    height: 100%;
 
     p {
       line-height: 3rem;
@@ -74,7 +73,7 @@ export const FooterMenu = styled.div`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     width: 100%;
-    transform: translateY(-40%);
+    transform: translateY(-55%);
 
     a {
       justify-self: center;

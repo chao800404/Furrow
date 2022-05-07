@@ -20,31 +20,41 @@ const CollectionPreview = () => {
   return (
     <CollectionPreviewPageContainer>
       <Flex>
-        <CollectionPreviewContainer
-          initial={{ visibility: "hidden", y: 10, opacity: 0 }}
-          animate={{ visibility: "visible", y: 0, height: "auto", opacity: 1 }}
-        >
-          <h2>McLaren Vision x ONESEC</h2>
-          <CollectionPreviewTitle>
-            <p style={{ fontSize: "2rem" }}>
-              Since partnering with McLaren Vision, the McLaren x ONESEC lineup
-              has received widely favourable reviews from both American and
-              European audiences for its combination of stunning aesthetics and
-              innovation.
-            </p>
-            <ReactSVG
-              beforeInjection={(svg) => {
-                svg.setAttribute("style", `height:20rem; fill:${theme.color}`);
-              }}
-              src={mclarenXOnesecLogo}
-            />
-          </CollectionPreviewTitle>
-          <CollectionCartContainer>
-            {collections?.map(({ id, ...otherProps }) => (
-              <Card key={id} {...otherProps} />
-            ))}
-          </CollectionCartContainer>
-        </CollectionPreviewContainer>
+        {collections && (
+          <CollectionPreviewContainer
+            initial={{ visibility: "hidden", y: 10, opacity: 0 }}
+            animate={{
+              visibility: "visible",
+              y: 0,
+              height: "auto",
+              opacity: 1,
+            }}
+          >
+            <h2>McLaren Vision x ONESEC</h2>
+            <CollectionPreviewTitle>
+              <p style={{ fontSize: "2rem" }}>
+                Since partnering with McLaren Vision, the McLaren x ONESEC
+                lineup has received widely favourable reviews from both American
+                and European audiences for its combination of stunning
+                aesthetics and innovation.
+              </p>
+              <ReactSVG
+                beforeInjection={(svg) => {
+                  svg.setAttribute(
+                    "style",
+                    `height:20rem; fill:${theme.color}`
+                  );
+                }}
+                src={mclarenXOnesecLogo}
+              />
+            </CollectionPreviewTitle>
+            <CollectionCartContainer>
+              {collections.map(({ id, ...otherProps }) => (
+                <Card key={id} {...otherProps} />
+              ))}
+            </CollectionCartContainer>
+          </CollectionPreviewContainer>
+        )}
       </Flex>
     </CollectionPreviewPageContainer>
   );

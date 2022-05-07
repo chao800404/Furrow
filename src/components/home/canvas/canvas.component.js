@@ -52,8 +52,8 @@ const CanvasBanner = () => {
     function renderText(text, baseline) {
       renderCtx.font =
         text === "What's"
-          ? `${radio() / 9}px Anton`
-          : `${radio() / 12}px Anton`;
+          ? `bold ${radio() / 9}px Oswald`
+          : `bold ${radio() / 12}px Oswald`;
       renderCtx.textAlign = "center";
       renderCtx.fillStyle = theme.color;
 

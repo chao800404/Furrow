@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
 
 export const SecondCardContainer = styled(motion.div)`
   width: 100%;
@@ -36,6 +37,11 @@ export const SecondCardContainer = styled(motion.div)`
     width: 80%;
     transform: translateY(50%);
     background-color: #000;
+  }
+
+  @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+    width: 22rem;
+    height: 28rem;
   }
 `;
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const ImgContainer = styled.div`
   width: 100%;
-  height: 15rem;
+  height: 20rem;
   display: grid;
   position: relative;
   overflow: hidden;

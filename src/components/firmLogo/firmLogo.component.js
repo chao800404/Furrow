@@ -7,8 +7,11 @@ import peng from "../../assets/firmLogo/peng-logo.svg";
 import rayban from "../../assets/firmLogo/rayban-logo.svg";
 import { ReactSVG } from "react-svg";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { selectThemeStyle } from "../../redux/theme/theme.select";
 
 const FirmLogoContent = () => {
+  const theme = useSelector(selectThemeStyle);
   return (
     <motion.div
       initial={{ x: 0, width: "auto", display: "flex", align: "center" }}
@@ -28,7 +31,13 @@ const FirmLogoContent = () => {
           beforeInjection={(svg) =>
             svg.setAttribute(
               "style",
-              "width:16rem; height:5rem; display:flex ; align-items:center; justify-content:center;"
+              `width:16rem; 
+              height:5rem; 
+              display:flex;
+              align-items:center; 
+              justify-content:center; 
+              fill:${theme.color}
+              `
             )
           }
           src={logo}

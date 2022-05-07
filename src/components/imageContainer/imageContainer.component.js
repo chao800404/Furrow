@@ -1,20 +1,14 @@
 /** @format */
 import { ImgContainer } from "./imageContainer.style";
-import { useDispatch } from "react-redux";
-import { checkImageLoad } from "../../redux/card/card.action";
+import PreLoadImage from "../preLoadImage/preLoadImage.component";
 
 const ImageContainer = ({
   props: { title, imageUrl, hovered = 1 },
   className,
 }) => {
-  const dispatch = useDispatch();
   return (
     <ImgContainer className={className}>
-      <img
-        alt={title}
-        src={imageUrl[hovered ? "dark" : "light"]}
-        onLoad={() => dispatch(checkImageLoad())}
-      />
+      <PreLoadImage text={title} url={imageUrl[hovered ? "dark" : "light"]} />
     </ImgContainer>
   );
 };

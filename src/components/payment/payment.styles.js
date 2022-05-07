@@ -7,6 +7,7 @@ export const PaymentContainer = styled.form`
   padding: 4rem;
   display: flex;
   flex-direction: column;
+
   h3,
   span,
   label {

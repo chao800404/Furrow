@@ -41,7 +41,6 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
             height: "2rem",
             width: "100%",
             display: "flex",
-            marginTop: "1rem",
           }}
         >
           {colorType.map((color, index) => (
@@ -59,9 +58,9 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
             />
           ))}
         </div>
-        <p>NT${price.toLocaleString("en-US")}</p>
+        <p className="card-price">NT${price.toLocaleString("en-US")}</p>
       </CardFeature>
-      <p>{statement}</p>
+      <p className="card-desc">{statement}</p>
       <Button path={routeName}>CHECK MORE</Button>
     </CardContainer>
   );

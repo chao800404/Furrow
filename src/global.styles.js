@@ -24,8 +24,14 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       background-color:${(props) => props.theme.backgroundColor};
       color: ${({ theme: { color } }) => color};
-      font-family: 'Anton', sans-serif;
+      font-family: 'Poppins', sans-serif;
       position:relative;
+
+      ${
+        "" /* @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+        font-family: 'Oswald', sans-serif;
+      } */
+      }
       
   }
 
@@ -72,7 +78,6 @@ a,button {
 
   p,div {
     font-size:2.5rem;
-    font-family: 'Oswald', sans-serif;
     color: ${({ theme: { bannerTitle } }) => bannerTitle};
   }
 
@@ -91,6 +96,10 @@ a,button {
   }
   button {
     color: ${({ theme: { color } }) => color};
+  }
+  
+  h1,h2,h3,h4,h5,h6,a {
+    font-family: 'Oswald', sans-serif;
   }
 
  

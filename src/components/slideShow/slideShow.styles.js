@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
 
 export const SlideContainer = styled.div`
   width: 100%;
@@ -13,6 +14,14 @@ export const SlideContainer = styled.div`
   z-index: 1;
   padding: 0;
   margin: 0;
+
+  @media only screen and (max-width: ${maxWidth.large}) {
+    height: 35vmax;
+  }
+
+  @media only screen and (max-width: 520px) {
+    height: 30vmax;
+  }
 `;
 
 export const SlideImgContainer = styled(motion.div)`

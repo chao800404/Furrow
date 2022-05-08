@@ -1,6 +1,7 @@
 /** @format */
 
 import styled from "styled-components";
+import maxWidth from "../../config/screen.size";
 
 export const ShopPageContainer = styled.div`
   width: 100%;
@@ -13,6 +14,13 @@ export const ShopPageContainer = styled.div`
   }
   h4 {
     font-size: 3rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    margin-top: 0;
+    h4 {
+      padding: 0 0 0.5rem 0;
+    }
   }
 `;
 
@@ -31,7 +39,7 @@ export const ShopPageSubtitle = styled.div`
 export const ShopPageImgContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 10rem 1fr 1fr;
   grid-gap: 1.5rem;
   margin-top: 5rem;

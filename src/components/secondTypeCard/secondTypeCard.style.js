@@ -38,6 +38,17 @@ export const SecondCardContainer = styled(motion.div)`
     transform: translateY(50%);
     background-color: #000;
   }
+  @media only screen and (max-width: ${maxWidth.large}) {
+    .second-card-img {
+      height: 18rem;
+    }
+  }
+
+  @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
+    .second-card-img {
+      height: 15rem;
+    }
+  }
 
   @media only screen and (max-width: ${maxWidth.mediumBelta}) {
     width: 22rem;

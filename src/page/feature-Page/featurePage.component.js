@@ -83,107 +83,115 @@ const FeaturePage = () => {
   return (
     <FeatureContainer>
       <Flex style={{ flexDirection: "column" }}>
-        <>
-          <FeatureBanner feature={feature} />
-          <FeatureStory>
-            <FeatureStoryContainer>
-              <FeatureContent>
-                <h3>{feature?.["story"]?.["title"]}</h3>
-                <p>{feature?.["story"]?.[inView]}</p>
-                <FeatureStoryBtnContainer onClick={handleClick}>
-                  <motion.span
-                    style={{ display: "block", width: "4.5rem" }}
-                    whileTap={{ x: -2, scale: 0.95 }}
-                    data-type="leftArrow"
+        {feature && (
+          <>
+            <FeatureBanner feature={feature} />
+            <FeatureStory>
+              <FeatureStoryContainer>
+                <FeatureContent>
+                  <h3>{feature?.["story"]?.["title"]}</h3>
+                  <p>{feature?.["story"]?.[inView]}</p>
+                  <FeatureStoryBtnContainer onClick={handleClick}>
+                    <motion.span
+                      style={{ display: "block", width: "4.5rem" }}
+                      whileTap={{ x: -2, scale: 0.95 }}
+                      data-type="leftArrow"
+                    >
+                      <BsArrowLeftSquareFill style={{ width: "100%" }} />
+                    </motion.span>
+                    <motion.span
+                      style={{ display: "block", width: "4.5rem" }}
+                      whileTap={{ x: 2, scale: 0.95 }}
+                      data-type="rightArrow"
+                    >
+                      <BsArrowRightSquareFill />
+                    </motion.span>
+                  </FeatureStoryBtnContainer>
+                </FeatureContent>
+                <FeatureImgContainer>
+                  <span>{imgArr?.[inView]?.["status"]}</span>
+                  <img alt="glasses-filter" src={imgArr?.[inView]?.["img"]} />
+                </FeatureImgContainer>
+              </FeatureStoryContainer>
+              {imgArr?.map((_, index) => (
+                <motion.div
+                  key={index}
+                  style={{
+                    gridColumn: "1 / -1",
+                    height: "40rem",
+                  }}
+                  data-item={index}
+                  onViewportEnter={() => setInView((prev) => (prev = index))}
+                  viewport={{ amount: 0.5 }}
+                />
+              ))}
+            </FeatureStory>
+            <FeatureFunction>
+              <h4>{feature?.["function"]?.[0]}</h4>
+              <FeatureFunctionContainer>
+                <div>
+                  {imgArr1?.map((data, index) => (
+                    <ProofIconContainer key={index}>
+                      <ReactSVG
+                        className="proof_icon"
+                        src={data?.["img"]}
+                        beforeInjection={(svg) =>
+                          svg.setAttribute(
+                            "style",
+                            `font-size:10rem; 
+                            display:flex; 
+                            align-items:center;
+                            justify-content:center;
+                            fill:${theme.color};
+                            pointer-events:none;
+                            `
+                          )
+                        }
+                      />
+                      <span>{data?.["statement"]}</span>
+                    </ProofIconContainer>
+                  ))}
+                </div>
+
+                <FeatureGlassesContainer
+                  onClick={handleGlassesFeatureDisplay}
+                  ref={featureBtnContainer}
+                >
+                  <FeatureGlassesBtn
+                    whileTap={{ scale: 0.95 }}
+                    data-type="featureBtn-0"
                   >
-                    <BsArrowLeftSquareFill style={{ width: "100%" }} />
-                  </motion.span>
-                  <motion.span
-                    style={{ display: "block", width: "4.5rem" }}
-                    whileTap={{ x: 2, scale: 0.95 }}
-                    data-type="rightArrow"
+                    <span className="function-desc-1">
+                      {feature?.["property"]?.[0]}
+                    </span>
+                    <BsPlusCircleFill />
+                  </FeatureGlassesBtn>
+
+                  <FeatureGlassesBtn
+                    whileTap={{ scale: 0.95 }}
+                    data-type="featureBtn-1"
                   >
-                    <BsArrowRightSquareFill />
-                  </motion.span>
-                </FeatureStoryBtnContainer>
-              </FeatureContent>
-              <FeatureImgContainer>
-                <span>{imgArr?.[inView]?.["status"]}</span>
-                <img alt="glasses-filter" src={imgArr?.[inView]?.["img"]} />
-              </FeatureImgContainer>
-            </FeatureStoryContainer>
-            {imgArr?.map((_, index) => (
-              <motion.div
-                key={index}
-                style={{
-                  gridColumn: "1 / -1",
-                  height: "40rem",
-                }}
-                data-item={index}
-                onViewportEnter={() => setInView((prev) => (prev = index))}
-                viewport={{ amount: 0.5 }}
-              />
-            ))}
-          </FeatureStory>
-          <FeatureFunction>
-            <h4>{feature?.["function"]?.[0]}</h4>
-            <FeatureFunctionContainer>
-              <div>
-                {imgArr1?.map((data, index) => (
-                  <ProofIconContainer key={index}>
-                    <ReactSVG
-                      className="proof_icon"
-                      src={data?.["img"]}
-                      beforeInjection={(svg) =>
-                        svg.setAttribute(
-                          "style",
-                          `font-size:10rem; display:flex ; align-items:center;justify-content:center;fill:${theme.color};`
-                        )
-                      }
-                    />
-                    <span>{data?.["statement"]}</span>
-                  </ProofIconContainer>
-                ))}
-              </div>
+                    <span className="function-desc-2">
+                      {feature?.["property"]?.[1]}
+                    </span>
+                    <BsPlusCircleFill />
+                  </FeatureGlassesBtn>
+                  <FeatureGlassesBtn
+                    whileTap={{ scale: 0.95 }}
+                    data-type="featureBtn-2"
+                  >
+                    <span className="function-desc-3">
+                      {feature?.["property"]?.[2]}
+                    </span>
+                    <BsPlusCircleFill />
+                  </FeatureGlassesBtn>
 
-              <FeatureGlassesContainer
-                onClick={handleGlassesFeatureDisplay}
-                ref={featureBtnContainer}
-              >
-                <FeatureGlassesBtn
-                  whileTap={{ scale: 0.95 }}
-                  data-type="featureBtn-0"
-                >
-                  <span className="function-desc-1">
-                    {feature?.["property"]?.[0]}
-                  </span>
-                  <BsPlusCircleFill />
-                </FeatureGlassesBtn>
-
-                <FeatureGlassesBtn
-                  whileTap={{ scale: 0.95 }}
-                  data-type="featureBtn-1"
-                >
-                  <span className="function-desc-2">
-                    {feature?.["property"]?.[1]}
-                  </span>
-                  <BsPlusCircleFill />
-                </FeatureGlassesBtn>
-                <FeatureGlassesBtn
-                  whileTap={{ scale: 0.95 }}
-                  data-type="featureBtn-2"
-                >
-                  <span className="function-desc-3">
-                    {feature?.["property"]?.[2]}
-                  </span>
-                  <BsPlusCircleFill />
-                </FeatureGlassesBtn>
-
-                <img alt="glasses" src={featureImg} />
-              </FeatureGlassesContainer>
-            </FeatureFunctionContainer>
-          </FeatureFunction>
-        </>
+                  <img alt="glasses" src={featureImg} />
+                </FeatureGlassesContainer>
+              </FeatureFunctionContainer>
+            </FeatureFunction>
+          </>
+        )}
       </Flex>
     </FeatureContainer>
   );

@@ -27,7 +27,13 @@ export const CollectionOverViewContainer = styled(motion.section)`
 
   @media only screen and (max-width: ${maxWidth.medium}) {
     h1 {
-      font-size: 8rem;
+      font-size: 10rem;
+    }
+  }
+
+  @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+    h1 {
+      margin-top: 0;
     }
   }
 `;

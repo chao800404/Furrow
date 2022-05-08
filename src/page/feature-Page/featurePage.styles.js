@@ -55,7 +55,7 @@ export const FeatureContent = styled.div`
 
   p {
     font-size: 1.8rem;
-    letter-spacing: 0.1rem;
+    width: 90%;
   }
   span {
     font-size: 3rem;
@@ -135,7 +135,7 @@ export const FeatureGlassesBtn = styled(motion.div)`
     position: absolute;
     display: block;
     font-size: 1.5rem;
-    width: 12rem;
+    width: auto;
     padding: 1rem;
     background-color: #fff;
     border-radius: 0.5rem;
@@ -276,13 +276,13 @@ export const FeatureGlassesContainer = styled.div`
     }
     .function-desc-2 {
       left: 0;
-      top: -5rem;
+      top: -7rem;
     }
     .function-desc-3 {
-      bottom: -6rem;
+      bottom: -8rem;
       top: unset;
       right: -15rem;
-      width: 20rem;
+      width: auto;
     }
   }
 `;

@@ -12,6 +12,8 @@ import {
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
+import useWinowSize from "../../utils/useWindowSize";
+import maxWidth from "../../config/screen.size";
 
 const variants = {
   enter: (direction) => {
@@ -39,7 +41,7 @@ const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
 };
 
-const btnStyle = (direction, hovered) => {
+const btnStyle = (direction, hovered, isMobile) => {
   return {
     fontSize: "4rem",
     top: "50%",
@@ -47,7 +49,7 @@ const btnStyle = (direction, hovered) => {
     left: `${direction ? "" : "0"}`,
     right: `${direction ? "0" : ""}`,
     transform: `translate(${direction ? "50%,-50%" : "-50%,-50%"})`,
-    opacity: `${hovered ? 1 : 0}`,
+    opacity: `${hovered || isMobile ? 1 : 0}`,
     transition: "all .5s ease-in-out",
     width: "5rem",
     zIndex: 30,
@@ -62,20 +64,23 @@ const SlideShow = ({ src, alt }) => {
     setPage([page + newDirection, newDirection]);
   };
 
+  const { width } = useWinowSize();
+  const isMobile = maxWidth.small.replace("px", "") >= width;
+
   return (
     <SlideContainer
       onMouseEnter={() => setHovered((prevHovered) => !prevHovered)}
       onMouseLeave={() => setHovered((prevHovered) => !prevHovered)}
     >
       <div
-        style={btnStyle(1, hovered)}
+        style={btnStyle(1, hovered, isMobile)}
         data-type="rightBtn"
         onClick={() => paginate(1)}
       >
         <BsFillArrowRightSquareFill />
       </div>
       <div
-        style={btnStyle(0, hovered)}
+        style={btnStyle(0, hovered, isMobile)}
         data-type="leftBtn"
         onClick={() => paginate(-1)}
       >

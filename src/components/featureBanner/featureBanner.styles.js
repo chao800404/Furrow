@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import maxWidth from "../../config/screen.size";
 import { motion } from "framer-motion";
+import primaryColor from "../../theme/priamry.styles";
 
 export const FeatureBannerContainer = styled.div`
   display: flex;
@@ -29,14 +30,15 @@ export const FeatureTitle = styled.div`
   text-align: center;
   transform: translateX(-50%);
   text-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.5);
-
+  color: ${primaryColor.primaryWhite};
   h1 {
     font-size: calc(5rem + 4vw);
+    color: inherit;
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
     width: 90%;
-    bottom: 20%;
+    bottom: 30%;
     font-size: 1.8rem;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5);

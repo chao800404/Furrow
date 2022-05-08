@@ -37,6 +37,10 @@ export const CardContainer = styled.div`
     height: 20rem;
   }
 
+  .card-desc {
+    height: 3.5rem;
+  }
+
   @media only screen and (max-width: ${maxWidth.small}) {
     .card-img {
       width: 23rem;
@@ -52,7 +56,6 @@ export const CardContainer = styled.div`
     }
 
     .card-desc {
-      height: 3.5rem;
       margin-top: 1.5rem;
     }
   }

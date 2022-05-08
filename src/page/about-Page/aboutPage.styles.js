@@ -16,9 +16,12 @@ const DescriptionTemplage = css`
 
   p {
     font-size: 2rem;
-    letter-spacing: 0.1rem;
     margin-bottom: 3rem;
     font-weight: 300;
+
+    @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+      font-size: 1.5rem;
+    }
   }
 `;
 

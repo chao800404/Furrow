@@ -22,7 +22,10 @@ const SecondTypeCard = ({ title, color, price, imageUrl }) => {
       transition={{ default: { duration: 0.3 } }}
       onClick={handleClick}
     >
-      <ImageContainer props={{ title, imageUrl, hovered }} />
+      <ImageContainer
+        className="second-card-img"
+        props={{ title, imageUrl, hovered }}
+      />
       <h3>
         {title} <span>{color}</span>
       </h3>

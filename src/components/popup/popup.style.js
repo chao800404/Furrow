@@ -66,7 +66,7 @@ export const PopupBoxContainer = styled.div`
   padding: 25rem 0;
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    padding: 15rem 0;
+    padding: 10rem 0;
   }
 `;
 

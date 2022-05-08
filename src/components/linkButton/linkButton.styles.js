@@ -24,5 +24,6 @@ export const LinkBtnContainer = styled(motion.button)`
   @media only screen and (max-width: ${maxWidth.small}) {
     width: 9rem;
     font-size: 1rem;
+    font-weight: bold;
   }
 `;

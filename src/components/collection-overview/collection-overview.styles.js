@@ -36,6 +36,11 @@ export const CollectionOverViewContainer = styled(motion.section)`
       margin-top: 0;
     }
   }
+  @media only screen and (max-width: ${maxWidth.small}) {
+    h1 {
+      font-size: 7rem;
+    }
+  }
 `;
 
 export const CollectionOverViewLinkBtn = styled.div`

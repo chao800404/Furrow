@@ -86,7 +86,9 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
       {displayCover ? (
         <CheckoutRemoveCover onClick={handleRemoveCartItem}>
           <div>
+            <img alt={title} src={imageUrl[`${hovered ? "dark" : "light"}`]} />
             <h3>Are you sure you want to remove this item?</h3>
+
             <Button data="cancel" style={btnStyle(null)}>
               CANCEL
             </Button>

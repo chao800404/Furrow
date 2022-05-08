@@ -1,6 +1,7 @@
 /** @format */
 
 import styled from "styled-components";
+import maxWidth from "../../config/screen.size";
 
 export const CheckoutListContainer = styled.div`
   display: inherit;
@@ -37,6 +38,16 @@ export const CheckoutListTitle = styled.div`
       margin-left: 2rem;
       font-weight: 300;
       letter-spacing: 0.1rem;
+    }
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    h3 {
+      font-size: 2rem;
+      span {
+        font-size: 1.2rem;
+        zoom: 0.9;
+      }
     }
   }
 `;

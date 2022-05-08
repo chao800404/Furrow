@@ -1,6 +1,7 @@
 /** @format */
 
 import styled from "styled-components";
+import maxWidth from "../../config/screen.size";
 
 export const PaymentFromContainer = styled.div`
   height: 30rem;
@@ -65,5 +66,14 @@ export const PaymentFromContainer = styled.div`
     font-size: 4rem;
     font-weight: bold;
     margin-bottom: 1rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    #fullName {
+      margin-top: 1rem;
+    }
+    .ShippingDestination {
+      margin-bottom: 3rem;
+    }
   }
 `;

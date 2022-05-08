@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import primaryColor from "../../theme/priamry.styles";
+import maxWidth from "../../config/screen.size";
 
 export const CheckoutItemContainer = styled.div`
   grid-template-columns: repeat(6, 1fr);
@@ -61,6 +62,37 @@ export const CheckoutItemContainer = styled.div`
   svg {
     font-size: 1.5rem;
   }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-template-columns: inherit;
+    grid-column: 1 / -1;
+    .price {
+      display: none;
+    }
+    img {
+      width: 100%;
+      grid-column: 2 / 3;
+      height: 98%;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      zoom: 0.8;
+    }
+
+    .total-price {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    input {
+      width: 3rem;
+      height: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const CheckoutWarnings = styled.span`
@@ -87,14 +119,25 @@ export const CheckoutRemoveCover = styled.div`
   div {
     width: 25%;
     min-width: 30rem;
-    height: 15rem;
+    height: auto;
+    padding: 2rem;
     background-color: #fff;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 15rem 5rem 1fr;
+    overflow: hidden;
 
     h3 {
       color: #161616;
       grid-column: 1 /-1;
+    }
+
+    img {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 60%;
+      height: 25rem;
+      min-width: 25rem;
     }
   }
 `;

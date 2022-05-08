@@ -12,6 +12,7 @@ import {
   CheckoutPament,
   CheckoutHeader,
   CheckoutSignIn,
+  CheckoutPageContainer,
 } from "./checkoutpage.styles";
 import { selectCurrentUser } from "../../redux/user/user.select";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +38,7 @@ const CheckOutPage = () => {
   };
 
   return (
-    <section style={{ minHeight: "100vh", padding: "20rem 0" }}>
+    <CheckoutPageContainer>
       <Flex>
         <CheckoutContainer>
           {existUser || toggleHidden ? null : (
@@ -85,7 +86,7 @@ const CheckOutPage = () => {
           </CheckoutPament>
         </CheckoutContainer>
       </Flex>
-    </section>
+    </CheckoutPageContainer>
   );
 };
 

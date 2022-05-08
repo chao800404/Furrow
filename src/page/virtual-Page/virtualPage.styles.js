@@ -1,8 +1,9 @@
 /** @format */
 
 import styled from "styled-components";
+import maxWidth from "../../config/screen.size";
 
-export const VirtualContainer = styled.section`
+export const VirtualPageContainer = styled.section`
   width: 100%;
   min-height: 100vh;
   padding: 20rem 0 10rem 0;
@@ -28,8 +29,8 @@ export const VirtualContainer = styled.section`
   }
 
   .virtual-VR {
-    height: 100vh;
-    width: 75rem;
+    height: auto;
+    width: 100%;
     margin-left: 2rem;
     h1 {
       font-size: 5rem;
@@ -60,5 +61,27 @@ export const VirtualContainer = styled.section`
       color: ${({ theme }) => theme.backgroundColor};
       margin-top: 2rem;
     }
+  }
+
+  @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+    padding: 10rem 0 10rem 0;
+    .virtaul-side {
+      width: 100%;
+      height: auto;
+      padding: 0;
+      overflow: auto;
+    }
+    .virtual-VR {
+      margin-left: 0;
+    }
+  }
+`;
+
+export const VirtualContainer = styled.div`
+  width: 100%;
+  display: flex;
+
+  @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+    flex-direction: column-reverse;
   }
 `;

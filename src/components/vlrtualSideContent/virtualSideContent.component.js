@@ -8,7 +8,7 @@ const VirtualSideContent = ({ collection, setImageLoad }) => {
 
   return (
     <VirtualSideCt>
-      <h3>Virtual-{title}</h3>
+      <h3 className="VirtualTitle">Virtual-{title}</h3>
       {item.map((item, index) => (
         <VirtualSideItem
           key={id + index}

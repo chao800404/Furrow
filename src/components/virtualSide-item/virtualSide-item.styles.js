@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
 
 export const VirtualSideItemContainer = styled(motion.div)`
   width: 98%;
@@ -43,5 +44,22 @@ export const VirtualSideItemContainer = styled(motion.div)`
     grid-row: 1 / -1;
     align-self: center;
     justify-self: center;
+  }
+
+  @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+    width: 25rem;
+    grid-template-columns: 1fr;
+    height: 20rem;
+    padding: 2rem;
+    margin-top: 0;
+
+    h3,
+    span {
+      text-align: center;
+    }
+
+    .virtual-img {
+      width: 100%;
+    }
   }
 `;

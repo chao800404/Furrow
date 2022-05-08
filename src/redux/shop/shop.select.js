@@ -21,17 +21,20 @@ export const selectOverViewPage = memoize((path) =>
 );
 
 export const selectPopupView = (path, colorType) => {
-  return createSelector([selectShopCollectionPreview], (collection) =>
-    collection
-      ?.reduce((acc, { title, ...otherProps }) => {
-        acc[title.toUpperCase()] = { title, ...otherProps };
-        return acc;
-      }, {})
-      [path.toUpperCase()].item.filter((item) => item.color === colorType)
-      .reduce((acc, item) => acc + item)
+  return createSelector(
+    [selectShopCollectionPreview],
+    (collection) =>
+      collection
+        ?.reduce((acc, { title, ...otherProps }) => {
+          acc[title.toUpperCase()] = { title, ...otherProps };
+          return acc;
+        }, {})
+        [path.toUpperCase()].item.filter((item) => item.color === colorType)
+        .reduce((acc, item) => acc + item) || {}
   );
 };
 
-export const selectOverViewLink = createSelector([selectShop], (collection) =>
-  collection ? collection.map((collection) => collection.title) : []
+export const selectOverViewLink = createSelector(
+  [selectShop],
+  (collection) => collection?.map((collection) => collection.title) || []
 );

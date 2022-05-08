@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import primaryColor from "../../theme/priamry.styles";
+import maxWidth from "../../config/screen.size";
 
 export const LinkBtnContainer = styled(motion.button)`
   border: none;
@@ -18,5 +19,10 @@ export const LinkBtnContainer = styled(motion.button)`
   &:hover {
     background-color: ${primaryColor.cursorColor};
     color: ${(props) => props.theme.backgroundColor};
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 9rem;
+    font-size: 1rem;
   }
 `;

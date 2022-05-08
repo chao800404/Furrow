@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import primaryColor from "../../theme/priamry.styles";
+import maxWidth from "../../config/screen.size";
 
 export const PopupContainer = styled.div`
   width: 100%;
@@ -21,11 +22,10 @@ export const PopupContainer = styled.div`
   ul {
     justify-self: center;
     width: 100rem;
-    transform: translateY(-60%);
+    transform: translateY(-10vw);
 
     h3 {
       font-size: 5rem;
-      margin-bottom: 1.5rem;
     }
 
     li {
@@ -33,29 +33,53 @@ export const PopupContainer = styled.div`
       transform: translateX(3rem);
     }
   }
-  button {
-    margin-top: 3rem;
+
+  @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
+    ul {
+      width: 60rem;
+      margin-top: 0;
+      height: auto;
+      h3 {
+        font-size: 3.5rem;
+      }
+
+      li {
+        font-size: 1.2rem;
+        transform: translateX(1.2rem);
+      }
+    }
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    ul {
+      width: 90%;
+    }
   }
 `;
 
 export const PopupBoxContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 25rem 0;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    padding: 15rem 0;
+  }
 `;
 
 export const PopupBox = styled(motion.div)`
   width: 100rem;
-  min-width: 40rem;
+  min-height: 35rem;
   padding: 2em;
   background-color: #fff;
   align-self: center;
   justify-self: center;
   border-radius: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   position: relative;
   grid-gap: 0 5rem;
 
@@ -77,23 +101,29 @@ export const PopupBox = styled(motion.div)`
   h3 {
     font-size: 3.5rem;
     font-weight: 800;
-    letter-spacing: 0.2rem;
     margin-bottom: 2rem;
   }
 
   p {
     font-size: 1.5rem;
+    font-weight: 500;
   }
 
   img {
     width: 100%;
     flex: 1;
   }
+
+  button {
+    margin-top: 3rem;
+  }
   .popup-text_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #111;
+
+    padding-bottom: 1rem;
   }
   .popup-canvas {
     align-self: center;
@@ -156,9 +186,14 @@ export const PopupBox = styled(motion.div)`
     align-items: center;
     justify-content: space-between;
   }
+
+  .popup_calculator_container {
+    transform: translateY(-2rem);
+    width: 100%;
+  }
+
   .color_container {
     display: flex;
-    padding-bottom: 1rem;
 
     span {
       &:not(:last-child) {
@@ -172,7 +207,61 @@ export const PopupBox = styled(motion.div)`
     grid-template-columns: 1fr 5fr;
     grid-column-gap: 1rem;
   }
+
+  @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 30rem 1fr;
+    width: 60rem;
+    min-height: 60rem;
+
+    h3 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      margin-top: 3rem;
+    }
+
+    .popup_calculator_container {
+      transform: unset;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .popup_calculator {
+      margin-top: 0;
+    }
+    .popup_calculator-item {
+      margin-left: 2rem;
+    }
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 90%;
+    padding: 0;
+
+    h3 {
+      font-size: 4rem;
+    }
+
+    .popup_calculator_container {
+      margin-top: 2rem;
+      justify-content: space-between;
+    }
+
+    .popup_price {
+      margin-top: 2rem;
+    }
+  }
 `;
 export const PopupForm = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media only screen and (max-width: ${maxWidth.small}) {
+    padding: 0 4rem 4rem 4rem;
+  }
 `;

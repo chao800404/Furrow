@@ -20,7 +20,7 @@ import { checkARIsPointer } from "../../redux/card/card.action";
 import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 
-const GlassesModel = ({ type, color, toggleElectrochromic }) => {
+const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
@@ -31,7 +31,11 @@ const GlassesModel = ({ type, color, toggleElectrochromic }) => {
     <ClassesModelContainer>
       <CanvasContainer
         shadows
-        camera={{ position: [0, 20, 0], fov: 30 }}
+        camera={
+          isMobile
+            ? { position: [0, 25, 0], fov: 30 }
+            : { position: [0, 20, 0], fov: 30 }
+        }
         dpr={[1, 2]}
       >
         <ambientLight intensity={0.2} />

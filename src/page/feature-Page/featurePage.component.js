@@ -22,7 +22,6 @@ import {
   BsPlusCircleFill,
 } from "react-icons/bs";
 import featureImg from "../../assets/featurePhoto/feature_image_4.webp";
-// import FeatureBanner from "../../components/featureBanner/featureBanner.component";
 import { imgArr, imgArr1 } from "./featurePage.data";
 import { useSelector, useDispatch } from "react-redux";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
@@ -46,13 +45,14 @@ const FeaturePage = () => {
   }, [dispatch]);
 
   const increment = useCallback((btnType) => {
+    if (!imgArr || !imgArr1) return;
     btnType.dataset.type === "leftArrow"
       ? setInView((prev) => {
           if (prev <= 0) return (prev = 0);
           return (prev = prev - 1);
         })
       : setInView((prev) => {
-          if (prev >= imgArr.length - 1) return (prev = imgArr.length - 1);
+          if (prev >= imgArr?.length - 1) return (prev = imgArr?.length - 1);
           return (prev = prev + 1);
         });
   }, []);
@@ -71,26 +71,26 @@ const FeaturePage = () => {
   };
 
   useEffect(() => {
-    if (!feature) return;
+    if (!feature || !imgArr || !imgArr1) return;
     const btnContainer = featureBtnContainer.current;
-    [...btnContainer?.children].forEach((dom) =>
-      dom.children[0]?.classList.remove("visible")
+    [...btnContainer.children].forEach((dom) =>
+      dom?.children[0]?.classList.remove("visible")
     );
-    const btnContent = btnContainer?.children?.[displayProperty]?.children?.[0];
-    btnContent.classList.add("visible");
+    const btnContent = btnContainer.children?.[displayProperty].children?.[0];
+    btnContent?.classList.add("visible");
   }, [displayProperty, feature]);
 
   return (
     <FeatureContainer>
       <Flex style={{ flexDirection: "column" }}>
-        {feature && (
+        {feature && imgArr && imgArr1 && (
           <>
             <FeatureBanner feature={feature} />
             <FeatureStory>
               <FeatureStoryContainer>
                 <FeatureContent>
-                  <h3>{feature?.["story"]?.["title"]}</h3>
-                  <p>{feature?.["story"]?.[inView]}</p>
+                  <h3>{feature["story"]["title"]}</h3>
+                  <p>{feature["story"][inView]}</p>
                   <FeatureStoryBtnContainer onClick={handleClick}>
                     <motion.span
                       style={{ display: "block", width: "4.5rem" }}
@@ -109,11 +109,11 @@ const FeaturePage = () => {
                   </FeatureStoryBtnContainer>
                 </FeatureContent>
                 <FeatureImgContainer>
-                  <span>{imgArr?.[inView]?.["status"]}</span>
-                  <img alt="glasses-filter" src={imgArr?.[inView]?.["img"]} />
+                  <span>{imgArr[inView]["status"]}</span>
+                  <img alt="glasses-filter" src={imgArr[inView]["img"]} />
                 </FeatureImgContainer>
               </FeatureStoryContainer>
-              {imgArr?.map((_, index) => (
+              {imgArr.map((_, index) => (
                 <motion.div
                   key={index}
                   style={{
@@ -127,14 +127,14 @@ const FeaturePage = () => {
               ))}
             </FeatureStory>
             <FeatureFunction>
-              <h4>{feature?.["function"]?.[0]}</h4>
+              <h4>{feature["function"][0]}</h4>
               <FeatureFunctionContainer>
                 <div>
-                  {imgArr1?.map((data, index) => (
+                  {imgArr1.map((data, index) => (
                     <ProofIconContainer key={index}>
                       <ReactSVG
                         className="proof_icon"
-                        src={data?.["img"]}
+                        src={data["img"]}
                         beforeInjection={(svg) =>
                           svg.setAttribute(
                             "style",
@@ -148,7 +148,7 @@ const FeaturePage = () => {
                           )
                         }
                       />
-                      <span>{data?.["statement"]}</span>
+                      <span>{data["statement"]}</span>
                     </ProofIconContainer>
                   ))}
                 </div>
@@ -162,7 +162,7 @@ const FeaturePage = () => {
                     data-type="featureBtn-0"
                   >
                     <span className="function-desc-1">
-                      {feature?.["property"]?.[0]}
+                      {feature["property"][0]}
                     </span>
                     <BsPlusCircleFill />
                   </FeatureGlassesBtn>
@@ -172,7 +172,7 @@ const FeaturePage = () => {
                     data-type="featureBtn-1"
                   >
                     <span className="function-desc-2">
-                      {feature?.["property"]?.[1]}
+                      {feature?.["property"][1]}
                     </span>
                     <BsPlusCircleFill />
                   </FeatureGlassesBtn>
@@ -181,7 +181,7 @@ const FeaturePage = () => {
                     data-type="featureBtn-2"
                   >
                     <span className="function-desc-3">
-                      {feature?.["property"]?.[2]}
+                      {feature["property"][2]}
                     </span>
                     <BsPlusCircleFill />
                   </FeatureGlassesBtn>

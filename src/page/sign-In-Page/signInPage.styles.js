@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import maxWidth from "../../config/screen.size";
 
 export const SignInPageContainer = styled.section`
-  min-height: 100vh;
+  min-height: 100vmax;
   padding: 20rem 0;
   @media only screen and (max-width: ${maxWidth.small}) {
-    padding: 20rem 0 10rem 0;
+    padding: 15rem 0 5rem 0;
   }
 `;
 

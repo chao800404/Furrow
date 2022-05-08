@@ -6,6 +6,7 @@ import {
   PopupBoxContainer,
 } from "./popup.style";
 import { useState, useCallback } from "react";
+import useWinowSize from "../../utils/useWindowSize";
 import { useParams, useNavigate } from "react-router-dom";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -21,6 +22,7 @@ import Spinner from "../spinner/spinner.component";
 import glassesIcon from "../../assets/svgIcon/glasses-icon.svg";
 import glassesIconDark from "../../assets/svgIcon/glasses-icon-dark.svg";
 import { ReactSVG } from "react-svg";
+import maxWidth from "../../config/screen.size";
 
 const SvgIcon = ({ src }) => (
   <ReactSVG
@@ -49,9 +51,11 @@ const Popup = ({ collection }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { rgb, price, imageUrl, id, color } = useSelector(
-    selectPopupView(collection.title, currentColor)
+    selectPopupView(collection?.title, currentColor)
   );
-  const title = `${collection.title}-${color}`;
+  const isMobile = maxWidth >= useWinowSize();
+
+  const title = `${collection?.title}-${color}`;
 
   const goToPrevPage = useCallback(() => {
     navigate("shop", { replace: false });
@@ -98,74 +102,80 @@ const Popup = ({ collection }) => {
           onAnimationComplete={() => setTransitionEnd(true)}
         >
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
-          {transitionEnd ? (
-            <GlassesModel
-              type={collection.title}
-              color={color}
-              toggleElectrochromic={toggleElectrochromic}
-            />
-          ) : (
-            <Spinner />
-          )}
-          <PopupForm>
-            <h3>{title}</h3>
-            <div className="popup-text_container">
-              <p>{collection.statement}</p>
-              <div className="color_container">
-                {collection.colorType.map((rgb, index) => (
-                  <ColorBox
-                    onClick={(e) => setCurrentColor(e.target.dataset.color)}
-                    style={{
-                      width: "2rem",
-                      height: "2rem",
-                      display: "block",
-                      borderRadius: "50%",
-                      backgroundColor: `${rgb}`,
-                    }}
-                    key={index}
-                    color={collection.item[index].color}
-                    active={collection.item[index].color === currentColor}
-                  ></ColorBox>
-                ))}
-              </div>
-            </div>
-            <div className="popup_price">NT$ {price.toLocaleString("US")}</div>
-            <div className="popup_calculator">
-              <div style={{ transform: "translateY(-2rem)", width: "100%" }}>
-                <p>Quantity</p>
-                <div className="popup_calculator-item">
-                  <div className="popup_calculator">
-                    <AiOutlineMinus
-                      onClick={() =>
-                        quantity > 0 ? setQuantity(quantity - 1) : null
-                      }
-                    />
-                    <input
-                      value={quantity}
-                      onChange={(e) => setQuantity(e.target.value)}
-                      type="number"
-                    />
-                    <AiOutlinePlus onClick={() => setQuantity(quantity + 1)} />
+          {collection && (
+            <>
+              {transitionEnd ? (
+                <GlassesModel
+                  type={collection.title}
+                  color={color}
+                  toggleElectrochromic={toggleElectrochromic}
+                  isMobile={isMobile}
+                />
+              ) : (
+                <Spinner />
+              )}
+              <PopupForm>
+                <h3>{title}</h3>
+                <div className="popup-text_container">
+                  <p>{collection.statement}</p>
+                  <div className="color_container">
+                    {collection.colorType?.map((rgb, index) => (
+                      <ColorBox
+                        onClick={(e) => setCurrentColor(e.target.dataset.color)}
+                        style={{
+                          width: "2rem",
+                          height: "2rem",
+                          display: "block",
+                          borderRadius: "50%",
+                          backgroundColor: `${rgb}`,
+                        }}
+                        key={index}
+                        color={collection.item[index].color}
+                        active={collection.item[index].color === currentColor}
+                      ></ColorBox>
+                    ))}
                   </div>
-                  {quantity <= 0 ? (
-                    <span className="popup_warm">Can not less than 1</span>
-                  ) : null}
                 </div>
-              </div>
-            </div>
-            <div className="button_container">
-              <Button data="electrochromic">
-                {toggleElectrochromic ? (
-                  <SvgIcon src={glassesIconDark} />
-                ) : (
-                  <SvgIcon src={glassesIcon} />
-                )}
-              </Button>
-              <Button style={{ fontSize: "2rem" }} data="add-cart-btn">
-                Add To Cart
-              </Button>
-            </div>
-          </PopupForm>
+                <div className="popup_price">
+                  NT$ {price.toLocaleString("US")}
+                </div>
+                <div className="popup_calculator">
+                  <div className="popup_calculator_container">
+                    <p>Quantity</p>
+                    <div className="popup_calculator-item">
+                      <div className="popup_calculator">
+                        <AiOutlineMinus
+                          onClick={() =>
+                            quantity > 0 ? setQuantity(quantity - 1) : null
+                          }
+                        />
+                        <input
+                          value={quantity}
+                          onChange={(e) => setQuantity(e.target.value)}
+                          type="number"
+                        />
+                        <AiOutlinePlus
+                          onClick={() => setQuantity(quantity + 1)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="button_container">
+                  <Button data="electrochromic">
+                    {toggleElectrochromic ? (
+                      <SvgIcon src={glassesIconDark} />
+                    ) : (
+                      <SvgIcon src={glassesIcon} />
+                    )}
+                  </Button>
+                  <Button style={{ fontSize: "2rem" }} data="add-cart-btn">
+                    Add To Cart
+                  </Button>
+                </div>
+              </PopupForm>
+            </>
+          )}
         </PopupBox>
       </PopupBoxContainer>
       <UserGuide />

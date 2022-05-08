@@ -243,7 +243,7 @@ export const PopupBox = styled(motion.div)`
     padding: 0;
 
     h3 {
-      font-size: 4rem;
+      font-size: 3rem;
     }
 
     .popup_calculator_container {

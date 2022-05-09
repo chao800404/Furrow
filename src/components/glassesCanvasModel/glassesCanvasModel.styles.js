@@ -8,6 +8,8 @@ export const ClassesModelContainer = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
 `;
 
 export const CanvasContainer = styled(Canvas)`

@@ -7,21 +7,16 @@ import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../../redux/sidebar/sidebar.actions";
 
 import { sidebarAnEnd } from "../../redux/sidebar/sidebar.actions";
-import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 
 const SidebarItemLi = ({ link, name, index }) => {
   const [isHover, setIsHover] = useState(false);
 
   const dispatch = useDispatch();
 
-  const isMobile = useCheckScreenIsMobile();
-
   const hanldeClick = () => {
     dispatch(toggleSidebar());
     dispatch(toggleSidebar());
   };
-
-  console.log(isMobile);
 
   useEffect(() => {
     dispatch(sidebarAnEnd(false));

@@ -50,6 +50,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
           <CurGlassesModel
             onPointerDown={() => dispatch(checkARIsPointer())}
             mode={toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3}
+            key={curType + curColor}
           />
           <ContactShadows
             rotation-x={Math.PI / 2}

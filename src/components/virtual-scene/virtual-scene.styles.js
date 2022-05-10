@@ -3,15 +3,30 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
+import maxWidth from "../../config/screen.size";
 
 export const VirtualSceneContainer = styled.div`
-  width: 100%;
+  width: 80rem;
   height: 50rem;
   margin-top: 2rem;
   position: relative;
 
   .fullScreen {
     height: 100%;
+  }
+
+  @media only screen and (max-width: ${maxWidth.large}) {
+    width: 72rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.medium}) {
+    width: 66rem;
+  }
+  @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
+    width: 65vw;
+  }
+  @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+    width: 100%;
   }
 `;
 

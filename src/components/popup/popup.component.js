@@ -7,7 +7,7 @@ import {
 } from "./popup.style";
 import { useState, useCallback } from "react";
 import useWinowSize from "../../utils/useWindowSize";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -44,24 +44,37 @@ const SvgIcon = ({ src }) => (
 
 const Popup = ({ collection }) => {
   const { colorType } = useParams();
-  const [currentColor, setCurrentColor] = useState(colorType);
   const [quantity, setQuantity] = useState(1);
   const [transitionEnd, setTransitionEnd] = useState(false);
   const [toggleElectrochromic, setToggleElectrochromic] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { rgb, price, imageUrl, id, color } = useSelector(
-    selectPopupView(collection?.title, currentColor)
+    selectPopupView(collection?.title, colorType)
   );
   const isMobile = maxWidth >= useWinowSize();
+  const location = useLocation();
 
   const title = `${collection?.title}-${color}`;
 
-  const goToPrevPage = useCallback(() => {
-    navigate("shop", { replace: false });
-    document.body.style.overflow = "unset";
+  const prevPage = useCallback(
+    () =>
+      location.pathname
+        .split("/")
+        .filter((_, index) => index < 3)
+        .join("/"),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
+
+  const goToPrevPage = () => {
+    navigate(`${prevPage()}`);
+    document.body.style.overflow = "unset";
+  };
+
+  const changeGlassesColorParms = (color) => {
+    navigate(`${prevPage()}/${color}`);
+  };
 
   const handleClick = (e) => {
     const target = e.target.dataset.item;
@@ -121,7 +134,9 @@ const Popup = ({ collection }) => {
                   <div className="color_container">
                     {collection.colorType?.map((rgb, index) => (
                       <ColorBox
-                        onClick={(e) => setCurrentColor(e.target.dataset.color)}
+                        onClick={(e) =>
+                          changeGlassesColorParms(e.target.dataset.color)
+                        }
                         style={{
                           width: "2rem",
                           height: "2rem",
@@ -131,7 +146,7 @@ const Popup = ({ collection }) => {
                         }}
                         key={index}
                         color={collection.item[index].color}
-                        active={collection.item[index].color === currentColor}
+                        active={collection.item[index].color === colorType}
                       ></ColorBox>
                     ))}
                   </div>

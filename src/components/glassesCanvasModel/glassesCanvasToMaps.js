@@ -99,24 +99,48 @@ export const glassesModel = {
   },
 };
 
-useGLTF.preload("/threeModel/Aviator/tortoiseshell/scene.gltf");
-useGLTF.preload("/threeModel/Lynx/tortoiseshell/scene.gltf");
-useGLTF.preload("/threeModel/Aviator/wood-grain/scene.gltf");
-useGLTF.preload("/threeModel/Lynx/pink-yarrow/scene.gltf");
-useGLTF.preload("/threeModel/Aviator/black/scene.gltf");
-useGLTF.preload("/threeModel/Lynx/black/scene.gltf");
-useGLTF.preload("/threeModel/MarkI/black/scene.gltf");
-useGLTF.preload("/threeModel/MarkI/navy-blue/scene.gltf");
-useGLTF.preload("/threeModel/MarkI/black/scene.gltf");
-useGLTF.preload("/threeModel/MarkI/ultra-violet/scene.gltf");
-useGLTF.preload("/threeModel/Maverick/gold/scene.gltf");
-useGLTF.preload("/threeModel/Maverick/silver/scene.gltf");
-useGLTF.preload("/threeModel/Maverick/tortoiseshell/scene.gltf");
-useGLTF.preload("/threeModel/Menpo/black/scene.gltf");
-useGLTF.preload("/threeModel/Menpo/blue/scene.gltf");
-useGLTF.preload("/threeModel/Menpo/camo-blue/scene.gltf");
-useGLTF.preload("/threeModel/Menpo/camo-orange/scene.gltf");
-useGLTF.preload("/threeModel/Menpo/red/scene.gltf");
-useGLTF.preload("/threeModel/Nomad/pear-black/scene.gltf");
-useGLTF.preload("/threeModel/Nomad/red/scene.gltf");
-useGLTF.preload("/threeModel/Nomad/tortoiseshell/scene.gltf");
+export const preLoadModel = (model) => {
+  switch (model) {
+    case "marki":
+      return () => {
+        useGLTF.preload("/threeModel/MarkI/black/scene.gltf");
+        useGLTF.preload("/threeModel/MarkI/navy-blue/scene.gltf");
+        useGLTF.preload("/threeModel/MarkI/black/scene.gltf");
+        useGLTF.preload("/threeModel/MarkI/ultra-violet/scene.gltf");
+      };
+    case "nomad":
+      return () => {
+        useGLTF.preload("/threeModel/Nomad/pear-black/scene.gltf");
+        useGLTF.preload("/threeModel/Nomad/red/scene.gltf");
+        useGLTF.preload("/threeModel/Nomad/tortoiseshell/scene.gltf");
+      };
+    case "aviator":
+      return () => {
+        useGLTF.preload("/threeModel/Aviator/wood-grain/scene.gltf");
+        useGLTF.preload("/threeModel/Aviator/tortoiseshell/scene.gltf");
+        useGLTF.preload("/threeModel/Aviator/black/scene.gltf");
+      };
+    case "maverick":
+      return () => {
+        useGLTF.preload("/threeModel/Maverick/gold/scene.gltf");
+        useGLTF.preload("/threeModel/Maverick/silver/scene.gltf");
+        useGLTF.preload("/threeModel/Maverick/tortoiseshell/scene.gltf");
+      };
+    case "menpo":
+      return () => {
+        useGLTF.preload("/threeModel/Menpo/black/scene.gltf");
+        useGLTF.preload("/threeModel/Menpo/blue/scene.gltf");
+        useGLTF.preload("/threeModel/Menpo/camo-blue/scene.gltf");
+        useGLTF.preload("/threeModel/Menpo/camo-orange/scene.gltf");
+        useGLTF.preload("/threeModel/Menpo/red/scene.gltf");
+      };
+    case "lynx":
+      return () => {
+        useGLTF.preload("/threeModel/Lynx/tortoiseshell/scene.gltf");
+        useGLTF.preload("/threeModel/Lynx/pink-yarrow/scene.gltf");
+        useGLTF.preload("/threeModel/Lynx/black/scene.gltf");
+      };
+    default:
+      break;
+  }
+};

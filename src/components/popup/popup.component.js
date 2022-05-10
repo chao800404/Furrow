@@ -54,7 +54,6 @@ const Popup = ({ collection }) => {
   );
   const isMobile = maxWidth >= useWinowSize();
   const location = useLocation();
-
   const title = `${collection?.title}-${color}`;
 
   const prevPage = useCallback(

@@ -29,7 +29,8 @@ const CollectionOverView = () => {
   const shopPageData = useSelector(selectShopPageContainer(collectionId));
   const collections = useSelector(selectOverViewLink);
   const [inView, setInView] = useState(true);
-  preLoadModel(collectionId.toLocaleLowerCase());
+  const preLoad = preLoadModel(collectionId.toLocaleLowerCase());
+  preLoad();
 
   return (
     <CollectionOverViewPageContainer>

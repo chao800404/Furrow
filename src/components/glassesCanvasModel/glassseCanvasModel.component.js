@@ -38,25 +38,25 @@ const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
 
   return (
     <ClassesModelContainer>
-      <Canvas
-        shadows
-        camera={
-          isMobile
-            ? { position: [0, 25, 0], fov: 30 }
-            : { position: [0, 20, 0], fov: 30 }
-        }
-        dpr={[1, 2]}
-      >
-        <ambientLight intensity={0.2} />
-        <spotLight
-          intensity={0.5}
-          angle={0.1}
-          penumbra={1}
-          position={[10, 15, 10]}
-          castShadow
-        />
-        <Suspense fallback={null}>
-          {unmount ? null : (
+      {unmount ? null : (
+        <Canvas
+          shadows
+          camera={
+            isMobile
+              ? { position: [0, 25, 0], fov: 30 }
+              : { position: [0, 20, 0], fov: 30 }
+          }
+          dpr={[1, 2]}
+        >
+          <ambientLight intensity={0.2} />
+          <spotLight
+            intensity={0.5}
+            angle={0.1}
+            penumbra={1}
+            position={[10, 15, 10]}
+            castShadow
+          />
+          <Suspense fallback={null}>
             <CurGlassesModel
               onPointerDown={() => dispatch(checkARIsPointer())}
               mode={
@@ -64,25 +64,26 @@ const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
               }
               key={curType + curColor}
             />
-          )}
 
-          <ContactShadows
-            rotation-x={Math.PI / 2}
-            position={[0, -2.5, 0]}
-            opacity={0.7}
-            width={30}
-            height={30}
-            blur={1.5}
-            far={4.5}
+            <ContactShadows
+              rotation-x={Math.PI / 2}
+              position={[0, -2.5, 0]}
+              opacity={0.7}
+              width={30}
+              height={30}
+              blur={1.5}
+              far={4.5}
+            />
+            <Environment preset="sunset" />
+          </Suspense>
+          <OrbitControls
+            minPolarAngle={Math.PI / 2}
+            maxPolarAngle={Math.PI / 3}
+            enablePan={false}
           />
-          <Environment preset="sunset" />
-        </Suspense>
-        <OrbitControls
-          minPolarAngle={Math.PI / 2}
-          maxPolarAngle={Math.PI / 3}
-          enablePan={false}
-        />
-      </Canvas>
+        </Canvas>
+      )}
+
       {pointDown ? null : (
         <SvgIcon
           initial={{ opacity: 0 }}
@@ -101,7 +102,6 @@ const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
           />
         </SvgIcon>
       )}
-
       <Loader />
     </ClassesModelContainer>
   );

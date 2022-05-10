@@ -122,6 +122,7 @@ const Popup = ({ collection }) => {
                   color={color}
                   toggleElectrochromic={toggleElectrochromic}
                   isMobile={isMobile}
+                  transitionEnd={transitionEnd}
                 />
               ) : (
                 <Spinner />

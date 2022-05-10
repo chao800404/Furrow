@@ -82,7 +82,6 @@ export const PopupBox = styled(motion.div)`
   grid-template-columns: repeat(2, 1fr);
   position: relative;
   grid-gap: 0 5rem;
-  overflow: hidden;
 
   .popup_close {
     width: 5rem;

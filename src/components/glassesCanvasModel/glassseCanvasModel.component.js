@@ -6,7 +6,7 @@ import {
   ContactShadows,
   Loader,
 } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { glassesModel } from "./glassesCanvasToMaps";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
@@ -20,9 +20,21 @@ import { Canvas } from "@react-three/fiber";
 const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
+  const [prevColor, setPrevColor] = useState(color);
+  const [unmount, setUnmount] = useState(false);
   const { curType, curColor } = transferClassesTypeName({ type, color });
-
   const CurGlassesModel = glassesModel[curType][curColor];
+
+  console.log(unmount, color, prevColor);
+
+  useEffect(() => {
+    if (color === prevColor) setUnmount(false);
+    setPrevColor((prevColor) => (prevColor = color));
+    return () => {
+      setUnmount(true);
+      console.log("unmount");
+    };
+  }, [color, prevColor]);
 
   return (
     <ClassesModelContainer>
@@ -44,11 +56,16 @@ const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
           castShadow
         />
         <Suspense fallback={null}>
-          <CurGlassesModel
-            onPointerDown={() => dispatch(checkARIsPointer())}
-            mode={toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3}
-            key={curType + curColor}
-          />
+          {unmount ? null : (
+            <CurGlassesModel
+              onPointerDown={() => dispatch(checkARIsPointer())}
+              mode={
+                toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
+              }
+              key={curType + curColor}
+            />
+          )}
+
           <ContactShadows
             rotation-x={Math.PI / 2}
             position={[0, -2.5, 0]}

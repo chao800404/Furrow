@@ -1,6 +1,8 @@
 /** @format */
 import { lazy } from "react";
 
+import { useGLTF } from "@react-three/drei";
+
 const AviatorBlackModel = lazy(() =>
   import("../../threeModel/aviator/aviator-black")
 );
@@ -96,3 +98,25 @@ export const glassesModel = {
     tortoiseshell: NomadTortoiseshellModel,
   },
 };
+
+useGLTF.preload("/threeModel/Aviator/tortoiseshell/scene.gltf");
+useGLTF.preload("/threeModel/Lynx/tortoiseshell/scene.gltf");
+useGLTF.preload("/threeModel/Aviator/wood-grain/scene.gltf");
+useGLTF.preload("/threeModel/Lynx/pink-yarrow/scene.gltf");
+useGLTF.preload("/threeModel/Aviator/black/scene.gltf");
+useGLTF.preload("/threeModel/Lynx/black/scene.gltf");
+useGLTF.preload("/threeModel/MarkI/black/scene.gltf");
+useGLTF.preload("/threeModel/MarkI/navy-blue/scene.gltf");
+useGLTF.preload("/threeModel/MarkI/black/scene.gltf");
+useGLTF.preload("/threeModel/MarkI/ultra-violet/scene.gltf");
+useGLTF.preload("/threeModel/Maverick/gold/scene.gltf");
+useGLTF.preload("/threeModel/Maverick/silver/scene.gltf");
+useGLTF.preload("/threeModel/Maverick/tortoiseshell/scene.gltf");
+useGLTF.preload("/threeModel/Menpo/black/scene.gltf");
+useGLTF.preload("/threeModel/Menpo/blue/scene.gltf");
+useGLTF.preload("/threeModel/Menpo/camo-blue/scene.gltf");
+useGLTF.preload("/threeModel/Menpo/camo-orange/scene.gltf");
+useGLTF.preload("/threeModel/Menpo/red/scene.gltf");
+useGLTF.preload("/threeModel/Nomad/pear-black/scene.gltf");
+useGLTF.preload("/threeModel/Nomad/red/scene.gltf");
+useGLTF.preload("/threeModel/Nomad/tortoiseshell/scene.gltf");

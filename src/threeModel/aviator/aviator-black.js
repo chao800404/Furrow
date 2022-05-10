@@ -121,5 +121,3 @@ export default function AviatorBlackModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Aviator/black/scene.gltf");

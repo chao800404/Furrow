@@ -111,5 +111,3 @@ export default function MarkINavyBlueModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/MarkI/navy-blue/scene.gltf");

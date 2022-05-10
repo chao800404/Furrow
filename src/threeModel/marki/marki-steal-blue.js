@@ -110,5 +110,3 @@ export default function MarkIStealBlueModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/MarkI/black/scene.gltf");

@@ -114,5 +114,3 @@ export default function MaverickGoldtModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Maverick/gold/scene.gltf");

@@ -108,5 +108,3 @@ export default function NomadPearBlackModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Nomad/pear-black/scene.gltf");

@@ -140,5 +140,3 @@ export default function MaverickTortoiseshellModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Maverick/tortoiseshell/scene.gltf");

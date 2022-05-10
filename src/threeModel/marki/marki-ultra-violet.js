@@ -110,5 +110,3 @@ export default function MarkIUltraVioletModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/MarkI/ultra-violet/scene.gltf");

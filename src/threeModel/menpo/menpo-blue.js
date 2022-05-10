@@ -98,5 +98,3 @@ export default function MenpoBlueModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Menpo/blue/scene.gltf");

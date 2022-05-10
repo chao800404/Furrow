@@ -1,7 +1,7 @@
 /** @format */
 
 import styled from "styled-components";
-import { Canvas } from "@react-three/fiber";
+
 import { motion } from "framer-motion";
 
 export const ClassesModelContainer = styled.div`
@@ -10,11 +10,6 @@ export const ClassesModelContainer = styled.div`
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-`;
-
-export const CanvasContainer = styled(Canvas)`
-  width: 100%;
-  height: 100%;
 `;
 
 export const SvgIcon = styled(motion.div)`

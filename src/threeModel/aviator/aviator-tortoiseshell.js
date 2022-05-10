@@ -5,7 +5,7 @@ import { useGLTF } from "@react-three/drei";
 import useFrameScene from "../../utils/useFrameScene";
 
 const Glasses = ({ nodes, materials, props, glasses }) => (
-  <>
+  <group dispose={null}>
     <mesh
       geometry={nodes.Object_2.geometry}
       material={materials.Brass_Brushed_90X}
@@ -102,7 +102,7 @@ const Glasses = ({ nodes, materials, props, glasses }) => (
       geometry={nodes.Object_26.geometry}
       material={materials.Paint_Matte_Red_1}
     />
-  </>
+  </group>
 );
 
 export default function AviatorTortoiseshellModel({ ...props }) {
@@ -144,5 +144,3 @@ export default function AviatorTortoiseshellModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Aviator/tortoiseshell/scene.gltf");

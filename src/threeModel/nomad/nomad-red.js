@@ -106,5 +106,3 @@ export default function NomadRedModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Nomad/red/scene.gltf");

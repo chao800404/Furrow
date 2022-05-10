@@ -8,17 +8,14 @@ import {
 } from "@react-three/drei";
 import { Suspense } from "react";
 import { glassesModel } from "./glassesCanvasToMaps";
-import {
-  CanvasContainer,
-  SvgIcon,
-  ClassesModelContainer,
-} from "./glassesCanvasModel.styles";
+import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { checkARIsPointer } from "../../redux/card/card.action";
 import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
+import { Canvas } from "@react-three/fiber";
 
 const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
   const dispatch = useDispatch();
@@ -29,7 +26,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
 
   return (
     <ClassesModelContainer>
-      <CanvasContainer
+      <Canvas
         shadows
         camera={
           isMobile
@@ -68,7 +65,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, isMobile }) => {
           maxPolarAngle={Math.PI / 3}
           enablePan={false}
         />
-      </CanvasContainer>
+      </Canvas>
       {pointDown ? null : (
         <SvgIcon
           initial={{ opacity: 0 }}

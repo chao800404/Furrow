@@ -142,5 +142,3 @@ export default function AviatorGreenModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Aviator/green/scene.gltf");

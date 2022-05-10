@@ -130,5 +130,3 @@ export default function LynxBlackModel({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload("/threeModel/Lynx/black/scene.gltf");

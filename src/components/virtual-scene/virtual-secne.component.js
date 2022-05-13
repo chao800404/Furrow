@@ -38,10 +38,7 @@ const VirtualScene = ({ type, color, view3d, currentEnvironment }) => {
             <CurGlassesModel view3d={view3d} />
             <Environment
               background
-              preset={currentEnvironment}
-              far={1000}
-              frames={Infinity}
-              resolution={256}
+              files={`/threeModel/environment/${currentEnvironment}_2k.hdr`}
             />
             <OrbitControls />
           </VirtualCanvas>

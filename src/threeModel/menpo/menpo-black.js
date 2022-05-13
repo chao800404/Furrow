@@ -67,7 +67,7 @@ export default function MenpoBlackModel({ ...props }) {
   const group = useRef();
   const glasses = useRef();
   const view3d = props.view3d;
-  const { nodes, materials } = useGLTF("/threeModel/Menpo/black/scene.gltf");
+  const { nodes, materials } = useGLTF("/threeModel/Menpo/black/scene.glb");
   useFrameScene({ view3d, group, glasses });
   return view3d ? (
     <group {...props} dispose={null} ref={group}>

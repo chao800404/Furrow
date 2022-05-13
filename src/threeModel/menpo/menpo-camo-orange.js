@@ -84,7 +84,7 @@ export default function MenpoCamoOrangeModel({ ...props }) {
   const glasses = useRef();
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF(
-    "/threeModel/Menpo/camo-orange/scene.gltf"
+    "/threeModel/Menpo/camo-orange/scene.glb"
   );
   useFrameScene({ view3d, group, glasses });
   return view3d ? (

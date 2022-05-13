@@ -4,13 +4,18 @@ import { SecondCardContainer } from "./secondTypeCard.style";
 import ImageContainer from "../imageContainer/imageContainer.component";
 import { useState } from "react";
 import Button from "../button/button.component";
+import { useNavigate, useLocation } from "react-router-dom";
+import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 
 const SecondTypeCard = ({ title, color, price, imageUrl }) => {
   const [hovered, setHovered] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = (e) => {
-    const btn = e.target.closest("button");
-    if (!btn) return;
+    const { curColor } = transferClassesTypeName({ color });
+    navigate(`${location.pathname}/${curColor}`);
+
     document.body.style.overflow = "hidden";
   };
 
@@ -31,9 +36,7 @@ const SecondTypeCard = ({ title, color, price, imageUrl }) => {
       </h3>
 
       <p>NT${price.toLocaleString("US")}</p>
-      <Button path={color} type="secondCard">
-        ADD TO CART
-      </Button>
+      <Button type="secondCard">ADD TO CART</Button>
     </SecondCardContainer>
   );
 };

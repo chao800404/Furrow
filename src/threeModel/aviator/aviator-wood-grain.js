@@ -110,7 +110,7 @@ export default function AviatorWoodGrainModel({ ...props }) {
   const glasses = useRef();
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF(
-    "/threeModel/Aviator/wood-grain/scene.gltf"
+    "/threeModel/Aviator/wood-grain/scene.glb"
   );
 
   useFrameScene({ view3d, group, glasses });

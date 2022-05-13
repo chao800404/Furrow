@@ -97,7 +97,7 @@ export default function LynxBlackModel({ ...props }) {
   const group = useRef();
   const glasses = useRef();
   const view3d = props.view3d;
-  const { nodes, materials } = useGLTF("/threeModel/Lynx/black/scene.gltf");
+  const { nodes, materials } = useGLTF("/threeModel/Lynx/black/scene.glb");
 
   useFrameScene({ view3d, group, glasses });
 

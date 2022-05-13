@@ -98,7 +98,7 @@ export default function LynxPinkYarrowModel({ ...props }) {
   const glasses = useRef();
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF(
-    "/threeModel/Lynx/pink-yarrow/scene.gltf"
+    "/threeModel/Lynx/pink-yarrow/scene.glb"
   );
 
   useFrameScene({ view3d, group, glasses });

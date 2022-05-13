@@ -56,7 +56,7 @@ const CollectionOverView = () => {
 
             <CollectionOverViewLinkBtn>
               {collections.map((title, index) => (
-                <LinkBtn key={index} link={title}>
+                <LinkBtn key={index} link={title} collectionId={collectionId}>
                   {title}
                 </LinkBtn>
               ))}

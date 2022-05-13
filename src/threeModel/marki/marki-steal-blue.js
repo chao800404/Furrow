@@ -78,7 +78,7 @@ export default function MarkIStealBlueModel({ ...props }) {
   const glasses = useRef();
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF(
-    "/threeModel/MarkI/steal-blue/scene.gltf"
+    "/threeModel/MarkI/steal-blue/scene.glb"
   );
   useFrameScene({ view3d, group, glasses });
   return (

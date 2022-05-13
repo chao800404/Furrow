@@ -121,7 +121,7 @@ export default function LynxTortoiseshellModel({ ...props }) {
   const glasses = useRef();
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF(
-    "/threeModel/Lynx/tortoiseshell/scene.gltf"
+    "/threeModel/Lynx/tortoiseshell/scene.glb"
   );
 
   useFrameScene({ view3d, group, glasses });

@@ -76,7 +76,7 @@ export default function NomadPearBlackModel({ ...props }) {
   const glasses = useRef();
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF(
-    "/threeModel/Nomad/pear-black/scene.gltf"
+    "/threeModel/Nomad/pear-black/scene.glb"
   );
   useFrameScene({ view3d, group, glasses });
   return view3d ? (

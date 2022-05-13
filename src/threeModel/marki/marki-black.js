@@ -78,7 +78,7 @@ export default function MarkIBlackModel({ ...props }) {
   const group = useRef();
   const glasses = useRef();
   const view3d = props.view3d;
-  const { nodes, materials } = useGLTF("/threeModel/MarkI/black/scene.gltf");
+  const { nodes, materials } = useGLTF("/threeModel/MarkI/black/scene.glb");
 
   useFrameScene({ view3d, group, glasses });
 

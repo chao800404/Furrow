@@ -109,7 +109,7 @@ export default function AviatorGreenModel({ ...props }) {
   const group = useRef();
   const glasses = useRef();
   const view3d = props.view3d;
-  const { nodes, materials } = useGLTF("/threeModel/Aviator/green/scene.gltf");
+  const { nodes, materials } = useGLTF("/threeModel/Aviator/green/scene.glb");
 
   useFrameScene({ view3d, group, glasses });
 

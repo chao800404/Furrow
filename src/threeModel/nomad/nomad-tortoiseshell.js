@@ -96,7 +96,7 @@ export default function NomadTortoiseshellModel({ ...props }) {
   const glasses = useRef();
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF(
-    "/threeModel/Nomad/tortoiseshell/scene.gltf"
+    "/threeModel/Nomad/tortoiseshell/scene.glb"
   );
   useFrameScene({ view3d, group, glasses });
   return view3d ? (

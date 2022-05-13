@@ -23,6 +23,7 @@ import glassesIcon from "../../assets/svgIcon/glasses-icon.svg";
 import glassesIconDark from "../../assets/svgIcon/glasses-icon-dark.svg";
 import { ReactSVG } from "react-svg";
 import maxWidth from "../../config/screen.size";
+import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 
 const SvgIcon = ({ src }) => (
   <ReactSVG
@@ -72,7 +73,8 @@ const Popup = ({ collection }) => {
   };
 
   const changeGlassesColorParms = (color) => {
-    navigate(`${prevPage()}/${color}`);
+    const { curColor } = transferClassesTypeName({ color });
+    navigate(`${prevPage()}/${curColor}`);
   };
 
   const handleClick = (e) => {

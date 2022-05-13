@@ -83,9 +83,7 @@ export default function MaverickSilverModel({ ...props }) {
   const group = useRef();
   const glasses = useRef();
   const view3d = props.view3d;
-  const { nodes, materials } = useGLTF(
-    "/threeModel/Maverick/silver/scene.gltf"
-  );
+  const { nodes, materials } = useGLTF("/threeModel/Maverick/silver/scene.glb");
   useFrameScene({ view3d, group, glasses });
   return view3d ? (
     <group {...props} dispose={null} ref={group}>

@@ -108,7 +108,7 @@ export default function MaverickTortoiseshellModel({ ...props }) {
   const glasses = useRef();
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF(
-    "/threeModel/Maverick/tortoiseshell/scene.gltf"
+    "/threeModel/Maverick/tortoiseshell/scene.glb"
   );
   useFrameScene({ view3d, group, glasses });
   return view3d ? (

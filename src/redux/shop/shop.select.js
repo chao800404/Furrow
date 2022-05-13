@@ -1,6 +1,7 @@
 /** @format */
 
 import { createSelector } from "reselect";
+import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import memoize from "lodash/memoize";
 const selectShop = ({ shop }) => shop?.collection;
 
@@ -20,7 +21,7 @@ export const selectOverViewPage = memoize((path) =>
   )
 );
 
-export const selectPopupView = (path, colorType) => {
+export const selectPopupView = (path, color) => {
   return createSelector(
     [selectShopCollectionPreview],
     (collection) =>
@@ -29,7 +30,11 @@ export const selectPopupView = (path, colorType) => {
           acc[title.toUpperCase()] = { title, ...otherProps };
           return acc;
         }, {})
-        [path.toUpperCase()].item.filter((item) => item.color === colorType)
+        [path.toUpperCase()].item.filter((item) => {
+          const { curColor } = transferClassesTypeName({ color: item.color });
+          console.log(curColor);
+          return curColor === color;
+        })
         .reduce((acc, item) => acc + item) || {}
   );
 };

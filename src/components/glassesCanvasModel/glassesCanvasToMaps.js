@@ -6,6 +6,7 @@ import { useGLTF } from "@react-three/drei";
 const AviatorBlackModel = lazy(() =>
   import("../../threeModel/aviator/aviator-black")
 );
+
 const AviatorGreenModel = lazy(() =>
   import("../../threeModel/aviator/aviator-green")
 );
@@ -65,26 +66,26 @@ const NomadTortoiseshellModel = lazy(() =>
 export const glassesModel = {
   marki: {
     black: MarkIBlackModel,
-    stealBlue: MarkIStealBlueModel,
-    navyBlue: MarkINavyBlueModel,
-    ultraViolet: MarkIUltraVioletModel,
+    "steal-blue": MarkIStealBlueModel,
+    "navy-blue": MarkINavyBlueModel,
+    "ultra-violet": MarkIUltraVioletModel,
   },
   aviator: {
     black: AviatorBlackModel,
     green: AviatorGreenModel,
     tortoiseshell: AviatorTortoiseshellModel,
-    woodGrain: AviatorWoodGrainModel,
+    "wood-grain": AviatorWoodGrainModel,
   },
   lynx: {
     black: LynxBlackModel,
     tortoiseshell: LynxTortoiseshellModel,
-    pinkYarrow: LynxPinkYarrowModel,
+    "pink-yarrow": LynxPinkYarrowModel,
   },
   menpo: {
     black: MenpoBlackModel,
     blue: MenpoBlueModel,
-    camoBlue: MenpoCamoBlueModel,
-    camoOrange: MenpoCamoOrangeModel,
+    "camo-blue": MenpoCamoBlueModel,
+    "camo-orange": MenpoCamoOrangeModel,
     red: MenpoRedModel,
   },
   maverick: {
@@ -93,7 +94,7 @@ export const glassesModel = {
     tortoiseshell: MaverickTortoiseshellModel,
   },
   nomad: {
-    pearBlack: NomadPearBlackModel,
+    "pear-black": NomadPearBlackModel,
     red: NomadRedModel,
     tortoiseshell: NomadTortoiseshellModel,
   },
@@ -103,42 +104,42 @@ export const preLoadModel = (model) => {
   switch (model) {
     case "marki":
       return () => {
-        useGLTF.preload("/threeModel/MarkI/black/scene.gltf");
-        useGLTF.preload("/threeModel/MarkI/navy-blue/scene.gltf");
-        useGLTF.preload("/threeModel/MarkI/black/scene.gltf");
-        useGLTF.preload("/threeModel/MarkI/ultra-violet/scene.gltf");
+        useGLTF.preload("/threeModel/markI/black/scene.glb");
+        useGLTF.preload("/threeModel/markI/navy-blue/scene.glb");
+        useGLTF.preload("/threeModel/markI/black/scene.glb");
+        useGLTF.preload("/threeModel/markI/ultra-violet/scene.glb");
       };
     case "nomad":
       return () => {
-        useGLTF.preload("/threeModel/Nomad/pear-black/scene.gltf");
-        useGLTF.preload("/threeModel/Nomad/red/scene.gltf");
-        useGLTF.preload("/threeModel/Nomad/tortoiseshell/scene.gltf");
+        useGLTF.preload("/threeModel/nomad/pear-black/scene.glb");
+        useGLTF.preload("/threeModel/nomad/red/scene.glb");
+        useGLTF.preload("/threeModel/nomad/tortoiseshell/scene.glb");
       };
     case "aviator":
       return () => {
-        useGLTF.preload("/threeModel/Aviator/wood-grain/scene.gltf");
-        useGLTF.preload("/threeModel/Aviator/tortoiseshell/scene.gltf");
-        useGLTF.preload("/threeModel/Aviator/black/scene.gltf");
+        useGLTF.preload("/threeModel/aviator/wood-grain/scene.glb");
+        useGLTF.preload("/threeModel/aviator/tortoiseshell/scene.glb");
+        useGLTF.preload("/threeModel/aviator/black/scene.glb");
       };
     case "maverick":
       return () => {
-        useGLTF.preload("/threeModel/Maverick/gold/scene.gltf");
-        useGLTF.preload("/threeModel/Maverick/silver/scene.gltf");
-        useGLTF.preload("/threeModel/Maverick/tortoiseshell/scene.gltf");
+        useGLTF.preload("/threeModel/maverick/gold/scene.glb");
+        useGLTF.preload("/threeModel/maverick/silver/scene.glb");
+        useGLTF.preload("/threeModel/maverick/tortoiseshell/scene.glb");
       };
     case "menpo":
       return () => {
-        useGLTF.preload("/threeModel/Menpo/black/scene.gltf");
-        useGLTF.preload("/threeModel/Menpo/blue/scene.gltf");
-        useGLTF.preload("/threeModel/Menpo/camo-blue/scene.gltf");
-        useGLTF.preload("/threeModel/Menpo/camo-orange/scene.gltf");
-        useGLTF.preload("/threeModel/Menpo/red/scene.gltf");
+        useGLTF.preload("/threeModel/menpo/black/scene.glb");
+        useGLTF.preload("/threeModel/menpo/blue/scene.glb");
+        useGLTF.preload("/threeModel/menpo/camo-blue/scene.glb");
+        useGLTF.preload("/threeModel/menpo/camo-orange/scene.glb");
+        useGLTF.preload("/threeModel/menpo/red/scene.glb");
       };
     case "lynx":
       return () => {
-        useGLTF.preload("/threeModel/Lynx/tortoiseshell/scene.gltf");
-        useGLTF.preload("/threeModel/Lynx/pink-yarrow/scene.gltf");
-        useGLTF.preload("/threeModel/Lynx/black/scene.gltf");
+        useGLTF.preload("/threeModel/lynx/tortoiseshell/scene.glb");
+        useGLTF.preload("/threeModel/lynx/pink-yarrow/scene.glb");
+        useGLTF.preload("/threeModel/lynx/black/scene.glb");
       };
     default:
       break;

@@ -7,7 +7,6 @@ import {
   Loader,
 } from "@react-three/drei";
 import { Suspense } from "react";
-import { glassesModel } from "./glassesCanvasToMaps";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -16,6 +15,7 @@ import { checkARIsPointer } from "../../redux/card/card.action";
 import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
+import { glassesModel } from "./glassesCanvasToMaps";
 
 const GlassesModel = ({
   type,
@@ -49,15 +49,14 @@ const GlassesModel = ({
           castShadow
         />
         <Suspense fallback={null}>
-          {transitionEnd ? (
+          {transitionEnd && (
             <CurGlassesModel
               onPointerDown={() => dispatch(checkARIsPointer())}
               mode={
                 toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
               }
-              key={curType + curColor}
             />
-          ) : null}
+          )}
 
           <ContactShadows
             rotation-x={Math.PI / 2}

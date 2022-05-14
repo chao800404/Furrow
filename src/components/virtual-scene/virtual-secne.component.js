@@ -1,6 +1,11 @@
 /** @format */
 
-import { Environment, OrbitControls, Loader } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  Loader,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import { Suspense } from "react";
 import {
   VirtualSceneContainer,
@@ -29,16 +34,16 @@ const VirtualScene = ({ type, color, view3d, currentEnvironment }) => {
     <VirtualSceneContainer>
       <Suspense fallback={null}>
         <FullScreen handle={handleFullScreen} className="fullScreen">
-          <VirtualCanvas
-            camera={{
-              position: [1, 0, 0],
-              fov: isMobile ? fov.MOBILE_FOV : fov.BASIC_FOV,
-            }}
-          >
+          <VirtualCanvas gl={{ toneMappingExposure: 0.9 }}>
             <CurGlassesModel view3d={view3d} />
             <Environment
               background
               files={`/threeModel/environment/${currentEnvironment}_2k.hdr`}
+            />
+            <PerspectiveCamera
+              makeDefault
+              position={[-30, 100, 120]}
+              fov={isMobile ? fov.MOBILE_FOV : fov.BASIC_FOV}
             />
             <OrbitControls />
           </VirtualCanvas>

@@ -11,7 +11,7 @@ import {
   FeatureBannerOverFlow,
 } from "./featureBanner.styles";
 
-const FeatureBanner = ({ feature, onLoad }) => {
+const FeatureBanner = ({ feature }) => {
   return (
     <FeatureBannerContainer>
       <FeatureBannerOverFlow>
@@ -20,19 +20,19 @@ const FeatureBanner = ({ feature, onLoad }) => {
             initial={{ y: -80 }}
             animate={{ y: 0 }}
             src={featureImg_1}
-            onLoad={onLoad}
+            loading="lazy"
           />
           <motion.img
             initial={{ y: 80 }}
             animate={{ y: 30 }}
             src={featureImg_2}
-            onLoad={onLoad}
+            loading="lazy"
           />
           <motion.img
             initial={{ y: -80 }}
             animate={{ y: -20 }}
             src={featureImg_3}
-            onLoad={onLoad}
+            loading="lazy"
           />
         </FeatureBannerImgContainer>
       </FeatureBannerOverFlow>

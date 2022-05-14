@@ -18,12 +18,13 @@ const BasicBanner = ({ img, title, txt }) => {
       initial={{ scale: 0.5 }}
       animate={{ scale: 1 }}
     >
-      <AboutBannerBG alt="about-banner" src={img} />
+      <AboutBannerBG alt="about-banner" src={img} loading="lazy" />
       <AboutTitle
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         alt="about-title"
         src={title}
+        loading="lazy"
       />
       <AboutBannerTxt1
         initial={{ x: 50, opacity: 0 }}

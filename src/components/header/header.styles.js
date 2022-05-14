@@ -51,15 +51,6 @@ export const HeaderMenu = styled.div`
     margin-right: 5rem;
   }
 
-  svg {
-    font-size: 2.5rem;
-    margin-right: 1rem;
-  }
-
-  h3 {
-    font-size: 2rem;
-  }
-
   @media only screen and (max-width: ${maxWidth.medium}) {
     .menu {
       margin-right: 2rem;

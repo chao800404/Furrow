@@ -64,7 +64,7 @@ export const VirtualPageContainer = styled.section`
   }
 
   @media only screen and (max-width: ${maxWidth.mediumBelta}) {
-    padding: 10rem 0 10rem 0;
+    padding: 12rem 0 10rem 0;
     .virtaul-side {
       width: 100%;
       height: auto;

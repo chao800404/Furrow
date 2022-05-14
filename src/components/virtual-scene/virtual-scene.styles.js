@@ -28,6 +28,9 @@ export const VirtualSceneContainer = styled.div`
   @media only screen and (max-width: ${maxWidth.mediumBelta}) {
     width: 100%;
   }
+  @media only screen and (max-width: ${maxWidth.small}) {
+    height: 30rem;
+  }
 `;
 
 export const VirtualCanvas = styled(Canvas)`

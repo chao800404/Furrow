@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.select";
 import { signOutStart } from "../../redux/user/user.actions";
+import maxWidth from "../../config/screen.size";
+import useWinowSize from "../../utils/useWindowSize";
 
 const SignInOutButton = ({ theme }) => {
   const navigate = useNavigate();
@@ -15,6 +17,8 @@ const SignInOutButton = ({ theme }) => {
       ? dispatch(signOutStart())
       : navigate("/signin", { repalce: true });
   };
+  const { width } = useWinowSize();
+  const isMobile = width <= maxWidth.small.replace("px", "");
 
   return (
     <SignInOut
@@ -24,15 +28,16 @@ const SignInOutButton = ({ theme }) => {
     >
       {existUser ? (
         <>
-          {existUser.photoURL ? (
+          {existUser.photoURL && (
             <img
               alt={existUser.displayName}
               src={existUser.photoURL}
               referrerPolicy="no-referrer"
             />
-          ) : null}
-
-          <span>{existUser.displayName} / SIGNOUT</span>
+          )}
+          <span>
+            {existUser.displayName} {!isMobile && "/ SIGNOUT"}
+          </span>
         </>
       ) : (
         <span>SIGN IN</span>

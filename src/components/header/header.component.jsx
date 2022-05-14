@@ -8,27 +8,27 @@ import { toggleThemeStyle } from "../../redux/theme/theme.actions";
 import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
 import themeType from "../../theme/theme.styles.js";
 import HamburgerBox from "../hamburger/hamburger.componet";
-import { BiStore } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import ShopLinkIcon from "../shop-link-icon/shop-link-icon.component";
 import {
   selectThemeStyle,
   selectCurrentTheme,
 } from "../../redux/theme/theme.select";
 import SignInOutButton from "../sigiInOutButton/signInOutButton.component.js";
+import maxWidth from "../../config/screen.size";
+import useWinowSize from "../../utils/useWindowSize";
 
 const Header = () => {
   const dispatch = useDispatch();
   const toggleTheme = useSelector(selectCurrentTheme);
-
   const handleClick = () => {
     dispatch(toggleThemeStyle(themeType(toggleTheme)));
   };
-
   const handleHover = () => {
     dispatch(toggleCursorStyle());
   };
-
   const theme = useSelector(selectThemeStyle);
+  const { width } = useWinowSize();
+  const isMobile = maxWidth.small.replace("px", "") >= width;
 
   return (
     <HeaderNav
@@ -45,10 +45,7 @@ const Header = () => {
           </Logo>
           <HeaderMenu>
             <SignInOutButton theme={theme} />
-            <Link to="/shop" className="menu">
-              <BiStore />
-              <h3>SHOP</h3>
-            </Link>
+            {!isMobile && <ShopLinkIcon />}
             <HamburgerBox />
           </HeaderMenu>
         </Flex>

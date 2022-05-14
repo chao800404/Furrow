@@ -37,7 +37,7 @@ const SignInPage = () => {
   const navigater = useNavigate();
 
   useEffect(() => {
-    toast.error(errorMessage);
+    if (errorMessage) toast.error(errorMessage);
   }, [errorMessage]);
 
   const transferToHomePage = () => {
@@ -153,7 +153,7 @@ const SignInPage = () => {
             ) : (
               <>
                 <h1>Hello, Friend!</h1>
-                <p>Enter your personal details and start journey with us</p>
+                <p>Enter your personal details and start journey with us.</p>
               </>
             )}
           </SignInUpContent>

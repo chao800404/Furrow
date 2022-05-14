@@ -24,7 +24,7 @@ const FOV = {
   MEDIUM: 40,
   MEDIUMALPHA: 45,
   MEDIUMBELTA: 30,
-  SMALL: 70,
+  SMALL: 55,
 };
 
 const VirtualScene = ({ type, color, view3d, currentEnvironment }) => {

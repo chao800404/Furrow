@@ -7,14 +7,18 @@ import {
   SignInPageContainer,
 } from "./signInPage.styles";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../redux/user/user.select";
+import {
+  selectCurrentUser,
+  selectUserErrorMessage,
+} from "../../redux/user/user.select";
 import FinishIconAn from "../../components/finishIcon/finishIcon.component";
 import signInFinishVideo from "../../assets/video/signInFinishVideo.mp4";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../components/button/button.component";
 import { useNavigate } from "react-router-dom";
 import useTimeOut from "../../utils/useTimeOut";
+import toast from "react-hot-toast";
 
 const variants = {
   initial: {
@@ -28,8 +32,13 @@ const variants = {
 
 const SignInPage = () => {
   const existUser = useSelector(selectCurrentUser);
+  const errorMessage = useSelector(selectUserErrorMessage);
   const [anStart, setAnStart] = useState(false);
   const navigater = useNavigate();
+
+  useEffect(() => {
+    toast.error(errorMessage);
+  }, [errorMessage]);
 
   const transferToHomePage = () => {
     if (!existUser) return;
@@ -41,7 +50,7 @@ const SignInPage = () => {
   };
 
   useTimeOut(anStarts, 1000);
-  useTimeOut(transferToHomePage, 12000);
+  useTimeOut(transferToHomePage, 10000);
 
   const goHomePage = (e) => {
     const btn = e.target.closest("[data-type]");

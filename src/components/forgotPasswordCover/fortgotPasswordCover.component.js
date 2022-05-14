@@ -6,9 +6,8 @@ import { useDispatch } from "react-redux";
 import { sendChangePasswordEmailStart } from "../../redux/user/user.actions";
 
 const FindPasswordCover = ({ setToggleForotCover }) => {
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState(undefined);
   const dispatch = useDispatch();
-  console.log(setToggleForotCover);
 
   const handleToggleCover = async (e) => {
     e.preventDefault();

@@ -1,5 +1,4 @@
 /** @format */
-
 import { call, put, takeLatest, all } from "redux-saga/effects";
 import ActionUserType from "./user.type";
 import {
@@ -29,7 +28,7 @@ function* expressUserSignIn({ payload: expressType }) {
       type: expressType,
     });
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.code));
   }
 }
 
@@ -38,7 +37,7 @@ function* createAccountSuccessful({ payload: { email, password } }) {
     yield createUserWithEmail({ auth, email, password });
     yield onUserAuth();
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.code));
   }
 }
 
@@ -47,7 +46,7 @@ function* signWithEamilSuccess({ payload: { email, password } }) {
     yield signInWithEmail({ auth, email, password });
     yield onUserAuth();
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.code));
   }
 }
 
@@ -55,7 +54,7 @@ function* sendPasswordWithEmail({ payload: { email } }) {
   try {
     yield sendRestEmail({ auth, email });
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.code));
   }
 }
 
@@ -64,7 +63,7 @@ function* getSnapshopFromUserAuth(userData) {
     yield createUserProfileDoc(userData);
     yield put(expressSignInSuccess(userData));
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.code));
   }
 }
 
@@ -73,7 +72,7 @@ function* onUserAuth() {
     const user = yield currentUser();
     yield getSnapshopFromUserAuth(user);
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.code));
   }
 }
 
@@ -83,7 +82,7 @@ function* onSignOutAuth() {
     yield signOutAuth(auth);
     yield put(signOutSuccess());
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.code));
   }
 }
 

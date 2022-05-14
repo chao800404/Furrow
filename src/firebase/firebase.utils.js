@@ -79,26 +79,25 @@ const signInType = {
   email: (result) => EmailAuthProvider.credentialFromResult(result),
 };
 
-export const checkExistEmail = async (error, auth) => {
-  switch (error.code) {
-    case "auth/account-exists-with-different-credential":
-      try {
-        console.log(error.customData.email);
-      } catch (error) {
-        throw error;
-      }
-
-      break;
-    case "auth/email-already-in-use":
-      return alert("Email already in use");
-    case "auth/user-not-found":
-      return alert("Could not find your account!");
-    case "auth/wrong-password":
-      return alert("Please enter correct password");
-    default:
-      return error;
-  }
-};
+// export const checkExistEmail = async (error, auth) => {
+//   switch (error.code) {
+//     case "auth/account-exists-with-different-credential":
+//       try {
+//         console.log(error.customData.email);
+//       } catch (error) {
+//         throw error;
+//       }
+//       break;
+//     case "auth/email-already-in-use":
+//       return alert("Email already in use");
+//     case "auth/user-not-found":
+//       return alert("Could not find your account!");
+//     case "auth/wrong-password":
+//       return alert("Please enter correct password");
+//     default:
+//       return error;
+//   }
+// };
 
 export const createUserProfileDoc = async (userData) => {
   if (!userData) return;
@@ -127,42 +126,21 @@ export const createOrderProfileDoc = async ({ order, id, customData }) => {
 
 export const signInWithExpress = async ({ auth, provider, type }) => {
   signInWithRedirect(auth, provider);
-  try {
-    const result = await getRedirectResult(auth);
-    signInType[type](result);
-  } catch (error) {
-    if (error.code === "auth/account-exists-with-different-credential") {
-      console.log(FacebookAuthProvider.credentialFromError(error));
-      console.log(error.customData.email);
-    }
-    await checkExistEmail(error, type, provider, auth);
-    throw error;
-  }
+  const result = await getRedirectResult(auth);
+  signInType[type](result);
 };
 
 export const createUserWithEmail = async ({ auth, email, password, type }) => {
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    await sendEmailVerification(auth.currentUser);
-  } catch (error) {
-    checkExistEmail(error, type);
-  }
+  await createUserWithEmailAndPassword(auth, email, password);
+  await sendEmailVerification(auth.currentUser);
 };
 
 export const signInWithEmail = async ({ auth, email, password }) => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    checkExistEmail(error);
-  }
+  await signInWithEmailAndPassword(auth, email, password);
 };
 
 export const sendRestEmail = async ({ auth, email }) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-  } catch (error) {
-    throw new Error(error);
-  }
+  await sendPasswordResetEmail(auth, email);
 };
 
 export const currentUser = () =>

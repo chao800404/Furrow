@@ -13,3 +13,8 @@ export const selectCurrentUserLoading = createSelector(
   [selectUser],
   (user) => user.isLoading
 );
+
+export const selectUserErrorMessage = createSelector(
+  [selectUser],
+  (user) => user.errorMessage
+);

@@ -1,7 +1,7 @@
 /** @format */
 import { Flex } from "../../components/Flex/flex.styles";
 import { motion } from "framer-motion";
-import { useState, useEffect, useCallback, useRef, lazy } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { ReactSVG } from "react-svg";
 import {
   FeatureContainer,
@@ -27,9 +27,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
 import { fetchFeatureStart } from "../../redux/featuresPage/feature.action";
 import { featurePageData } from "../../redux/featuresPage/feature.select";
-const FeatureBanner = lazy(() =>
-  import("../../components/featureBanner/featureBanner.component")
-);
+import FeatureBanner from "../../components/featureBanner/featureBanner.component";
 
 const FeaturePage = () => {
   const [inView, setInView] = useState(0);
@@ -152,7 +150,6 @@ const FeaturePage = () => {
                     </ProofIconContainer>
                   ))}
                 </div>
-
                 <FeatureGlassesContainer
                   onClick={handleGlassesFeatureDisplay}
                   ref={featureBtnContainer}
@@ -166,7 +163,6 @@ const FeaturePage = () => {
                     </span>
                     <BsPlusCircleFill />
                   </FeatureGlassesBtn>
-
                   <FeatureGlassesBtn
                     whileTap={{ scale: 0.95 }}
                     data-type="featureBtn-1"

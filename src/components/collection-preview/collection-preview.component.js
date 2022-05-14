@@ -13,6 +13,14 @@ import { ReactSVG } from "react-svg";
 import mclarenXOnesecLogo from "../../assets/svg/mclaren_x_onesec.svg";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
 
+const data = {
+  overViewContent: {
+    title: "McLaren Vision x ONESEC",
+    content:
+      "Since partnering with McLaren Vision, the McLaren x ONESEClineup has received widely favourable reviews from both Americanand European audiences for its combination of stunningaesthetics and innovation.",
+  },
+};
+
 const CollectionPreview = () => {
   const collections = useSelector(selectShopCollectionPreview);
   const theme = useSelector(selectThemeStyle);
@@ -20,7 +28,7 @@ const CollectionPreview = () => {
   return (
     <CollectionPreviewPageContainer>
       <Flex>
-        {collections && (
+        {collections && data && (
           <CollectionPreviewContainer
             initial={{ visibility: "hidden", y: 10, opacity: 0 }}
             animate={{
@@ -30,15 +38,13 @@ const CollectionPreview = () => {
               opacity: 1,
             }}
           >
-            <h2>McLaren Vision x ONESEC</h2>
+            <h2>{data["overViewContent"]["title"]}</h2>
             <CollectionPreviewTitle>
               <p style={{ fontSize: "2rem" }}>
-                Since partnering with McLaren Vision, the McLaren x ONESEC
-                lineup has received widely favourable reviews from both American
-                and European audiences for its combination of stunning
-                aesthetics and innovation.
+                {data["overViewContent"]["content"]}
               </p>
               <ReactSVG
+                style={{ height: "20rem" }}
                 beforeInjection={(svg) => {
                   svg.setAttribute(
                     "style",

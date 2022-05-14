@@ -107,7 +107,7 @@ export const FeatureImgContainer = styled.div`
     justify-content: center;
     width: 20rem;
     padding: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: ${primaryColor.primaryBlack};
     background-color: rgba(255, 255, 255, 0.7);
     letter-spacing: 0.1rem;
@@ -131,17 +131,21 @@ export const FeatureGlassesBtn = styled(motion.div)`
   borderradius: 50%;
   boxshadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 
+  svg,
+  span {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 1);
+  }
+
   svg {
     width: 3rem;
     height: 3rem;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 1);
     border-radius: 50%;
   }
 
   span {
     position: absolute;
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     width: auto;
     padding: 1rem;
     background-color: #fff;

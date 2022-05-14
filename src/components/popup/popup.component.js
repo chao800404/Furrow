@@ -5,7 +5,7 @@ import {
   PopupForm,
   PopupBoxContainer,
 } from "./popup.style";
-import { useState, useCallback } from "react";
+import { useState, useEffect } from "react";
 import useWinowSize from "../../utils/useWindowSize";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { IoCloseCircleSharp } from "react-icons/io5";
@@ -25,15 +25,24 @@ import { ReactSVG } from "react-svg";
 import maxWidth from "../../config/screen.size";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { message } from "../../config/message";
+import { cartToggleHidden } from "../../redux/cart/cart.action";
 import toast from "react-hot-toast";
 
-const SvgIcon = ({ src }) => (
+const SvgIcon = ({ src, toggleElectrochromic, light }) => (
   <ReactSVG
     style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
       pointerEvents: "none",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%,-50%)",
+      opacity: light
+        ? toggleElectrochromic
+          ? 1
+          : 0
+        : toggleElectrochromic
+        ? 0
+        : 1,
     }}
     src={src}
     beforeInjection={(svg) =>
@@ -59,24 +68,19 @@ const Popup = ({ collection }) => {
   const location = useLocation();
   const title = `${collection?.title}-${color}`;
 
-  const prevPage = useCallback(
-    () =>
-      location.pathname
-        .split("/")
-        .filter((_, index) => index < 3)
-        .join("/"),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+  const prevPage = location.pathname
+    .split("/")
+    .filter((_, index) => index < 3)
+    .join("/");
 
   const goToPrevPage = () => {
-    navigate(`${prevPage()}`);
+    navigate(`${prevPage}`);
     document.body.style.overflow = "unset";
   };
 
   const changeGlassesColorParms = (color) => {
     const { curColor } = transferClassesTypeName({ color });
-    navigate(`${prevPage()}/${curColor}`);
+    navigate(`${prevPage}/${curColor}`);
   };
 
   const handleClick = (e) => {
@@ -118,6 +122,10 @@ const Popup = ({ collection }) => {
       }
     }
   };
+
+  useEffect(() => {
+    dispatch(cartToggleHidden("hidden"));
+  }, [dispatch]);
 
   return (
     <PopupContainer data-item="popup-bg" onClick={handleClick}>
@@ -191,12 +199,20 @@ const Popup = ({ collection }) => {
                   </div>
                 </div>
                 <div className="button_container">
-                  <Button data="electrochromic">
-                    {toggleElectrochromic ? (
-                      <SvgIcon src={glassesIconDark} />
-                    ) : (
-                      <SvgIcon src={glassesIcon} />
-                    )}
+                  <Button
+                    data="electrochromic"
+                    style={{ position: "relative" }}
+                  >
+                    <SvgIcon
+                      src={glassesIconDark}
+                      toggleElectrochromic={toggleElectrochromic}
+                      light={true}
+                    />
+                    <SvgIcon
+                      src={glassesIcon}
+                      toggleElectrochromic={toggleElectrochromic}
+                      ligth={false}
+                    />
                   </Button>
                   <Button style={{ fontSize: "2rem" }} data="add-cart-btn">
                     Add To Cart

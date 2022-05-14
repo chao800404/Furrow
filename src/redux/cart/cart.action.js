@@ -6,8 +6,9 @@ export const cartInit = () => ({
   type: cartActionType.SET_INIT_CART,
 });
 
-export const cartToggleHidden = () => ({
+export const cartToggleHidden = (toggle) => ({
   type: cartActionType.TOGGLE_CART_HIDDEN,
+  payload: toggle,
 });
 
 export const cartOnScrollHidden = () => ({

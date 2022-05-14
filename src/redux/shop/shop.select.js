@@ -32,7 +32,6 @@ export const selectPopupView = (path, color) => {
         }, {})
         [path.toUpperCase()].item.filter((item) => {
           const { curColor } = transferClassesTypeName({ color: item.color });
-          console.log(curColor);
           return curColor === color;
         })
         .reduce((acc, item) => acc + item) || {}

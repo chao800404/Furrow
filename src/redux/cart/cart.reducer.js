@@ -25,7 +25,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case cartActionType.TOGGLE_CART_HIDDEN:
       return {
         ...state,
-        hidden: !state.hidden,
+        hidden: payload === "hidden" ? false : !state.hidden,
       };
     case cartActionType.ONSCROLL_CART_HIDDEN:
       return {

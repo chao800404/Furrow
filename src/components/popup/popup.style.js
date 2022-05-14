@@ -18,22 +18,18 @@ export const PopupContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   overflow-y: scroll;
-
   ul {
     justify-self: center;
     width: 100rem;
     transform: translateY(-10vw);
-
     h3 {
       font-size: 5rem;
     }
-
     li {
       font-size: 2rem;
       transform: translateX(3rem);
     }
   }
-
   @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
     ul {
       width: 60rem;
@@ -42,14 +38,12 @@ export const PopupContainer = styled.div`
       h3 {
         font-size: 3.5rem;
       }
-
       li {
         font-size: 1.2rem;
         transform: translateX(1.2rem);
       }
     }
   }
-
   @media only screen and (max-width: ${maxWidth.small}) {
     ul {
       width: 90%;
@@ -64,7 +58,6 @@ export const PopupBoxContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 25rem 0;
-
   @media only screen and (max-width: ${maxWidth.small}) {
     padding: 10rem 0;
   }
@@ -73,7 +66,7 @@ export const PopupBoxContainer = styled.div`
 export const PopupBox = styled(motion.div)`
   width: 100rem;
   min-height: 35rem;
-  padding: 2em;
+  padding: 2em 5rem;
   background-color: #fff;
   align-self: center;
   justify-self: center;
@@ -82,7 +75,6 @@ export const PopupBox = styled(motion.div)`
   grid-template-columns: repeat(2, 1fr);
   position: relative;
   grid-gap: 0 5rem;
-
   .popup_close {
     width: 5rem;
     height: 5rem;
@@ -92,28 +84,23 @@ export const PopupBox = styled(motion.div)`
     fill: #fff;
     pointer-events: none;
   }
-
   h3,
   p {
     color: #161616;
   }
-
   h3 {
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 2rem;
   }
-
   p {
     font-size: 1.5rem;
     font-weight: 500;
   }
-
   img {
     width: 100%;
     flex: 1;
   }
-
   button {
     margin-top: 3rem;
   }
@@ -122,7 +109,6 @@ export const PopupBox = styled(motion.div)`
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #111;
-
     padding-bottom: 1rem;
   }
   .popup-canvas {
@@ -135,7 +121,6 @@ export const PopupBox = styled(motion.div)`
     font-size: 2.5rem;
     text-align: end;
   }
-
   .popup_warm {
     color: ${primaryColor.cursorColor};
     font-size: 1.5rem;
@@ -143,14 +128,12 @@ export const PopupBox = styled(motion.div)`
     width: 15rem;
     margin-top: 1rem;
   }
-
   .popup_calculator {
     display: flex;
     align-items: center;
     height: 3rem;
     margin-top: 1rem;
     width: 100%;
-
     input {
       display: flex;
       text-align: center;
@@ -158,7 +141,6 @@ export const PopupBox = styled(motion.div)`
       width: 5rem;
       border: 1px solid #161616;
     }
-
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
       -webkit-appearance: none;
@@ -167,69 +149,61 @@ export const PopupBox = styled(motion.div)`
     }
     svg {
       fill: #161616;
-      border: 1px solid #161616;
-      width: 1.8em;
+      width: 4em;
       padding: 0.5rem;
       height: 100%;
-
+      border-top: 1px solid #161616;
+      border-bottom: 1px solid #161616;
       &:nth-child(1) {
         border-radius: 0.5rem 0 0 0.5rem;
+        border-left: 1px solid #161616;
       }
       &:nth-child(3) {
         border-radius: 0 0.5rem 0.5rem 0;
+        border-right: 1px solid #161616;
       }
     }
   }
-
   .popup_calculator-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
   .popup_calculator_container {
     transform: translateY(-2rem);
     width: 100%;
   }
-
   .color_container {
     display: flex;
-
     span {
       &:not(:last-child) {
         margin-right: 1rem;
       }
     }
   }
-
   .button_container {
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-column-gap: 1rem;
   }
-
   @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
     grid-template-columns: 1fr;
     grid-template-rows: 30rem 1fr;
     width: 60rem;
     min-height: 60rem;
-
     h3 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
-
     button {
       margin-top: 3rem;
     }
-
     .popup_calculator_container {
       transform: unset;
       width: 100%;
       display: flex;
       align-items: center;
     }
-
     .popup_calculator {
       margin-top: 0;
     }
@@ -237,20 +211,16 @@ export const PopupBox = styled(motion.div)`
       margin-left: 2rem;
     }
   }
-
   @media only screen and (max-width: ${maxWidth.small}) {
     width: 90%;
     padding: 0;
-
     h3 {
       font-size: 3rem;
     }
-
     .popup_calculator_container {
       margin-top: 2rem;
       justify-content: space-between;
     }
-
     .popup_price {
       margin-top: 2rem;
     }

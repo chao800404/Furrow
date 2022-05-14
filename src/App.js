@@ -14,6 +14,7 @@ import { checkUserSession } from "./redux/user/user.actions";
 import { useDispatch } from "react-redux";
 import CubeSpinner from "./components/cube-spinner/cube-spinner.component";
 import { fetchCollectionStart } from "./redux/shop/shop.actions";
+import { Toaster } from "react-hot-toast";
 
 const AboutPage = lazy(() => import("./page/about-Page/aboutPage.component"));
 const FeaturePage = lazy(() =>
@@ -30,7 +31,7 @@ const VirtualPage = lazy(() =>
   import("./page/virtual-Page/virtualPage.component")
 );
 
-const App = () => {
+const App = ({ theme }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -60,7 +61,14 @@ const App = () => {
           <Route path={routes.VIRTUAL} element={<VirtualPage />} />
         </Routes>
       </Suspense>
-
+      <Toaster
+        toastOptions={{
+          style: {
+            background: `${theme.color}`,
+            color: `${theme.backgroundColor}`,
+          },
+        }}
+      />
       <Footer />
     </section>
   );

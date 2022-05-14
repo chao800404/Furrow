@@ -28,7 +28,7 @@ const Main = () => {
       <GlobalStyle theme={theme} />
       <BrowserRouter>
         <WrapperScrollTop>
-          <App />
+          <App theme={theme} />
         </WrapperScrollTop>
       </BrowserRouter>
     </>

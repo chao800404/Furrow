@@ -11,6 +11,8 @@ import { cartPayment } from "../../redux/cart/cart.action";
 import FinishIconAn from "../finishIcon/finishIcon.component";
 import Spinner from "../../components/spinner/spinner.component";
 import primaryColor from "../../theme/priamry.styles";
+import toast from "react-hot-toast";
+import { paymentMessage } from "../../config/message";
 
 const formType = ["firstForm", "secondForm", "secondForm"];
 
@@ -57,6 +59,10 @@ const Payment = ({ cartItem }) => {
 
     if (currentStep < 1) trasnfrerStep();
     if (!stripe || !elements || currentStep < 1) return;
+    if (totalPrice <= 0) {
+      toast.error(paymentMessage.CART_EMPTY);
+      return;
+    }
     if (currentStep >= 3 && paymentSuccess) {
       setCurrentStep((prevStep) => (prevStep = 0));
       setPaymentSuccess((prevPaymentSuccess) => (prevPaymentSuccess = false));
@@ -77,13 +83,11 @@ const Payment = ({ cartItem }) => {
     }
 
     if (userData.addressLine !== userData.ConfirmAddressLine) {
-      setErrorMessage(
-        (prevError) => (prevError = "Please enter correct address line")
-      );
+      toast.error(paymentMessage.ERRORADDRESS);
       return;
     }
     if (!userDataComplete) {
-      setErrorMessage((prevError) => (prevError = "Incomplete information"));
+      toast.error(paymentMessage.INCOMPLETE);
       return;
     }
     setLoading((prev) => (prev = true));
@@ -108,7 +112,7 @@ const Payment = ({ cartItem }) => {
     });
     setLoading((prev) => (prev = false));
     if (paymentResult.error) {
-      alert(paymentResult.error.message);
+      toast.error(paymentResult.error.message);
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
         setPaymentSuccess((prePayment) => (prePayment = true));

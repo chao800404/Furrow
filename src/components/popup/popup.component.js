@@ -24,6 +24,8 @@ import glassesIconDark from "../../assets/svgIcon/glasses-icon-dark.svg";
 import { ReactSVG } from "react-svg";
 import maxWidth from "../../config/screen.size";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
+import { message } from "../../config/message";
+import toast from "react-hot-toast";
 
 const SvgIcon = ({ src }) => (
   <ReactSVG
@@ -89,21 +91,31 @@ const Popup = ({ collection }) => {
       setToggleElectrochromic((prev) => !prev);
       return;
     }
-    if (addToCartBtn === "add-cart-btn" && quantity > 0) {
-      dispatch(
-        cartAddItem({
-          rgb,
-          price,
-          id,
-          imageUrl,
-          color,
-          quantity: parseIntQuantity,
-          title,
-          statement: collection.statement,
-        })
-      );
-      goToPrevPage();
-      return;
+    if (addToCartBtn === "add-cart-btn") {
+      if (quantity <= 0) {
+        toast.error(message["ERROR"]);
+        return;
+      } else {
+        dispatch(
+          cartAddItem({
+            rgb,
+            price,
+            id,
+            imageUrl,
+            color,
+            quantity: parseIntQuantity,
+            title,
+            statement: collection.statement,
+          })
+        );
+        const addToCartMessage = message["ADDTOCART"].replace(
+          /(\w*)quantity(.*)title(.*)/g,
+          `$1${quantity}$2${title}$3`
+        );
+        toast.success(addToCartMessage);
+        goToPrevPage();
+        return;
+      }
     }
   };
 

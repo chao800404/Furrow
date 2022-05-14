@@ -131,6 +131,13 @@ export const FeatureGlassesBtn = styled(motion.div)`
   borderradius: 50%;
   boxshadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 
+  svg {
+    width: 3rem;
+    height: 3rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 1);
+    border-radius: 50%;
+  }
+
   span {
     position: absolute;
     display: block;

@@ -44,6 +44,10 @@ export const AboutTitle = styled(motion.img)`
   }
   @media only screen and (max-width: ${maxWidth.small}) {
     top: 15%;
+
+    span {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -55,4 +59,9 @@ export const AboutBannerTxt1 = styled(motion.span)`
 export const AboutBannerTxt2 = styled(motion.span)`
   ${AboutBannerTxt}
   bottom:15rem;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    font-size: 2rem;
+    bottom: 17rem;
+  }
 `;

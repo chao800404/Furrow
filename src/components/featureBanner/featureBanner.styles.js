@@ -48,6 +48,12 @@ export const FeatureTitle = styled.div`
     h1 {
       font-size: 3rem;
     }
+
+    @media only screen and (max-width: ${maxWidth.small}) {
+      span {
+        font-size: 1.5rem;
+      }
+    }
   }
 `;
 

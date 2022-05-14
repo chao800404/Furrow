@@ -67,6 +67,7 @@ a,button {
   p,span {
     font-size:2rem;
     font-weight: 400;
+
   }
   h1 {
     pointer-events: none;

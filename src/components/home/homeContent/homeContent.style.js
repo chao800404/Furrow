@@ -16,7 +16,7 @@ export const HomeContainer = styled.section`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 30rem);
     padding: 5rem 0;
     overflow: hidden;
   }

@@ -15,11 +15,13 @@ export const Title = styled(motion.h1)`
   will-change: bottom;
   user-select: none;
   bottom: 0;
+  font-weight:1000;
 
 
   span {
     font-size:inherit;
     display:block;
+    font-weight:bold;
 
     &:not(:first-child) {
       margin-top: -26%;

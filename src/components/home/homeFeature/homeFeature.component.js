@@ -15,6 +15,8 @@ import FeatureVidoe from "../featureVideo/featureVideo.component";
 import { BsFillForwardFill, BsSunglasses } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { toggleCursorStyle } from "../../../redux/cursor/cursor.actions";
+import { useNavigate } from "react-router-dom";
+import routes from "../../../router.config";
 
 const titleMovtion = {
   rest: {
@@ -32,6 +34,7 @@ const titleMovtion = {
 
 const HomeFeature = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleHover = () => {
     dispatch(toggleCursorStyle());
@@ -54,6 +57,7 @@ const HomeFeature = () => {
           <HomeFeatureTitle
             onMouseEnter={handleHover}
             onMouseLeave={handleHover}
+            onClick={() => navigate(`${routes.SHOPPAGE}`)}
           >
             <span>OUR</span>
             <span>PRODUCTION</span>
@@ -68,6 +72,7 @@ const HomeFeature = () => {
         <HomeFeatureNewsBtn
           onMouseEnter={handleHover}
           onMouseLeave={handleHover}
+          onClick={() => navigate(`${routes.VIRTUAL}`)}
         >
           <BsSunglasses className="button_icon" />
           <p>Virtual Try-On</p>

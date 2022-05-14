@@ -73,6 +73,8 @@ export const FeatureContent = styled.div`
     }
     p {
       height: 10rem;
+      width: 100%;
+      font-size: 1.6rem;
     }
     span {
       bottom: 0;
@@ -140,6 +142,7 @@ export const FeatureGlassesBtn = styled(motion.div)`
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
+    pointer-events: none;
   }
 
   span {

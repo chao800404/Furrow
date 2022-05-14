@@ -16,5 +16,6 @@ export const HomeArticleSection = styled(motion.section)`
     grid-template-columns: 1fr;
     grid-template-rows: 60rem 40rem;
     height: 120rem;
+    display: none;
   }
 `;

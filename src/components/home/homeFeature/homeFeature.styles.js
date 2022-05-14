@@ -34,11 +34,11 @@ export const HomeFeatureContent = styled(motion.div)`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     grid-template-columns: 1fr;
+    padding: 0;
   }
 `;
 
 export const HomeFeatureTitle = styled(motion.h2)`
-  font-size: 6rem;
   display: flex;
   flex-direction: column;
   line-height: 5rem;
@@ -47,10 +47,12 @@ export const HomeFeatureTitle = styled(motion.h2)`
   bottom: calc(-3rem + (-60%));
   span {
     display: block;
+    font-size: 5rem;
+    font-weight: bold;
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    bottom: calc(-3rem + (-30%));
+    bottom: calc(-3rem + (-50%));
   }
 `;
 
@@ -70,9 +72,10 @@ export const HomeFeatureSecondParagraph = styled.p`
   font-size: 2rem;
   @media only screen and (max-width: ${maxWidth.small}) {
     grid-column: 1 / -1;
-    transform: translateY(-100%);
+    transform: translateY(-50%);
     justify-self: start;
-    font-size: 5rem;
+    font-size: 4rem;
+    font-weight: bold;
   }
 `;
 
@@ -86,6 +89,9 @@ export const HomeFeatureIcon = styled(motion.div)`
 export const HomeFeatureNews = styled(motion.div)`
   width: 100%;
   display: grid;
+  @media only screen and (max-width: ${maxWidth.small}) {
+    margin-bottom: 5rem;
+  }
 `;
 
 export const HomeFeatureNewsBtn = styled(motion.button)`

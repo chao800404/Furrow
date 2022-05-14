@@ -83,5 +83,10 @@ export const VirtualContainer = styled.div`
 
   @media only screen and (max-width: ${maxWidth.mediumBelta}) {
     flex-direction: column-reverse;
+
+    button {
+      font-size: 1rem;
+      zoom: 0.9;
+    }
   }
 `;

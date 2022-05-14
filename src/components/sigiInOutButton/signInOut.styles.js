@@ -2,7 +2,6 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import maxWidth from "../../config/screen.size";
 
 export const SignInOut = styled(motion.div)`
   font-size: 2rem;

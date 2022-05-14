@@ -24,3 +24,18 @@ In case of any infringement, please contact [chao](yuho0298@gmail.com).
 * react-three/fiber - 04 / 23 / 2022 
 * react-three/drei - 04 / 23 / 2022
 * react-full-screen - 04 / 28 / 2022
+* react-hot-toast - 05 / 11 / 2022
+
+----------------------
+## Global tools
+glTF Pipeline - 05 / 12 / 2022
+
+
+<font size=3 > Have **big problem** in my glasses Model, Model Size is so Larger not unfriendly to users.need to compression the model file, but pipeline has    sequelae, Requires delayed parsing of files. </font>
+
+<img alt="larger" src="https://i.ibb.co/1TsyWPC/1652336177543.jpg" width="300px">
+<img alt="smaller" src="https://i.ibb.co/pZNwBfj/1652336711185.jpg" width="300px"> 
+
+<font size=3 >Use gLtf-Draco compression file  **(9600kb &#8594; 365kb) orginal size (0.03802..)** </font>
+   
+-----------------------

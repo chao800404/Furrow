@@ -47,4 +47,14 @@ export const FullScreenBtn = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  svg {
+    font-size: 2.5rem;
+    opacity: 0.5;
+    fill: rgba(0, 0, 0, 0.5);
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    display: none;
+  }
 `;

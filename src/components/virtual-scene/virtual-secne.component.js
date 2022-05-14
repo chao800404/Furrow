@@ -6,7 +6,7 @@ import {
   Loader,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import {
   VirtualSceneContainer,
   VirtualCanvas,
@@ -17,24 +17,45 @@ import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import useWinowSize from "../../utils/useWindowSize";
+import maxWidth from "../../config/screen.size";
 
-const fov = {
-  MOBILE_FOV: 55,
-  BASIC_FOV: 30,
+const FOV = {
+  LARGE: 35,
+  MEDIUM: 40,
+  MEDIUMALPHA: 45,
+  MEDIUMBELTA: 30,
+  SMALL: 70,
 };
 
 const VirtualScene = ({ type, color, view3d, currentEnvironment }) => {
   const handleFullScreen = useFullScreenHandle();
   const { curType, curColor } = transferClassesTypeName({ type, color });
   const CurGlassesModel = glassesModel[curType][curColor];
-  const { width, height } = useWinowSize();
-  const isMobile = width / height < 1;
+  const { width } = useWinowSize();
+  const [fov, setFov] = useState(null);
+
+  useEffect(() => {
+    console.log(width, +maxWidth.large.replace("px", ""));
+    if (width <= +maxWidth.small.replace("px", "")) {
+      setFov((prev) => (prev = FOV.SMALL - width / 20));
+    } else if (width <= +maxWidth.mediumBelta.replace("px", "")) {
+      setFov((prev) => (prev = FOV.MEDIUMBELTA));
+    } else if (width <= +maxWidth.mediumAlpha.replace("px", "")) {
+      setFov((prev) => (prev = FOV.MEDIUMALPHA));
+    } else if (width <= +maxWidth.medium.replace("px", "")) {
+      setFov((prev) => (prev = FOV.MEDIUM));
+    } else if (width <= +maxWidth.large.replace("px", "")) {
+      setFov((prev) => (prev = FOV.LARGE));
+    } else {
+      setFov((prev) => (prev = FOV.LARGE));
+    }
+  }, [width]);
 
   return (
     <VirtualSceneContainer>
-      <Suspense fallback={null}>
-        <FullScreen handle={handleFullScreen} className="fullScreen">
-          <VirtualCanvas gl={{ toneMappingExposure: 0.9 }}>
+      <FullScreen handle={handleFullScreen} className="fullScreen">
+        <VirtualCanvas gl={{ toneMappingExposure: 0.9 }}>
+          <Suspense fallback={null}>
             <CurGlassesModel view3d={view3d} />
             <Environment
               background
@@ -43,12 +64,13 @@ const VirtualScene = ({ type, color, view3d, currentEnvironment }) => {
             <PerspectiveCamera
               makeDefault
               position={[-30, 100, 120]}
-              fov={isMobile ? fov.MOBILE_FOV : fov.BASIC_FOV}
+              fov={fov}
             />
-            <OrbitControls />
-          </VirtualCanvas>
-        </FullScreen>
-      </Suspense>
+          </Suspense>
+          <OrbitControls />
+        </VirtualCanvas>
+      </FullScreen>
+
       <FullScreenBtn whileTap={{ y: 2 }} onClick={handleFullScreen.enter}>
         <BsArrowsFullscreen
           style={{

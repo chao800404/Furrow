@@ -24,9 +24,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const CurGlassesModel = glassesModel[curType][curColor];
 
   return (
-    <ClassesModelContainer
-      style={transitionEnd ? { width: "101%" } : { width: "100%" }}
-    >
+    <ClassesModelContainer>
       {transitionEnd && (
         <>
           <Canvas

@@ -27,7 +27,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
 
   const set = () => setFir((prev) => (prev = true));
 
-  useTimeOut(set, 100);
+  useTimeOut(set, 500);
 
   return (
     <ClassesModelContainer>

@@ -17,7 +17,6 @@ import UserGuide from "../userGuilde/userGuide.component";
 import { cartAddItem } from "../../redux/cart/cart.action";
 import ColorBox from "../colorBox/colorBox.component";
 import GlassesModel from "../glassesCanvasModel/glassseCanvasModel.component";
-import Spinner from "../spinner/spinner.component";
 import glassesIcon from "../../assets/svgIcon/glasses-icon.svg";
 import glassesIconDark from "../../assets/svgIcon/glasses-icon-dark.svg";
 import { ReactSVG } from "react-svg";

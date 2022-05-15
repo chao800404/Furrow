@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import maxWidth from "../../config/screen.size";
 
 export const SignInPageContainer = styled.section`
-  min-height: 100vmax;
+  min-height: 100vh;
   padding: 20rem 0;
   @media only screen and (max-width: ${maxWidth.small}) {
     padding: 15rem 0 5rem 0;
@@ -17,7 +17,7 @@ export const SignInUpContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: 6rem;
+  margin: 6rem auto 0 auto;
 
   @media only screen and (max-width: ${maxWidth.small}) {
     flex-direction: column-reverse;
@@ -48,8 +48,9 @@ export const SignInUpContent = styled(motion.div)`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     height: auto;
-    padding: 2rem;
+    padding: 2rem 3rem;
     margin-left: 0;
+    margin-top: 5rem;
 
     h1 {
       font-size: 3.5rem;
@@ -58,5 +59,36 @@ export const SignInUpContent = styled(motion.div)`
     p {
       font-size: 1.4rem;
     }
+  }
+`;
+
+export const SignInSuccess = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: 0.5rem;
+
+  .success-content {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem;
+    height: 100%;
+
+    @media only screen and (max-width: ${maxWidth.small}) {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
+  .success-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
   }
 `;

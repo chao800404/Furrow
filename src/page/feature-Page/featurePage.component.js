@@ -32,7 +32,6 @@ import FeatureBanner from "../../components/featureBanner/featureBanner.componen
 const FeaturePage = () => {
   const [inView, setInView] = useState(0);
   const [displayProperty, setDisplayProperty] = useState(0);
-
   const featureBtnContainer = useRef();
   const theme = useSelector(selectThemeStyle);
   const dispatch = useDispatch();
@@ -116,7 +115,6 @@ const FeaturePage = () => {
                   key={index}
                   style={{
                     gridColumn: "1 / -1",
-                    height: "40rem",
                   }}
                   data-item={index}
                   onViewportEnter={() => setInView((prev) => (prev = index))}

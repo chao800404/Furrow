@@ -5,6 +5,7 @@ import {
   SignInUpContainer,
   SignInUpContent,
   SignInPageContainer,
+  SignInSuccess,
 } from "./signInPage.styles";
 import { useSelector } from "react-redux";
 import {
@@ -19,6 +20,8 @@ import Button from "../../components/button/button.component";
 import { useNavigate } from "react-router-dom";
 import useTimeOut from "../../utils/useTimeOut";
 import toast from "react-hot-toast";
+import maxWidth from "../../config/screen.size";
+import useWinowSize from "../../utils/useWindowSize";
 
 const variants = {
   initial: {
@@ -35,6 +38,8 @@ const SignInPage = () => {
   const errorMessage = useSelector(selectUserErrorMessage);
   const [anStart, setAnStart] = useState(false);
   const navigater = useNavigate();
+  const { width } = useWinowSize();
+  const isMobile = maxWidth.small.replace("px", "") >= width;
 
   useEffect(() => {
     if (errorMessage) toast.error(errorMessage);
@@ -61,7 +66,10 @@ const SignInPage = () => {
   return (
     <SignInPageContainer>
       <Flex>
-        <SignInUpContainer onClick={goHomePage}>
+        <SignInUpContainer
+          style={existUser && isMobile ? { width: "80%" } : null}
+          onClick={goHomePage}
+        >
           {existUser ? null : (
             <SignInUpFrom initial={{ x: -200 }} animate={{ x: 0 }} />
           )}
@@ -71,44 +79,26 @@ const SignInPage = () => {
             animate={existUser ? "finish" : "initial"}
           >
             {existUser ? (
-              <div
-                style={{
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  width: "100%",
-                  justifyContent: "space-between",
-                  overflow: "hidden",
-                  borderRadius: ".5rem",
-                }}
-              >
-                <motion.div
-                  style={{ width: "40%", objectFit: "top", x: "150%" }}
-                  animate={{ x: 0 }}
-                  transition={{
-                    ease: "easeOut",
-                    delay: 1,
-                  }}
-                >
-                  <video
-                    style={{ width: "100%", filter: "grayscale(50%)" }}
-                    loop
-                    muted
-                    autoPlay={true}
-                    src={signInFinishVideo}
-                  />
-                </motion.div>
-                <div
-                  style={{
-                    width: "60%",
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    padding: "5rem",
-                    height: "100%",
-                  }}
-                >
+              <SignInSuccess>
+                {!isMobile && (
+                  <motion.div
+                    style={{ width: "40%", objectFit: "top", x: "150%" }}
+                    animate={{ x: 0 }}
+                    transition={{
+                      ease: "easeOut",
+                      delay: 1,
+                    }}
+                  >
+                    <video
+                      style={{ width: "100%", filter: "grayscale(50%)" }}
+                      loop
+                      muted
+                      autoPlay={true}
+                      src={signInFinishVideo}
+                    />
+                  </motion.div>
+                )}
+                <div className="success-content">
                   <motion.div
                     style={{
                       opacity: "0",
@@ -137,7 +127,7 @@ const SignInPage = () => {
                       delay: 2,
                     }}
                   >
-                    Sign in suceesfully
+                    <span className="success-title">Sign in suceesfully</span>
                     <span style={{ fontSize: "1.8rem" }}>
                       Click the button to return to the home page
                     </span>
@@ -149,7 +139,7 @@ const SignInPage = () => {
                     </Button>
                   </motion.div>
                 </div>
-              </div>
+              </SignInSuccess>
             ) : (
               <>
                 <h1>Hello, Friend!</h1>

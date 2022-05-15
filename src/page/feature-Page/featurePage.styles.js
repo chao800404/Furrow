@@ -25,7 +25,7 @@ export const FeatureStory = styled.div`
   margin-top: 20rem;
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(4, 52rem);
     margin-top: 0;
   }
 `;
@@ -45,6 +45,15 @@ export const FeatureStoryContainer = styled.div`
     height: 100%;
     top: calc(50% - 30rem);
   }
+`;
+
+export const FeatureBg = styled.div`
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  opacity: 0.2;
+  font-size: 50vw;
+  font-weight: 900;
 `;
 
 export const FeatureContent = styled.div`
@@ -98,6 +107,7 @@ export const FeatureImgContainer = styled.div`
   img {
     width: 100%;
     height: 100%;
+    user-select: none;
   }
 
   span {
@@ -207,7 +217,7 @@ export const FeatureFunction = styled.div`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     height: auto;
-    margin-top: 10rem;
+    margin-top: 5rem;
     h4 {
       width: 70%;
       font-size: 4.5rem;

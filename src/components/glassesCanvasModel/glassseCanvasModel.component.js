@@ -6,7 +6,7 @@ import {
   ContactShadows,
   Loader,
 } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -20,7 +20,17 @@ import { glassesModel } from "./glassesCanvasToMaps";
 const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
-  const { curType, curColor } = transferClassesTypeName({ type, color });
+  // const { curType, curColor } = transferClassesTypeName({ type, color });
+  const [curGlassesType, setCurGlassesType] = useState(
+    transferClassesTypeName({ type, color })
+  );
+  const { curType, curColor } = curGlassesType;
+  useEffect(() => {
+    setCurGlassesType(
+      (prev) => (prev = transferClassesTypeName({ type, color }))
+    );
+  }, [type, color]);
+
   const CurGlassesModel = glassesModel[curType][curColor];
 
   return (

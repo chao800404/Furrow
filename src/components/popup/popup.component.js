@@ -133,18 +133,14 @@ const Popup = ({ collection }) => {
           onAnimationComplete={() => setTransitionEnd(true)}
         >
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
-          {collection && (
+          {collection && transitionEnd && (
             <>
-              {transitionEnd ? (
-                <GlassesModel
-                  type={collection.title}
-                  color={color}
-                  toggleElectrochromic={toggleElectrochromic}
-                  transitionEnd={transitionEnd}
-                />
-              ) : (
-                <Spinner />
-              )}
+              <GlassesModel
+                type={collection.title}
+                color={color}
+                toggleElectrochromic={toggleElectrochromic}
+                transitionEnd={transitionEnd}
+              />
               <PopupForm>
                 <h3>{title}</h3>
                 <div className="popup-text_container">

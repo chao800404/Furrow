@@ -5,7 +5,7 @@ import {
   PopupForm,
   PopupBoxContainer,
 } from "./popup.style";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -79,6 +79,8 @@ const Popup = ({ collection }) => {
     navigate(`${prevPage}/${curColor}`);
   };
 
+  console.log(colorType);
+
   const handleClick = (e) => {
     const target = e.target.dataset.item;
     const addToCartBtn = e.target.dataset.type;
@@ -132,7 +134,7 @@ const Popup = ({ collection }) => {
           onAnimationComplete={() => setTransitionEnd(true)}
         >
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
-          {collection && transitionEnd && (
+          {collection && transitionEnd && colorType && color && (
             <>
               <GlassesModel
                 type={collection.title}
@@ -160,7 +162,7 @@ const Popup = ({ collection }) => {
                         key={index}
                         color={collection.item[index].color}
                         active={collection.item[index].color === colorType}
-                      ></ColorBox>
+                      />
                     ))}
                   </div>
                 </div>
@@ -219,4 +221,4 @@ const Popup = ({ collection }) => {
   );
 };
 
-export default Popup;
+export default memo(Popup);

@@ -6,7 +6,7 @@ import {
   ContactShadows,
   Loader,
 } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -16,16 +16,23 @@ import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
 import { glassesModel } from "./glassesCanvasToMaps";
+import useTimeOut from "../../utils/useTimeOut";
 
 const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
+  const [fir, setFir] = useState(false);
   const CurGlassesModel = glassesModel[curType][curColor];
+
+  const set = () => setFir((prev) => (prev = true));
+  console.log(fir);
+
+  useTimeOut(set, 100);
 
   return (
     <ClassesModelContainer>
-      <Canvas shadows camera={{ position: [0, 20, 0], fov: 30 }} dpr={[1, 2]}>
+      <Canvas shadows camera={{ position: [0, 20, 0], fov: 35 }} dpr={[1, 2]}>
         <ambientLight intensity={0.2} />
         <spotLight
           intensity={0.5}
@@ -35,7 +42,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
           castShadow
         />
         <Suspense fallback={null}>
-          {transitionEnd && (
+          {transitionEnd && fir && (
             <CurGlassesModel
               onPointerDown={() => dispatch(checkARIsPointer())}
               mode={

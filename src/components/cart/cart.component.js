@@ -44,16 +44,18 @@ const Cart = ({ theme }) => {
   }, [current, delay, position, dispatch]);
 
   useEffect(() => {
+    if (isMobile) return;
     const timeout = setTimeout(
       () => settranaslateCart((prev) => (prev = true)),
       10
     );
     return () => clearTimeout(timeout);
-  }, [location.pathname]);
+  }, [location.pathname, isMobile]);
 
   useEffect(() => {
+    if (isMobile) return;
     settranaslateCart((prev) => (prev = position.current === position.delay));
-  }, [position]);
+  }, [position, isMobile]);
 
   useEffect(() => {
     if (isMobile || hovered) return;

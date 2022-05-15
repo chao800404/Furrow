@@ -5,7 +5,6 @@ import { VirtualContainer, VirtualPageContainer } from "./virtualPage.styles";
 import { useSelector, useDispatch } from "react-redux";
 import { selectShopCollectionPreview } from "../../redux/shop/shop.select";
 import VirtualSide from "../../components/virtual-side/virtualSide.component";
-// import VirtualScene from "../../components/virtual-scene/virtual-secne.component";
 import Button from "../../components/button/button.component";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
 import { sidebarAnEnd } from "../../redux/sidebar/sidebar.actions";
@@ -68,17 +67,12 @@ const VirtualPage = () => {
                 environment
               </p>
 
-              {/* {sidebarAnEnds ? ( */}
               <VirtualScene
                 {...currentGlasses}
                 view3d={true}
                 currentEnvironment={currentEnvironment}
               />
-              {/* ) : (
-            <div
-              style={{ width: "100%", height: "50rem", marginTop: "2rem" }}
-            />
-          )} */}
+
               <div
                 className="virtual-Btn-container"
                 onClick={handleEvironmentClick}

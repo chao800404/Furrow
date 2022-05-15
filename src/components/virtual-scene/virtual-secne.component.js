@@ -18,6 +18,8 @@ import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import useWinowSize from "../../utils/useWindowSize";
 import maxWidth from "../../config/screen.size";
+import { useSelector } from "react-redux";
+import { sidebarAnStatus } from "../../redux/sidebar/sidebar.select";
 
 const FOV = {
   LARGE: 35,
@@ -33,9 +35,9 @@ const VirtualScene = ({ type, color, view3d, currentEnvironment }) => {
   const CurGlassesModel = glassesModel[curType][curColor];
   const { width } = useWinowSize();
   const [fov, setFov] = useState(null);
+  const sidebarAnEnd = useSelector(sidebarAnStatus);
 
   useEffect(() => {
-    console.log(width, +maxWidth.large.replace("px", ""));
     if (width <= +maxWidth.small.replace("px", "")) {
       setFov((prev) => (prev = FOV.SMALL - width / 20));
     } else if (width <= +maxWidth.mediumBelta.replace("px", "")) {
@@ -56,16 +58,20 @@ const VirtualScene = ({ type, color, view3d, currentEnvironment }) => {
       <FullScreen handle={handleFullScreen} className="fullScreen">
         <VirtualCanvas gl={{ toneMappingExposure: 0.9 }}>
           <Suspense fallback={null}>
-            <CurGlassesModel view3d={view3d} />
-            <Environment
-              background
-              files={`/threeModel/environment/${currentEnvironment}_2k.hdr`}
-            />
-            <PerspectiveCamera
-              makeDefault
-              position={[-30, 100, 120]}
-              fov={fov}
-            />
+            {sidebarAnEnd && (
+              <>
+                <CurGlassesModel view3d={view3d} />
+                <Environment
+                  background
+                  files={`/threeModel/environment/${currentEnvironment}_2k.hdr`}
+                />
+                <PerspectiveCamera
+                  makeDefault
+                  position={[-30, 100, 120]}
+                  fov={fov}
+                />
+              </>
+            )}
           </Suspense>
           <OrbitControls />
         </VirtualCanvas>

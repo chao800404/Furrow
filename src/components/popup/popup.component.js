@@ -79,8 +79,6 @@ const Popup = ({ collection }) => {
     navigate(`${prevPage}/${curColor}`);
   };
 
-  console.log(colorType);
-
   const handleClick = (e) => {
     const target = e.target.dataset.item;
     const addToCartBtn = e.target.dataset.type;

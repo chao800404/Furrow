@@ -94,19 +94,20 @@ export default function MarkIBlackModel({ ...props }) {
       </group>
     </group>
   ) : (
-    <group {...props} dispose={null} ref={group}>
-      <group
-        rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -2.5, 0]}
-        scale={0.11}
-      >
-        <Glasses
-          nodes={nodes}
-          materials={materials}
-          props={props}
-          glasses={glasses}
-        />
-      </group>
+    <group
+      dispose={null}
+      rotation={[-Math.PI / 2, 0, 0]}
+      position={[0, -2.5, 0]}
+      scale={0.11}
+      ref={group}
+      {...props}
+    >
+      <Glasses
+        nodes={nodes}
+        materials={materials}
+        props={props}
+        glasses={glasses}
+      />
     </group>
   );
 }

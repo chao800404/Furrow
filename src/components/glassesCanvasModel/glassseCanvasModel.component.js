@@ -8,7 +8,7 @@ import {
 } from "@react-three/drei";
 import { Suspense } from "react";
 // import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
-import { ClassesModelContainer } from "./glassesCanvasModel.styles";
+// import { ClassesModelContainer } from "./glassesCanvasModel.styles";
 // import { ReactSVG } from "react-svg";
 // import svg from "../../assets/svgIcon/AR-icon.svg";
 // import { useDispatch, useSelector } from "react-redux";

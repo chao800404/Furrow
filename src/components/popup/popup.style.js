@@ -175,6 +175,7 @@ export const PopupBox = styled(motion.div)`
   }
   .color_container {
     display: flex;
+    padding-left: 1rem;
     span {
       &:not(:last-child) {
         margin-right: 1rem;

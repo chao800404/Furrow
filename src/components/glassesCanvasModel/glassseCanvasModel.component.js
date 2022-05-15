@@ -23,8 +23,12 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const { curType, curColor } = transferClassesTypeName({ type, color });
   const CurGlassesModel = glassesModel[curType][curColor];
 
+  console.log(transitionEnd);
+
   return (
-    <ClassesModelContainer>
+    <ClassesModelContainer
+      style={transitionEnd ? { width: "101%" } : { width: "100%" }}
+    >
       {transitionEnd && (
         <>
           <Canvas

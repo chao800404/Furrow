@@ -9,7 +9,7 @@ const ColorBox = ({ style, onClick, color, dataType, active }) => (
     data-color={color}
     onClick={onClick}
     className={`${active ? "active" : null}`}
-  ></ColorBoxContainer>
+  />
 );
 
 export default ColorBox;

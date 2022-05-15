@@ -30,7 +30,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case cartActionType.ONSCROLL_CART_HIDDEN:
       return {
         ...state,
-        hidden: false,
+        hidden: true,
       };
     case cartActionType.HOVER_CART_POPUP:
       return {

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Cart from "../../components/cart/cart.component";
 import { cartInit } from "../../redux/cart/cart.action";
+import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 const CollectionPreview = lazy(() =>
   import("../../components/collection-preview/collection-preview.component")
 );
@@ -15,6 +16,7 @@ const CollectionOverView = lazy(() =>
 
 const ShopPage = () => {
   const dispatch = useDispatch();
+  const isMobile = useCheckScreenIsMobile();
 
   useEffect(() => {
     dispatch(fetchShopPageStart());
@@ -23,7 +25,8 @@ const ShopPage = () => {
 
   return (
     <section style={{ overflowX: "hidden" }}>
-      <Cart />
+      {!isMobile && <Cart />}
+
       <Routes>
         <Route path="*" element={<CollectionPreview />} />
         <Route path=":collectionId/*" element={<CollectionOverView />}></Route>

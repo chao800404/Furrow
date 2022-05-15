@@ -12,8 +12,7 @@ import {
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
-import useWinowSize from "../../utils/useWindowSize";
-import maxWidth from "../../config/screen.size";
+import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 
 const variants = {
   enter: (direction) => {
@@ -64,8 +63,7 @@ const SlideShow = ({ src, alt }) => {
     setPage([page + newDirection, newDirection]);
   };
 
-  const { width } = useWinowSize();
-  const isMobile = maxWidth.small.replace("px", "") >= width;
+  const isMobile = useCheckScreenIsMobile();
 
   return (
     <SlideContainer

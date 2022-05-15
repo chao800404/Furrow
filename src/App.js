@@ -5,7 +5,7 @@ import Homepage from "./page/home-Page/hompage.component";
 // import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
 import Sidebars from "./components/sidebar/sidebar.component";
 import ShopPage from "./page/shop-Page/shopPage.component";
-
+import MobileMenuBar from "./components/mobile-menu-bar/mobileMenuBar.component";
 import Footer from "./components/footer/footer.component";
 import { Routes, Route } from "react-router-dom";
 import routes from "./router.config";
@@ -47,6 +47,7 @@ const App = ({ theme }) => {
       {/* <CurstomCursor /> */}
       <Header />
       <Sidebars />
+      <MobileMenuBar theme={theme} />
       <Suspense
         fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
       >

@@ -6,7 +6,6 @@ import {
   PopupBoxContainer,
 } from "./popup.style";
 import { useState, useEffect } from "react";
-import useWinowSize from "../../utils/useWindowSize";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -22,7 +21,6 @@ import Spinner from "../spinner/spinner.component";
 import glassesIcon from "../../assets/svgIcon/glasses-icon.svg";
 import glassesIconDark from "../../assets/svgIcon/glasses-icon-dark.svg";
 import { ReactSVG } from "react-svg";
-import maxWidth from "../../config/screen.size";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { message } from "../../config/message";
 import { cartToggleHidden } from "../../redux/cart/cart.action";
@@ -64,7 +62,6 @@ const Popup = ({ collection }) => {
   const { rgb, price, imageUrl, id, color } = useSelector(
     selectPopupView(collection?.title, colorType)
   );
-  const isMobile = maxWidth >= useWinowSize();
   const location = useLocation();
   const title = `${collection?.title}-${color}`;
 
@@ -143,7 +140,6 @@ const Popup = ({ collection }) => {
                   type={collection.title}
                   color={color}
                   toggleElectrochromic={toggleElectrochromic}
-                  isMobile={isMobile}
                   transitionEnd={transitionEnd}
                 />
               ) : (

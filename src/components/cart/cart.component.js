@@ -1,7 +1,7 @@
 /** @format */
 
 import { CartContainer } from "./cart.styles";
-import { BsFillBagFill } from "react-icons/bs";
+import { BsFillBagFill, BsHandbag } from "react-icons/bs";
 import { useState, useEffect, useCallback } from "react";
 import CardList from "../cartList/cartList.conponent";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,8 +15,9 @@ import {
 } from "../../redux/cart/cart.select";
 
 import { useLocation } from "react-router-dom";
+import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 
-const Cart = () => {
+const Cart = ({ theme }) => {
   const [position, setPosition] = useState({
     current: 0,
     delay: 0,
@@ -27,6 +28,7 @@ const Cart = () => {
   const cartAmount = useSelector(selectCartAmount);
   const hovered = useSelector(selectCartToggleHovered);
   const location = useLocation();
+  const isMobile = useCheckScreenIsMobile();
 
   const handleScroll = useCallback(() => {
     const currentPostion = document.documentElement.scrollTop;
@@ -54,30 +56,44 @@ const Cart = () => {
   }, [position]);
 
   useEffect(() => {
-    if (hovered) return;
+    if (isMobile || hovered) return;
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll, hovered]);
+  }, [handleScroll, hovered, isMobile]);
 
   return (
     <CartContainer
       animate={tranaslateCart ? { x: 0, opacity: 1 } : { x: 500, opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
+      theme={theme}
     >
       <CardList />
       <div onClick={() => dispatch(cartToggleHidden())}>
         <h5>YOUR CART</h5>
         <p>{cartAmount}</p>
-        <BsFillBagFill
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-            fontSize: "5rem",
-            zIndex: 1,
-          }}
-        />
+        {isMobile ? (
+          <BsHandbag
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              fontSize: isMobile ? "3.5rem" : "5rem",
+              zIndex: 1,
+            }}
+          />
+        ) : (
+          <BsFillBagFill
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              fontSize: isMobile ? "3.5rem" : "5rem",
+              zIndex: 1,
+            }}
+          />
+        )}
       </div>
     </CartContainer>
   );

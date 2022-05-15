@@ -2,11 +2,13 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
+import primaryColor from "../../theme/priamry.styles";
 
 export const CartItemContainer = styled(motion.div)`
   width: 28rem;
   height: 35rem;
-  background-color: #fff;
+  background-color: ${primaryColor.primaryWhite};
   filter: drop-shadow(0rem 0rem 0.4rem rgba(0, 0, 0, 0.5));
   position: absolute;
   top: -300%;
@@ -19,6 +21,11 @@ export const CartItemContainer = styled(motion.div)`
   padding: 1.5rem;
   grid-gap: 1rem;
 
+  @media only screen and (max-width: ${maxWidth.small}) {
+    top: -620%;
+    left: -600%;
+  }
+
   &:after {
     content: "";
     position: absolute;
@@ -26,7 +33,7 @@ export const CartItemContainer = styled(motion.div)`
     right: -2rem;
     width: 4rem;
     height: 4rem;
-    background-color: #fff;
+    background-color: ${primaryColor.primaryWhite};
     z-index: 30;
     clip-path: polygon(100% 52%, 39% 0, 40% 100%);
   }

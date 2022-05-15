@@ -14,8 +14,7 @@ import {
   selectCurrentTheme,
 } from "../../redux/theme/theme.select";
 import SignInOutButton from "../sigiInOutButton/signInOutButton.component.js";
-import maxWidth from "../../config/screen.size";
-import useWinowSize from "../../utils/useWindowSize";
+import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -27,8 +26,7 @@ const Header = () => {
     dispatch(toggleCursorStyle());
   };
   const theme = useSelector(selectThemeStyle);
-  const { width } = useWinowSize();
-  const isMobile = maxWidth.small.replace("px", "") >= width;
+  const isMobile = useCheckScreenIsMobile();
 
   return (
     <HeaderNav

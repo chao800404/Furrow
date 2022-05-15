@@ -4,15 +4,17 @@ import React, { useState, useEffect } from "react";
 import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 import { MenuBarContainer } from "./mobileMenuBar.styles";
 import { BiChevronUp } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sidebarStauts } from "../../redux/sidebar/sidebar.select";
 import Cart from "../cart/cart.component";
 import ShopLinkIcon from "../shop-link-icon/shop-link-icon.component";
+import { cartToggleHidden } from "../../redux/cart/cart.action";
 
 const MobileMenuBar = ({ theme }) => {
   const [toggle, setToggle] = useState(false);
   const isMobile = useCheckScreenIsMobile();
   const sidebarToggle = useSelector(sidebarStauts);
+  const dispatch = useDispatch();
   const variants = {
     hidden: {
       y: "5.5rem",
@@ -22,9 +24,16 @@ const MobileMenuBar = ({ theme }) => {
     },
   };
 
+  const handleClick = () => {
+    dispatch(cartToggleHidden("hidden"));
+    setToggle((prev) => !prev);
+  };
+
   useEffect(() => {
-    if (sidebarToggle) setToggle((prev) => (prev = false));
-  }, [sidebarToggle]);
+    if (sidebarToggle) {
+      setToggle((prev) => (prev = false));
+    }
+  }, [sidebarToggle, dispatch]);
 
   return (
     isMobile && (
@@ -34,10 +43,7 @@ const MobileMenuBar = ({ theme }) => {
         initial="hidden"
         animate={toggle ? "display" : "hidden"}
       >
-        <span
-          className="menu-bar-toggle"
-          onClick={() => setToggle((prev) => !prev)}
-        >
+        <span className="menu-bar-toggle" onClick={handleClick}>
           <BiChevronUp
             style={
               toggle

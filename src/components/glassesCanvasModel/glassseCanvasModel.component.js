@@ -7,30 +7,27 @@ import {
   Loader,
 } from "@react-three/drei";
 import { Suspense } from "react";
-// import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
-// import { ClassesModelContainer } from "./glassesCanvasModel.styles";
-// import { ReactSVG } from "react-svg";
-// import svg from "../../assets/svgIcon/AR-icon.svg";
-// import { useDispatch, useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
+import { ReactSVG } from "react-svg";
+import svg from "../../assets/svgIcon/AR-icon.svg";
+import { useDispatch, useSelector } from "react-redux";
 import { checkARIsPointer } from "../../redux/card/card.action";
-// import { selectCardIsPointer } from "../../redux/card/card.select";
+import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
-// import { glassesModel } from "./glassesCanvasToMaps";
-import CurGlassesModel from "../../threeModel/marki/marki-black";
+import { glassesModel } from "./glassesCanvasToMaps";
+// import CurGlassesModel from "../../threeModel/marki/marki-black";
 
 const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
-  // const pointDown = useSelector(selectCardIsPointer);
-  // const { curType, curColor } = transferClassesTypeName({ type, color });
-  const { curType } = transferClassesTypeName({ type, color });
-  // const CurGlassesModel = glassesModel[curType][curColor];
+  const pointDown = useSelector(selectCardIsPointer);
+  const { curType, curColor } = transferClassesTypeName({ type, color });
+  const CurGlassesModel = glassesModel[curType][curColor];
 
   return (
-    transitionEnd && (
-      <>
-        <Suspense fallback={null}>
+    <ClassesModelContainer>
+      {transitionEnd && (
+        <>
           <Canvas
             shadows
             camera={{ position: [0, 20, 0], fov: 35 }}
@@ -44,32 +41,32 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
               position={[10, 15, 10]}
               castShadow
             />
-
-            <CurGlassesModel
-              onPointerDown={() => dispatch(checkARIsPointer())}
-              mode={
-                toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
-              }
-            />
-            <ContactShadows
-              rotation-x={Math.PI / 2}
-              position={[0, -2.5, 0]}
-              opacity={0.7}
-              width={30}
-              height={30}
-              blur={1.5}
-              far={4.5}
-            />
-            <Environment preset="sunset" />
-
+            <Suspense fallback={null}>
+              <CurGlassesModel
+                onPointerDown={() => dispatch(checkARIsPointer())}
+                mode={
+                  toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
+                }
+              />
+              <ContactShadows
+                rotation-x={Math.PI / 2}
+                position={[0, -2.5, 0]}
+                opacity={0.7}
+                width={30}
+                height={30}
+                blur={1.5}
+                far={4.5}
+              />
+              <Environment preset="sunset" />
+            </Suspense>
             <OrbitControls
               minPolarAngle={Math.PI / 2}
               maxPolarAngle={Math.PI / 3}
               enablePan={false}
             />
           </Canvas>
-        </Suspense>
-        {/* {pointDown ? null : (
+
+          {pointDown ? null : (
             <SvgIcon
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -86,10 +83,11 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
                 }
               />
             </SvgIcon>
-          )} */}
-        <Loader />
-      </>
-    )
+          )}
+          <Loader />
+        </>
+      )}
+    </ClassesModelContainer>
   );
 };
 

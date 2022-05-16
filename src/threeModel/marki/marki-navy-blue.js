@@ -109,3 +109,4 @@ export default function MarkINavyBlueModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/markI/navy-blue/scene.glb");

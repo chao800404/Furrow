@@ -94,3 +94,4 @@ export default function MenpoCamoBlueModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/menpo/camo-blue/scene.glb");

@@ -114,3 +114,4 @@ export default function MaverickSilverModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/maverick/silver/scene.glb");

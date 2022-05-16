@@ -116,3 +116,4 @@ export default function MenpoCamoOrangeModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/menpo/camo-orange/scene.glb");

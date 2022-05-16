@@ -132,3 +132,4 @@ export default function LynxPinkYarrowModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/lynx/pink-yarrow/scene.glb");

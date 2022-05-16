@@ -111,3 +111,4 @@ export default function MarkIBlackModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/markI/black/scene.glb");

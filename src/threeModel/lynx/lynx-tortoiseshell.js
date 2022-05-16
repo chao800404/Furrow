@@ -167,3 +167,4 @@ export default function LynxTortoiseshellModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/lynx/tortoiseshell/scene.glb");

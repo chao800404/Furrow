@@ -128,3 +128,4 @@ export default function NomadTortoiseshellModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/nomad/tortoiseshell/scene.glb");

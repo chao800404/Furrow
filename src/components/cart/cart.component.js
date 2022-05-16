@@ -65,8 +65,14 @@ const Cart = ({ theme }) => {
 
   return (
     <CartContainer
-      animate={tranaslateCart ? { x: 0, opacity: 1 } : { x: 500, opacity: 0 }}
-      transition={{ ease: "easeInOut", duration: 0.5 }}
+      animate={
+        isMobile
+          ? tranaslateCart
+            ? { x: 0, opacity: 1 }
+            : { x: 500, opacity: 0 }
+          : null
+      }
+      transition={isMobile ? { ease: "easeInOut", duration: 0.5 } : null}
       theme={theme}
     >
       <CardList />

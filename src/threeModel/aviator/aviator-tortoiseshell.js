@@ -144,3 +144,4 @@ export default function AviatorGreenModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/aviator/tortoiseshell/scene.glb");

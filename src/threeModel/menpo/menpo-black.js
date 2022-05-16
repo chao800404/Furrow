@@ -98,3 +98,4 @@ export default function MenpoBlackModel({ ...props }) {
     </group>
   );
 }
+useGLTF.preload("/threeModel/menpo/black/scene.glb");

@@ -22,7 +22,8 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
-  const CurGlassesModel = curType ? glassesModel[curType][curColor] : <></>;
+  const CurGlassesModel =
+    curColor && curType ? glassesModel[curType][curColor] : <></>;
 
   return (
     <ClassesModelContainer>

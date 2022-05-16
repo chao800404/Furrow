@@ -1,8 +1,6 @@
 /** @format */
 import { lazy } from "react";
 
-// import { useGLTF } from "@react-three/drei";
-
 export const glassesModel = {
   marki: {
     black: lazy(() => import("../../threeModel/marki/marki-black")),
@@ -53,49 +51,3 @@ export const glassesModel = {
     ),
   },
 };
-
-// export const preLoadModel = (model) => {
-//   switch (model) {
-//     case "marki":
-//       return () => {
-//         useGLTF.preload("/threeModel/markI/black/scene.glb");
-//         useGLTF.preload("/threeModel/markI/navy-blue/scene.glb");
-//         useGLTF.preload("/threeModel/markI/black/scene.glb");
-//         useGLTF.preload("/threeModel/markI/ultra-violet/scene.glb");
-//       };
-//     case "nomad":
-//       return () => {
-//         useGLTF.preload("/threeModel/nomad/pear-black/scene.glb");
-//         useGLTF.preload("/threeModel/nomad/red/scene.glb");
-//         useGLTF.preload("/threeModel/nomad/tortoiseshell/scene.glb");
-//       };
-//     case "aviator":
-//       return () => {
-//         useGLTF.preload("/threeModel/aviator/wood-grain/scene.glb");
-//         useGLTF.preload("/threeModel/aviator/tortoiseshell/scene.glb");
-//         useGLTF.preload("/threeModel/aviator/black/scene.glb");
-//       };
-//     case "maverick":
-//       return () => {
-//         useGLTF.preload("/threeModel/maverick/gold/scene.glb");
-//         useGLTF.preload("/threeModel/maverick/silver/scene.glb");
-//         useGLTF.preload("/threeModel/maverick/tortoiseshell/scene.glb");
-//       };
-//     case "menpo":
-//       return () => {
-//         useGLTF.preload("/threeModel/menpo/black/scene.glb");
-//         useGLTF.preload("/threeModel/menpo/blue/scene.glb");
-//         useGLTF.preload("/threeModel/menpo/camo-blue/scene.glb");
-//         useGLTF.preload("/threeModel/menpo/camo-orange/scene.glb");
-//         useGLTF.preload("/threeModel/menpo/red/scene.glb");
-//       };
-//     case "lynx":
-//       return () => {
-//         useGLTF.preload("/threeModel/lynx/tortoiseshell/scene.glb");
-//         useGLTF.preload("/threeModel/lynx/pink-yarrow/scene.glb");
-//         useGLTF.preload("/threeModel/lynx/black/scene.glb");
-//       };
-//     default:
-//       break;
-//   }
-// };

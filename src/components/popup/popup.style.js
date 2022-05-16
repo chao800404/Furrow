@@ -8,8 +8,9 @@ import maxWidth from "../../config/screen.size";
 export const PopupContainer = styled.div`
   width: 100%;
   min-height: 100vh;
+  backdrop-filter: blur(1rem);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.8);
   top: 0;
   left: 0;
   z-index: 200;

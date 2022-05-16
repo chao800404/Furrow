@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 
 const useFrameScene = ({ view3d, group, glasses }) => {
   useFrame(({ camera }) => {
+    if (!view3d) return;
     if (view3d) {
       group.current.position.copy(camera.position);
       group.current.rotation.copy(camera.rotation);
@@ -16,7 +17,6 @@ const useFrameScene = ({ view3d, group, glasses }) => {
         glasses.current.material.alphaTest = 0.1;
       }
     }
-    return;
   });
 };
 

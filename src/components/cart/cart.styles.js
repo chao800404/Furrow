@@ -42,6 +42,7 @@ export const CartContainer = styled(motion.div)`
     right: 0.5rem;
     border-left: 1px solid rgba(0, 0, 0, 0.2);
     margin: auto;
+    position: absolute;
 
     div {
       color: ${({ theme }) => theme.backgroundColor};

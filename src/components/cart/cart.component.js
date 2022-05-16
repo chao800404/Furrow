@@ -75,7 +75,9 @@ const Cart = ({ theme }) => {
   return (
     <CartContainer
       animate={
-        !isMobile && tranaslateCart
+        isMobile
+          ? null
+          : tranaslateCart
           ? { x: 0, opacity: 1 }
           : { x: 500, opacity: 0 }
       }
@@ -87,27 +89,9 @@ const Cart = ({ theme }) => {
         <h5>YOUR CART</h5>
         <p>{cartAmount}</p>
         {isMobile ? (
-          <BsHandbag
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%,-50%)",
-              fontSize: isMobile ? "3.5rem" : "5rem",
-              zIndex: 1,
-            }}
-          />
+          <BsHandbag style={shopBagIconStyle} />
         ) : (
-          <BsFillBagFill
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%,-50%)",
-              fontSize: isMobile ? "3.5rem" : "5rem",
-              zIndex: 1,
-            }}
-          />
+          <BsFillBagFill style={shopBagIconStyle} />
         )}
       </div>
     </CartContainer>

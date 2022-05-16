@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import useFrameScene from "../../utils/useFrameScene";
+// import useFrameScene from "../../utils/useFrameScene";
 
 const Glasses = ({ nodes, materials, props, glasses }) => (
   <>
@@ -90,7 +90,7 @@ export default function AviatorBlackModel({ ...props }) {
   const view3d = props.view3d;
   const { nodes, materials } = useGLTF("/threeModel/Aviator/black/scene.glb");
 
-  useFrameScene({ view3d, group, glasses });
+  // useFrameScene({ view3d, group, glasses });
 
   return view3d ? (
     <group {...props} dispose={null} ref={group}>

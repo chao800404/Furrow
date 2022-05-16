@@ -85,7 +85,10 @@ const Cart = ({ theme }) => {
       theme={theme}
     >
       <CardList />
-      <div onClick={() => dispatch(cartToggleHidden())}>
+      <div
+        style={{ height: "100%" }}
+        onClick={() => dispatch(cartToggleHidden())}
+      >
         <h5>YOUR CART</h5>
         <p>{cartAmount}</p>
         {isMobile ? (

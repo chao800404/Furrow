@@ -8,16 +8,15 @@ import maxWidth from "../../config/screen.size";
 export const PopupContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  backdrop-filter: blur(1rem);
-  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
   top: 0;
   left: 0;
   z-index: 200;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  overflow-y: scroll;
+  overflow: scroll;
   ul {
     justify-self: center;
     width: 100rem;

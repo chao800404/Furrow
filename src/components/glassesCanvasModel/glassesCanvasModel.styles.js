@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const ClassesModelContainer = styled.div`
-  width: 100%;
+  width: 45rem;
   height: 100%;
   position: relative;
   border-radius: 1rem;

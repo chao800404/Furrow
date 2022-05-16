@@ -54,7 +54,7 @@ const SvgIcon = ({ src, toggleElectrochromic, light }) => (
 const Popup = ({ collection }) => {
   const { colorType } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [transitionEnd, setTransitionEnd] = useState(false);
+  // const [transitionEnd, setTransitionEnd] = useState(false);
   const [toggleElectrochromic, setToggleElectrochromic] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -127,18 +127,17 @@ const Popup = ({ collection }) => {
     <PopupContainer data-item="popup-bg" onClick={handleClick}>
       <PopupBoxContainer data-item="popup-bg">
         <PopupBox
-          initial={{ scale: 0.5 }}
-          animate={{ scale: 1 }}
-          onAnimationComplete={() => setTransitionEnd(true)}
+        // initial={{ scale: 0.5 }}
+        // animate={{ scale: 1 }}
+        // onAnimationComplete={() => setTransitionEnd(true)}
         >
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
-          {collection && transitionEnd && colorType && color && (
+          {collection && colorType && color && (
             <>
               <GlassesModel
                 type={collection.title}
                 color={color}
                 toggleElectrochromic={toggleElectrochromic}
-                transitionEnd={transitionEnd}
               />
               <PopupForm>
                 <h3>{title}</h3>

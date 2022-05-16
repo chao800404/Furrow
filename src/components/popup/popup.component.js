@@ -5,7 +5,7 @@ import {
   PopupForm,
   PopupBoxContainer,
 } from "./popup.style";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -56,6 +56,7 @@ const Popup = ({ collection }) => {
   const [quantity, setQuantity] = useState(1);
   const [transitionEnd, setTransitionEnd] = useState(false);
   const [toggleElectrochromic, setToggleElectrochromic] = useState(false);
+  const popupRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { rgb, price, imageUrl, id, color } = useSelector(
@@ -121,6 +122,11 @@ const Popup = ({ collection }) => {
 
   useEffect(() => {
     dispatch(cartToggleHidden("hidden"));
+    const timeout = setTimeout(
+      () => (popupRef.current.style.width = "99rem"),
+      1000
+    );
+    return () => clearTimeout(timeout);
   }, [dispatch]);
 
   return (
@@ -130,6 +136,7 @@ const Popup = ({ collection }) => {
           initial={{ scale: 0.5 }}
           animate={{ scale: 1 }}
           onAnimationComplete={() => setTransitionEnd(true)}
+          ref={popupRef}
         >
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
           {collection && transitionEnd && colorType && color && (

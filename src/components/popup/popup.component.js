@@ -5,7 +5,7 @@ import {
   PopupForm,
   PopupBoxContainer,
 } from "./popup.style";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -219,4 +219,4 @@ const Popup = ({ collection }) => {
   );
 };
 
-export default memo(Popup);
+export default Popup;

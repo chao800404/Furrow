@@ -21,7 +21,7 @@ import { InView } from "react-intersection-observer";
 import { useState } from "react";
 import Button from "../button/button.component";
 import LinkBtn from "../linkButton/linkButton.component";
-import { preLoadModel } from "../glassesCanvasModel/glassesCanvasToMaps";
+// import { preLoadModel } from "../glassesCanvasModel/glassesCanvasToMaps";
 
 const CollectionOverView = () => {
   const { collectionId } = useParams();
@@ -29,8 +29,8 @@ const CollectionOverView = () => {
   const shopPageData = useSelector(selectShopPageContainer(collectionId));
   const collections = useSelector(selectOverViewLink);
   const [inView, setInView] = useState(true);
-  const preLoad = preLoadModel(collectionId.toLocaleLowerCase());
-  preLoad();
+  // const preLoad = preLoadModel(collectionId.toLocaleLowerCase());
+  // preLoad();
 
   return (
     <CollectionOverViewPageContainer>

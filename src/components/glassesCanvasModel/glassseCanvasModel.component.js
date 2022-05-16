@@ -15,16 +15,13 @@ import { checkARIsPointer } from "../../redux/card/card.action";
 import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
-// import { glassesModel } from "./glassesCanvasToMaps";
-// import CurGlassesModel from "../../threeModel/marki/marki-black";
-import CurGlassesModel from "../../threeModel/heart/Scene";
+import { glassesModel } from "./glassesCanvasToMaps";
 
 const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
-  // const { curType, curColor } = transferClassesTypeName({ type, color });
-  const { curType } = transferClassesTypeName({ type, color });
-  // const CurGlassesModel = glassesModel[curType][curColor];
+  const { curType, curColor } = transferClassesTypeName({ type, color });
+  const CurGlassesModel = glassesModel[curType][curColor];
 
   return (
     <ClassesModelContainer>

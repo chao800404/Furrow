@@ -17,7 +17,13 @@ import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
 import { glassesModel } from "./glassesCanvasToMaps";
 
-const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
+const GlassesModel = ({
+  type,
+  color,
+  toggleElectrochromic,
+  transitionEnd,
+  style,
+}) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
@@ -28,6 +34,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
       {transitionEnd && (
         <>
           <Canvas
+            style={{ style }}
             shadows
             camera={{ position: [0, 20, 0], fov: 35 }}
             dpr={[1, 2]}

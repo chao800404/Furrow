@@ -215,6 +215,14 @@ const Popup = ({ collection }) => {
         </PopupBox>
       </PopupBoxContainer>
       <UserGuide />
+      {collection && (
+        <GlassesModel
+          type={collection.title}
+          color={color}
+          toggleElectrochromic={toggleElectrochromic}
+          transitionEnd={transitionEnd}
+        />
+      )}
     </PopupContainer>
   );
 };

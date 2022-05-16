@@ -67,7 +67,7 @@ export const PopupBox = styled(motion.div)`
   width: 100rem;
   min-height: 35rem;
   padding: 2em 5rem;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
   align-self: center;
   justify-self: center;
   border-radius: 1rem;

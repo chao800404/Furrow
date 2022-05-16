@@ -144,5 +144,4 @@ export default function AviatorWoodGrainModel({ ...props }) {
     </group>
   );
 }
-useGLTF.clear("/threeModel/aviator/wood-grain/scene.glb");
 useGLTF.preload("/threeModel/aviator/wood-grain/scene.glb");

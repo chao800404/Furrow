@@ -6,7 +6,7 @@ import {
   ContactShadows,
   Loader,
 } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -27,7 +27,15 @@ const GlassesModel = ({
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
-  const CurGlassesModel = glassesModel[curType][curColor];
+  let CurGlassesModel = glassesModel[curType][curColor];
+
+  useEffect(() => {
+    const timeout = setTimeout(
+      () => (CurGlassesModel = glassesModel[curType][curColor]),
+      50
+    );
+    return () => clearTimeout(timeout);
+  }, [curType, curColor]);
 
   return (
     <ClassesModelContainer>
@@ -36,7 +44,7 @@ const GlassesModel = ({
           <Canvas
             style={{ style }}
             shadows
-            camera={{ position: [0, 20, 0], fov: 35 }}
+            camera={{ position: [0, 20, 0], fov: 40 }}
             dpr={[1, 2]}
           >
             <ambientLight intensity={0.2} />

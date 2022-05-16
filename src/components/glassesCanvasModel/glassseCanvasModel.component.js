@@ -2,8 +2,8 @@
 
 import {
   OrbitControls,
-  Environment,
-  ContactShadows,
+  // Environment,
+  // ContactShadows,
   Loader,
 } from "@react-three/drei";
 import { Suspense } from "react";

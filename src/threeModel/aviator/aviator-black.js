@@ -92,35 +92,7 @@ export default function AviatorBlackModel({ ...props }) {
 
   useFrameScene({ view3d, group, glasses });
 
-  // return view3d ? (
-  //   <group {...props} dispose={null} ref={group}>
-  //     <group rotation={[4.8, 0, Math.PI]} position={[0, -25, -150]}>
-  //       <Glasses
-  //         nodes={nodes}
-  //         materials={materials}
-  //         props={props}
-  //         glasses={glasses}
-  //       />
-  //     </group>
-  //   </group>
-  // ) : (
-  //   <group
-  //     dispose={null}
-  //     rotation={[-Math.PI / 2, 0, 0]}
-  //     position={[0, -2.5, 0]}
-  //     scale={0.11}
-  //     ref={group}
-  //     {...props}
-  //   >
-  //     <Glasses
-  //       nodes={nodes}
-  //       materials={materials}
-  //       props={props}
-  //       glasses={glasses}
-  //     />
-  //   </group>
-
-  return (
+  return view3d ? (
     <group {...props} dispose={null} ref={group}>
       <group rotation={[4.8, 0, Math.PI]} position={[0, -25, -150]}>
         <Glasses
@@ -130,6 +102,22 @@ export default function AviatorBlackModel({ ...props }) {
           glasses={glasses}
         />
       </group>
+    </group>
+  ) : (
+    <group
+      dispose={null}
+      rotation={[-Math.PI / 2, 0, 0]}
+      position={[0, -2.5, 0]}
+      scale={0.11}
+      ref={group}
+      {...props}
+    >
+      <Glasses
+        nodes={nodes}
+        materials={materials}
+        props={props}
+        glasses={glasses}
+      />
     </group>
   );
 }

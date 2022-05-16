@@ -145,23 +145,28 @@ const Popup = ({ collection }) => {
                 <div className="popup-text_container">
                   <p>{collection.statement}</p>
                   <div className="color_container">
-                    {collection.colorType?.map((rgb, index) => (
-                      <ColorBox
-                        onClick={(e) =>
-                          changeGlassesColorParms(e.target.dataset.color)
-                        }
-                        style={{
-                          width: "1.8rem",
-                          height: "1.8rem",
-                          display: "block",
-                          borderRadius: "50%",
-                          backgroundColor: `${rgb}`,
-                        }}
-                        key={index}
-                        color={collection.item[index].color}
-                        active={collection.item[index].color === colorType}
-                      />
-                    ))}
+                    {collection.colorType?.map((rgb, index) => {
+                      const { curColor } = transferClassesTypeName({
+                        color: collection.item[index].color,
+                      });
+                      return (
+                        <ColorBox
+                          onClick={(e) =>
+                            changeGlassesColorParms(e.target.dataset.color)
+                          }
+                          style={{
+                            width: "1.8rem",
+                            height: "1.8rem",
+                            display: "block",
+                            borderRadius: "50%",
+                            backgroundColor: `${rgb}`,
+                          }}
+                          key={index}
+                          color={collection.item[index].color}
+                          active={curColor === colorType}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
                 <div className="popup_price">

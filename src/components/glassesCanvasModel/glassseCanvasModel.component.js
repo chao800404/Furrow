@@ -6,7 +6,7 @@ import {
   ContactShadows,
   Loader,
 } from "@react-three/drei";
-import { Suspense, useEffect } from "react";
+import { Suspense, useMemo } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -27,15 +27,10 @@ const GlassesModel = ({
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
-  let CurGlassesModel = glassesModel[curType][curColor];
-
-  useEffect(() => {
-    const timeout = setTimeout(
-      () => (CurGlassesModel = glassesModel[curType][curColor]),
-      50
-    );
-    return () => clearTimeout(timeout);
-  }, [curType, curColor]);
+  const CurGlassesModel = useMemo(
+    () => glassesModel[curType][curColor],
+    [curColor, curType]
+  );
 
   return (
     <ClassesModelContainer>

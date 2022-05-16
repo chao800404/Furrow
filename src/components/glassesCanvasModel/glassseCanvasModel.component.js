@@ -2,8 +2,8 @@
 
 import {
   OrbitControls,
-  // Environment,
-  // ContactShadows,
+  Environment,
+  ContactShadows,
   Loader,
 } from "@react-three/drei";
 import { Suspense } from "react";
@@ -15,28 +15,34 @@ import { checkARIsPointer } from "../../redux/card/card.action";
 import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
-import { glassesModel } from "./glassesCanvasToMaps";
+// import { glassesModel } from "./glassesCanvasToMaps";
 // import CurGlassesModel from "../../threeModel/marki/marki-black";
+import CurGlassesModel from "../../threeModel/heart/Scene";
 
 const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
-  const { curType, curColor } = transferClassesTypeName({ type, color });
-  const CurGlassesModel = glassesModel[curType][curColor];
+  // const { curType, curColor } = transferClassesTypeName({ type, color });
+  const { curType } = transferClassesTypeName({ type, color });
+  // const CurGlassesModel = glassesModel[curType][curColor];
 
   return (
     <ClassesModelContainer>
       {transitionEnd && (
         <>
-          <Canvas shadows camera={{ position: [0, 20, 0], fov: 35 }}>
-            {/* <ambientLight intensity={0.2} />
+          <Canvas
+            shadows
+            camera={{ position: [0, 20, 0], fov: 35 }}
+            dpr={[1, 2]}
+          >
+            <ambientLight intensity={0.2} />
             <spotLight
               intensity={0.5}
               angle={0.1}
               penumbra={1}
               position={[10, 15, 10]}
               castShadow
-            /> */}
+            />
             <Suspense fallback={null}>
               <CurGlassesModel
                 onPointerDown={() => dispatch(checkARIsPointer())}
@@ -44,7 +50,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
                   toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
                 }
               />
-              {/* <ContactShadows
+              <ContactShadows
                 rotation-x={Math.PI / 2}
                 position={[0, -2.5, 0]}
                 opacity={0.7}
@@ -53,7 +59,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
                 blur={1.5}
                 far={4.5}
               />
-              <Environment preset="sunset" /> */}
+              <Environment preset="sunset" />
             </Suspense>
             <OrbitControls
               minPolarAngle={Math.PI / 2}

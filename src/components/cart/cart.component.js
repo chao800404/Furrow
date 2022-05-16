@@ -30,6 +30,15 @@ const Cart = ({ theme }) => {
   const location = useLocation();
   const isMobile = useCheckScreenIsMobile();
 
+  const shopBagIconStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%,-50%)",
+    fontSize: isMobile ? "3.5rem" : "5rem",
+    zIndex: 1,
+  };
+
   const handleScroll = useCallback(() => {
     const currentPostion = document.documentElement.scrollTop;
     setPosition({ ...position, current: currentPostion });
@@ -66,13 +75,11 @@ const Cart = ({ theme }) => {
   return (
     <CartContainer
       animate={
-        isMobile
-          ? tranaslateCart
-            ? { x: 0, opacity: 1 }
-            : { x: 500, opacity: 0 }
-          : null
+        !isMobile && tranaslateCart
+          ? { x: 0, opacity: 1 }
+          : { x: 500, opacity: 0 }
       }
-      transition={isMobile ? { ease: "easeInOut", duration: 0.5 } : null}
+      transition={!isMobile && { ease: "easeInOut", duration: 0.5 }}
       theme={theme}
     >
       <CardList />

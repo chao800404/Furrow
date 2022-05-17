@@ -25,6 +25,7 @@ In case of any infringement, please contact [chao](yuho0298@gmail.com).
 * react-three/drei - 04 / 23 / 2022
 * react-full-screen - 04 / 28 / 2022
 * react-hot-toast - 05 / 11 / 2022
+* sanity-io - 05 / 17 /2022
 
 ----------------------
 ## Global tools

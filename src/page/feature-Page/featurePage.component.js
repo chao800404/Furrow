@@ -30,12 +30,21 @@ import { featurePageData } from "../../redux/featuresPage/feature.select";
 import FeatureBanner from "../../components/featureBanner/featureBanner.component";
 
 const FeaturePage = () => {
-  const [inView, setInView] = useState(0);
+  const [inView, setInView] = useState([0]);
   const [displayProperty, setDisplayProperty] = useState(0);
+  const [curView, setCurView] = useState(0);
   const featureBtnContainer = useRef();
   const theme = useSelector(selectThemeStyle);
   const dispatch = useDispatch();
   const feature = useSelector(featurePageData);
+
+  useEffect(() => {
+    const max = Math.max(...inView);
+    setCurView((prev) => {
+      if (max <= 0) return (prev = 0);
+      return (prev = max);
+    });
+  }, [inView]);
 
   useEffect(() => {
     dispatch(fetchFeatureStart());
@@ -87,7 +96,7 @@ const FeaturePage = () => {
               <FeatureStoryContainer>
                 <FeatureContent>
                   <h3>{feature["story"]["title"]}</h3>
-                  <p>{feature["story"][inView]}</p>
+                  <p>{feature["story"][curView]}</p>
                   <FeatureStoryBtnContainer onClick={handleClick}>
                     <motion.span
                       style={{ display: "block", width: "4.5rem" }}
@@ -106,8 +115,8 @@ const FeaturePage = () => {
                   </FeatureStoryBtnContainer>
                 </FeatureContent>
                 <FeatureImgContainer>
-                  <span>{imgArr[inView]["status"]}</span>
-                  <img alt="glasses-filter" src={imgArr[inView]["img"]} />
+                  <span>{imgArr[curView]["status"]}</span>
+                  <img alt="glasses-filter" src={imgArr[curView]["img"]} />
                 </FeatureImgContainer>
               </FeatureStoryContainer>
               {imgArr.map((_, index) => (
@@ -117,7 +126,14 @@ const FeaturePage = () => {
                     gridColumn: "1 / -1",
                   }}
                   data-item={index}
-                  onViewportEnter={() => setInView((prev) => (prev = index))}
+                  onViewportEnter={() =>
+                    setInView((prev) => (prev = [...prev, index]))
+                  }
+                  onViewportLeave={() =>
+                    setInView(
+                      (prev) => (prev = prev.filter((item) => item !== index))
+                    )
+                  }
                   viewport={{ amount: 0.5 }}
                 />
               ))}

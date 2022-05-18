@@ -79,26 +79,6 @@ const signInType = {
   email: (result) => EmailAuthProvider.credentialFromResult(result),
 };
 
-// export const checkExistEmail = async (error, auth) => {
-//   switch (error.code) {
-//     case "auth/account-exists-with-different-credential":
-//       try {
-//         console.log(error.customData.email);
-//       } catch (error) {
-//         throw error;
-//       }
-//       break;
-//     case "auth/email-already-in-use":
-//       return alert("Email already in use");
-//     case "auth/user-not-found":
-//       return alert("Could not find your account!");
-//     case "auth/wrong-password":
-//       return alert("Please enter correct password");
-//     default:
-//       return error;
-//   }
-// };
-
 export const createUserProfileDoc = async (userData) => {
   if (!userData) return;
   const { uid, user } = userData;

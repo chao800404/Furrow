@@ -67,14 +67,14 @@ export default {
       },
       fields: [
         {
-          title: "title",
-          name: "Title",
+          title: "Title",
+          name: "title",
           type: "string",
           validation: (Rule) => Rule.required().min(4).max(50),
         },
         {
-          title: "content",
-          name: "Content",
+          title: "Content",
+          name: "content",
           type: "string",
           validation: (Rule) => Rule.required().min(4).max(150),
         },

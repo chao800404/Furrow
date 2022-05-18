@@ -7,7 +7,7 @@ import Button from "../button/button.component";
 import { useNavigate, useLocation } from "react-router-dom";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 
-const SecondTypeCard = ({ title, color, price, imageUrl }) => {
+const SecondTypeCard = ({ title, color, price, image }) => {
   const [hovered, setHovered] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,7 +15,6 @@ const SecondTypeCard = ({ title, color, price, imageUrl }) => {
   const handleClick = (e) => {
     const { curColor } = transferClassesTypeName({ color });
     navigate(`${location.pathname}/${curColor}`);
-
     document.body.style.overflow = "hidden";
   };
 
@@ -29,7 +28,7 @@ const SecondTypeCard = ({ title, color, price, imageUrl }) => {
     >
       <ImageContainer
         className="second-card-img"
-        props={{ title, imageUrl, hovered }}
+        props={{ title, image, hovered }}
       />
       <h3>
         {title} <span>{color}</span>

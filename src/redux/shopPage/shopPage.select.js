@@ -7,6 +7,11 @@ const selectShopPage = ({ shopPage }) => shopPage.shopPageData;
 
 export const selectShopPageContainer = memoize((sunGlassesType) =>
   createSelector([selectShopPage], (shopPage) =>
-    shopPage ? shopPage[sunGlassesType] : {}
+    shopPage
+      ? shopPage.reduce((acc, data) => {
+          acc[data.name.toLowerCase()] = data;
+          return acc;
+        }, {})[sunGlassesType]
+      : {}
   )
 );

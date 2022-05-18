@@ -68,6 +68,12 @@ export const PaymentFromContainer = styled.div`
     margin-bottom: 1rem;
   }
 
+  @media only screen and (max-width: ${maxWidth.mediumBelta}) {
+    .total-price {
+      font-size: 3rem;
+    }
+  }
+
   @media only screen and (max-width: ${maxWidth.small}) {
     #fullName {
       margin-top: 1rem;

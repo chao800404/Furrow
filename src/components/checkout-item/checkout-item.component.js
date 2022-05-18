@@ -5,12 +5,14 @@ import {
   CheckoutItemContainer,
   CheckoutRemoveCover,
   CheckoutWarnings,
+  CheckoutRemoveContainer,
 } from "./ckeckout-item.sytles";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { removeCartItem, cartItemUpdate } from "../../redux/cart/cart.action";
 import Button from "../../components/button/button.component";
 import { memo, useCallback } from "react";
+import ImageContainer from "../imageContainer/imageContainer.component";
 
 const btnStyle = (type) => {
   return {
@@ -24,7 +26,7 @@ const btnStyle = (type) => {
   };
 };
 
-const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
+const CheckoutItem = ({ image, productName, quantity, price, _key, color }) => {
   const [hovered, setHovered] = useState(false);
   const [displayCover, setDisplayCover] = useState(false);
   const [quantityTotal, setQuantityTotal] = useState(quantity);
@@ -33,8 +35,8 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
   useEffect(() => {
     if (!quantityTotal || quantityTotal < 1) return;
     const parseInt = Number.parseInt(quantityTotal);
-    dispatch(cartItemUpdate({ id, quantity: parseInt }));
-  }, [quantityTotal, dispatch, id]);
+    dispatch(cartItemUpdate({ _key, quantity: parseInt }));
+  }, [quantityTotal, dispatch, _key]);
 
   const handlehover = () => {
     setHovered((prevHovered) => !prevHovered);
@@ -57,7 +59,7 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
   const handleRemoveCartItem = (e) => {
     const btn = e.target.closest("button");
     if (!btn) return;
-    if (btn.dataset.type === "remove") dispatch(removeCartItem(id));
+    if (btn.dataset.type === "remove") dispatch(removeCartItem(_key));
     setHovered((prevHovered) => !prevHovered);
     setDisplayCover((prevDisplay) => (prevDisplay = false));
     onDisplayCover();
@@ -68,8 +70,14 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
       onMouseEnter={handlehover}
       onMouseLeave={handlehover}
     >
-      <img alt={title} src={imageUrl[`${hovered ? "dark" : "light"}`]} />
-      <h3>{title}</h3>
+      <ImageContainer
+        className="checkout-image"
+        props={{ productName, hovered, image }}
+      />
+      <h3>
+        <span>{productName}</span>
+        <span>{color}</span>
+      </h3>
       <span className="price">NT$ {price.toLocaleString()}</span>
       <input
         type="number"
@@ -85,8 +93,11 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
       ) : null}
       {displayCover ? (
         <CheckoutRemoveCover onClick={handleRemoveCartItem}>
-          <div>
-            <img alt={title} src={imageUrl[`${hovered ? "dark" : "light"}`]} />
+          <CheckoutRemoveContainer>
+            <ImageContainer
+              className="remove-cover-image"
+              props={{ productName, hovered, image }}
+            />
             <h3>Are you sure you want to remove this item?</h3>
 
             <Button data="cancel" style={btnStyle(null)}>
@@ -95,7 +106,7 @@ const CheckoutItem = ({ imageUrl, title, quantity, price, id }) => {
             <Button data="remove" style={btnStyle("remove")}>
               REMOVE
             </Button>
-          </div>
+          </CheckoutRemoveContainer>
         </CheckoutRemoveCover>
       ) : null}
     </CheckoutItemContainer>

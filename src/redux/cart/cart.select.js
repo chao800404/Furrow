@@ -32,15 +32,16 @@ export const selectClassificationCartItem = createSelector(
   (selectCartItem) => {
     const cartItemToMap = {};
     selectCartItem.forEach((cartItem) => {
-      const title = cartItem.title.split("-")[0];
-      if (cartItemToMap[title]) {
-        cartItemToMap[title]["cartItem"].push(cartItem);
+      console.log(cartItem);
+      const { productName } = cartItem;
+      if (cartItemToMap[productName]) {
+        cartItemToMap[productName]["cartItem"].push(cartItem);
       } else {
-        cartItemToMap[title] = {};
-        cartItemToMap[title]["cartItem"] = [];
-        cartItemToMap[title]["cartItem"].push(cartItem);
-        cartItemToMap[title]["statement"] = cartItem.statement;
-        cartItemToMap[title]["productTitle"] = title;
+        cartItemToMap[productName] = {};
+        cartItemToMap[productName]["cartItem"] = [];
+        cartItemToMap[productName]["cartItem"].push(cartItem);
+        cartItemToMap[productName]["description"] = cartItem.description;
+        cartItemToMap[productName]["productName"] = productName;
       }
     });
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Spinner from "../spinner/spinner.component";
+import { urlFor } from "../../lib/client";
 
 const PreLoadImage = ({ text, url, className = null }) => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,7 @@ const PreLoadImage = ({ text, url, className = null }) => {
       <img
         style={{ width: "100%", height: "100%" }}
         alt={text}
-        src={url}
+        src={urlFor(url)}
         onLoad={() => setLoading((preLoad) => (preLoad = true))}
       />
     </div>

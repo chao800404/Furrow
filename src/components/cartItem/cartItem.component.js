@@ -7,24 +7,27 @@ import Button from "../../components/button/button.component";
 import { useDispatch } from "react-redux";
 import { removeCartItem, cartItemUpdate } from "../../redux/cart/cart.action";
 import { memo } from "react";
+import { urlFor } from "../../lib/client";
 
-const CartItem = ({ imageUrl, price, quantity, title, id }) => {
+const CartItem = ({ image, price, quantity, productName, _key, color }) => {
   const [quantitys, setQuantity] = useState(quantity);
   const [removeItem, setRemoveItem] = useState(false);
   const dispatch = useDispatch();
+
+  console.log(image, price, quantity, productName, _key);
 
   const handleOnChange = (e) => {
     const { value } = e.target;
     setQuantity(value);
     const parseIntQuantity = Number.parseInt(value);
     if (Number.isInteger(parseIntQuantity))
-      dispatch(cartItemUpdate({ quantity: parseIntQuantity, id }));
+      dispatch(cartItemUpdate({ quantity: parseIntQuantity, _key }));
   };
 
   const handleClick = (e) => {
     const coverBtn = e.target.closest("[data-type]");
     if (coverBtn.dataset.type === "cancel") setRemoveItem((prev) => !prev);
-    if (coverBtn.dataset.type === "remove") dispatch(removeCartItem(id));
+    if (coverBtn.dataset.type === "remove") dispatch(removeCartItem(_key));
   };
 
   return (
@@ -37,8 +40,8 @@ const CartItem = ({ imageUrl, price, quantity, title, id }) => {
         </div>
       ) : null}
 
-      <img alt="imag" src={imageUrl.light} />
-      <h3 className="CartItem-title">{title}</h3>
+      <img alt={productName} src={urlFor(image.light)} />
+      <h3 className="CartItem-title">{`${productName} - ${color}`}</h3>
       <span className="CartItem-price">NT$ {price.toLocaleString()}</span>
       <div className="CartItem_quantity">
         <span>QUANTITY</span>

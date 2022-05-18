@@ -55,8 +55,8 @@ const CollectionPreview = () => {
               />
             </CollectionPreviewTitle>
             <CollectionCartContainer>
-              {collections.map(({ id, ...otherProps }) => (
-                <Card key={id} {...otherProps} />
+              {collections.map(({ _id, ...otherProps }) => (
+                <Card key={_id} {...otherProps} />
               ))}
             </CollectionCartContainer>
           </CollectionPreviewContainer>

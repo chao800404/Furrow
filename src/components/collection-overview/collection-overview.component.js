@@ -22,6 +22,7 @@ import { useState } from "react";
 import Button from "../button/button.component";
 import LinkBtn from "../linkButton/linkButton.component";
 // import { preLoadModel } from "../glassesCanvasModel/glassesCanvasToMaps";
+import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 
 const CollectionOverView = () => {
   const { collectionId } = useParams();
@@ -29,13 +30,14 @@ const CollectionOverView = () => {
   const shopPageData = useSelector(selectShopPageContainer(collectionId));
   const collections = useSelector(selectOverViewLink);
   const [inView, setInView] = useState(true);
-  // const preLoad = preLoadModel(collectionId.toLocaleLowerCase());
-  // preLoad();
+  const { curColor } = transferClassesTypeName({
+    color: collection.product[0].color,
+  });
 
   return (
     <CollectionOverViewPageContainer>
       <Flex>
-        {collection && shopPageData && (
+        {collection.product && (
           <CollectionOverViewContainer style={{ position: "relative" }}>
             {inView ? null : (
               <Button
@@ -48,16 +50,20 @@ const CollectionOverView = () => {
                   width: "20rem",
                 }}
                 type="secondBtn"
-                path={collection.item[0].color}
+                path={curColor}
               >
                 ADD TO CART
               </Button>
             )}
 
             <CollectionOverViewLinkBtn>
-              {collections.map((title, index) => (
-                <LinkBtn key={index} link={title} collectionId={collectionId}>
-                  {title}
+              {collections.map((productName, index) => (
+                <LinkBtn
+                  key={index}
+                  link={productName}
+                  collectionId={collectionId}
+                >
+                  {productName?.toUpperCase()}
                 </LinkBtn>
               ))}
             </CollectionOverViewLinkBtn>
@@ -68,23 +74,28 @@ const CollectionOverView = () => {
                 onChange={(inView) => setInView(inView)}
                 className="over-view-cart-container"
               >
-                {collection.item.map(({ id, ...otherProps }) => (
+                {collection.product?.map(({ _key, ...otherProps }) => (
                   <SecondTypeCard
-                    key={id}
-                    title={collection.title}
+                    key={_key}
+                    title={collection.productName}
                     {...otherProps}
                   />
                 ))}
               </InView>
             </OverViewCardContainer>
-            <h1>{collectionId}</h1>
+            <h1>{collectionId.toUpperCase()}</h1>
             <ShopPage shopPageData={shopPageData} collectionId={collectionId} />
           </CollectionOverViewContainer>
         )}
       </Flex>
 
       <Routes>
-        <Route path=":colorType" element={<Popup collection={collection} />} />
+        <Route
+          path=":colorType"
+          element={
+            <Popup collection={collection} collectionId={collectionId} />
+          }
+        />
       </Routes>
     </CollectionOverViewPageContainer>
   );

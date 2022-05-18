@@ -5,16 +5,21 @@ import { useState } from "react";
 import ImageContainer from "../imageContainer/imageContainer.component";
 import ColorBox from "../colorBox/colorBox.component";
 
-const Card = ({ title, item, colorType, routeName, statement }) => {
+const Card = ({ productName, product, slug, description }) => {
   const [colorIndex, setColorIndex] = useState(0);
 
   const [hovered, setHovered] = useState(false);
 
-  const { color, imageUrl, price } = item[colorIndex];
+  const { color, image, price } = product[colorIndex];
+
+  const colorMap = product.map(({ rgb }) => rgb);
 
   const handleClick = (event) => {
     const targetColor = event.target.dataset.color;
-    const colorIndex = item.findIndex((item) => item.rgb === targetColor);
+    console.log(targetColor);
+    const colorIndex = product.findIndex(
+      (product) => product.rgb === targetColor
+    );
     setColorIndex(colorIndex);
   };
 
@@ -25,15 +30,15 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
       data-type="card"
     >
       <ImageContainer
-        props={{ title, imageUrl, hovered }}
+        props={{ productName, hovered, image }}
         className="card-img"
       />
       <CardTitle>
         <h3>
-          {title}
+          {productName}
           <span>{color}</span>
         </h3>
-        <div style={{ color: "#fff" }}>AR</div>
+        <div>AR</div>
       </CardTitle>
       <CardFeature>
         <div
@@ -43,7 +48,7 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
             display: "flex",
           }}
         >
-          {colorType.map((color, index) => (
+          {colorMap.map((color, index) => (
             <ColorBox
               key={index}
               style={{
@@ -60,8 +65,8 @@ const Card = ({ title, item, colorType, routeName, statement }) => {
         </div>
         <p className="card-price">NT${price.toLocaleString("en-US")}</p>
       </CardFeature>
-      <p className="card-desc">{statement}</p>
-      <Button path={routeName}>CHECK MORE</Button>
+      <p className="card-desc">{description}</p>
+      <Button path={slug.current}>CHECK MORE</Button>
     </CardContainer>
   );
 };

@@ -12,9 +12,10 @@ export const LinkBtnContainer = styled(motion.button)`
   width: 12rem;
   height: 4rem;
   border-radius: 0.2rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   letter-spacing: 0.2rem;
   box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
+  font-weight: bold;
 
   &:hover {
     background-color: ${primaryColor.cursorColor};

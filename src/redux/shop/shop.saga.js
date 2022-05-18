@@ -1,15 +1,18 @@
 /** @format */
 
-import { snapshot, collectionToMap } from "../../firebase/firebase.utils";
+// import { snapshot, collectionToMap } from "../../firebase/firebase.utils";
 import { all, takeLatest, put, call } from "redux-saga/effects";
 import ShopActionTypes from "./shop.type";
 import { fetchCollectionSuccess, fetchCollectionFailure } from "./shop.actions";
+import { client } from "../../lib/client";
 
 function* fetchCollectionsAsync() {
   try {
-    const response = yield snapshot("collections");
-    const collections = collectionToMap(response);
-    yield put(fetchCollectionSuccess(collections));
+    const query = '*[_type == "collection"]';
+    const collection = yield client.fetch(query);
+    // const response = yield snapshot("collections");
+    // const collections = collectionToMap(response);
+    yield put(fetchCollectionSuccess(collection));
   } catch (error) {
     yield put(fetchCollectionFailure(error));
   }

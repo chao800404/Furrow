@@ -127,6 +127,12 @@ export default {
               type: "text",
               validation: (Rule) => Rule.required(),
             },
+            {
+              name: "mark",
+              title: "Story Mark",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
           ],
         },
         {
@@ -144,6 +150,12 @@ export default {
               name: "description",
               title: "Story description",
               type: "text",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "mark",
+              title: "Story Mark",
+              type: "string",
               validation: (Rule) => Rule.required(),
             },
           ],
@@ -165,6 +177,12 @@ export default {
               type: "text",
               validation: (Rule) => Rule.required(),
             },
+            {
+              name: "mark",
+              title: "Story Mark",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
           ],
         },
         {
@@ -182,6 +200,12 @@ export default {
               name: "description",
               title: "Story description",
               type: "text",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "mark",
+              title: "Story Mark",
+              type: "string",
               validation: (Rule) => Rule.required(),
             },
           ],

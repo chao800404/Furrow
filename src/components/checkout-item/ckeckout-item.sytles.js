@@ -5,9 +5,9 @@ import primaryColor from "../../theme/priamry.styles";
 import maxWidth from "../../config/screen.size";
 
 export const CheckoutItemContainer = styled.div`
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: inherit;
   display: inherit;
-  grid-column: 2 / 8;
+  grid-column: inherit;
   color: #161616;
   grid-gap: inherit;
   border-bottom: 0.5px solid #9c9c9c;
@@ -31,7 +31,14 @@ export const CheckoutItemContainer = styled.div`
     color: inherit;
     font-size: 1.5rem;
     font-weight: 600;
-    display: block;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      &:last-child {
+        font-size: 1rem;
+      }
+    }
   }
   img {
     width: 100%;
@@ -58,9 +65,23 @@ export const CheckoutItemContainer = styled.div`
     font-size: 1.8rem;
     font-weight: 700;
   }
+  .checkout-image {
+    height: 11rem;
+    grid-column: 2 / span 1;
+  }
 
   svg {
     font-size: 1.5rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
+    .checkout-image {
+      height: 9rem;
+    }
+    .total-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
@@ -68,11 +89,6 @@ export const CheckoutItemContainer = styled.div`
     grid-column: 1 / -1;
     .price {
       display: none;
-    }
-    img {
-      width: 100%;
-      grid-column: 2 / 3;
-      height: 98%;
     }
 
     h3 {
@@ -91,6 +107,11 @@ export const CheckoutItemContainer = styled.div`
       height: 2rem;
       font-weight: 600;
       font-size: 1rem;
+    }
+    .checkout-image {
+      height: 9rem;
+      width: 10rem;
+      justify-self: center;
     }
   }
 `;
@@ -115,29 +136,27 @@ export const CheckoutRemoveCover = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
 
-  div {
-    width: 25%;
-    min-width: 30rem;
-    height: auto;
-    padding: 2rem;
-    background-color: #fff;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 15rem 5rem 1fr;
-    overflow: hidden;
+export const CheckoutRemoveContainer = styled.div`
+  width: 25%;
+  min-width: 30rem;
+  padding: 2rem;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20rem 5rem 1fr;
+  overflow: hidden;
 
-    h3 {
-      color: #161616;
-      grid-column: 1 /-1;
-    }
-
-    img {
-      grid-column: 1 / -1;
-      justify-self: center;
-      width: 60%;
-      height: 25rem;
-      min-width: 25rem;
-    }
+  h3 {
+    color: #161616;
+    grid-column: 1 /-1;
+  }
+  .remove-cover-image {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 20rem;
+    height: 20rem;
+    justify-self: center;
   }
 `;

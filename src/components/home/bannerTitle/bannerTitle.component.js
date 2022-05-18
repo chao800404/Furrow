@@ -17,8 +17,6 @@ const BannerTitle = () => {
     setCheckScreen((prev) => (prev = checkSize));
   }, []);
 
-  console.log(checkScreen);
-
   const variants = {
     visible: {
       opacity: 1,

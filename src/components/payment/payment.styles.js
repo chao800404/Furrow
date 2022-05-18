@@ -97,6 +97,4 @@ export const PaymentStep = styled.div`
     background-color: #d1d1d1;
     display: block;
   }
-  .form-step-1 {
-  }
 `;

@@ -9,15 +9,12 @@ import primaryColor from "../../theme/priamry.styles";
 const LinkBtn = ({ children, link, collectionId }) => {
   const navigate = useNavigate();
   const theme = useSelector(selectThemeStyle);
-  const [active, setActive] = useState(collectionId === link.toUpperCase());
+  const [active, setActive] = useState(collectionId === link);
 
-  useEffect(
-    () => setActive(collectionId === link.toUpperCase()),
-    [collectionId, link]
-  );
+  useEffect(() => setActive(collectionId === link), [collectionId, link]);
 
   const handleClick = () => {
-    navigate(`/shop/${link.toUpperCase()}`, { replace: true });
+    navigate(`/shop/${link}`, { replace: true });
   };
   return (
     <LinkBtnContainer

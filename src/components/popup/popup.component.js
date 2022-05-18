@@ -51,18 +51,22 @@ const SvgIcon = ({ src, toggleElectrochromic, light }) => (
   />
 );
 
-const Popup = ({ collection }) => {
+const Popup = ({ collection, collectionId }) => {
   const { colorType } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [transitionEnd, setTransitionEnd] = useState(false);
   const [toggleElectrochromic, setToggleElectrochromic] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { rgb, price, imageUrl, id, color } = useSelector(
-    selectPopupView(collection?.title, colorType)
+  const { rgb, price, image, _key, color } = useSelector(
+    selectPopupView(collectionId, colorType)
   );
+  const colorMap = collection.product.map(({ rgb }) => rgb);
+
+  console.log(rgb, price, image, _key, color);
+
   const location = useLocation();
-  const title = `${collection?.title}-${color}`;
+  const title = `${collection?.productName}-${color}`;
 
   const prevPage = location.pathname
     .split("/")
@@ -100,12 +104,12 @@ const Popup = ({ collection }) => {
           cartAddItem({
             rgb,
             price,
-            id,
-            imageUrl,
+            _key,
+            image,
             color,
             quantity: parseIntQuantity,
-            title,
-            statement: collection.statement,
+            productName: collection?.productName,
+            description: collection.description,
           })
         );
         const addToCartMessage = message["ADDTOCART"].replace(
@@ -135,7 +139,7 @@ const Popup = ({ collection }) => {
           {collection && transitionEnd && colorType && color && (
             <>
               <GlassesModel
-                type={collection.title}
+                type={collection.productName}
                 color={color}
                 toggleElectrochromic={toggleElectrochromic}
                 transitionEnd={transitionEnd}
@@ -143,11 +147,11 @@ const Popup = ({ collection }) => {
               <PopupForm>
                 <h3>{title}</h3>
                 <div className="popup-text_container">
-                  <p>{collection.statement}</p>
+                  <p>{collection.description}</p>
                   <div className="color_container">
-                    {collection.colorType?.map((rgb, index) => {
+                    {colorMap?.map((rgb, index) => {
                       const { curColor } = transferClassesTypeName({
-                        color: collection.item[index].color,
+                        color: collection.product[index].color,
                       });
                       return (
                         <ColorBox
@@ -162,7 +166,7 @@ const Popup = ({ collection }) => {
                             backgroundColor: `${rgb}`,
                           }}
                           key={index}
-                          color={collection.item[index].color}
+                          color={collection.product[index].color}
                           active={curColor === colorType}
                         />
                       );

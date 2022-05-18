@@ -45,8 +45,8 @@ const CardList = () => {
         />
         <CartListItem>
           {cartItem?.map((cartItem) => {
-            const { id } = cartItem;
-            return <CartItem key={id} {...cartItem} />;
+            const { _key } = cartItem;
+            return <CartItem key={_key} {...cartItem} />;
           })}
         </CartListItem>
         <CartTotal>

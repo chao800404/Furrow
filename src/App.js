@@ -36,9 +36,6 @@ const App = ({ theme }) => {
 
   useEffect(() => {
     dispatch(checkUserSession());
-  });
-
-  useEffect(() => {
     dispatch(fetchCollectionStart());
   }, [dispatch]);
 

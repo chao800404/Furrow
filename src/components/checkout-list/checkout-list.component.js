@@ -15,7 +15,7 @@ const CheckoutList = ({ productTitle, statement, cartItem }) => {
         </h3>
       </CheckoutListTitle>
       {cartItem.map((cartItem) => (
-        <CheckoutItem key={cartItem.id} {...cartItem} />
+        <CheckoutItem key={cartItem._key} {...cartItem} />
       ))}
     </CheckoutListContainer>
   );

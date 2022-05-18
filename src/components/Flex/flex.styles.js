@@ -12,7 +12,7 @@ export const Flex = styled.div`
   width: 110rem;
 
   @media only screen and (max-width: ${maxWidth.large}) {
-    max-width: 100rem;
+    max-width: 120rem;
   }
 
   @media only screen and (max-width: ${maxWidth.medium}) {

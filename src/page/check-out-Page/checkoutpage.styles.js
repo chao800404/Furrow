@@ -56,7 +56,7 @@ export const CheckoutSignIn = styled.div`
 export const CheckoutListContainer = styled.div`
   grid-column: 1 /2;
   display: grid;
-  grid-template-columns: 2rem repeat(6, 1fr) 2rem;
+  grid-template-columns: 2rem repeat(5, 1fr) 6rem 2rem;
   grid-gap: 2.5rem 1rem;
   h1,
   p {
@@ -72,7 +72,7 @@ export const CheckoutListContainer = styled.div`
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    grid-template-columns: 2rem repeat(2, 1fr) 5rem 10rem 2rem 2rem;
+    grid-template-columns: 2rem repeat(5, 1fr) 2rem;
     h1 {
       font-size: 3rem;
     }
@@ -103,6 +103,7 @@ export const CheckoutHeader = styled.div`
   padding: 2rem 0;
   grid-template-columns: inherit;
   display: inherit;
+  grid-column-gap: inherit;
   span {
     letter-spacing: 0.1rem;
     text-align: center;

@@ -6,5 +6,5 @@ const selectAboutPage = ({ about }) => about;
 
 export const selectAboutPageData = createSelector(
   [selectAboutPage],
-  (about) => about?.aboutData
+  (about) => about?.aboutData || {}
 );

@@ -20,37 +20,20 @@ export const selectOverViewPage = memoize((path) =>
 );
 
 export const selectPopupView = (path, color) => {
-  return createSelector(
-    [selectShopCollectionPreview],
-    (collection) => {
-      return (
-        collection
-          ?.reduce((acc, { productName, ...otherProps }) => {
-            acc[productName.toLowerCase()] = { productName, ...otherProps };
-            return acc;
-          }, {})
-          [path].product.filter((item) => {
-            const { curColor } = transferClassesTypeName({ color: item.color });
-            return curColor === color;
-          })
-          .reduce((acc, item) => acc + item) || {}
-      );
-      // const typeMap = collection?.reduce(
-      //   (acc, { productName, ...otherProps }) => {
-      //     acc[productName.toLowerCase()] = { productName, ...otherProps };
-      //     return acc;
-      //   },
-      //   {}
-      // )[path];
-      // return typeMap?.product;
-    }
-
-    // [path].product.filter((item) => {
-    //   const { curColor } = transferClassesTypeName({ color: item.color });
-    //   return curColor === color;
-    // })
-    // .reduce((acc, item) => acc + item) || {}
-  );
+  return createSelector([selectShopCollectionPreview], (collection) => {
+    return (
+      collection
+        ?.reduce((acc, { productName, ...otherProps }) => {
+          acc[productName.toLowerCase()] = { productName, ...otherProps };
+          return acc;
+        }, {})
+        [path].product.filter((item) => {
+          const { curColor } = transferClassesTypeName({ color: item.color });
+          return curColor === color;
+        })
+        .reduce((acc, item) => acc + item) || {}
+    );
+  });
 };
 
 export const selectOverViewLink = createSelector(

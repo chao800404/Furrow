@@ -65,7 +65,7 @@ export const CardTitle = styled.div`
   width: 100%;
   ${mixin}
   h3 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     span {
       font-size: 1.5rem;
       margin-left: 1rem;

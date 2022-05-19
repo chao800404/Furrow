@@ -13,6 +13,7 @@ import cartReducer from "./cart/cart.reducer";
 import userReducer from "./user/user.reducer";
 import aboutPageReducer from "./aboutPage/aboutPage.reducer";
 import featureReducer from "./featuresPage/feature.reudcer";
+import postReducer from "./post/post.reudcer";
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -30,6 +31,7 @@ const rootReducers = combineReducers({
   user: userReducer,
   about: aboutPageReducer,
   feature: featureReducer,
+  post: postReducer,
 });
 
 const persistConfig = {

@@ -14,6 +14,8 @@ import shopPage from "./shopPage";
 import collections from "./collections";
 import featurePage from "./featurePage";
 import aboutPage from "./aboutPage";
+import post from "./post";
+import youtube from "./youtube";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -34,5 +36,7 @@ export default createSchema({
     collections,
     featurePage,
     aboutPage,
+    post,
+    youtube,
   ]),
 });

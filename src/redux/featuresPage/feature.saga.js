@@ -3,13 +3,13 @@
 import { all, put, call, takeLatest } from "redux-saga/effects";
 import FeatureAction from "./feature.type";
 import { fetchFeatureSuccess, fetchFeatureFailure } from "./feature.action";
-import { snapshot, aboutPageToMap } from "../../firebase/firebase.utils";
+import { client } from "../../lib/client";
 
 function* featureFetchingSuccess() {
   try {
-    const featureRef = yield snapshot("featuresPage");
-    const { data } = yield aboutPageToMap(featureRef);
-    yield put(fetchFeatureSuccess(data));
+    const query = '*[_type == "featurePage"]';
+    const featurePageData = yield client.fetch(query);
+    yield put(fetchFeatureSuccess(featurePageData[0]));
   } catch (error) {
     yield put(fetchFeatureFailure(error));
   }

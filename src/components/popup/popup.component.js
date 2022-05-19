@@ -62,9 +62,6 @@ const Popup = ({ collection, collectionId }) => {
     selectPopupView(collectionId, colorType)
   );
   const colorMap = collection.product.map(({ rgb }) => rgb);
-
-  console.log(rgb, price, image, _key, color);
-
   const location = useLocation();
   const title = `${collection?.productName}-${color}`;
 

@@ -1,9 +1,7 @@
 /** @format */
 
 import { motion } from "framer-motion";
-import featureImg_1 from "../../assets/featurePhoto/feature_image_1.webp";
-import featureImg_2 from "../../assets/featurePhoto/feature_image_2.webp";
-import featureImg_3 from "../../assets/featurePhoto/feature_image_3.webp";
+import { urlFor } from "../../lib/client";
 import {
   FeatureBannerContainer,
   FeatureBannerImgContainer,
@@ -19,19 +17,19 @@ const FeatureBanner = ({ feature }) => {
           <motion.img
             initial={{ y: -80 }}
             animate={{ y: 0 }}
-            src={featureImg_1}
+            src={urlFor(feature["image"]["image_0"])}
             loading="lazy"
           />
           <motion.img
             initial={{ y: 80 }}
             animate={{ y: 30 }}
-            src={featureImg_2}
+            src={urlFor(feature["image"]["image_1"])}
             loading="lazy"
           />
           <motion.img
             initial={{ y: -80 }}
             animate={{ y: -20 }}
-            src={featureImg_3}
+            src={urlFor(feature["image"]["image_2"])}
             loading="lazy"
           />
         </FeatureBannerImgContainer>
@@ -43,14 +41,14 @@ const FeatureBanner = ({ feature }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          {feature?.bannerStatement[0]}
+          {feature["title"]}
         </motion.h1>
         <motion.span
           initial={{ opacity: 0, y: -80 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          {feature?.bannerStatement[1]}
+          {feature["description"]}
         </motion.span>
       </FeatureTitle>
     </FeatureBannerContainer>

@@ -43,6 +43,13 @@ export default {
       validation: (Rule) => Rule.required().min(1).max(10),
     },
     {
+      title: "Has the virtual model?",
+      name: "virtual",
+      type: "boolean",
+      description: "If haven't virtaul model will be replaced with an image.",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "product",
       title: "Product",
       type: "array",

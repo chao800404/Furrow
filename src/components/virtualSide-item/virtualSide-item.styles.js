@@ -44,6 +44,7 @@ export const VirtualSideItemContainer = styled(motion.div)`
     grid-row: 1 / -1;
     align-self: center;
     justify-self: center;
+    height: 100%;
   }
 
   @media only screen and (max-width: ${maxWidth.mediumBelta}) {

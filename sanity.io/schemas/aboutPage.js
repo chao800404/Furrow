@@ -49,6 +49,26 @@ export default {
       ],
     },
     {
+      name: "aboutStory",
+      title: "About Story",
+      description: "Please add your story",
+      type: "object",
+      fields: [
+        {
+          name: "title",
+          title: "Title",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
       name: "joint",
       title: "Joint",
       type: "object",

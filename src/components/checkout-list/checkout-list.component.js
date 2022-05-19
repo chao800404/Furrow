@@ -5,19 +5,21 @@ import {
 } from "./checkout-list.styles";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
-const CheckoutList = ({ productTitle, statement, cartItem }) => {
+const CheckoutList = ({ productName, description, cartItem }) => {
   return (
-    <CheckoutListContainer>
-      <CheckoutListTitle>
-        <h3>
-          {productTitle}
-          <span>{statement}</span>
-        </h3>
-      </CheckoutListTitle>
-      {cartItem.map((cartItem) => (
-        <CheckoutItem key={cartItem._key} {...cartItem} />
-      ))}
-    </CheckoutListContainer>
+    cartItem && (
+      <CheckoutListContainer>
+        <CheckoutListTitle>
+          <h3>
+            {productName}
+            <span>{description}</span>
+          </h3>
+        </CheckoutListTitle>
+        {cartItem.map((cartItem) => (
+          <CheckoutItem key={cartItem._key} {...cartItem} />
+        ))}
+      </CheckoutListContainer>
+    )
   );
 };
 

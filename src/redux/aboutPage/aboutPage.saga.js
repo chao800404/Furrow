@@ -1,15 +1,15 @@
 /** @format */
 
 import { all, takeLatest, put, call } from "redux-saga/effects";
-import { snapshot, aboutPageToMap } from "../../firebase/firebase.utils";
 import AboutPageType from "./aboutPage.type";
 import { aboutPageFailure, aboutPageSuccess } from "./aboutPage.actions";
+import { client } from "../../lib/client";
 
 function* aboutPageFetchingSuccess() {
   try {
-    const ref = yield snapshot("aboutPage");
-    const { data } = yield aboutPageToMap(ref);
-    yield put(aboutPageSuccess(data));
+    const query = '*[_type == "aboutPage"]';
+    const aboutPageData = yield client.fetch(query);
+    yield put(aboutPageSuccess(aboutPageData[0]));
   } catch (error) {
     yield put(aboutPageFailure(error));
   }

@@ -33,7 +33,7 @@ export const CheckoutListTitle = styled.div`
     letter-spacing: 0.1rem;
 
     span {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       display: block;
       margin-left: 2rem;
       font-weight: 300;

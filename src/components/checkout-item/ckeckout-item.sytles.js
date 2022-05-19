@@ -35,6 +35,7 @@ export const CheckoutItemContainer = styled.div`
     flex-direction: column;
 
     span {
+      font-size: 1.8rem;
       &:last-child {
         font-size: 1rem;
       }
@@ -75,9 +76,6 @@ export const CheckoutItemContainer = styled.div`
   }
 
   @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
-    .checkout-image {
-      height: 9rem;
-    }
     .total-price {
       font-size: 1.5rem;
       font-weight: 700;
@@ -109,9 +107,6 @@ export const CheckoutItemContainer = styled.div`
       font-size: 1rem;
     }
     .checkout-image {
-      height: 9rem;
-      width: 10rem;
-      justify-self: center;
     }
   }
 `;

@@ -7,7 +7,10 @@ import { urlFor } from "../../lib/client";
 const PreLoadImage = ({ text, url, className = null }) => {
   const [loading, setLoading] = useState(false);
   return (
-    <div className={className} style={{ position: "relative" }}>
+    <div
+      className={className}
+      style={{ position: "relative", display: "flex" }}
+    >
       {loading ? null : (
         <Spinner
           style={{
@@ -23,9 +26,9 @@ const PreLoadImage = ({ text, url, className = null }) => {
         />
       )}
       <img
-        style={{ width: "100%", height: "100%" }}
         alt={text}
         src={urlFor(url)}
+        style={{ width: "100%" }}
         onLoad={() => setLoading((preLoad) => (preLoad = true))}
       />
     </div>

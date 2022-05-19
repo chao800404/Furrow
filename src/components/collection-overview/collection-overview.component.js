@@ -31,7 +31,7 @@ const CollectionOverView = () => {
   const collections = useSelector(selectOverViewLink);
   const [inView, setInView] = useState(true);
   const { curColor } = transferClassesTypeName({
-    color: collection.product[0].color,
+    color: collection?.product[0]?.color,
   });
 
   return (
@@ -63,7 +63,7 @@ const CollectionOverView = () => {
                   link={productName}
                   collectionId={collectionId}
                 >
-                  {productName?.toUpperCase()}
+                  {productName.toUpperCase()}
                 </LinkBtn>
               ))}
             </CollectionOverViewLinkBtn>
@@ -74,7 +74,7 @@ const CollectionOverView = () => {
                 onChange={(inView) => setInView(inView)}
                 className="over-view-cart-container"
               >
-                {collection.product?.map(({ _key, ...otherProps }) => (
+                {collection.product.map(({ _key, ...otherProps }) => (
                   <SecondTypeCard
                     key={_key}
                     title={collection.productName}

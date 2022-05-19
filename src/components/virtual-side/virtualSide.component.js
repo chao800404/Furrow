@@ -3,14 +3,12 @@
 import { VirtualSideContainer } from "./virtualSide.styles";
 import VirtualSideContent from "../vlrtualSideContent/virtualSideContent.component";
 
-const VirtualSide = ({ collections }) => {
-  return (
-    <VirtualSideContainer>
-      {collections.map((collection) => (
-        <VirtualSideContent key={collection.id} collection={collection} />
-      ))}
-    </VirtualSideContainer>
-  );
-};
+const VirtualSide = ({ collections }) => (
+  <VirtualSideContainer>
+    {collections.map((collection) => (
+      <VirtualSideContent key={collection._id} collection={collection} />
+    ))}
+  </VirtualSideContainer>
+);
 
 export default VirtualSide;

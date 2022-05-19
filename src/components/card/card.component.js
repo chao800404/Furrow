@@ -5,18 +5,13 @@ import { useState } from "react";
 import ImageContainer from "../imageContainer/imageContainer.component";
 import ColorBox from "../colorBox/colorBox.component";
 
-const Card = ({ productName, product, slug, description }) => {
+const Card = ({ productName, product, slug, description, virtual }) => {
   const [colorIndex, setColorIndex] = useState(0);
-
   const [hovered, setHovered] = useState(false);
-
   const { color, image, price } = product[colorIndex];
-
   const colorMap = product.map(({ rgb }) => rgb);
-
   const handleClick = (event) => {
     const targetColor = event.target.dataset.color;
-    console.log(targetColor);
     const colorIndex = product.findIndex(
       (product) => product.rgb === targetColor
     );
@@ -38,7 +33,7 @@ const Card = ({ productName, product, slug, description }) => {
           {productName}
           <span>{color}</span>
         </h3>
-        <div>AR</div>
+        {virtual && <div>AR</div>}
       </CardTitle>
       <CardFeature>
         <div

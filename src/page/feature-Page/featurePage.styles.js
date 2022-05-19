@@ -49,15 +49,23 @@ export const FeatureStoryContainer = styled.div`
 
 export const FeatureBg = styled.div`
   position: absolute;
-  top: -50%;
+  top: -100%;
   left: -20%;
   opacity: 0.2;
-  font-size: 50vw;
+  font-size: 30vw;
   font-weight: 900;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 30vw;
+    top: -50%;
+    left: 70%;
+    font-size: 50vw;
+  }
 `;
 
 export const FeatureContent = styled.div`
   position: relative;
+
   h3 {
     font-size: 4.5rem;
   }
@@ -126,6 +134,7 @@ export const FeatureImgContainer = styled.div`
     border-radius: 5px;
     box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.6);
     text-align: center;
+    user-select: none;
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
@@ -142,6 +151,7 @@ export const FeatureGlassesBtn = styled(motion.div)`
   opacity: 0.9;
   borderradius: 50%;
   boxshadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  z-index: 50;
 
   svg,
   span {
@@ -217,7 +227,7 @@ export const FeatureFunction = styled.div`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     height: auto;
-    margin-top: 5rem;
+    margin-top: 15rem;
     h4 {
       width: 70%;
       font-size: 4.5rem;

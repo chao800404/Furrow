@@ -53,7 +53,7 @@ const App = ({ theme }) => {
           <Route path={`${routes.SHOPPAGE}/*`} element={<ShopPage />} />
           <Route path={routes.ABOUT} element={<AboutPage />} />
           <Route path={routes.FEATURE} element={<FeaturePage />} />
-          <Route path={routes.NEWS} element={<NewsPage />} />
+          <Route path={`${routes.NEWS}/*`} element={<NewsPage />} />
           <Route path={routes.CHECKOUT} element={<CheckOutPage />} />
           <Route path={routes.SIGNIN} element={<SignInPage />} />
           <Route path={routes.VIRTUAL} element={<VirtualPage />} />

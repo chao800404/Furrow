@@ -18,6 +18,6 @@ export const selectLatestPost = createSelector(
     }, {});
     const postDateKeyToMap = Object.keys(transferPostToObject);
     const latestPostTime = Math.max(...postDateKeyToMap);
-    return transferPostToObject[latestPostTime];
+    return transferPostToObject[latestPostTime] || null;
   }
 );

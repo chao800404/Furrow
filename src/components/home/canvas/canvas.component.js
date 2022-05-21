@@ -4,6 +4,8 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { bannerAction } from "../../../redux/banner/banner.action";
 import { Canvas } from "./canvas.style";
+import ToolTip from "../../../components/tooltip/tooltip.component";
+import { BsFillPencilFill } from "react-icons/bs";
 
 const CanvasBanner = () => {
   const canvas = useRef(null);
@@ -129,12 +131,24 @@ const CanvasBanner = () => {
   };
 
   return (
-    <Canvas
-      ref={canvas}
-      onPointerDown={startDrawing}
-      onPointerUp={finishDrawing}
-      onPointerMove={drawing}
-    ></Canvas>
+    <>
+      <Canvas
+        ref={canvas}
+        onPointerDown={startDrawing}
+        onPointerUp={finishDrawing}
+        onPointerMove={drawing}
+        data-tip
+        data-for="doodle"
+      />
+      {!drawn && (
+        <ToolTip
+          message="Doodle tablecloth"
+          id="doodle"
+          icon={<BsFillPencilFill />}
+          fontSize="1.5rem"
+        />
+      )}
+    </>
   );
 };
 

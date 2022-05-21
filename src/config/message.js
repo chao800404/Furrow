@@ -10,3 +10,7 @@ export const paymentMessage = {
   INCOMPLETE: "Incomplete information",
   CART_EMPTY: "At least one product must be added",
 };
+
+export const detailMessage = {
+  information: "Click button to show more information",
+};

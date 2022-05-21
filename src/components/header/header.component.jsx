@@ -5,7 +5,6 @@ import { HeaderNav, LinkStyle, Logo, HeaderMenu } from "./header.styles";
 import { Flex } from "../Flex/flex.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleThemeStyle } from "../../redux/theme/theme.actions";
-import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
 import themeType from "../../theme/theme.styles.js";
 import HamburgerBox from "../hamburger/hamburger.componet";
 import ShopLinkIcon from "../shop-link-icon/shop-link-icon.component";
@@ -15,15 +14,13 @@ import {
 } from "../../redux/theme/theme.select";
 import SignInOutButton from "../sigiInOutButton/signInOutButton.component.js";
 import useCheckScreenIsMobile from "../../utils/useCheckScreen";
+import ToolTip from "../tooltip/tooltip.component";
 
 const Header = () => {
   const dispatch = useDispatch();
   const toggleTheme = useSelector(selectCurrentTheme);
   const handleClick = () => {
     dispatch(toggleThemeStyle(themeType(toggleTheme)));
-  };
-  const handleHover = () => {
-    dispatch(toggleCursorStyle());
   };
   const theme = useSelector(selectThemeStyle);
   const isMobile = useCheckScreenIsMobile();
@@ -36,11 +33,12 @@ const Header = () => {
     >
       <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
         <Flex>
-          <Logo onMouseEnter={handleHover} onMouseLeave={handleHover}>
+          <Logo data-tip data-for="mode">
             <LinkStyle to="/">ONE</LinkStyle>
             <span onClick={handleClick}></span>
             <LinkStyle to="/">SEC</LinkStyle>
           </Logo>
+          <ToolTip message="Change Mode" id="mode" />
           <HeaderMenu>
             <SignInOutButton theme={theme} />
             {!isMobile && <ShopLinkIcon />}

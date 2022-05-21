@@ -16,6 +16,7 @@ import {
   FeatureFunctionContainer,
   FeatureGlassesContainer,
   FeatureBg,
+  FeutureStoryBtn,
 } from "./featurePage.styles";
 import {
   BsArrowRightSquareFill,
@@ -33,12 +34,15 @@ import {
 } from "../../redux/featuresPage/feature.select";
 import FeatureBanner from "../../components/featureBanner/featureBanner.component";
 import { urlFor } from "../../lib/client";
+import ToolTip from "../../components/tooltip/tooltip.component";
+import { detailMessage } from "../../config/message";
 
 const FeaturePage = () => {
   const [inView, setInView] = useState([0]);
   const [displayProperty, setDisplayProperty] = useState(0);
   const [curView, setCurView] = useState(0);
   const [imgArr, setImgArr] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
   const featureBtnContainer = useRef();
   const theme = useSelector(selectThemeStyle);
   const dispatch = useDispatch();
@@ -92,6 +96,7 @@ const FeaturePage = () => {
 
   const handleGlassesFeatureDisplay = (e) => {
     const glassesBtn = e.target.closest("[data-type]");
+    setIsClicked((prev) => (prev = true));
     if (!glassesBtn) return;
     const index = +glassesBtn.dataset.type.split("-")[1];
     setDisplayProperty((prev) => (prev = index));
@@ -192,6 +197,8 @@ const FeaturePage = () => {
                 <FeatureGlassesContainer
                   onClick={handleGlassesFeatureDisplay}
                   ref={featureBtnContainer}
+                  data-for="detail-message"
+                  data-tip
                 >
                   <FeatureGlassesBtn
                     whileTap={{ scale: 0.95 }}
@@ -200,7 +207,9 @@ const FeaturePage = () => {
                     <span className="function-desc-1">
                       {property["property_0"]}
                     </span>
-                    <BsPlusCircleFill />
+                    <FeutureStoryBtn>
+                      <BsPlusCircleFill />
+                    </FeutureStoryBtn>
                   </FeatureGlassesBtn>
                   <FeatureGlassesBtn
                     whileTap={{ scale: 0.95 }}
@@ -209,7 +218,9 @@ const FeaturePage = () => {
                     <span className="function-desc-2">
                       {property["property_1"]}
                     </span>
-                    <BsPlusCircleFill />
+                    <FeutureStoryBtn>
+                      <BsPlusCircleFill />
+                    </FeutureStoryBtn>
                   </FeatureGlassesBtn>
                   <FeatureGlassesBtn
                     whileTap={{ scale: 0.95 }}
@@ -218,20 +229,19 @@ const FeaturePage = () => {
                     <span className="function-desc-3">
                       {property["property_2"]}
                     </span>
-                    <BsPlusCircleFill />
+                    <FeutureStoryBtn>
+                      <BsPlusCircleFill />
+                    </FeutureStoryBtn>
                   </FeatureGlassesBtn>
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      zIndex: 20,
-                    }}
-                  />
+
                   <img alt="glasses" src={urlFor(property["image"])} />
                 </FeatureGlassesContainer>
+                {!isClicked && (
+                  <ToolTip
+                    message={detailMessage.information}
+                    id="detail-message"
+                  />
+                )}
               </FeatureFunctionContainer>
             </FeatureFunction>
           </>

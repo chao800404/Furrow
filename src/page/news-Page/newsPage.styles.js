@@ -16,3 +16,7 @@ export const NewsTitle = styled.h1`
   grid-column: 1 /-1;
   font-size: 10rem;
 `;
+
+export const NewCardContainer = styled.div`
+  grid-column: 1 / span 1;
+`;

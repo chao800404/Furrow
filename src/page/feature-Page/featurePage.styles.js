@@ -110,6 +110,12 @@ export const FeatureStoryBtnContainer = styled.div`
   }
 `;
 
+export const FeutureStoryBtn = styled.button`
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+`;
+
 export const FeatureImgContainer = styled.div`
   position: relative;
   img {
@@ -149,7 +155,6 @@ export const FeatureImgContainer = styled.div`
 export const FeatureGlassesBtn = styled(motion.div)`
   position: absolute;
   opacity: 0.9;
-  borderradius: 50%;
   boxshadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   z-index: 50;
 
@@ -202,7 +207,7 @@ export const ProofIconContainer = styled.div`
   }
 
   .proof_icon {
-    width: 15rem;
+    width: 10rem;
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
@@ -213,7 +218,7 @@ export const ProofIconContainer = styled.div`
 `;
 
 export const FeatureFunction = styled.div`
-  height: 50rem;
+  height: auto;
   display: flex;
   align-items: center;
   flex-direction: column;

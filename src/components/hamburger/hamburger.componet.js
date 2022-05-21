@@ -6,6 +6,7 @@ import { selectThemeStyle } from "../../redux/theme/theme.select";
 import { sidebarStauts } from "../../redux/sidebar/sidebar.select";
 import { toggleSidebar } from "../../redux/sidebar/sidebar.actions";
 import { toggleCursorStyle } from "../../redux/cursor/cursor.actions";
+import ToolTip from "../../components/tooltip/tooltip.component";
 
 const menuMotion = (right) => {
   const rotateDirection = right ? 45 : -45;
@@ -35,24 +36,29 @@ const HamburgerBox = () => {
   };
 
   return (
-    <Hamburger
-      initial="rest"
-      animate="rest"
-      onClick={handleSidebarClick}
-      onMouseEnter={handleHover}
-      onMouseLeave={handleHover}
-    >
-      <HamburgerLine
-        variants={menuMotion(false)}
-        animate={toggle ? "click" : "rest"}
-        theme={Theme}
-      ></HamburgerLine>
-      <HamburgerLine
-        variants={menuMotion(true)}
-        theme={Theme}
-        animate={toggle ? "click" : "rest"}
-      ></HamburgerLine>
-    </Hamburger>
+    <>
+      <Hamburger
+        initial="rest"
+        animate="rest"
+        onClick={handleSidebarClick}
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHover}
+        data-tip
+        data-for="menu"
+      >
+        <HamburgerLine
+          variants={menuMotion(false)}
+          animate={toggle ? "click" : "rest"}
+          theme={Theme}
+        ></HamburgerLine>
+        <HamburgerLine
+          variants={menuMotion(true)}
+          theme={Theme}
+          animate={toggle ? "click" : "rest"}
+        ></HamburgerLine>
+      </Hamburger>
+      <ToolTip message="menu" id="menu" />
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ const maxWidth = {
   mediumAlpha: "1140px",
   mediumBelta: "850px",
   small: "650px",
+  smaller: "500px",
 };
 
 export default maxWidth;

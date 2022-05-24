@@ -1,7 +1,5 @@
 /** @format */
 import { FaBloggerB } from "react-icons/fa";
-import { AiOutlinePlusSquare } from "react-icons/ai";
-import { min } from "lodash";
 
 export default {
   name: "post",
@@ -17,7 +15,7 @@ export default {
     },
     {
       name: "slug",
-      tile: "Slug",
+      title: "Slug",
       type: "slug",
       options: {
         source: "title",
@@ -35,18 +33,13 @@ export default {
       name: "image",
       title: "Image",
       type: "image",
-      options: {
-        hotspot: true,
-      },
       validation: (Rule) => Rule.required(),
     },
+
     {
-      title: "Post Content",
-      name: "postContent",
-      description: "Please enter your blog content text",
-      type: "array",
-      of: [{ type: "block" }, { type: "image" }, { type: "youtube" }],
-      validation: (Rule) => Rule.required(),
+      name: "body",
+      type: "bodyPortableText",
+      title: "Body",
     },
     {
       title: "Release Date",

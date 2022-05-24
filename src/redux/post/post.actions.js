@@ -15,3 +15,8 @@ export const postActionFailure = (error) => ({
   type: PostType.FETCHING_POST_DATA_FAILURE,
   payload: error,
 });
+
+export const TOGGLEBookMark = (bookMark) => ({
+  type: PostType.TOGGLE_BOOKMARK,
+  payload: bookMark,
+});

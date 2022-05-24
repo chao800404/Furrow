@@ -1,10 +1,12 @@
 /** @format */
 import PostType from "./post.type";
+import { checkBookMark } from "./utils";
 
 const INITIAL_STATE = {
   isFetching: false,
   postData: [],
   errorMessage: undefined,
+  bookMark: [],
 };
 
 const postReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +28,11 @@ const postReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         errorMessage: action.payload,
+      };
+    case PostType.TOGGLE_BOOKMARK:
+      return {
+        ...state,
+        bookMark: checkBookMark(state.bookMark, action.payload),
       };
     default:
       return state;

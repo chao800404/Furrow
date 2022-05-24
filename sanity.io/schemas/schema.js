@@ -16,6 +16,7 @@ import featurePage from "./featurePage";
 import aboutPage from "./aboutPage";
 import post from "./post";
 import youtube from "./youtube";
+import bodyPortableText from "./bodyPortableText";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -38,5 +39,6 @@ export default createSchema({
     aboutPage,
     post,
     youtube,
+    bodyPortableText,
   ]),
 });

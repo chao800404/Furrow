@@ -6,7 +6,7 @@ import {
   ContactShadows,
   Loader,
 } from "@react-three/drei";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -21,10 +21,16 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
+  const [togglePointer, setTogglePointer] = useState(false);
   const CurGlassesModel = useMemo(
     () => glassesModel[curType][curColor],
     [curColor, curType]
   );
+
+  const handlePointerDown = () => {
+    dispatch(checkARIsPointer());
+    setTogglePointer((prev) => (prev = true));
+  };
 
   return (
     <ClassesModelContainer>
@@ -45,10 +51,11 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
             />
             <Suspense fallback={null}>
               <CurGlassesModel
-                onPointerDown={() => dispatch(checkARIsPointer())}
                 mode={
                   toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
                 }
+                togglePointer={togglePointer}
+                onPointerDown={handlePointerDown}
               />
               <ContactShadows
                 rotation-x={Math.PI / 2}

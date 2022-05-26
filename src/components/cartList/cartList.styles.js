@@ -80,3 +80,23 @@ export const CartListItem = styled.div`
     background-color: #161616;
   }
 `;
+
+export const CartListEmpty = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .empty-cart {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    position: static;
+    transform: translate(0);
+    width: 15rem;
+  }
+`;

@@ -1,6 +1,11 @@
 /** @format */
 
-import { CartItemContainer, CartTotal, CartListItem } from "./cartList.styles";
+import {
+  CartItemContainer,
+  CartTotal,
+  CartListItem,
+  CartListEmpty,
+} from "./cartList.styles";
 import Button from "../button/button.component";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCartToggleHidden } from "../../redux/cart/cart.select";
@@ -14,6 +19,8 @@ import {
   cartToggleHidden,
 } from "../../redux/cart/cart.action";
 import { useNavigate } from "react-router-dom";
+import LottieContainer from "../lotiie-player/Lottie-container.component";
+import emptyCart from "../../assets/lottie-json/empty-cart.json";
 import { IoClose } from "react-icons/io5";
 
 const CardList = () => {
@@ -44,11 +51,17 @@ const CardList = () => {
           onClick={() => dispatch(cartToggleHidden())}
         />
         <CartListItem>
-          {cartItem?.map((cartItem) => {
-            const { _key } = cartItem;
-            console.log(cartItem);
-            return <CartItem key={_key} {...cartItem} />;
-          })}
+          {cartItem.length <= 0 ? (
+            <CartListEmpty>
+              <LottieContainer className="empty-cart" lottieJson={emptyCart} />
+              <p>Empty cart waiting for added product </p>
+            </CartListEmpty>
+          ) : (
+            cartItem.map((cartItem) => {
+              const { _key } = cartItem;
+              return <CartItem key={_key} {...cartItem} />;
+            })
+          )}
         </CartListItem>
         <CartTotal>
           <h3>Estimated Total:</h3>

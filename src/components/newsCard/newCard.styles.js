@@ -39,7 +39,7 @@ export const NewsCardContainer = styled(motion.div)`
   }
   @media only screen and (max-width: ${maxWidth.smaller}) {
     display: flex;
-    height: 20rem;
+    height: 15rem;
     flex-direction: row-reverse;
 
     img {
@@ -85,7 +85,9 @@ export const NewsCardTextContent = styled.div`
   @media only screen and (max-width: ${maxWidth.smaller}) {
     width: 70%;
     span {
-      margin-top: 0;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      zoom: 0.8;
     }
     h3 {
       font-size: 1.2rem;

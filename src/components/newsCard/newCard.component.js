@@ -24,6 +24,7 @@ import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 const WORDLIMIT = {
   LARGER: 20,
   SMALLER: 10,
+  SMALL: 5,
 };
 
 const NewsCard = ({
@@ -68,7 +69,7 @@ const NewsCard = ({
               : { scale: 0.95, y: `-${index * 10}px ` }
           }
           animate={
-            isMobile ? { scale: 1, y: 0 } : { scale: 1, y: `-${index * 15}px` }
+            isMobile ? { scale: 1, y: 0 } : { scale: 1, y: `-${index * 18}px` }
           }
           transition={{ delay: 0.05 }}
           data-container="card-container"
@@ -80,7 +81,12 @@ const NewsCard = ({
                 isMobile ? null : { fontSize: `${len ? "2rem" : "2.8rem"}` }
               }
             >
-              {title}
+              {isMobile
+                ? title
+                    .split(" ")
+                    .filter((_, index) => index <= WORDLIMIT.SMALL)
+                    .join(" ") + " ...."
+                : title}
             </h3>
             <span>{releaseDate}</span>
             <p>
@@ -88,7 +94,7 @@ const NewsCard = ({
                 .split(" ")
                 .filter(
                   (_, index) =>
-                    index <= (isMobile ? WORDLIMIT.SMALLER : WORDLIMIT.LARGER)
+                    index <= (isMobile ? WORDLIMIT.SMALL : WORDLIMIT.LARGER)
                 )
                 .join(" ") + " ...."}
             </p>

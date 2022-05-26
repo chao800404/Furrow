@@ -21,7 +21,6 @@ import { InView } from "react-intersection-observer";
 import { useState } from "react";
 import Button from "../button/button.component";
 import LinkBtn from "../linkButton/linkButton.component";
-// import { preLoadModel } from "../glassesCanvasModel/glassesCanvasToMaps";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 
 const CollectionOverView = () => {
@@ -37,7 +36,7 @@ const CollectionOverView = () => {
   return (
     <CollectionOverViewPageContainer>
       <Flex>
-        {collection.product && (
+        {collection.product && collection && (
           <CollectionOverViewContainer style={{ position: "relative" }}>
             {inView ? null : (
               <Button

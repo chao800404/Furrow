@@ -6,18 +6,25 @@ import maxWidth from "../../config/screen.size";
 export const NewsPageContainer = styled.section`
   min-height: 100vh;
   padding: 20rem 0 10rem 0;
+
+  @media only screen and (max-width: ${maxWidth.smaller}) {
+    padding: 10rem 0;
+  }
 `;
 
 export const NewsPageLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 50rem;
+  grid-template-rows: min-content minmax(60rem, auto);
   gap: 2rem;
+  width: 100%;
 
   @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
     grid-template-columns: 1.5fr 1fr;
   }
   @media only screen and (max-width: ${maxWidth.small}) {
     grid-template-columns: 1fr 1fr;
+
     gap: 0;
   }
 `;
@@ -33,17 +40,31 @@ export const NewsTitle = styled.h1`
 
 export const NewCardContainer = styled.div`
   grid-column: 1 / span 1;
+  height: auto;
 
   @media only screen and (max-width: ${maxWidth.small}) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    overflow: hidden;
+
     position: relative;
     grid-column: 1 / -1;
   }
   @media only screen and (max-width: ${maxWidth.smaller}) {
     grid-template-columns: 1fr;
+  }
+`;
+
+export const NewsCardCotent = styled.div`
+  overflow: hidden;
+  display: inherit;
+  gap: 2rem;
+  padding: 0 2rem;
+  grid-auto-rows: max-content;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-column: 1 / -1;
+    grid-template-columns: inherit;
+    padding: 0;
   }
 `;
 
@@ -53,6 +74,8 @@ export const NewsSide = styled.div`
   align-self: start;
   position: sticky;
   top: calc(50% - 35rem);
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
 
   .date-select {
     width: 15rem;
@@ -66,12 +89,13 @@ export const NewsSide = styled.div`
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    grid-row: 1 / span1;
+    grid-row: 1 / span 1;
     position: static;
     grid-column: 2 / span 1;
     align-self: center;
 
     .date-select {
+      zoom: 0.9;
       div {
         z-index: 50;
       }
@@ -107,13 +131,33 @@ export const NewsSideItem = styled.div`
 export const NewsHiddenPostBar = styled.div`
   width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: -1%;
   background: ${({ theme }) =>
     `linear-gradient(to top, ${theme.backgroundColor} 10%, transparent)`};
   z-index: 30;
-  height: 15rem;
+  height: 20rem;
   display: flex;
   align-items: center;
   justify-content: center;
   grid-column: 1/ -1;
+  z-index: 20;
+`;
+
+export const NewsBookMarkEmpty = styled.div`
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  grid-row: 2 / span 1;
+
+  .empty-bookmark {
+    width: 13rem;
+    height: 13rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    text-align: center;
+  }
 `;

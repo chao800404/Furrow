@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import primaryColor from "../../theme/priamry.styles";
 import { motion } from "framer-motion";
+import maxWidth from "../../config/screen.size";
 
 export const NewsOverViewPageContainer = styled.section`
   width: 100%;
@@ -31,6 +32,12 @@ export const NewsOverViewPageContainer = styled.section`
   img {
     width: 100%;
   }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    .youtubeVideo {
+      height: 20rem;
+    }
+  }
 `;
 
 export const NewsOverViewBox = styled(motion.div)`
@@ -47,6 +54,7 @@ export const NewsOverViewBox = styled(motion.div)`
   position: relative;
   display: grid;
   grid-template-rows: auto;
+  position: relative;
 
   h1,
   h3 {
@@ -71,12 +79,17 @@ export const NewsOverViewBox = styled(motion.div)`
   li {
     margin-left: 1.5rem;
   }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 92%;
+  }
 `;
 
 export const NewsBanner = styled.div`
   width: 100%;
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
+  align-self: start;
 `;
 
 export const NewsTextTable = styled.div`
@@ -108,5 +121,22 @@ export const NewsCloseBtn = styled(motion.button)`
     height: 100%;
     stroke-width: 1rem;
     transform: scale(1.2);
+  }
+`;
+
+export const NewsSrollDownBar = styled.div`
+  width: 100%;
+  position: absolute;
+  height: 10rem;
+  bottom: 0;
+  background: linear-gradient(to top, #fff 40%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: #161616;
   }
 `;

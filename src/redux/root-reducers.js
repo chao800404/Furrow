@@ -1,6 +1,7 @@
 /** @format */
 
 import { combineReducers } from "redux";
+import headerReducer from "./header/header.reducer";
 import themeReducer from "./theme/theme.reducers";
 import cursorReducer from "./cursor/cursor.reducers";
 import bannerReducer from "./banner/banner.reducer";
@@ -19,6 +20,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const rootReducers = combineReducers({
+  header: headerReducer,
   theme: themeReducer,
   cursor: cursorReducer,
   banner: bannerReducer,

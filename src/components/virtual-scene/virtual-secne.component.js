@@ -61,6 +61,7 @@ const VirtualScene = ({ type, color, view3d, currentEnvironment }) => {
             {sidebarAnEnd && (
               <>
                 <CurGlassesModel view3d={view3d} />
+
                 <Environment
                   background
                   files={`/threeModel/environment/${currentEnvironment}_2k.hdr`}

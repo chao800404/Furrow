@@ -7,7 +7,7 @@ export const MenuBarContainer = styled(motion.div)`
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 8rem;
+  height: 9rem;
   width: 100%;
   z-index: 100;
   color: ${({ theme }) => theme.backgroundColor};
@@ -34,6 +34,7 @@ export const MenuBarContainer = styled(motion.div)`
     }
   }
   .menu-bar-container {
-    height: 5.5rem;
+    height: 100%;
+    border-radius: 2rem 2rem 0 0;
   }
 `;

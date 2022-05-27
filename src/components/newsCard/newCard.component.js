@@ -58,102 +58,98 @@ const NewsCard = ({
       : setLen((prev) => (prev = false));
   }, [title]);
 
-  return unfold || isMobile
-    ? isPublic && (
-        <NewsCardContainer
-          id={_id}
-          onClick={handleClick}
-          initial={
-            isMobile
-              ? { scale: 0.95, y: 0 }
-              : { scale: 0.95, y: `-${index * 10}px ` }
-          }
-          animate={
-            isMobile ? { scale: 1, y: 0 } : { scale: 1, y: `-${index * 18}px` }
-          }
-          transition={{ delay: 0.05 }}
-          data-container="card-container"
-        >
-          <PreLoadImage text={title} url={image} />
-          <NewsCardTextContent>
-            <h3
-              style={
-                isMobile ? null : { fontSize: `${len ? "2rem" : "2.8rem"}` }
-              }
+  return (
+    isPublic &&
+    (unfold || isMobile ? (
+      <NewsCardContainer
+        id={_id}
+        onClick={handleClick}
+        initial={
+          isMobile
+            ? { scale: 0.95, y: 0 }
+            : { scale: 0.95, y: `-${index * 10}px ` }
+        }
+        animate={
+          isMobile ? { scale: 1, y: 0 } : { scale: 1, y: `-${index * 18}px` }
+        }
+        transition={{ delay: 0.05 }}
+        data-container="card-container"
+      >
+        <PreLoadImage className="NewCard-Image" text={title} url={image} />
+        <NewsCardTextContent>
+          <h3
+            style={isMobile ? null : { fontSize: `${len ? "2rem" : "2.8rem"}` }}
+          >
+            {isMobile
+              ? title
+                  .split(" ")
+                  .filter((_, index) => index <= WORDLIMIT.SMALL)
+                  .join(" ") + " ...."
+              : title}
+          </h3>
+          <span>{releaseDate}</span>
+          <p>
+            {outline
+              .split(" ")
+              .filter(
+                (_, index) =>
+                  index <= (isMobile ? WORDLIMIT.SMALL : WORDLIMIT.LARGER)
+              )
+              .join(" ") + " ...."}
+          </p>
+          <NewsCardMarkContainer>
+            <NewsCardBookmark data-container="bookmark">
+              {bookMark.includes(_id) ? (
+                <>
+                  <MdOutlineBookmark
+                    data-tip
+                    data-for="addBookMark"
+                    color={primaryColor.cursorColor}
+                  />
+                  <ToolTip id="addBookMark">Remove BookMark</ToolTip>
+                </>
+              ) : (
+                <>
+                  <MdOutlineBookmarkRemove data-tip data-for="removeBookMark" />
+                  <ToolTip id="removeBookMark">Add BookMark</ToolTip>
+                </>
+              )}
+            </NewsCardBookmark>
+            <NewsCardLink
+              onClick={() => setSlugPageIsVisible((prev) => !prev)}
+              to={slug.current}
+              data-for="blog"
+              data-tip
             >
-              {isMobile
-                ? title
-                    .split(" ")
-                    .filter((_, index) => index <= WORDLIMIT.SMALL)
-                    .join(" ") + " ...."
-                : title}
-            </h3>
-            <span>{releaseDate}</span>
-            <p>
-              {outline
-                .split(" ")
-                .filter(
-                  (_, index) =>
-                    index <= (isMobile ? WORDLIMIT.SMALL : WORDLIMIT.LARGER)
-                )
-                .join(" ") + " ...."}
-            </p>
-            <NewsCardMarkContainer>
-              <NewsCardBookmark data-container="bookmark">
-                {bookMark.includes(_id) ? (
-                  <>
-                    <MdOutlineBookmark
-                      data-tip
-                      data-for="addBookMark"
-                      color={primaryColor.cursorColor}
-                    />
-                    <ToolTip id="addBookMark">Remove BookMark</ToolTip>
-                  </>
-                ) : (
-                  <>
-                    <MdOutlineBookmarkRemove
-                      data-tip
-                      data-for="removeBookMark"
-                    />
-                    <ToolTip id="removeBookMark">Add BookMark</ToolTip>
-                  </>
-                )}
-              </NewsCardBookmark>
-              <NewsCardLink
-                onClick={() => setSlugPageIsVisible((prev) => !prev)}
-                to={slug.current}
-                data-for="blog"
-                data-tip
-              >
-                <IoIosArrowUp />
-              </NewsCardLink>
-              <ToolTip id="blog">blog</ToolTip>
-            </NewsCardMarkContainer>
-          </NewsCardTextContent>
-        </NewsCardContainer>
-      )
-    : isPublic && (
-        <NewsCardNotUnfold
-          style={{
-            transform: `translateY(-${index * 15}%)`,
-            zIndex: `${length - index}`,
-          }}
-          id={_id}
-          onClick={() => setIsActive((prev) => (prev = _id))}
-        >
-          <PreLoadImage className="card-second-type" text={title} url={image} />
-          <NewsCardTextSecondContent>
-            <h3>{title}</h3>
-            <span>{releaseDate}</span>
-            <p>
-              {outline
-                .split(" ")
-                .filter((_, index) => index <= WORDLIMIT.SMALLER)
-                .join(" ") + " ...."}
-            </p>
-          </NewsCardTextSecondContent>
-        </NewsCardNotUnfold>
-      );
+              <IoIosArrowUp />
+            </NewsCardLink>
+            <ToolTip id="blog">blog</ToolTip>
+          </NewsCardMarkContainer>
+        </NewsCardTextContent>
+      </NewsCardContainer>
+    ) : (
+      <NewsCardNotUnfold
+        style={{
+          transform: `translateY(-${index * 15}%)`,
+          zIndex: `${length - index}`,
+        }}
+        id={_id}
+        onClick={() => setIsActive((prev) => (prev = _id))}
+      >
+        <PreLoadImage className="card-second-type" text={title} url={image} />
+        <NewsCardTextSecondContent>
+          <h3>{title}</h3>
+          <span>{releaseDate}</span>
+          <p>
+            {outline
+              .split(" ")
+              .filter((_, index) => index <= WORDLIMIT.SMALLER)
+              .join(" ") + " ...."}
+          </p>
+        </NewsCardTextSecondContent>
+      </NewsCardNotUnfold>
+    ))
+  );
 };
 
 export default NewsCard;

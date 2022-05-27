@@ -36,6 +36,9 @@ export const NewsTitle = styled.h1`
   @media only screen and (max-width: ${maxWidth.small}) {
     grid-column: 1 /2;
   }
+  @media only screen and (max-width: ${maxWidth.smaller}) {
+    font-size: 8rem;
+  }
 `;
 
 export const NewCardContainer = styled.div`
@@ -95,7 +98,7 @@ export const NewsSide = styled.div`
     align-self: center;
 
     .date-select {
-      zoom: 0.9;
+      zoom: 0.8;
       div {
         z-index: 50;
       }

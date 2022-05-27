@@ -3,7 +3,6 @@
 import Header from "./components/header/header.component";
 import Homepage from "./page/home-Page/hompage.component";
 // import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
-import PWAPrompt from "react-ios-pwa-prompt";
 import Sidebars from "./components/sidebar/sidebar.component";
 import ShopPage from "./page/shop-Page/shopPage.component";
 import MobileMenuBar from "./components/mobile-menu-bar/mobileMenuBar.component";
@@ -49,12 +48,7 @@ const App = ({ theme }) => {
       <Header />
       <Sidebars />
       <MobileMenuBar theme={theme} />
-      <PWAPrompt
-        promptOnVisit={1}
-        timesToShow={3}
-        copyClosePrompt="Close"
-        permanentlyHideOnDismiss={false}
-      />
+
       <Suspense
         fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
       >

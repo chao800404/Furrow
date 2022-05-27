@@ -76,28 +76,14 @@ registerRoute(
 );
 
 registerRoute(
-  ({ url }) => url.origin === "https://fonts.googleapis.com",
+  ({ url }) =>
+    url.origin === "https://fonts.googleapis.com" ||
+    url.origin === "https://fonts.gstatic.com",
   new StaleWhileRevalidate({
-    cacheName: "google-fonts-stylesheets",
+    cacheName: "google-fonts",
+    plugins: [new ExpirationPlugin({ maxEntries: 20 })],
   })
 );
-
-registerRoute(
-  ({ url }) => url.origin === "https://fonts.gstatic.com",
-  new CacheFirst({
-    cachName: "google-fonts-webfonts",
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 50,
-        maxAgeSeconds: 60 * 60 * 24 * 365,
-      }),
-    ],
-  })
-);
-
 registerRoute();
 
 // This allows the web app to trigger skipWaiting via

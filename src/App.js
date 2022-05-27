@@ -16,7 +16,7 @@ import CubeSpinner from "./components/cube-spinner/cube-spinner.component";
 import { fetchCollectionStart } from "./redux/shop/shop.actions";
 import { Toaster } from "react-hot-toast";
 import { selectHeaderAnComplete } from "./redux/header/header.select";
-import InstallPWA from "./components/installPWA";
+import PWAPrompt from "react-ios-pwa-prompt";
 
 const AboutPage = lazy(() => import("./page/about-Page/aboutPage.component"));
 const FeaturePage = lazy(() =>
@@ -48,8 +48,8 @@ const App = ({ theme }) => {
       {/* <CurstomCursor /> */}
       <Header />
       <Sidebars />
-      <InstallPWA />
       <MobileMenuBar theme={theme} />
+      <PWAPrompt />
       <Suspense
         fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
       >

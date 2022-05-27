@@ -4,9 +4,6 @@ import { useFrame } from "@react-three/fiber";
 
 const useFrameScene = ({ view3d, group, glasses }) => {
   useFrame(({ camera }) => {
-    if (!view3d) {
-      group.current.rotation.z += 0.002;
-    }
     if (view3d) {
       group.current.position.copy(camera.position);
       group.current.rotation.copy(camera.rotation);

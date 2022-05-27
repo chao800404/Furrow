@@ -36,7 +36,7 @@ const CollectionOverView = () => {
   return (
     <CollectionOverViewPageContainer>
       <Flex>
-        {collection.product && collection && (
+        {collection?.product && collection && (
           <CollectionOverViewContainer style={{ position: "relative" }}>
             {inView ? null : (
               <Button

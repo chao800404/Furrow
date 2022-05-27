@@ -1,14 +1,4 @@
-/**
- * /* eslint-disable no-restricted-globals
- *
- * @format
- */
-
-/**
- * /* eslint-disable no-restricted-globals
- *
- * @format
- */
+/** @format */
 
 // This service worker can be customized!
 // See https://developers.google.com/web/tools/workbox/modules
@@ -74,15 +64,6 @@ registerRoute(
   })
 );
 
-registerRoute(
-  ({ url }) =>
-    url.origin === "https://fonts.googleapis.com" ||
-    url.origin === "https://fonts.gstatic.com",
-  new StaleWhileRevalidate({
-    cacheName: "google-fonts",
-    plugins: [new ExpirationPlugin({ maxEntries: 20 })],
-  })
-);
 registerRoute();
 
 // This allows the web app to trigger skipWaiting via

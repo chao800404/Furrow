@@ -3,11 +3,11 @@
 import Header from "./components/header/header.component";
 import Homepage from "./page/home-Page/hompage.component";
 // import CurstomCursor from "./components/curstomCursor/curstomCursor.component";
+import PWAPrompt from "react-ios-pwa-prompt";
 import Sidebars from "./components/sidebar/sidebar.component";
 import ShopPage from "./page/shop-Page/shopPage.component";
 import MobileMenuBar from "./components/mobile-menu-bar/mobileMenuBar.component";
 import Footer from "./components/footer/footer.component";
-import AddToHomeScreen from "@ideasio/add-to-homescreen-react";
 import { Routes, Route } from "react-router-dom";
 import routes from "./router.config";
 import { useEffect, lazy, Suspense } from "react";
@@ -48,8 +48,13 @@ const App = ({ theme }) => {
       {/* <CurstomCursor /> */}
       <Header />
       <Sidebars />
-      <AddToHomeScreen />
       <MobileMenuBar theme={theme} />
+      <PWAPrompt
+        promptOnVisit={1}
+        timesToShow={3}
+        copyClosePrompt="Close"
+        permanentlyHideOnDismiss={false}
+      />
       <Suspense
         fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
       >

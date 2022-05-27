@@ -7,6 +7,7 @@ import Sidebars from "./components/sidebar/sidebar.component";
 import ShopPage from "./page/shop-Page/shopPage.component";
 import MobileMenuBar from "./components/mobile-menu-bar/mobileMenuBar.component";
 import Footer from "./components/footer/footer.component";
+import AddToHomeScreen from "@ideasio/add-to-homescreen-react";
 import { Routes, Route } from "react-router-dom";
 import routes from "./router.config";
 import { useEffect, lazy, Suspense } from "react";
@@ -16,7 +17,6 @@ import CubeSpinner from "./components/cube-spinner/cube-spinner.component";
 import { fetchCollectionStart } from "./redux/shop/shop.actions";
 import { Toaster } from "react-hot-toast";
 import { selectHeaderAnComplete } from "./redux/header/header.select";
-import PWAPrompt from "react-ios-pwa-prompt";
 
 const AboutPage = lazy(() => import("./page/about-Page/aboutPage.component"));
 const FeaturePage = lazy(() =>
@@ -48,8 +48,8 @@ const App = ({ theme }) => {
       {/* <CurstomCursor /> */}
       <Header />
       <Sidebars />
+      <AddToHomeScreen />
       <MobileMenuBar theme={theme} />
-      <PWAPrompt />
       <Suspense
         fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
       >

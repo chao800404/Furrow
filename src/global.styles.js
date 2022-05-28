@@ -14,6 +14,10 @@ export const GlobalStyle = createGlobalStyle`
   html{ 
       font-size: 62.5%;
       font-family: 'Poppins';
+      padding-top: constant(safe-area-inset-top);
+      padding-right: constant(safe-area-inset-right);
+      padding-bottom: constant(safe-area-inset-bottom);
+      padding-left: constant(safe-area-inset-left);
       @media only screen and (max-width: ${maxWidth.mediumBelta}) {
         font-size:50%;
       }

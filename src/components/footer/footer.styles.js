@@ -18,6 +18,8 @@ export const FooterContainer = styled.footer`
 
   @media only screen and (max-width: ${maxWidth.small}) {
     flex-direction: column;
+    height: auto;
+    margin-bottom: 0;
 
     p {
       line-height: 3rem;

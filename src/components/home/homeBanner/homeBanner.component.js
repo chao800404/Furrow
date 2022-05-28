@@ -11,10 +11,12 @@ import BannerTitle from "../bannerTitle/bannerTitle.component";
 import { useSelector } from "react-redux";
 import { sidebarStauts } from "../../../redux/sidebar/sidebar.select";
 import { useEffect, useState, useCallback } from "react";
+import useCheckScreenIsMobile from "../../../utils/useCheckScreen";
 
 const HomeBanner = () => {
   const visible = useSelector(sidebarStauts);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const isMobile = useCheckScreenIsMobile();
 
   const checkSidebarOpenFirst = useCallback(() => {
     setSidebarIsOpen((prev) => (prev = true));
@@ -26,7 +28,7 @@ const HomeBanner = () => {
 
   return (
     <HomeContainer>
-      <BannerTitle />
+      {!isMobile && <BannerTitle />}
       <BannerVideo>
         <VideoContainer
           type="video/mp4"

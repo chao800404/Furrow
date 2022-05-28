@@ -12,6 +12,10 @@ export const HomeContainer = styled.section`
   flex-direction: column;
   position: relative;
   z-index: 10;
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    z-index: unset;
+  }
 `;
 
 export const BannerVideo = styled.div`
@@ -20,6 +24,9 @@ export const BannerVideo = styled.div`
   display: grid;
   overflow-x: hidden;
   position: relative;
+  @media only screen and (max-width: ${maxWidth.small}) {
+    position: fixed;
+  }
 `;
 
 export const VideoContainer = styled.video`
@@ -31,7 +38,6 @@ export const VideoContainer = styled.video`
   transform: translate(-50%, -50%);
   object-fit: cover;
   -o-object-fit: cover;
-
   @media only screen and (max-width: ${maxWidth.small}) {
     height: 100%;
   }

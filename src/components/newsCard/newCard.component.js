@@ -11,6 +11,7 @@ import {
   NewsCardBookmark,
   NewsCardMarkContainer,
 } from "./newCard.styles";
+import { useNavigate } from "react-router-dom";
 import PreLoadImage from "../preLoadImage/preLoadImage.component";
 import { IoIosArrowUp } from "react-icons/io";
 import { MdOutlineBookmark, MdOutlineBookmarkRemove } from "react-icons/md";
@@ -41,15 +42,23 @@ const NewsCard = ({
   const dispatch = useDispatch();
   const bookMark = useSelector(selectPostbookMark);
   const isMobile = useCheckScreenIsMobile();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (_id === isActive) setUnfold((prev) => (prev = true));
     else setUnfold((prev) => (prev = false));
   }, [isActive, _id]);
 
+  const handleNavigateClick = () => {
+    setSlugPageIsVisible((prev) => !prev);
+    navigate(`${slug.current}`);
+  };
+
   const handleClick = (e) => {
     const bookMark = e.target.closest("[data-container=bookmark]");
+    const navigateBtn = e.target.closest("[data-container=card-container]");
     if (bookMark) dispatch(TOGGLEBookMark(_id));
+    if (navigateBtn && isMobile) handleNavigateClick();
   };
 
   useEffect(() => {
@@ -116,8 +125,7 @@ const NewsCard = ({
               )}
             </NewsCardBookmark>
             <NewsCardLink
-              onClick={() => setSlugPageIsVisible((prev) => !prev)}
-              to={slug.current}
+              onClick={handleNavigateClick}
               data-for="blog"
               data-tip
             >

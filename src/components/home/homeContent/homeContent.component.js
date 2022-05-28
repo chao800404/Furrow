@@ -10,12 +10,14 @@ import {
   MarkSvgSideContent,
 } from "./homeContent.style";
 import { ReactSVG } from "react-svg";
-import { Flex } from "../../Flex/flex.styles";
+import FlexLayout from "../../Flex/flex.component";
 import markSvg from "../../../assets/svg/markSvg.svg";
 import markSvgSide from "../../../assets/svg/markSvgSide.svg";
 import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { selectThemeStyle } from "../../../redux/theme/theme.select";
+import useCheckScreenIsMobile from "../../../utils/useCheckScreen";
+import BannerTitle from "../bannerTitle/bannerTitle.component";
 
 const HomeContent = () => {
   const { ref, inView } = useInView({
@@ -25,10 +27,12 @@ const HomeContent = () => {
   });
 
   const theme = useSelector(selectThemeStyle);
+  const isMobile = useCheckScreenIsMobile();
 
   return (
-    <Flex>
+    <FlexLayout>
       <HomeContainer>
+        {isMobile && <BannerTitle />}
         <ContentTitle>
           <p>
             「Our idea was simple: Sunglasses fall short when it comes to
@@ -66,7 +70,7 @@ const HomeContent = () => {
           />
         </MarkSvgSideContent>
       </HomeContainer>
-    </Flex>
+    </FlexLayout>
   );
 };
 

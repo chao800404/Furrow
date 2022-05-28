@@ -3,14 +3,12 @@
 import { useState } from "react";
 import Spinner from "../spinner/spinner.component";
 import { urlFor } from "../../lib/client";
+import { PreloadImageContainer } from "./preLoadImage.styles";
 
 const PreLoadImage = ({ text, url, className = null }) => {
   const [loading, setLoading] = useState(false);
   return (
-    <div
-      className={className}
-      style={{ position: "relative", display: "flex" }}
-    >
+    <PreloadImageContainer className={className} style={{}}>
       {loading ? null : (
         <Spinner
           style={{
@@ -28,10 +26,9 @@ const PreLoadImage = ({ text, url, className = null }) => {
       <img
         alt={text}
         src={urlFor(url)}
-        style={{ width: "100%" }}
         onLoad={() => setLoading((preLoad) => (preLoad = true))}
       />
-    </div>
+    </PreloadImageContainer>
   );
 };
 

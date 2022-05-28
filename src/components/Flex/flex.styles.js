@@ -10,6 +10,8 @@ export const Flex = styled.div`
   margin: 0 auto;
   align-items: center;
   width: 110rem;
+  position: relative;
+  z-index: 30;
 
   @media only screen and (max-width: ${maxWidth.large}) {
     max-width: 120rem;
@@ -18,5 +20,21 @@ export const Flex = styled.div`
   @media only screen and (max-width: ${maxWidth.medium}) {
     width: 100%;
     padding: 0 3rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    &:before {
+      content: "";
+      width: 100%;
+      height: 100.1%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: ${({ theme }) => theme.backgroundColor};
+      z-index: -2;
+      opacity: 0.9;
+      border-right: 0.2px solid rgba(0, 0, 0, 0.9);
+      border-left: 0.2px solid rgba(0, 0, 0, 0.9);
+    }
   }
 `;

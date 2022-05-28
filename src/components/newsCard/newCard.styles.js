@@ -3,7 +3,6 @@
 import styled, { css } from "styled-components";
 import primaryColor from "../../theme/priamry.styles";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import maxWidth from "../../config/screen.size";
 
 const basicCardStyle = css`
@@ -12,6 +11,16 @@ const basicCardStyle = css`
   background-color: ${primaryColor.primaryWhite};
   overflow: hidden;
   position: relative;
+
+  @media only screen and (max-width: ${maxWidth.smaller}) {
+    background-color: transparent;
+    overflow: unset;
+    box-shadow: unset;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: unset;
+    padding: 1rem 0;
+  }
 `;
 
 const markIconContainer = css`
@@ -22,12 +31,21 @@ const markIconContainer = css`
   align-items: center;
   justify-content: center;
   color: #161616;
+
+  @media only screen and (max-width: ${maxWidth.smaller}) {
+    color: #fff;
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 export const NewsCardContainer = styled(motion.div)`
   height: 55rem;
   ${basicCardStyle}
   z-index:20;
+  .NewCard-Image {
+    height: 50%;
+  }
 
   svg {
     width: 80%;
@@ -39,12 +57,13 @@ export const NewsCardContainer = styled(motion.div)`
   }
   @media only screen and (max-width: ${maxWidth.smaller}) {
     display: flex;
-    height: 15rem;
+    height: auto;
     flex-direction: row-reverse;
 
     .NewCard-Image {
       height: 9rem;
-      flex: 3;
+      flex: 1.5;
+      margin: auto;
     }
   }
 `;
@@ -86,16 +105,31 @@ export const NewsCardTextContent = styled.div`
   @media only screen and (max-width: ${maxWidth.smaller}) {
     flex: 3;
     padding: 1rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-row: repeat(2, 1fr);
+    grid-row-gap: 2rem;
     span {
       margin-top: 0.5rem;
       font-size: 1rem;
       zoom: 0.8;
+      text-align: end;
+      align-self: center;
     }
+
+    h3,
+    p,
+    span {
+      color: ${primaryColor.primaryWhite};
+      grid-column: 2 / span 1;
+    }
+
     h3 {
       font-size: 1.2rem;
+      grid-column: 1 / span 2;
     }
     p {
-      zoom: 0.9;
+      display: none;
     }
   }
 `;
@@ -148,7 +182,7 @@ export const NewsCardTextSecondContent = styled.div`
   }
 `;
 
-export const NewsCardLink = styled(Link)`
+export const NewsCardLink = styled.div`
   ${markIconContainer}
 
   border-radius: 1rem;
@@ -170,8 +204,8 @@ export const NewsCardMarkContainer = styled.div`
   gap: 1rem;
 
   @media only screen and (max-width: ${maxWidth.smaller}) {
-    bottom: 1rem;
-    right: 1rem;
+    position: static;
+    grid-row: 2 / span 1;
   }
 `;
 

@@ -16,18 +16,14 @@ export const Title = styled(motion.h1)`
   user-select: none;
   bottom: 0;
   font-weight:1000;
-
-
   span {
     font-size:inherit;
     display:block;
     font-weight:bold;
-
     &:not(:first-child) {
       margin-top: -26%;
     }
   }
-
   @media only screen and (max-width: ${maxWidth.small}){
     font-size:15rem;
     z-index:100;
@@ -35,10 +31,9 @@ export const Title = styled(motion.h1)`
     opacity: 1;
     width:100%;
     overflow: hidden;
-
+    top: -18%;
     span {
     text-shadow:1rem 1rem 1rem rgba(0,0,0,.4);
-
     &:not(:first-child) {
       transform: translateX(40%);
     

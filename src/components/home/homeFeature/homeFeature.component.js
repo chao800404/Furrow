@@ -10,7 +10,7 @@ import {
   HomeFeatureNews,
   HomeFeatureNewsBtn,
 } from "./homeFeature.styles";
-import { Flex } from "../../Flex/flex.styles";
+import FlexLayout from "../../Flex/flex.component";
 import FeatureVidoe from "../featureVideo/featureVideo.component";
 import { BsFillForwardFill, BsSunglasses } from "react-icons/bs";
 import { useDispatch } from "react-redux";
@@ -41,7 +41,7 @@ const HomeFeature = () => {
   };
 
   return (
-    <Flex direction="column">
+    <FlexLayout direction="column">
       <HomeFeatureSection
         initial="rest"
         whileHover="hover"
@@ -78,7 +78,7 @@ const HomeFeature = () => {
           <p>Virtual Try-On</p>
         </HomeFeatureNewsBtn>
       </HomeFeatureNews>
-    </Flex>
+    </FlexLayout>
   );
 };
 

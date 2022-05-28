@@ -18,7 +18,6 @@ export const HomeContainer = styled.section`
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, 30rem);
     padding: 5rem 0;
-    overflow: hidden;
   }
 `;
 

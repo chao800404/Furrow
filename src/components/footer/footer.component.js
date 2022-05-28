@@ -1,6 +1,6 @@
 /** @format */
 
-import { Flex } from "../Flex/flex.styles";
+import FlexLayout from "../Flex/flex.component";
 import { Link } from "react-router-dom";
 import {
   FooterContainer,
@@ -33,7 +33,7 @@ const Footer = () => {
   };
 
   return (
-    <Flex>
+    <FlexLayout>
       <FooterContainer onMouseEnter={handleHover} onMouseLeave={handleHover}>
         <FooterDesc>
           <p dangerouslySetInnerHTML={{ __html: statement }} />
@@ -55,7 +55,7 @@ const Footer = () => {
           <Link to="/virtual">Virtual</Link>
         </FooterMenu>
       </FooterContainer>
-    </Flex>
+    </FlexLayout>
   );
 };
 

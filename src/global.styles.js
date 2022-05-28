@@ -14,10 +14,6 @@ export const GlobalStyle = createGlobalStyle`
   html{ 
       font-size: 62.5%;
       font-family: 'Poppins';
-      padding-top: constant(safe-area-inset-top);
-      padding-right: constant(safe-area-inset-right);
-      padding-bottom: constant(safe-area-inset-bottom);
-      padding-left: constant(safe-area-inset-left);
       @media only screen and (max-width: ${maxWidth.mediumBelta}) {
         font-size:50%;
       }
@@ -27,15 +23,13 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       background-color:${(props) => props.theme.backgroundColor};
       color: ${({ theme: { color } }) => color};
-    
-
-    
+      padding-top: env(safe-area-inset-top);
+      padding-right: env(safe-area-inset-right);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+     
       position:relative;
-      ${
-        "" /* @media only screen and (max-width: ${maxWidth.mediumBelta}) {
-        font-family: 'Oswald', sans-serif;
-      } */
-      }
+   
       
   }
   

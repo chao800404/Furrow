@@ -30,15 +30,6 @@ const Cart = ({ theme }) => {
   const location = useLocation();
   const isMobile = useCheckScreenIsMobile();
 
-  const shopBagIconStyle = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)",
-    fontSize: isMobile ? "3.5rem" : "5rem",
-    zIndex: 1,
-  };
-
   const handleScroll = useCallback(() => {
     const currentPostion = document.documentElement.scrollTop;
     setPosition({ ...position, current: currentPostion });
@@ -84,7 +75,7 @@ const Cart = ({ theme }) => {
       transition={!isMobile && { ease: "easeInOut", duration: 0.5 }}
       theme={theme}
     >
-      <CardList />
+      {!isMobile && <CardList />}
       <div
         style={{ height: "100%" }}
         onClick={() => dispatch(cartToggleHidden())}
@@ -92,9 +83,9 @@ const Cart = ({ theme }) => {
         <h5>YOUR CART</h5>
         <p>{cartAmount}</p>
         {isMobile ? (
-          <BsHandbag style={shopBagIconStyle} />
+          <BsHandbag className="cart-icon" />
         ) : (
-          <BsFillBagFill style={shopBagIconStyle} />
+          <BsFillBagFill className="cart-icon" />
         )}
       </div>
     </CartContainer>

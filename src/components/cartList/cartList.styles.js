@@ -13,18 +13,14 @@ export const CartItemContainer = styled(motion.div)`
   position: absolute;
   top: -300%;
   left: -315%;
-  z-index: 21;
+
   border-radius: 0.8rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1.5rem 1fr 4.5rem 4.5rem;
   padding: 1.5rem;
   grid-gap: 1rem;
-
-  @media only screen and (max-width: ${maxWidth.small}) {
-    top: -620%;
-    left: -600%;
-  }
+  z-index: 300;
 
   &:after {
     content: "";
@@ -34,8 +30,20 @@ export const CartItemContainer = styled(motion.div)`
     width: 4rem;
     height: 4rem;
     background-color: ${primaryColor.primaryWhite};
-    z-index: 30;
+
     clip-path: polygon(100% 52%, 39% 0, 40% 100%);
+
+    @media only screen and (max-width: ${maxWidth.small}) {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    position: fixed;
+    bottom: 8rem;
+    left: unset;
+    top: unset;
+    right: 3rem;
   }
 `;
 

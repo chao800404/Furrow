@@ -15,21 +15,19 @@ export const ShopLink = styled(Link)`
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    color: ${({ theme }) => theme.backgroundColor};
-    height: 100%;
+    color: ${({ theme }) => theme.color};
     display: flex;
     align-items: center;
     svg {
-      font-size: 3rem;
-      width: 5rem;
+      width: 4.5rem;
       height: 100%;
       padding: 1rem;
-      border-right: 1px solid rgba(0, 0, 0, 0.2);
-      fill: ${({ theme }) => theme.backgroundColor};
+      fill: ${({ theme }) => theme.color};
+      margin-right: 0;
     }
     h3 {
-      color: ${({ theme }) => theme.backgroundColor};
-      font-size: 1.7rem;
+      font-size: 1.8rem;
+      margin-right: 1.5rem;
     }
   }
 `;

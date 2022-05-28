@@ -21,7 +21,7 @@ const menuMotion = (right) => {
   };
 };
 
-const HamburgerBox = () => {
+const HamburgerBox = ({ style }) => {
   const Theme = useSelector(selectThemeStyle);
   const toggle = useSelector(sidebarStauts);
 
@@ -50,12 +50,14 @@ const HamburgerBox = () => {
           variants={menuMotion(false)}
           animate={toggle ? "click" : "rest"}
           theme={Theme}
-        ></HamburgerLine>
+          style={style}
+        />
         <HamburgerLine
           variants={menuMotion(true)}
           theme={Theme}
           animate={toggle ? "click" : "rest"}
-        ></HamburgerLine>
+          style={style}
+        />
       </Hamburger>
       <ToolTip message="menu" id="menu" />
     </>

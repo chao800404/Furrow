@@ -16,6 +16,8 @@ import CubeSpinner from "./components/cube-spinner/cube-spinner.component";
 import { fetchCollectionStart } from "./redux/shop/shop.actions";
 import { Toaster } from "react-hot-toast";
 import { selectHeaderAnComplete } from "./redux/header/header.select";
+import CartList from "./components/cartList/cartList.conponent";
+import useCheckScreenIsMobile from "./utils/useCheckScreen";
 
 const AboutPage = lazy(() => import("./page/about-Page/aboutPage.component"));
 const FeaturePage = lazy(() =>
@@ -34,6 +36,7 @@ const VirtualPage = lazy(() =>
 
 const App = ({ theme }) => {
   const dispatch = useDispatch();
+  const isMobile = useCheckScreenIsMobile();
 
   useEffect(() => {
     dispatch(checkUserSession());
@@ -43,12 +46,12 @@ const App = ({ theme }) => {
   const headerAnComplete = useSelector(selectHeaderAnComplete);
 
   return (
-    <section>
+    <section style={{ position: "relative" }}>
       {/* <CurstomCursor /> */}
       <Header />
       <Sidebars />
-      <MobileMenuBar theme={theme} />
-
+      {isMobile && <MobileMenuBar theme={theme} />}
+      {isMobile && <CartList />}
       <Suspense
         fallback={<CubeSpinner style={{ width: "100%", height: "100vh" }} />}
       >

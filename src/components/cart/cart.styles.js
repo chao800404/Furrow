@@ -10,7 +10,7 @@ export const CartContainer = styled(motion.div)`
   position: fixed;
   right: 1%;
   bottom: 1.5%;
-  z-index: 30;
+  z-index: 300;
   user-select: none;
 
   h5,
@@ -35,30 +35,37 @@ export const CartContainer = styled(motion.div)`
     color: white;
   }
 
-  @media only screen and (max-width: ${maxWidth.small}) {
-    width: 5rem;
-    height: 5rem;
-    bottom: 0;
-    right: 0.5rem;
-    border-left: 1px solid rgba(0, 0, 0, 0.2);
-    margin: auto;
+  .cart-icon {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    z-index: 1;
+  }
 
-    div {
-      color: ${({ theme }) => theme.backgroundColor};
-    }
+  @media only screen and (max-width: ${maxWidth.small}) {
+    margin: auto;
+    position: relative;
+    width: 5rem;
+
     p {
-      color: ${({ theme }) => theme.backgroundColor};
+      color: ${({ theme }) => theme.color};
       font-weight: 500;
-      top: 60%;
+      top: 15%;
       font-size: 1rem;
     }
 
     h5 {
-      width: 200%;
-      bottom: 5%;
-      left: -100%;
-      color: ${({ theme }) => theme.backgroundColor};
+      display: none;
+    }
+
+    .cart-icon {
+      z-index: 1;
+      font-size: 3rem;
+      color: ${({ theme }) => theme.color};
+      top: 9%;
+      left: 50%;
     }
   }
 `;

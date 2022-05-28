@@ -35,6 +35,7 @@ const CardList = () => {
       <CartItemContainer
         onMouseEnter={() => dispatch(cartToggleHoverd())}
         onMouseLeave={() => dispatch(cartToggleHoverd())}
+        data-type="cart-list"
         onClick={(e) => {
           if (e.target.dataset.type !== "check-out") return;
           navigate("/checkout");

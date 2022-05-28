@@ -117,5 +117,6 @@ export const MarkSvgSideContent = styled(motion.div)`
     grid-column: 1 / -1;
     grid-row: 4 / 5;
     align-self: center;
+    overflow: hidden;
   }
 `;

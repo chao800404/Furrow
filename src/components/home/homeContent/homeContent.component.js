@@ -9,6 +9,7 @@ import {
   MarkSvgSideContainer,
   MarkSvgSideContent,
 } from "./homeContent.style";
+import { motion } from "framer-motion";
 import { ReactSVG } from "react-svg";
 import FlexLayout from "../../Flex/flex.component";
 import markSvg from "../../../assets/svg/markSvg.svg";
@@ -58,16 +59,18 @@ const HomeContent = () => {
             src={markSvg}
           />
         </MarkSvgContainer>
-        <MarkSvgSideContent
-          whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: 200 }}
-          viewport={{ once: true }}
-        >
-          <MarkSvgSideContainer
-            color={theme}
-            className="svgMarkSide"
-            src={markSvgSide}
-          />
+        <MarkSvgSideContent>
+          <motion.div
+            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 200 }}
+            viewport={{ once: true }}
+          >
+            <MarkSvgSideContainer
+              color={theme}
+              className="svgMarkSide"
+              src={markSvgSide}
+            />
+          </motion.div>
         </MarkSvgSideContent>
       </HomeContainer>
     </FlexLayout>

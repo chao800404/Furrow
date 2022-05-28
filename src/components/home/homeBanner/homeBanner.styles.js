@@ -14,7 +14,7 @@ export const HomeContainer = styled.section`
   z-index: 10;
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    z-index: unset;
+    height: 95rem;
   }
 `;
 

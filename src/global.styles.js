@@ -23,6 +23,8 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       background-color:${(props) => props.theme.backgroundColor};
       color: ${({ theme: { color } }) => color};
+      padding-bottom: env(safe-area-inset-bottom ,0);
+
     
       position:relative;
       ${

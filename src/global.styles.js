@@ -23,10 +23,14 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       background-color:${(props) => props.theme.backgroundColor};
       color: ${({ theme: { color } }) => color};
-      padding-top: env(safe-area-inset-top);
-      padding-right: env(safe-area-inset-right);
-      padding-bottom: env(safe-area-inset-bottom);
-      padding-left: env(safe-area-inset-left);
+
+      @supports ( padding-top: env(safe-area-inset-top) or padding-top:  env(safe-area-inset-top) ) {
+        padding-top: env(safe-area-inset-top);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+      }
+     
      
       position:relative;
    

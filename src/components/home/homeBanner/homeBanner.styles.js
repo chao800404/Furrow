@@ -26,6 +26,7 @@ export const BannerVideo = styled.div`
   position: relative;
   @media only screen and (max-width: ${maxWidth.small}) {
     position: fixed;
+    top: 0;
   }
 `;
 

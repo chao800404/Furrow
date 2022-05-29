@@ -1,48 +1,41 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { MenuBarContainer } from "./mobileMenuBar.styles";
-import { BiChevronUp } from "react-icons/bi";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { sidebarStauts } from "../../redux/sidebar/sidebar.select";
 import Cart from "../cart/cart.component";
 import ShopLinkIcon from "../shop-link-icon/shop-link-icon.component";
-import { cartToggleHidden } from "../../redux/cart/cart.action";
+
 import HamburgerBox from "../hamburger/hamburger.componet";
 import LogoContainer from "../logoContainer/logoContainer.component";
+import { selectHeaderToggleInView } from "../../redux/header/header.select";
 
 const MobileMenuBar = ({ theme }) => {
-  const [toggle, setToggle] = useState(false);
+  const toggleInViewHeader = useSelector(selectHeaderToggleInView);
 
-  const sidebarToggle = useSelector(sidebarStauts);
-  const dispatch = useDispatch();
-  // const variants = {
-  //   hidden: {
-  //     y: "5.5rem",
-  //   },
-  //   display: {
-  //     y: 0,
-  //   },
-  // };
-
-  const handleClick = () => {
-    dispatch(cartToggleHidden("hidden"));
-    setToggle((prev) => !prev);
+  // const dispatch = useDispatch();
+  const variants = {
+    hidden: {
+      y: "5.5rem",
+    },
+    display: {
+      y: 0,
+    },
   };
 
-  useEffect(() => {
-    if (sidebarToggle) {
-      setToggle((prev) => (prev = false));
-    }
-  }, [sidebarToggle, dispatch]);
+  // const handleClick = () => {
+  //   dispatch(cartToggleHidden("hidden"));
+  //   setToggle((prev) => !prev);
+  // };
 
   return (
     <MenuBarContainer
-      // variants={variants}
+      variants={variants}
       theme={theme}
       initial="hidden"
-      // animate={toggle ? "display" : "hidden"}
+      transition={{ delay: 0.5, ease: [0.17, 0.67, 0.83, 0.67] }}
+      animate={toggleInViewHeader ? "display" : "hidden"}
     >
       <div className="menu-bar-container">
         <div className="menu-container">

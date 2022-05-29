@@ -1,8 +1,12 @@
 /** @format */
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 import maxWidth from "../../config/screen.size";
+
+const basicContainer = css`
+  border: 1px solid rgba(0, 0, 0, 0.3);
+`;
 
 export const SignInContainer = styled(motion.form)`
   display: grid;
@@ -35,7 +39,7 @@ export const SignInContainer = styled(motion.form)`
 
     &:active,
     &:focus {
-      background: #fff;
+      background: ${({ theme }) => theme.color};
     }
   }
   input[type="password"] {
@@ -69,6 +73,15 @@ export const SignInContainer = styled(motion.form)`
     text-align: start;
     padding-left: 2rem;
     border: none;
+    position: relative;
+    z-index: 20;
+    background-color: ${({ theme }) => theme.color};
+    color: ${({ theme }) => theme.backgroundColor};
+  }
+
+  button,
+  input[type="password"] {
+    ${basicContainer}
   }
 
   .expressBtn {
@@ -112,7 +125,7 @@ export const SignInOutBtnBg = styled(motion.span)`
   height: 100%;
   margin-top: 1.5rem;
   width: calc(50% - 0.75rem);
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.color};
   border-radius: 0.5rem 0.5rem 0 0;
   z-index: 10;
 `;

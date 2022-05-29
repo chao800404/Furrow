@@ -22,6 +22,7 @@ import useTimeOut from "../../utils/useTimeOut";
 import toast from "react-hot-toast";
 import maxWidth from "../../config/screen.size";
 import useWinowSize from "../../utils/useWindowSize";
+import { selectThemeStyle } from "../../redux/theme/theme.select";
 
 const variants = {
   initial: {
@@ -40,6 +41,7 @@ const SignInPage = () => {
   const navigater = useNavigate();
   const { width } = useWinowSize();
   const isMobile = maxWidth.small.replace("px", "") >= width;
+  const theme = useSelector(selectThemeStyle);
 
   useEffect(() => {
     if (errorMessage) toast.error(errorMessage);
@@ -77,6 +79,7 @@ const SignInPage = () => {
           <SignInUpContent
             variants={variants}
             animate={existUser ? "finish" : "initial"}
+            theme={theme}
           >
             {existUser ? (
               <SignInSuccess>

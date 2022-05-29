@@ -21,6 +21,7 @@ import { selectPostbookMark } from "../../redux/post/post.select";
 import primaryColor from "../../theme/priamry.styles";
 import ToolTip from "../tooltip/tooltip.component";
 import useCheckScreenIsMobile from "../../utils/useCheckScreen";
+import { selectThemeStyle } from "../../redux/theme/theme.select";
 
 const WORDLIMIT = {
   LARGER: 20,
@@ -43,6 +44,7 @@ const NewsCard = ({
   const bookMark = useSelector(selectPostbookMark);
   const isMobile = useCheckScreenIsMobile();
   const navigate = useNavigate();
+  const theme = useSelector(selectThemeStyle);
 
   useEffect(() => {
     if (_id === isActive) setUnfold((prev) => (prev = true));
@@ -83,6 +85,7 @@ const NewsCard = ({
         }
         transition={{ delay: 0.05 }}
         data-container="card-container"
+        theme={theme}
       >
         <PreLoadImage className="NewCard-Image" text={title} url={image} />
         <NewsCardTextContent>
@@ -128,6 +131,7 @@ const NewsCard = ({
               onClick={handleNavigateClick}
               data-for="blog"
               data-tip
+              theme={theme}
             >
               <IoIosArrowUp />
             </NewsCardLink>

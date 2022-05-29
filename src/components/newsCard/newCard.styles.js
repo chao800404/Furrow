@@ -16,8 +16,8 @@ const basicCardStyle = css`
     background-color: transparent;
     overflow: unset;
     box-shadow: unset;
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
     border-radius: unset;
     padding: 1rem 0;
   }
@@ -30,10 +30,8 @@ const markIconContainer = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #161616;
 
   @media only screen and (max-width: ${maxWidth.smaller}) {
-    color: #fff;
     width: 3rem;
     height: 3rem;
   }
@@ -70,12 +68,6 @@ export const NewsCardContainer = styled(motion.div)`
 
 export const NewsCardTextContent = styled.div`
   padding: 3rem 5rem;
-
-  span,
-  h3,
-  p {
-    color: ${primaryColor.primaryBlack};
-  }
 
   h3 {
     font-size: 3rem;
@@ -120,7 +112,6 @@ export const NewsCardTextContent = styled.div`
     h3,
     p,
     span {
-      color: ${primaryColor.primaryWhite};
       grid-column: 2 / span 1;
     }
 
@@ -150,11 +141,6 @@ export const NewsCardTextSecondContent = styled.div`
   padding: 1.5rem;
   flex: 1.3;
   span,
-  h3,
-  p {
-    color: ${primaryColor.primaryBlack};
-  }
-
   h3 {
     font-size: 1.8rem;
     font-weight: bold;
@@ -184,13 +170,13 @@ export const NewsCardTextSecondContent = styled.div`
 
 export const NewsCardLink = styled.div`
   ${markIconContainer}
-
+  color: ${({ theme }) => theme.color};
   border-radius: 1rem;
 
   &:hover {
     background-color: #161616;
     transition: all 0.2s ease-in-out;
-    color: #fff;
+    color: ${({ theme }) => theme.color};
     border: none;
   }
 `;
@@ -210,6 +196,7 @@ export const NewsCardMarkContainer = styled.div`
 `;
 
 export const NewsCardBookmark = styled.div`
+  color: ${({ theme }) => theme.color};
   ${markIconContainer}
   width: 4rem;
   height: 4rem;

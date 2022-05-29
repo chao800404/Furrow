@@ -17,21 +17,7 @@ import {
 } from "../../redux/user/user.actions";
 import { selectCurrentUserLoading } from "../../redux/user/user.select";
 import Spinner from "../spinner/spinner.component";
-
-const expressBtnStyle = {
-  background: "#fff",
-  color: "#161616",
-  alignSelf: "center",
-  justifySelf: "center",
-  width: "100%",
-  textAlign: "start",
-  fontWeight: "bold",
-  height: "5rem",
-  borderRadius: ".5rem",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-};
+import { selectThemeStyle } from "../../redux/theme/theme.select";
 
 const expressBtnIconStyle = {
   fontSize: "3rem",
@@ -48,6 +34,7 @@ const SignInUpFrom = ({ animate, initial }) => {
   const [toggleForgotCover, setToggleForotCover] = useState(false);
   const dispatch = useDispatch();
   const userIsLoading = useSelector(selectCurrentUserLoading);
+  const theme = useSelector(selectThemeStyle);
 
   useEffect(() => {
     toggleForgotCover
@@ -99,6 +86,21 @@ const SignInUpFrom = ({ animate, initial }) => {
     setUserData({ email: "", password: "" });
   };
 
+  const expressBtnStyle = {
+    background: theme.color,
+    color: theme.backgroundColor,
+    alignSelf: "center",
+    justifySelf: "center",
+    width: "100%",
+    textAlign: "start",
+    fontWeight: "bold",
+    height: "5rem",
+    borderRadius: ".5rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  };
+
   return (
     <>
       {toggleForgotCover ? (
@@ -108,6 +110,7 @@ const SignInUpFrom = ({ animate, initial }) => {
         initial={initial}
         animate={animate}
         onClick={handleSignInWithExpress}
+        theme={theme}
       >
         <h4>Express login via Google and Facebook</h4>
         <div className="expressBtn">
@@ -120,17 +123,21 @@ const SignInUpFrom = ({ animate, initial }) => {
             <FaFacebookF style={expressBtnIconStyle} />
           </Button>
         </div>
-        <SignInOutOption onClick={handleTransferSignInOutOption}>
+        <SignInOutOption theme={theme} onClick={handleTransferSignInOutOption}>
           <span
             data-type="sign-in"
-            style={{ color: `${toggleSignInUp ? "#fff" : "#161616"}` }}
+            style={{
+              color: `${toggleSignInUp ? theme.color : theme.backgroundColor}`,
+            }}
             className="signInOutBtn"
           >
             SIGN IN
           </span>
           <span
             data-type="sign-up"
-            style={{ color: `${toggleSignInUp ? "#161616" : "#fff"}` }}
+            style={{
+              color: `${toggleSignInUp ? theme.backgroundColor : theme.color}`,
+            }}
             className="signInOutBtn"
           >
             SIGN UP
@@ -141,6 +148,7 @@ const SignInUpFrom = ({ animate, initial }) => {
                 toggleSignInUp ? "calc(100% + 1.55rem)" : "calc(0% + 0rem)"
               }`,
             }}
+            theme={theme}
             transition={{ ease: [0.17, 0.67, 0.83, 0.67], duration: ".2" }}
           />
         </SignInOutOption>

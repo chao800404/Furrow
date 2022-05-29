@@ -11,7 +11,10 @@ import { selectThemeStyle } from "../../redux/theme/theme.select";
 import SignInOutButton from "../sigiInOutButton/signInOutButton.component.js";
 import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 
-import { headerAnComplete } from "../../redux/header/header.actions";
+import {
+  headerAnComplete,
+  toggleHeaderInView,
+} from "../../redux/header/header.actions";
 
 import LogoContainer from "../logoContainer/logoContainer.component";
 
@@ -31,6 +34,8 @@ const Header = () => {
       initial={{ y: -72, opactio: 0 }}
       transition={{ duration: 0.9, ease: [0.6, 0.1, 0.1, 0.9] }}
       onAnimationComplete={() => dispatch(headerAnComplete(true))}
+      onViewportLeave={() => dispatch(toggleHeaderInView())}
+      onViewportEnter={() => dispatch(toggleHeaderInView())}
     >
       <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
         <Flex>

@@ -28,13 +28,13 @@ export const SignInUpContainer = styled.div`
 export const SignInUpContent = styled(motion.div)`
   width: 100%;
   height: 40rem;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.color};
   margin-left: 3rem;
   align-items: center;
   justify-content: center;
   display: flex;
   border-radius: 1rem;
-  color: #161616;
+  color: ${({ theme }) => theme.backgroundColor};
   display: flex;
   flex-direction: column;
 

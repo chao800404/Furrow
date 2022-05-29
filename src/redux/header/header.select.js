@@ -7,3 +7,8 @@ export const selectHeaderAnComplete = createSelector(
   [selectHeader],
   (selectHeader) => selectHeader.headerAnComplete
 );
+
+export const selectHeaderToggleInView = createSelector(
+  [selectHeader],
+  (selectHeader) => selectHeader.headerInView
+);

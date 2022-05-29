@@ -1,5 +1,5 @@
 /** @format */
-// import HomeBanner from "../../components/home/homeBanner/homeBanner.component";
+
 import { lazy } from "react";
 import HomeContent from "../../components/home/homeContent/homeContent.component";
 import HomeFeature from "../../components/home/homeFeature/homeFeature.component";

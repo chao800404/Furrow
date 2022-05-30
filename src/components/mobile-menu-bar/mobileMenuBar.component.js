@@ -17,17 +17,12 @@ const MobileMenuBar = ({ theme }) => {
   // const dispatch = useDispatch();
   const variants = {
     hidden: {
-      y: "5.5rem",
+      y: "6rem",
     },
     display: {
       y: 0,
     },
   };
-
-  // const handleClick = () => {
-  //   dispatch(cartToggleHidden("hidden"));
-  //   setToggle((prev) => !prev);
-  // };
 
   return (
     <MenuBarContainer

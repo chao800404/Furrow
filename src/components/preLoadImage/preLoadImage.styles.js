@@ -10,10 +10,14 @@ export const PreloadImageContainer = styled.div`
   justify-content: center;
 
   img {
-    height: 110%;
+    height: 100%;
     position: absolute;
+    top: 50%;
+    width: 100%;
 
-    @media only screen and (max-width: ${maxWidth.small}) {
+    transform: translateY(-50%);
+
+    @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
       width: unset;
       height: 100%;
     }

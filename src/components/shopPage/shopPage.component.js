@@ -45,15 +45,35 @@ const ShopPage = ({ shopPageData, collectionId }) => {
               text={`${collectionId}-2`}
               url={image[0]}
             />
-            <PreLoadImage text={`${collectionId}-3`} url={image[1]} />
-            <PreLoadImage text={`${collectionId}-4`} url={image[2]} />
-            <PreLoadImage text={`${collectionId}-5`} url={image[3]} />
-            <PreLoadImage text={`${collectionId}-6`} url={image[4]} />
+            <PreLoadImage
+              className="shop-image-1"
+              text={`${collectionId}-3`}
+              url={image[1]}
+            />
+            <PreLoadImage
+              className="shop-image-2"
+              text={`${collectionId}-4`}
+              url={image[2]}
+            />
+            <PreLoadImage
+              className="shop-image-3"
+              text={`${collectionId}-5`}
+              url={image[3]}
+            />
+            <PreLoadImage
+              className="shop-image-4"
+              text={`${collectionId}-6`}
+              url={image[4]}
+            />
           </ShopPageImgContainer>
           <ShopPageProduct>
             <h4>{product.Title}</h4>
             <p>{product.Content}</p>
-            <PreLoadImage text="product" url={product["product_image"]} />
+            <PreLoadImage
+              className="product-image"
+              text="product"
+              url={product["product_image"]}
+            />
           </ShopPageProduct>
         </>
       )}

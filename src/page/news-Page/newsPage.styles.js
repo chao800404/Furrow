@@ -24,7 +24,6 @@ export const NewsPageLayout = styled.div`
   }
   @media only screen and (max-width: ${maxWidth.small}) {
     grid-template-columns: 1fr 1fr;
-
     gap: 0;
   }
 `;

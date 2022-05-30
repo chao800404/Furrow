@@ -15,13 +15,7 @@ const DescriptionTemplage = css`
   }
 
   p {
-    font-size: 2rem;
     margin-bottom: 3rem;
-    font-weight: 300;
-
-    @media only screen and (max-width: ${maxWidth.mediumBelta}) {
-      font-size: 1.5rem;
-    }
   }
 `;
 
@@ -76,6 +70,9 @@ export const AboutStory = styled(motion.div)`
     grid-template-rows: auto 2fr 5rem auto;
     grid-column-gap: 0;
   }
+  @media only screen and (max-width: ${maxWidth.small}) {
+    grid-template-rows: auto 2fr auto;
+  }
 `;
 
 export const AboutStoryDescription = styled.div`
@@ -85,7 +82,7 @@ export const AboutStoryDescription = styled.div`
   ${DescriptionTemplage}
 
   @media only screen and (max-width: ${maxWidth.mediumBelta}) {
-    grid-column: 1 / 3;
+    grid-column: 1 / -1;
     grid-row: 2 / 3;
   }
 `;
@@ -100,6 +97,10 @@ export const AboutJointDescription = styled.div`
   grid-column: 3 / 4;
   grid-row: 4 / 5;
   overflow: hidden;
+  p,
+  h2 {
+    color: ${primaryColor.primaryWhite};
+  }
 
   @media only screen and (max-width: ${maxWidth.mediumBelta}) {
     grid-column: 1 / -1;
@@ -112,6 +113,10 @@ export const AboutJointDescription = styled.div`
   }
   @media only screen and (max-width: ${maxWidth.small}) {
     height: 18rem;
+
+    p {
+      font-size: 1.2rem;
+    }
   }
 `;
 
@@ -130,6 +135,10 @@ export const AboutStorySketch = styled.div`
     grid-row: 1 / 2;
     width: 70vw;
     justify-self: end;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    width: 100%;
   }
 `;
 

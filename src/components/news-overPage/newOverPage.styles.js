@@ -41,11 +41,12 @@ export const NewsOverViewPageContainer = styled.section`
 `;
 
 export const NewsOverViewBox = styled(motion.div)`
-  max-width: 70rem;
+  width: 70rem;
   height: 95%;
   background-color: #ffff;
   border-radius: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   display: inherit;
   align-items: inherit;
   flex-direction: column;
@@ -90,11 +91,30 @@ export const NewsBanner = styled.div`
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
   align-self: start;
+
+  .banner-image {
+    height: 30rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    .banner-image {
+      height: 45vw;
+    }
+  }
 `;
 
 export const NewsTextTable = styled.div`
-  width: 80%;
   margin: auto;
+  overflow: hidden;
+  padding: 5rem;
+
+  .news-text-container {
+    margin-top: 2rem;
+  }
+
+  @media only screen and (max-width: ${maxWidth.small}) {
+    padding: 3rem;
+  }
 `;
 
 export const NewsCloseBtn = styled(motion.button)`

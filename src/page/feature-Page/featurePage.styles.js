@@ -231,7 +231,6 @@ export const FeatureFunction = styled.div`
   }
 
   @media only screen and (max-width: ${maxWidth.small}) {
-    height: auto;
     margin-top: 15rem;
     h4 {
       width: 70%;

@@ -1,37 +1,53 @@
 /** @format */
 
 import { motion } from "framer-motion";
-import { urlFor } from "../../lib/client";
+// import { urlFor } from "../../lib/client";
 import {
   FeatureBannerContainer,
   FeatureBannerImgContainer,
   FeatureTitle,
   FeatureBannerOverFlow,
 } from "./featureBanner.styles";
+import PreloadImageContainer from "../preLoadImage/preLoadImage.component";
 
 const FeatureBanner = ({ feature }) => {
   return (
     <FeatureBannerContainer>
       <FeatureBannerOverFlow>
         <FeatureBannerImgContainer>
-          <motion.img
+          <motion.div
             initial={{ y: -80 }}
             animate={{ y: 0 }}
-            src={urlFor(feature["image"]["image_0"])}
-            loading="lazy"
-          />
-          <motion.img
+            className="feature-banner-image"
+          >
+            <PreloadImageContainer
+              url={feature["image"]["image_0"]}
+              text="feature-banner"
+              className="feature-banner-preload"
+            />
+          </motion.div>
+          <motion.div
+            className="feature-banner-image"
             initial={{ y: 80 }}
             animate={{ y: 30 }}
-            src={urlFor(feature["image"]["image_1"])}
-            loading="lazy"
-          />
-          <motion.img
+          >
+            <PreloadImageContainer
+              url={feature["image"]["image_1"]}
+              text="feature-banner"
+              className="feature-banner-preload"
+            />
+          </motion.div>
+          <motion.div
             initial={{ y: -80 }}
             animate={{ y: -20 }}
-            src={urlFor(feature["image"]["image_2"])}
-            loading="lazy"
-          />
+            className="feature-banner-image"
+          >
+            <PreloadImageContainer
+              url={feature["image"]["image_2"]}
+              text="feature-banner"
+              className="feature-banner-preload"
+            />
+          </motion.div>
         </FeatureBannerImgContainer>
       </FeatureBannerOverFlow>
 

@@ -41,7 +41,7 @@ export const ShopPageImgContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 10rem 1fr 1fr;
+  grid-template-rows: 10rem repeat(2, minmax(25rem, 20rem));
   grid-gap: 1.5rem;
   margin-top: 5rem;
 
@@ -64,13 +64,14 @@ export const ShopPageImgContainer = styled.div`
     grid-row: 2 /-1;
   }
 
-  img {
-    width: 100%;
-  }
-
   @media only screen and (max-width: ${maxWidth.small}) {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 5rem repeat(2, 1fr) 10rem;
+    grid-template-rows: 5rem repeat(2, 18rem) 10rem repeat(2, 20rem);
+
+    img {
+      width: 100%;
+      height: unset;
+    }
 
     .imgContentTitle {
       grid-column: 1 / -1;
@@ -96,14 +97,46 @@ export const ShopPageImgContainer = styled.div`
       grid-column: 1/ 3;
       grid-row: 2 / 4;
     }
+
+    .shop-image-1,
+    .shop-image-3 {
+      grid-column: 1 / span 1;
+    }
+    .shop-image-2,
+    .shop-image-4 {
+      grid-column: 2 / span 1;
+    }
+
+    .shop-image-1,
+    .shop-image-2 {
+      grid-row: 5 / span 1;
+    }
+    .shop-image-3,
+    .shop-image-4 {
+      grid-row: 6 / span 1;
+    }
   }
 `;
 
 export const ShopPageProduct = styled.div`
   width: 100%;
   margin-top: 8rem;
+  height: auto;
+  overflow: hidden;
+
+  .product-image {
+    height: 40rem;
+    margin-top: 2rem;
+  }
   img {
     width: 100%;
-    margin-top: 2rem;
+    height: auto;
+    top: 70%;
+  }
+
+  @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
+    .product-image {
+      height: 30vw;
+    }
   }
 `;

@@ -27,7 +27,7 @@ export const SlideContainer = styled.div`
 export const SlideImgContainer = styled(motion.div)`
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
 `;
 

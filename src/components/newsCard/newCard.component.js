@@ -90,7 +90,14 @@ const NewsCard = ({
         <PreLoadImage className="NewCard-Image" text={title} url={image} />
         <NewsCardTextContent>
           <h3
-            style={isMobile ? null : { fontSize: `${len ? "2rem" : "2.8rem"}` }}
+            style={
+              isMobile
+                ? null
+                : {
+                    fontSize: `${len ? "2rem" : "2.8rem"} `,
+                    color: `${primaryColor.primaryBlack}`,
+                  }
+            }
           >
             {isMobile
               ? title
@@ -99,8 +106,14 @@ const NewsCard = ({
                   .join(" ") + " ...."
               : title}
           </h3>
-          <span>{releaseDate}</span>
-          <p>
+          <span
+            style={!isMobile ? { color: `${primaryColor.primaryBlack}` } : null}
+          >
+            {releaseDate}
+          </span>
+          <p
+            style={!isMobile ? { color: `${primaryColor.primaryBlack}` } : null}
+          >
             {outline
               .split(" ")
               .filter(
@@ -150,9 +163,19 @@ const NewsCard = ({
       >
         <PreLoadImage className="card-second-type" text={title} url={image} />
         <NewsCardTextSecondContent>
-          <h3>{title}</h3>
-          <span>{releaseDate}</span>
-          <p>
+          <h3
+            style={!isMobile ? { color: `${primaryColor.primaryBlack}` } : null}
+          >
+            {title}
+          </h3>
+          <span
+            style={!isMobile ? { color: `${primaryColor.primaryBlack}` } : null}
+          >
+            {releaseDate}
+          </span>
+          <p
+            style={!isMobile ? { color: `${primaryColor.primaryBlack}` } : null}
+          >
             {outline
               .split(" ")
               .filter((_, index) => index <= WORDLIMIT.SMALLER)

@@ -17,7 +17,8 @@ export const FeatureBannerContainer = styled.div`
 export const FeatureBannerOverFlow = styled.div`
   @media only screen and (max-width: ${maxWidth.small}) {
     overflow-x: scroll;
-    height: 87rem;
+    overflow-y: hidden;
+    height: 100vh;
   }
 `;
 
@@ -26,7 +27,7 @@ export const FeatureTitle = styled.div`
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 200%;
+  width: 100%;
   text-align: center;
   transform: translateX(-50%);
   text-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.5);
@@ -61,4 +62,14 @@ export const FeatureBannerImgContainer = styled(motion.div)`
   display: flex;
   gap: 1.5rem;
   min-height: calc(100vh - 40rem);
+  width: fit-content;
+
+  .feature-banner-image {
+    width: 30rem;
+    height: 70rem;
+  }
+
+  .feature-banner-preload {
+    height: 100%;
+  }
 `;

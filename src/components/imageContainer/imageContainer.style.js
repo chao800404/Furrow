@@ -9,9 +9,7 @@ export const ImgContainer = styled.div`
   position: relative;
   overflow: hidden;
   img {
-    align-self: center;
-    justify-self: center;
-    position: absolute;
-    user-select: none;
+    width: 100%;
+    height: unset;
   }
 `;

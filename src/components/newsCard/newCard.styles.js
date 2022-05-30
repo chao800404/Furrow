@@ -116,8 +116,10 @@ export const NewsCardTextContent = styled.div`
     }
 
     h3 {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
+      font-weight: 400;
       grid-column: 1 / span 2;
+      text-transform: uppercase;
     }
     p {
       display: none;

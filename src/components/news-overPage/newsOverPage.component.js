@@ -108,14 +108,18 @@ const NewsOverPage = ({ slugPageIsVisible, setSlugPageIsVisible }) => {
               <AiFillCloseCircle />
             </NewsCloseBtn>
             <NewsBanner>
-              <PreLoadImage text={title} url={image} />
+              <PreLoadImage className="banner-image" text={title} url={image} />
             </NewsBanner>
 
             <NewsTextTable>
               <h1> {title}</h1>
               <span>{_updatedAt}</span>
               {animateEnd && (
-                <PortableText blocks={curPost.body} serializers={serializers} />
+                <PortableText
+                  className="news-text-container"
+                  blocks={curPost.body}
+                  serializers={serializers}
+                />
               )}
             </NewsTextTable>
             {!eventScroll && (

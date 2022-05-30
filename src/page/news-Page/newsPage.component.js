@@ -35,8 +35,7 @@ const NewsOverPage = lazy(() =>
 );
 
 const collapsePost = {
-  largeHeight: "70rem",
-  mediumHeight: "70rem",
+  largeHeight: "75vh",
 };
 
 const NewsPage = ({ headerAnComplete }) => {
@@ -121,7 +120,6 @@ const NewsPage = ({ headerAnComplete }) => {
                       setIsActive={setIsActive}
                       isActive={isActive}
                       setSlugPageIsVisible={setSlugPageIsVisible}
-                      // headerAnComplete={headerAnComplete}
                     />
                   ))}
                 </NewsCardCotent>

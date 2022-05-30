@@ -43,7 +43,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
 
   return (
     <ClassesModelContainer>
-      {transitionEnd && (
+      {transitionEnd && isLoad && (
         <>
           <Canvas
             shadows
@@ -60,14 +60,13 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
               castShadow
             />
             <Suspense fallback={null}>
-              {isLoad && (
-                <CurGlassesModel
-                  mode={
-                    toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
-                  }
-                  onPointerDown={handlePointerDown}
-                />
-              )}
+              <CurGlassesModel
+                mode={
+                  toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
+                }
+                onPointerDown={handlePointerDown}
+              />
+
               <Html as="div" wrapperClass="vr">
                 {!pointDown && (
                   <SvgIcon

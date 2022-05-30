@@ -131,12 +131,12 @@ export const ShopPageProduct = styled.div`
   img {
     width: 100%;
     height: auto;
-    top: 70%;
+    top: 50%;
   }
 
   @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
     .product-image {
-      height: 30vw;
+      height: 40vw;
     }
   }
 `;

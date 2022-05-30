@@ -22,6 +22,8 @@ import primaryColor from "../../theme/priamry.styles";
 import ToolTip from "../tooltip/tooltip.component";
 import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
+import useWinowSize from "../../utils/useWindowSize";
+import maxWidth from "../../config/screen.size";
 
 const WORDLIMIT = {
   LARGER: 20,
@@ -45,6 +47,9 @@ const NewsCard = ({
   const isMobile = useCheckScreenIsMobile();
   const navigate = useNavigate();
   const theme = useSelector(selectThemeStyle);
+  const { width } = useWinowSize();
+  const smallerMobile = maxWidth.smaller.replace("px", "") >= width;
+  const [cardStyle, setCardStyle] = useState({ color: null, fontSize: null });
 
   useEffect(() => {
     if (_id === isActive) setUnfold((prev) => (prev = true));
@@ -59,7 +64,10 @@ const NewsCard = ({
   const handleClick = (e) => {
     const bookMark = e.target.closest("[data-container=bookmark]");
     const navigateBtn = e.target.closest("[data-container=card-container]");
-    if (bookMark) dispatch(TOGGLEBookMark(_id));
+    if (bookMark) {
+      dispatch(TOGGLEBookMark(_id));
+      return;
+    }
     if (navigateBtn && isMobile) handleNavigateClick();
   };
 
@@ -68,6 +76,19 @@ const NewsCard = ({
       ? setLen((prev) => (prev = true))
       : setLen((prev) => (prev = false));
   }, [title]);
+
+  useEffect(() => {
+    const checkStyle = () => {
+      const fontSize = isMobile ? null : `${len ? "2rem" : "2.8rem"} `;
+      const color = isMobile
+        ? smallerMobile
+          ? `${theme.color}`
+          : `${primaryColor.primaryBlack}`
+        : `${primaryColor.primaryBlack}`;
+      return { fontSize, color };
+    };
+    setCardStyle((prev) => (prev = checkStyle()));
+  }, [isMobile, smallerMobile, len, theme]);
 
   return (
     isPublic &&
@@ -89,16 +110,7 @@ const NewsCard = ({
       >
         <PreLoadImage className="NewCard-Image" text={title} url={image} />
         <NewsCardTextContent>
-          <h3
-            style={
-              isMobile
-                ? null
-                : {
-                    fontSize: `${len ? "2rem" : "2.8rem"} `,
-                    color: `${primaryColor.primaryBlack}`,
-                  }
-            }
-          >
+          <h3 style={cardStyle}>
             {isMobile
               ? title
                   .split(" ")
@@ -107,12 +119,16 @@ const NewsCard = ({
               : title}
           </h3>
           <span
-            style={!isMobile ? { color: `${primaryColor.primaryBlack}` } : null}
+            style={
+              !smallerMobile ? { color: `${primaryColor.primaryBlack}` } : null
+            }
           >
             {releaseDate}
           </span>
           <p
-            style={!isMobile ? { color: `${primaryColor.primaryBlack}` } : null}
+            style={
+              !smallerMobile ? { color: `${primaryColor.primaryBlack}` } : null
+            }
           >
             {outline
               .split(" ")
@@ -135,7 +151,13 @@ const NewsCard = ({
                 </>
               ) : (
                 <>
-                  <MdOutlineBookmarkRemove data-tip data-for="removeBookMark" />
+                  <MdOutlineBookmarkRemove
+                    color={
+                      !smallerMobile ? primaryColor.primaryBlack : theme.color
+                    }
+                    data-tip
+                    data-for="removeBookMark"
+                  />
                   <ToolTip id="removeBookMark">Add BookMark</ToolTip>
                 </>
               )}
@@ -145,6 +167,9 @@ const NewsCard = ({
               data-for="blog"
               data-tip
               theme={theme}
+              style={
+                !smallerMobile ? { color: primaryColor.primaryBlack } : null
+              }
             >
               <IoIosArrowUp />
             </NewsCardLink>

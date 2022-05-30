@@ -60,8 +60,9 @@ a,button {
       border:none;
     }
   }
-  img {
+  img,h1,h2,h3,h4,h5,h6,p,button {
     user-select: none;
+
   }
   button {
     background-color:${({ theme: { buttonBackgroundColor } }) =>

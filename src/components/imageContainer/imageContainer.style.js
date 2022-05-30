@@ -10,6 +10,5 @@ export const ImgContainer = styled.div`
   overflow: hidden;
   img {
     width: 100%;
-    height: unset;
   }
 `;

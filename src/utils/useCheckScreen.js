@@ -12,8 +12,8 @@ const useCheckScreenIsMobile = () => {
 
   useEffect(() => {
     setIsMobile(
-      maxWidth.small.replace("px", "") >= width ||
-        /Mobi|Android|iPhone/i.test(navigator.userAgent)
+      maxWidth.small.replace("px", "") >= width
+      // /Mobi|Android|iPhone/i.test(navigator.userAgent)
     );
   }, [width]);
 

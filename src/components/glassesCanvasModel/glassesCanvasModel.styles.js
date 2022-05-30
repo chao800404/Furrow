@@ -10,13 +10,17 @@ export const ClassesModelContainer = styled.div`
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
+
+  .vr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: unset !important;
+  }
 `;
 
 export const SvgIcon = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -47,7 +47,7 @@ export const CollectionPreviewTitle = styled.div`
   }
 `;
 
-export const CollectionCartContainer = styled.div`
+export const CollectionCartContainer = styled(motion.div)`
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: inherit;

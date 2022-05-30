@@ -63,6 +63,7 @@ export const OverViewCardContainer = styled(motion.div)`
   @media only screen and (max-width: ${maxWidth.mediumBelta}) {
     height: 35rem;
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
     padding: 1.5rem 1rem;
     display: flex;
 

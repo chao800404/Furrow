@@ -5,8 +5,9 @@ import {
   Environment,
   ContactShadows,
   Loader,
+  Html,
 } from "@react-three/drei";
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useMemo, useState, useEffect } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -21,7 +22,8 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
-  const [togglePointer, setTogglePointer] = useState(false);
+  const [onClick, setOnClick] = useState(false);
+  const [isLoad, setIsLoad] = useState(true);
   const CurGlassesModel = useMemo(
     () => glassesModel[curType][curColor],
     [curColor, curType]
@@ -29,8 +31,15 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
 
   const handlePointerDown = () => {
     dispatch(checkARIsPointer());
-    setTogglePointer((prev) => (prev = true));
   };
+
+  useEffect(() => {
+    if (pointDown && !onClick) return;
+    setOnClick((prev) => (prev = true));
+    setIsLoad((prev) => (prev = false));
+    const timeOut = setTimeout(() => setIsLoad((prev) => (prev = true)));
+    return () => clearTimeout(timeOut);
+  }, [pointDown, onClick]);
 
   return (
     <ClassesModelContainer>
@@ -40,6 +49,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
             shadows
             camera={{ position: [0, 20, 0], fov: 40 }}
             dpr={[1, 2]}
+            resize={{ scroll: false }}
           >
             <ambientLight intensity={0.2} />
             <spotLight
@@ -50,13 +60,38 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
               castShadow
             />
             <Suspense fallback={null}>
-              <CurGlassesModel
-                mode={
-                  toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
-                }
-                togglePointer={togglePointer}
-                onPointerDown={handlePointerDown}
-              />
+              {isLoad && (
+                <CurGlassesModel
+                  mode={
+                    toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
+                  }
+                  onPointerDown={handlePointerDown}
+                />
+              )}
+              <Html as="div" wrapperClass="vr">
+                {!pointDown && (
+                  <SvgIcon
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 2,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <ReactSVG
+                      src={svg}
+                      fontSize="1rem"
+                      beforeInjection={(svg) =>
+                        svg.setAttribute(
+                          "style",
+                          "display:flex;align-items:center;justify-content:center;width:3.5rem;height:3.5rem"
+                        )
+                      }
+                    />
+                  </SvgIcon>
+                )}
+              </Html>
               <ContactShadows
                 rotation-x={Math.PI / 2}
                 position={[0, -2.5, 0]}
@@ -72,27 +107,9 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
               minPolarAngle={Math.PI / 2}
               maxPolarAngle={Math.PI / 3}
               enablePan={false}
+              resize={{ scroll: false }}
             />
           </Canvas>
-
-          {pointDown ? null : (
-            <SvgIcon
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            >
-              <ReactSVG
-                src={svg}
-                fontSize="1rem"
-                beforeInjection={(svg) =>
-                  svg.setAttribute(
-                    "style",
-                    "display:flex;align-items:center;justify-content:center;width:3.5rem;height:3.5rem"
-                  )
-                }
-              />
-            </SvgIcon>
-          )}
           <Loader />
         </>
       )}

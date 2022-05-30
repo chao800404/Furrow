@@ -13,7 +13,9 @@ export const PreloadImageContainer = styled.div`
     height: 100%;
     position: absolute;
     top: 50%;
+
     width: 100%;
+    object-fit: cover;
 
     transform: translateY(-50%);
 

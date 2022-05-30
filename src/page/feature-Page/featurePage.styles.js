@@ -50,9 +50,9 @@ export const FeatureStoryContainer = styled.div`
 export const FeatureBg = styled.div`
   position: absolute;
   top: -100%;
-  left: -20%;
+  left: 0%;
   opacity: 0.2;
-  font-size: 30vw;
+  font-size: 60rem;
   font-weight: 900;
 
   @media only screen and (max-width: ${maxWidth.small}) {

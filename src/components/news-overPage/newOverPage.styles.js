@@ -47,15 +47,9 @@ export const NewsOverViewBox = styled(motion.div)`
   border-radius: 1rem;
   overflow-y: scroll;
   overflow-x: hidden;
-  display: inherit;
-  align-items: inherit;
-  flex-direction: column;
   box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 1);
   padding: 0 0 5rem 0;
-  position: relative;
   display: grid;
-  grid-template-rows: auto;
-  position: relative;
 
   h1,
   h3 {
@@ -120,7 +114,6 @@ export const NewsTextTable = styled.div`
 export const NewsCloseBtn = styled(motion.button)`
   width: 3.5rem;
   height: 3.5rem;
-  padding: 0;
   position: sticky;
   right: 1rem;
   top: 1rem;
@@ -132,6 +125,7 @@ export const NewsCloseBtn = styled(motion.button)`
   color: ${primaryColor.cursorColor};
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
+  z-index: 30;
   z-index: 100;
   align-self: start;
   justify-self: end;

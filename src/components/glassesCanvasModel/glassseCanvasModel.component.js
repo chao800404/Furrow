@@ -22,7 +22,8 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
-  const [onClick, setOnClick] = useState(false);
+
+  const [onUpdate, setOnUpdate] = useState(false);
   const [isLoad, setIsLoad] = useState(true);
   const CurGlassesModel = useMemo(
     () => glassesModel[curType][curColor],
@@ -34,16 +35,15 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   };
 
   useEffect(() => {
-    if (pointDown && !onClick) return;
-    setOnClick((prev) => (prev = true));
+    if (!isLoad) return;
     setIsLoad((prev) => (prev = false));
     const timeOut = setTimeout(() => setIsLoad((prev) => (prev = true)));
     return () => clearTimeout(timeOut);
-  }, [pointDown, onClick]);
+  }, [pointDown, onUpdate, isLoad]);
 
   return (
     <ClassesModelContainer>
-      {transitionEnd && isLoad && (
+      {transitionEnd && !isLoad && (
         <>
           <Canvas
             shadows
@@ -65,6 +65,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
                   toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
                 }
                 onPointerDown={handlePointerDown}
+                onUpdate={() => setOnUpdate(true)}
               />
 
               <Html as="div" wrapperClass="vr">

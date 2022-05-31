@@ -13,3 +13,8 @@ export const selectCardIsPointer = createSelector(
   [selectCard],
   (selectCard) => selectCard.isPointer
 );
+
+export const selectCardFirstLoad = createSelector(
+  [selectCard],
+  (selectCard) => selectCard.firstLoad
+);

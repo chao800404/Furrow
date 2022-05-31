@@ -5,6 +5,7 @@ import CardActionType from "./card,type";
 const INITIAL_STATE = {
   imageLoad: false,
   isPointer: false,
+  firstLoad: false,
 };
 
 const cardReducer = (state = INITIAL_STATE, action) => {
@@ -18,6 +19,11 @@ const cardReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isPointer: true,
+      };
+    case CardActionType.CHECK_FIRST_LOAD:
+      return {
+        ...state,
+        firstLoad: true,
       };
     default:
       return state;

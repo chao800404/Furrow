@@ -135,12 +135,14 @@ const Popup = ({ collection, collectionId }) => {
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
           {collection && transitionEnd && colorType && color && (
             <>
-              <GlassesModel
-                type={collection.productName}
-                color={color}
-                toggleElectrochromic={toggleElectrochromic}
-                transitionEnd={transitionEnd}
-              />
+              {transitionEnd && (
+                <GlassesModel
+                  type={collection.productName}
+                  color={color}
+                  toggleElectrochromic={toggleElectrochromic}
+                  transitionEnd={transitionEnd}
+                />
+              )}
               <PopupForm>
                 <h3>{title}</h3>
                 <div className="popup-text_container">

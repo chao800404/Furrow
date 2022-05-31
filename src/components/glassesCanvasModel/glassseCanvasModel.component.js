@@ -7,7 +7,7 @@ import {
   Loader,
   Html,
 } from "@react-three/drei";
-import { Suspense, useMemo, useState, useEffect } from "react";
+import { Suspense, useMemo } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -18,13 +18,11 @@ import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
 import { glassesModel } from "./glassesCanvasToMaps";
 
-const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
+const GlassesModel = ({ type, color, toggleElectrochromic }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
 
-  const [onUpdate, setOnUpdate] = useState(false);
-  const [isLoad, setIsLoad] = useState(true);
   const CurGlassesModel = useMemo(
     () => glassesModel[curType][curColor],
     [curColor, curType]
@@ -34,85 +32,75 @@ const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
     dispatch(checkARIsPointer());
   };
 
-  useEffect(() => {
-    if (!isLoad) return;
-    setIsLoad((prev) => (prev = false));
-    const timeOut = setTimeout(() => setIsLoad((prev) => (prev = true)));
-    return () => clearTimeout(timeOut);
-  }, [pointDown, onUpdate, isLoad]);
-
   return (
     <ClassesModelContainer>
-      {transitionEnd && !isLoad && (
-        <>
-          <Canvas
-            shadows
-            camera={{ position: [0, 20, 0], fov: 40 }}
-            dpr={[1, 2]}
-            resize={{ scroll: false }}
-          >
-            <ambientLight intensity={0.2} />
-            <spotLight
-              intensity={0.5}
-              angle={0.1}
-              penumbra={1}
-              position={[10, 15, 10]}
-              castShadow
+      <>
+        <Canvas
+          shadows
+          camera={{ position: [0, 20, 0], fov: 40 }}
+          dpr={[1, 2]}
+          resize={{ scroll: false }}
+        >
+          <ambientLight intensity={0.2} />
+          <spotLight
+            intensity={0.5}
+            angle={0.1}
+            penumbra={1}
+            position={[10, 15, 10]}
+            castShadow
+          />
+          <Suspense fallback={null}>
+            <CurGlassesModel
+              mode={
+                toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
+              }
+              onPointerDown={handlePointerDown}
             />
-            <Suspense fallback={null}>
-              <CurGlassesModel
-                mode={
-                  toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
-                }
-                onPointerDown={handlePointerDown}
-                onUpdate={() => setOnUpdate(true)}
-              />
 
-              <Html as="div" wrapperClass="vr">
-                {!pointDown && (
-                  <SvgIcon
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 2,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <ReactSVG
-                      src={svg}
-                      fontSize="1rem"
-                      beforeInjection={(svg) =>
-                        svg.setAttribute(
-                          "style",
-                          "display:flex;align-items:center;justify-content:center;width:3.5rem;height:3.5rem"
-                        )
-                      }
-                    />
-                  </SvgIcon>
-                )}
-              </Html>
-              <ContactShadows
-                rotation-x={Math.PI / 2}
-                position={[0, -2.5, 0]}
-                opacity={0.7}
-                width={30}
-                height={30}
-                blur={1.5}
-                far={4.5}
-              />
-              <Environment preset="sunset" />
-            </Suspense>
-            <OrbitControls
-              minPolarAngle={Math.PI / 2}
-              maxPolarAngle={Math.PI / 3}
-              enablePan={false}
-              resize={{ scroll: false }}
+            <Html as="div" wrapperClass="vr">
+              {!pointDown && (
+                <SvgIcon
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 2,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <ReactSVG
+                    src={svg}
+                    fontSize="1rem"
+                    beforeInjection={(svg) =>
+                      svg.setAttribute(
+                        "style",
+                        "display:flex;align-items:center;justify-content:center;width:3.5rem;height:3.5rem"
+                      )
+                    }
+                  />
+                </SvgIcon>
+              )}
+            </Html>
+            <ContactShadows
+              rotation-x={Math.PI / 2}
+              position={[0, -2.5, 0]}
+              opacity={0.7}
+              width={30}
+              height={30}
+              blur={1.5}
+              far={4.5}
             />
-          </Canvas>
-          <Loader />
-        </>
-      )}
+            <Environment preset="sunset" />
+          </Suspense>
+          <OrbitControls
+            minPolarAngle={Math.PI / 2}
+            maxPolarAngle={Math.PI / 3}
+            enablePan={false}
+            resize={{ scroll: false }}
+          />
+        </Canvas>
+        <Loader />
+      </>
     </ClassesModelContainer>
   );
 };

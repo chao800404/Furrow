@@ -1,6 +1,6 @@
 /** @format */
 
-import { lazy, useState, useEffect } from "react";
+import { lazy } from "react";
 import HomeContent from "../../components/home/homeContent/homeContent.component";
 import HomeFeature from "../../components/home/homeFeature/homeFeature.component";
 import HomeArticle from "../../components/home/homArticle/homeArticle.component";

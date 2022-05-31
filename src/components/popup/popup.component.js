@@ -24,7 +24,6 @@ import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { message } from "../../config/message";
 import { cartToggleHidden } from "../../redux/cart/cart.action";
 import toast from "react-hot-toast";
-import { Canvas } from "@react-three/fiber";
 
 const SvgIcon = ({ src, toggleElectrochromic, light }) => (
   <ReactSVG

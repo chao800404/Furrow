@@ -12,11 +12,8 @@ import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { checkARIsPointer, checkFirstLoad } from "../../redux/card/card.action";
-import {
-  selectCardIsPointer,
-  selectCardFirstLoad,
-} from "../../redux/card/card.select";
+import { checkARIsPointer } from "../../redux/card/card.action";
+import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
 import { glassesModel } from "./glassesCanvasToMaps";
@@ -24,16 +21,30 @@ import { glassesModel } from "./glassesCanvasToMaps";
 const GlassesModel = ({ type, color, toggleElectrochromic }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
+  const [firstLoad, setFirstLoad] = useState(false);
 
-  const [reLoad, setReLoad] = useState(false);
   const { curType, curColor } = transferClassesTypeName({ type, color });
   const canvasElem = useRef(null);
-  const selectCheckFirstLoad = useSelector(selectCardFirstLoad);
 
   const CurGlassesModel = useMemo(
     () => glassesModel[curType][curColor],
     [curColor, curType]
   );
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setFirstLoad((prev) => (prev = true));
+    }, 50);
+    const reload = setTimeout(() => {
+      setFirstLoad((prev) => (prev = false));
+    }, 100);
+    return () => {
+      clearTimeout(timeOut);
+      clearTimeout(reload);
+    };
+  }, []);
+
+  console.log(firstLoad);
 
   useEffect(() => {
     const onPointDown = () => dispatch(checkARIsPointer());
@@ -43,25 +54,10 @@ const GlassesModel = ({ type, color, toggleElectrochromic }) => {
     return () => canvas.removeEventListener("pointerdown", onPointDown);
   }, [dispatch]);
 
-  useEffect(() => {
-    if (selectCheckFirstLoad) {
-      setReLoad((prev) => (prev = false));
-      return;
-    } else {
-      const timeOut = setTimeout(() => {
-        setReLoad((prev) => (prev = false));
-        dispatch(checkFirstLoad());
-      }, 0);
-      return () => clearTimeout(timeOut);
-    }
-  }, [dispatch, selectCheckFirstLoad]);
-
-  console.log(selectCheckFirstLoad);
-
   return (
     <ClassesModelContainer ref={canvasElem}>
       <>
-        {!reLoad && (
+        {!firstLoad && (
           <Canvas
             shadows
             camera={{ position: [0, 20, 0], fov: 40 }}
@@ -81,9 +77,6 @@ const GlassesModel = ({ type, color, toggleElectrochromic }) => {
                 mode={
                   toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
                 }
-                onUpdate={() => {
-                  if (!selectCheckFirstLoad) setReLoad((prev) => (prev = true));
-                }}
               />
 
               <Html as="div" wrapperClass="vr">

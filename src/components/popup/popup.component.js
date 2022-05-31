@@ -57,8 +57,8 @@ const Popup = ({ collection, collectionId }) => {
   const [quantity, setQuantity] = useState(1);
   const [transitionEnd, setTransitionEnd] = useState(false);
   const [toggleElectrochromic, setToggleElectrochromic] = useState(false);
-  // const [firstLoadModel, setFirstLoadModel] = useState(false);
-  // const [reLoad, setReLoad] = useState(true);
+  const [firstLoadModel, setFirstLoadModel] = useState(false);
+  const [reLoad, setReLoad] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { rgb, price, image, _key, color } = useSelector(
@@ -123,13 +123,16 @@ const Popup = ({ collection, collectionId }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (firstLoadModel) return;
-  //   setReLoad((prev) => (prev = false));
-  //   setFirstLoadModel((prev) => (prev = true));
-  //   const timeOut = setTimeout(() => setReLoad((prev) => (prev = true)), 0);
-  //   return () => clearTimeout(timeOut);
-  // }, [transitionEnd, firstLoadModel]);
+  console.log(reLoad);
+
+  useEffect(() => {
+    if (!firstLoadModel) {
+      setFirstLoadModel((prev) => (prev = true));
+      setReLoad((prev) => (prev = false));
+    }
+    const timeOut = setTimeout(() => setReLoad((prev) => (prev = true)), 0);
+    return () => clearTimeout(timeOut);
+  }, [transitionEnd, firstLoadModel]);
 
   useEffect(() => {
     dispatch(cartToggleHidden("hidden"));
@@ -146,15 +149,13 @@ const Popup = ({ collection, collectionId }) => {
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
           {collection && transitionEnd && colorType && color && (
             <>
-              {transitionEnd ? (
+              {transitionEnd && reLoad && (
                 <GlassesModel
                   type={collection.productName}
                   color={color}
                   toggleElectrochromic={toggleElectrochromic}
                   transitionEnd={transitionEnd}
                 />
-              ) : (
-                <Canvas />
               )}
               <PopupForm>
                 <h3>{title}</h3>

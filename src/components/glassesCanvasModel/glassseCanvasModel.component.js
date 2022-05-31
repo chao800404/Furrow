@@ -18,7 +18,13 @@ import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
 import { glassesModel } from "./glassesCanvasToMaps";
 
-const GlassesModel = ({ type, color, toggleElectrochromic, style }) => {
+const GlassesModel = ({
+  type,
+  color,
+  toggleElectrochromic,
+  style,
+  onUpdate,
+}) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
 
@@ -60,6 +66,7 @@ const GlassesModel = ({ type, color, toggleElectrochromic, style }) => {
               mode={
                 toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
               }
+              onUpdate={onUpdate}
             />
 
             <Html as="div" wrapperClass="vr">

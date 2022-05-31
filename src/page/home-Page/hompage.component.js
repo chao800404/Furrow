@@ -16,7 +16,8 @@ const Homepage = () => {
       <HomeContent />
       <HomeFeature />
       <HomeArticle />
-      <GlassesModel type="marki" color="black" />
+
+      <GlassesModel style={{ display: "none" }} type="marki" color="black" />
     </>
   );
 };

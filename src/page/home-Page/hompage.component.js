@@ -5,22 +5,13 @@ import HomeContent from "../../components/home/homeContent/homeContent.component
 import HomeFeature from "../../components/home/homeFeature/homeFeature.component";
 import HomeArticle from "../../components/home/homArticle/homeArticle.component";
 import GlassesModel from "../../components/glassesCanvasModel/glassseCanvasModel.component";
-import isMoible from "../../utils/useCheckScreen";
+import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 const HomeBanner = lazy(() =>
   import("../../components/home/homeBanner/homeBanner.component")
 );
 
 const Homepage = () => {
-  const [firstLoad, setFirstLoad] = useState(false);
-
-  useEffect(() => {
-    if (!firstLoad) {
-      const timeOut = setTimeout(() => {
-        setFirstLoad((prev) => (prev = true));
-      }, 300);
-      return clearTimeout(timeOut);
-    }
-  }, [firstLoad]);
+  const isMobile = useCheckScreenIsMobile();
 
   return (
     <>
@@ -29,9 +20,9 @@ const Homepage = () => {
       <HomeFeature />
       <HomeArticle />
 
-      {isMoible && firstLoad && (
+      {isMobile && (
         <GlassesModel
-          style={{ width: "10rem", height: "10rem" }}
+          style={{ width: "3rem", height: "3em", visibility: "hidden" }}
           type="marki"
           color="black"
         />

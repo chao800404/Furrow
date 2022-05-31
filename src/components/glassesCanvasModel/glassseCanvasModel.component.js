@@ -34,10 +34,10 @@ const GlassesModel = ({ type, color, toggleElectrochromic }) => {
   useEffect(() => {
     const timeOut = setTimeout(() => {
       setFirstLoad((prev) => (prev = true));
-    }, 50);
+    }, 1000);
     const reload = setTimeout(() => {
       setFirstLoad((prev) => (prev = false));
-    }, 100);
+    }, 1000);
     return () => {
       clearTimeout(timeOut);
       clearTimeout(reload);

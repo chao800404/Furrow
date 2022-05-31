@@ -1,6 +1,6 @@
 /** @format */
 
-import { lazy, useEffect, useState } from "react";
+import { lazy } from "react";
 import HomeContent from "../../components/home/homeContent/homeContent.component";
 import HomeFeature from "../../components/home/homeFeature/homeFeature.component";
 import HomeArticle from "../../components/home/homArticle/homeArticle.component";
@@ -12,17 +12,6 @@ const HomeBanner = lazy(() =>
 
 const Homepage = () => {
   const isMobile = useCheckScreenIsMobile();
-  const [firstLoad, setFirstLoad] = useState(true);
-
-  useEffect(() => {
-    if (!firstLoad) return;
-    const timeOut = setTimeout(() => {
-      setFirstLoad((prev) => (prev = false));
-    }, 1500);
-    return () => clearTimeout(timeOut);
-  }, [firstLoad]);
-
-  console.log(firstLoad);
 
   return (
     <>
@@ -31,7 +20,19 @@ const Homepage = () => {
       <HomeFeature />
       <HomeArticle />
 
-      {isMobile && firstLoad && <GlassesModel type="marki" color="black" />}
+      {isMobile && (
+        <GlassesModel
+          style={{
+            position: "absolute",
+            bottom: "0",
+            width: "100%",
+            height: "20rem",
+            right: "500%",
+          }}
+          type="marki"
+          color="black"
+        />
+      )}
     </>
   );
 };

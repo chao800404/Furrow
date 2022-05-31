@@ -12,15 +12,10 @@ const HomeBanner = lazy(() =>
 
 const Homepage = () => {
   const isMobile = useCheckScreenIsMobile();
-
-  return (
-    <>
-      <HomeBanner />
-      <HomeContent />
-      <HomeFeature />
-      <HomeArticle />
-
-      {isMobile && (
+  // Glasses model in ios mobile have bug, need to preload glasses model once
+  const PreLoadGlasses = () => {
+    return (
+      isMobile && (
         <GlassesModel
           style={{
             position: "absolute",
@@ -32,7 +27,17 @@ const Homepage = () => {
           type="marki"
           color="black"
         />
-      )}
+      )
+    );
+  };
+
+  return (
+    <>
+      <HomeBanner />
+      <HomeContent />
+      <HomeFeature />
+      <HomeArticle />
+      <PreLoadGlasses />
     </>
   );
 };

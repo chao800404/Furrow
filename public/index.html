@@ -41,9 +41,17 @@
 
     <title>ONESCE | Electrochromic Sunglasses</title>
   </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+  <body style="margin:0">
     <div id="root"></div>
-
+    <script type="text/javascript" >
+      const imgContainer = new Image();
+      const root =  document.getElementById('root');
+      const imgLoader = document.createElement('div');
+      imgContainer.src = './dynamicLogo/onsec-logo-dynamic.webp';
+      imgContainer.style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:90%;';
+      imgLoader.style="width: 100%; height:100vh;background-color:#161616; overflow:hidden;";
+      imgLoader.appendChild(imgContainer);
+      root.appendChild(imgLoader);
+    </script>
   </body>
 </html>

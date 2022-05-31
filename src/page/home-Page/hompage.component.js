@@ -1,48 +1,36 @@
 /** @format */
 
-import { lazy, useState, useEffect } from "react";
+import { lazy } from "react";
 import HomeContent from "../../components/home/homeContent/homeContent.component";
 import HomeFeature from "../../components/home/homeFeature/homeFeature.component";
 import HomeArticle from "../../components/home/homArticle/homeArticle.component";
-import GlassesModel from "../../components/glassesCanvasModel/glassseCanvasModel.component";
-import useCheckScreenIsMobile from "../../utils/useCheckScreen";
+// import GlassesModel from "../../components/glassesCanvasModel/glassseCanvasModel.component";
+// import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 const HomeBanner = lazy(() =>
   import("../../components/home/homeBanner/homeBanner.component")
 );
 
 const Homepage = () => {
-  const isMobile = useCheckScreenIsMobile();
-  const [firstLoad, setFirstLoad] = useState(true);
-  useEffect(() => {
-    if (!firstLoad && !isMobile) return;
-    const timeOut = setTimeout(
-      () => setFirstLoad((prev) => (prev = false)),
-      2000
-    );
-    return () => {
-      clearTimeout(timeOut);
-      setFirstLoad((prev) => (prev = false));
-    };
-  }, [firstLoad, isMobile]);
+  // const isMobile = useCheckScreenIsMobile();
 
   // Glasses model in ios mobile have bug, need to preload glasses model once
-  const PreLoadGlasses = () => {
-    return (
-      isMobile && (
-        <GlassesModel
-          style={{
-            position: "absolute",
-            bottom: "0",
-            width: "100%",
-            height: "20rem",
-            right: "500%",
-          }}
-          type="marki"
-          color="black"
-        />
-      )
-    );
-  };
+  // const PreLoadGlasses = () => {
+  //   return (
+  //     isMobile && (
+  //       <GlassesModel
+  //         style={{
+  //           position: "absolute",
+  //           bottom: "0",
+  //           width: "100%",
+  //           height: "20rem",
+  //           right: "500%",
+  //         }}
+  //         type="marki"
+  //         color="black"
+  //       />
+  //     )
+  //   );
+  // };
 
   return (
     <>
@@ -50,7 +38,7 @@ const Homepage = () => {
       <HomeContent />
       <HomeFeature />
       <HomeArticle />
-      <PreLoadGlasses />
+      {/* <PreLoadGlasses /> */}
     </>
   );
 };

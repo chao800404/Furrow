@@ -7,7 +7,7 @@ import {
   Loader,
   Html,
 } from "@react-three/drei";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useEffect, useRef, useCallback } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -18,15 +18,14 @@ import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
 import { glassesModel } from "./glassesCanvasToMaps";
 
-const GlassesModel = ({ type, color, toggleElectrochromic }) => {
+const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
 
-  const CurGlassesModel = useMemo(
-    () => glassesModel[curType][curColor],
-    [curColor, curType]
-  );
+  const CurGlassesModel = useMemo(() => {
+    if (transitionEnd) return glassesModel[curType][curColor];
+  }, [curColor, curType, transitionEnd]);
 
   const handlePointerDown = () => {
     dispatch(checkARIsPointer());

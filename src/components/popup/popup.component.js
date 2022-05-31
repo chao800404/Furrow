@@ -56,8 +56,7 @@ const Popup = ({ collection, collectionId }) => {
   const [quantity, setQuantity] = useState(1);
   const [transitionEnd, setTransitionEnd] = useState(false);
   const [toggleElectrochromic, setToggleElectrochromic] = useState(false);
-  const [firstLoadModel, setFirstLoadModel] = useState(false);
-  const [reLoad, setReLoad] = useState(true);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { rgb, price, image, _key, color } = useSelector(
@@ -122,17 +121,6 @@ const Popup = ({ collection, collectionId }) => {
     }
   };
 
-  console.log(reLoad);
-
-  useEffect(() => {
-    if (!firstLoadModel) {
-      setFirstLoadModel((prev) => (prev = true));
-      setReLoad((prev) => (prev = false));
-    }
-    const timeOut = setTimeout(() => setReLoad((prev) => (prev = true)), 0);
-    return () => clearTimeout(timeOut);
-  }, [transitionEnd, firstLoadModel]);
-
   useEffect(() => {
     dispatch(cartToggleHidden("hidden"));
   }, [dispatch]);
@@ -148,7 +136,7 @@ const Popup = ({ collection, collectionId }) => {
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
           {collection && transitionEnd && colorType && color && (
             <>
-              {transitionEnd && reLoad && (
+              {transitionEnd && (
                 <GlassesModel
                   type={collection.productName}
                   color={color}

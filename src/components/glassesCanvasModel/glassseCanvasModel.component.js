@@ -7,7 +7,7 @@ import {
   Loader,
   Html,
 } from "@react-three/drei";
-import { Suspense, useMemo, useEffect, useRef, useCallback } from "react";
+import { Suspense, useMemo } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";

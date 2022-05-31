@@ -18,18 +18,21 @@ import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
 import { glassesModel } from "./glassesCanvasToMaps";
 
-const GlassesModel = ({ type, color, toggleElectrochromic, transitionEnd }) => {
+const GlassesModel = ({ type, color, toggleElectrochromic }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
 
-  const CurGlassesModel = useMemo(() => {
-    if (transitionEnd) return glassesModel[curType][curColor];
-  }, [curColor, curType, transitionEnd]);
+  const CurGlassesModel = useMemo(
+    () => glassesModel[curType][curColor],
+    [curColor, curType]
+  );
 
   const handlePointerDown = () => {
     dispatch(checkARIsPointer());
   };
+
+  console.log(CurGlassesModel);
 
   return (
     <ClassesModelContainer>

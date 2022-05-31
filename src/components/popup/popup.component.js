@@ -62,7 +62,7 @@ const Popup = ({ collection, collectionId }) => {
   const { rgb, price, image, _key, color } = useSelector(
     selectPopupView(collectionId, colorType)
   );
-  const colorMap = collection.product.map(({ rgb }) => rgb);
+  const colorMap = collection?.product.map(({ rgb }) => rgb);
   const location = useLocation();
   const title = `${collection?.productName}-${color}`;
 
@@ -141,7 +141,6 @@ const Popup = ({ collection, collectionId }) => {
                   type={collection.productName}
                   color={color}
                   toggleElectrochromic={toggleElectrochromic}
-                  transitionEnd={transitionEnd}
                 />
               )}
               <PopupForm>

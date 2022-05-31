@@ -1,6 +1,6 @@
 /** @format */
 
-import { lazy, useState } from "react";
+import { lazy, useState, useCallback } from "react";
 import HomeContent from "../../components/home/homeContent/homeContent.component";
 import HomeFeature from "../../components/home/homeFeature/homeFeature.component";
 import HomeArticle from "../../components/home/homArticle/homeArticle.component";
@@ -13,6 +13,12 @@ const HomeBanner = lazy(() =>
 const Homepage = () => {
   const isMobile = useCheckScreenIsMobile();
   const [firstLoad, setFirstLoad] = useState(true);
+  const callbackUnMount = useCallback(() => {
+    const timeOut = setTimeout(() => {
+      setFirstLoad((prev) => (prev = false));
+    }, 500);
+    return () => clearTimeout(timeOut);
+  }, []);
   // Glasses model in ios mobile have bug, need to preload glasses model once
   const PreLoadGlasses = () => {
     return (
@@ -28,7 +34,7 @@ const Homepage = () => {
           }}
           type="marki"
           color="black"
-          onUpdate={() => setFirstLoad((prev) => (prev = false))}
+          onUpdate={callbackUnMount}
         />
       )
     );

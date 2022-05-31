@@ -24,7 +24,7 @@ import { glassesModel } from "./glassesCanvasToMaps";
 const GlassesModel = ({ type, color, toggleElectrochromic }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
-  const [firstLoad, setFirstLoad] = useState(false);
+
   const [reLoad, setReLoad] = useState(false);
   const { curType, curColor } = transferClassesTypeName({ type, color });
   const canvasElem = useRef(null);
@@ -44,19 +44,17 @@ const GlassesModel = ({ type, color, toggleElectrochromic }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    setFirstLoad((prev) => (prev = true));
     if (selectCheckFirstLoad) {
       setReLoad((prev) => (prev = false));
       return;
+    } else {
+      const timeOut = setTimeout(() => {
+        setReLoad((prev) => (prev = false));
+        dispatch(checkFirstLoad());
+      }, 0);
+      return () => clearTimeout(timeOut);
     }
-    dispatch(checkFirstLoad());
-    const timeOut = setTimeout(() => setReLoad((prev) => (prev = false)), 10);
-    return () => clearTimeout(timeOut);
   }, [dispatch, selectCheckFirstLoad]);
-
-  const handlePointerDown = () => {
-    dispatch(checkARIsPointer());
-  };
 
   console.log(selectCheckFirstLoad);
 
@@ -83,9 +81,8 @@ const GlassesModel = ({ type, color, toggleElectrochromic }) => {
                 mode={
                   toggleElectrochromic ? (curType === "marki" ? 2.5 : 1) : 0.3
                 }
-                onPointerDown={handlePointerDown}
                 onUpdate={() => {
-                  if (!firstLoad) setReLoad((prev) => (prev = true));
+                  if (!selectCheckFirstLoad) setReLoad((prev) => (prev = true));
                 }}
               />
 

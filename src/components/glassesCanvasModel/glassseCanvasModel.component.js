@@ -7,7 +7,7 @@ import {
   Loader,
   Html,
 } from "@react-three/drei";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useRef, useEffect } from "react";
 import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
 import { ReactSVG } from "react-svg";
 import svg from "../../assets/svgIcon/AR-icon.svg";
@@ -22,20 +22,26 @@ const GlassesModel = ({ type, color, toggleElectrochromic }) => {
   const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
   const { curType, curColor } = transferClassesTypeName({ type, color });
+  const canvasElem = useRef(null);
 
   const CurGlassesModel = useMemo(
     () => glassesModel[curType][curColor],
     [curColor, curType]
   );
 
+  useEffect(() => {
+    const onPointDown = () => dispatch(checkARIsPointer());
+    const canvas = canvasElem.current;
+    if (canvas) canvas.addEventListener("pointerdown", onPointDown);
+    return () => canvas.removeEventListener("pointerdown", onPointDown);
+  }, [dispatch]);
+
   const handlePointerDown = () => {
     dispatch(checkARIsPointer());
   };
 
-  console.log(CurGlassesModel);
-
   return (
-    <ClassesModelContainer>
+    <ClassesModelContainer ref={canvasElem}>
       <>
         <Canvas
           shadows

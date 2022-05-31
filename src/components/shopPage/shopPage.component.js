@@ -18,7 +18,7 @@ const ShopPage = ({ shopPageData, collectionId }) => {
 
   return (
     <ShopPageContainer>
-      {shopPageData && (
+      {shopPageData && electrochromic && (
         <>
           <ShopPageBanner>
             <h4>{electrochromic.Title}</h4>

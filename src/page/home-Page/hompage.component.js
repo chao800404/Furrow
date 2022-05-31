@@ -16,7 +16,7 @@ const Homepage = () => {
   const callbackUnMount = useCallback(() => {
     const timeOut = setTimeout(() => {
       setFirstLoad((prev) => (prev = false));
-    }, 500);
+    }, 100);
     return () => clearTimeout(timeOut);
   }, []);
   // Glasses model in ios mobile have bug, need to preload glasses model once

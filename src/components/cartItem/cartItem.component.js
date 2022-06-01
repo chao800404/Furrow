@@ -14,8 +14,6 @@ const CartItem = ({ image, price, quantity, productName, _key, color }) => {
   const [removeItem, setRemoveItem] = useState(false);
   const dispatch = useDispatch();
 
-  console.log(image, price, quantity, productName, _key);
-
   const handleOnChange = (e) => {
     const { value } = e.target;
     setQuantity(value);

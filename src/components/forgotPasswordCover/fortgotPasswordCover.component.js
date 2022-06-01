@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { sendChangePasswordEmailStart } from "../../redux/user/user.actions";
 
 const FindPasswordCover = ({ setToggleForotCover }) => {
-  const [userEmail, setUserEmail] = useState(undefined);
+  const [userEmail, setUserEmail] = useState("");
   const dispatch = useDispatch();
 
   const handleToggleCover = async (e) => {
@@ -14,6 +14,7 @@ const FindPasswordCover = ({ setToggleForotCover }) => {
     dispatch(sendChangePasswordEmailStart({ email: userEmail }));
     setToggleForotCover((prevToggle) => (prevToggle = false));
   };
+
   const handleClick = (e) => {
     const form = e.target.closest("form");
     if (!form) setToggleForotCover((prevToggle) => (prevToggle = false));

@@ -42,7 +42,7 @@ export const SignInContainer = styled(motion.form)`
       background: ${({ theme }) => theme.color};
     }
   }
-  input[type="password"] {
+  input[type="current-password"] {
     grid-row: password-start / password-end;
     margin-top: 1rem;
   }
@@ -60,7 +60,7 @@ export const SignInContainer = styled(motion.form)`
   }
 
   input[type="email"],
-  input[type="password"],
+  input[type="current-password"],
   h4,
   p,
   .expressBtn {
@@ -80,7 +80,7 @@ export const SignInContainer = styled(motion.form)`
   }
 
   button,
-  input[type="password"] {
+  input[type="current-password"] {
     ${basicContainer}
   }
 

@@ -50,6 +50,7 @@ export const NewsOverViewBox = styled(motion.div)`
   box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 1);
   padding: 0 0 5rem 0;
   display: grid;
+  position: relative;
 
   h1,
   h3 {

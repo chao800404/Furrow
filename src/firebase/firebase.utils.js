@@ -119,9 +119,8 @@ export const signInWithEmail = async ({ auth, email, password }) => {
   await signInWithEmailAndPassword(auth, email, password);
 };
 
-export const sendRestEmail = async ({ auth, email }) => {
-  await sendPasswordResetEmail(auth, email);
-};
+export const sendRestEmail = ({ auth, email }) =>
+  sendPasswordResetEmail(auth, email);
 
 export const currentUser = () =>
   new Promise((resolve, reject) => {

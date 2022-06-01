@@ -163,10 +163,10 @@ const SignInUpFrom = ({ animate, initial }) => {
           onChange={handleFormDataUpdate}
         />
         <input
-          name="password"
-          type="password"
+          name="current-password"
+          type="current-password"
           placeholder="Enter User Password"
-          id="password"
+          id="current-password"
           require="true"
           value={userData["password"]}
           onChange={handleFormDataUpdate}

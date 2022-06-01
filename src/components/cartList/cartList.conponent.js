@@ -49,7 +49,10 @@ const CardList = () => {
             gridColumn: "1/-1",
             fontSize: "2rem",
           }}
-          onClick={() => dispatch(cartToggleHidden())}
+          onClick={() => {
+            dispatch(cartToggleHoverd());
+            dispatch(cartToggleHidden());
+          }}
         />
         <CartListItem>
           {cartItem.length <= 0 ? (

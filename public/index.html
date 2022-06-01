@@ -52,11 +52,10 @@
       const root =  document.getElementById('root');
       const imgLoader = document.createElement('div');
       imgContainer.src = 'https://onesec-informal.netlify.app/dynamicLogo/onesec-logo-dynamic.png' ;
-      imgContainer.style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:50%; ';
-      imgLoader.style="width: 100%; height:100vh;background-color:#161616; overflow:hidden;";
+      imgContainer.style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:50%; z-index:1000';
+      imgLoader.style="width: 100%; height:100vh;background-color:#161616; overflow:hidden; position:relative;";
       imgLoader.appendChild(imgContainer);
       root.appendChild(imgLoader);
-
     </script>
   </body>
 </html>

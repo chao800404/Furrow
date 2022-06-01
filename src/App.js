@@ -47,9 +47,9 @@ const App = ({ theme }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    document.fonts.onloadingdone = () => {
+    document.fonts.ready.then(() => {
       setFontLoaded((prev) => (prev = true));
-    };
+    });
   }, []);
 
   const headerAnComplete = useSelector(selectHeaderAnComplete);

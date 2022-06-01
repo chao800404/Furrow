@@ -21,18 +21,21 @@ export const selectOverViewPage = memoize((path) =>
 
 export const selectPopupView = (path, color) => {
   return createSelector([selectShopCollectionPreview], (collection) => {
-    return (
-      collection
-        ?.reduce((acc, { productName, ...otherProps }) => {
-          acc[productName.toLowerCase()] = { productName, ...otherProps };
-          return acc;
-        }, {})
-        [path].product.filter((item) => {
-          const { curColor } = transferClassesTypeName({ color: item.color });
-          return curColor === color;
-        })
-        .reduce((acc, item) => acc + item) || {}
-    );
+    const collectionPoupData = collection?.reduce(
+      (acc, { productName, ...otherProps }) => {
+        acc[productName.toLowerCase()] = { productName, ...otherProps };
+        return acc;
+      },
+      {}
+    )[path];
+    const currentData = collectionPoupData?.product.filter((item) => {
+      const { curColor } = transferClassesTypeName({ color: item.color });
+      return curColor === color;
+    });
+
+    return currentData.length <= 0
+      ? undefined
+      : currentData.reduce((acc, item) => acc + item);
   });
 };
 

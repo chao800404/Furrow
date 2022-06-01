@@ -24,6 +24,7 @@ import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { message } from "../../config/message";
 import { cartToggleHidden } from "../../redux/cart/cart.action";
 import toast from "react-hot-toast";
+import useNotFoundPage from "../../utils/useNotFoundPage";
 
 const SvgIcon = ({ src, toggleElectrochromic, light }) => (
   <ReactSVG
@@ -59,12 +60,13 @@ const Popup = ({ collection, collectionId }) => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { rgb, price, image, _key, color } = useSelector(
-    selectPopupView(collectionId, colorType)
-  );
-  const colorMap = collection?.product.map(({ rgb }) => rgb);
+  const popupData = useSelector(selectPopupView(collectionId, colorType));
+  const { rgb, price, image, _key, color } = popupData || {};
+  const colorMap = collection?.product.map(({ rgb }) => rgb) || [];
   const location = useLocation();
   const title = `${collection?.productName}-${color}`;
+
+  useNotFoundPage(popupData);
 
   const prevPage = location.pathname
     .split("/")
@@ -134,7 +136,7 @@ const Popup = ({ collection, collectionId }) => {
           onAnimationComplete={() => setTransitionEnd(true)}
         >
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
-          {collection && transitionEnd && colorType && color && (
+          {collection && transitionEnd && popupData && (
             <>
               {transitionEnd && (
                 <GlassesModel

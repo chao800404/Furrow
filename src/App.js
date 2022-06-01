@@ -9,7 +9,7 @@ import MobileMenuBar from "./components/mobile-menu-bar/mobileMenuBar.component"
 import Footer from "./components/footer/footer.component";
 import { Routes, Route } from "react-router-dom";
 import routes from "./router.config";
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, lazy, Suspense, useState } from "react";
 import { checkUserSession } from "./redux/user/user.actions";
 import { useDispatch, useSelector } from "react-redux";
 import CubeSpinner from "./components/cube-spinner/cube-spinner.component";
@@ -34,19 +34,33 @@ const VirtualPage = lazy(() =>
   import("./page/virtual-Page/virtualPage.component")
 );
 
+const NotFoundPage = lazy(() => import("./page/404-page/404-page.component"));
+
 const App = ({ theme }) => {
   const dispatch = useDispatch();
   const isMobile = useCheckScreenIsMobile();
+  const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(checkUserSession());
     dispatch(fetchCollectionStart());
   }, [dispatch]);
 
+  useEffect(() => {
+    document.fonts.onloadingdone = () => {
+      setFontLoaded((prev) => (prev = true));
+    };
+  }, []);
+
   const headerAnComplete = useSelector(selectHeaderAnComplete);
 
   return (
-    <section style={{ position: "relative" }}>
+    <section
+      style={{
+        position: "relative",
+        visibility: `${fontLoaded ? "visible" : "hidden"}`,
+      }}
+    >
       {/* <CurstomCursor /> */}
       <Header />
       <Sidebars />
@@ -67,6 +81,9 @@ const App = ({ theme }) => {
           <Route path={routes.CHECKOUT} element={<CheckOutPage />} />
           <Route path={routes.SIGNIN} element={<SignInPage />} />
           <Route path={routes.VIRTUAL} element={<VirtualPage />} />
+
+          {/* 404page */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
       <Toaster

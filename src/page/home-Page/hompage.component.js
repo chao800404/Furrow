@@ -40,8 +40,6 @@ const Homepage = () => {
     );
   };
 
-  console.log(firstLoad);
-
   return (
     <>
       <HomeBanner />

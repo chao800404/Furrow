@@ -22,6 +22,7 @@ import { useState } from "react";
 import Button from "../button/button.component";
 import LinkBtn from "../linkButton/linkButton.component";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
+import useNotFoundPage from "../../utils/useNotFoundPage";
 
 const CollectionOverView = () => {
   const { collectionId } = useParams();
@@ -33,10 +34,12 @@ const CollectionOverView = () => {
     color: collection?.product[0]?.color,
   });
 
+  useNotFoundPage(collection);
+
   return (
     <CollectionOverViewPageContainer>
       <Flex>
-        {collection?.product && collection && (
+        {collection && (
           <CollectionOverViewContainer style={{ position: "relative" }}>
             {inView ? null : (
               <Button
@@ -90,7 +93,7 @@ const CollectionOverView = () => {
 
       <Routes>
         <Route
-          path=":colorType"
+          path=":colorType/*"
           element={
             <Popup collection={collection} collectionId={collectionId} />
           }

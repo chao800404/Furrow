@@ -9,16 +9,24 @@ import { store, persistor } from "./redux/store";
 import Main from "./main.js";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <Main />
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+function init() {
+  const timeout = setTimeout(() => {
+    ReactDOM.render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <Main />
+          </PersistGate>
+        </Provider>
+      </React.StrictMode>,
+      document.getElementById("root")
+    );
+  }, 2000);
+
+  return () => clearTimeout(timeout);
+}
+
+init();
 
 serviceWorkerRegistration.register();
 // If you want to start measuring performance in your app, pass a function

@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import Cart from "../../components/cart/cart.component";
 import { cartInit } from "../../redux/cart/cart.action";
 import useCheckScreenIsMobile from "../../utils/useCheckScreen";
+
 const CollectionPreview = lazy(() =>
   import("../../components/collection-preview/collection-preview.component")
 );
@@ -28,8 +29,8 @@ const ShopPage = () => {
       {!isMobile && <Cart />}
 
       <Routes>
-        <Route path="*" element={<CollectionPreview />} />
-        <Route path=":collectionId/*" element={<CollectionOverView />}></Route>
+        <Route path="/" element={<CollectionPreview />} />
+        <Route path=":collectionId/*" element={<CollectionOverView />} />
       </Routes>
     </section>
   );

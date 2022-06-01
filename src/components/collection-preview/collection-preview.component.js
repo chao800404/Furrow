@@ -12,6 +12,7 @@ import Card from "../card/card.component";
 import { ReactSVG } from "react-svg";
 import mclarenXOnesecLogo from "../../assets/svg/mclaren_x_onesec.svg";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
+import { Outlet } from "react-router-dom";
 
 const data = {
   overViewContent: {
@@ -26,43 +27,46 @@ const CollectionPreview = () => {
   const theme = useSelector(selectThemeStyle);
 
   return (
-    <CollectionPreviewPageContainer>
-      <Flex>
-        {collections && data && (
-          <CollectionPreviewContainer
-            initial={{ visibility: "hidden", y: 10, opacity: 0 }}
-            animate={{
-              visibility: "visible",
-              y: 0,
-              height: "auto",
-              opacity: 1,
-            }}
-          >
-            <h2>{data["overViewContent"]["title"]}</h2>
-            <CollectionPreviewTitle>
-              <p style={{ fontSize: "2rem" }}>
-                {data["overViewContent"]["content"]}
-              </p>
-              <ReactSVG
-                style={{ height: "20rem" }}
-                beforeInjection={(svg) => {
-                  svg.setAttribute(
-                    "style",
-                    `height:20rem; fill:${theme.color}`
-                  );
-                }}
-                src={mclarenXOnesecLogo}
-              />
-            </CollectionPreviewTitle>
-            <CollectionCartContainer>
-              {collections.map(({ _id, ...otherProps }) => (
-                <Card key={_id} {...otherProps} />
-              ))}
-            </CollectionCartContainer>
-          </CollectionPreviewContainer>
-        )}
-      </Flex>
-    </CollectionPreviewPageContainer>
+    <>
+      <CollectionPreviewPageContainer>
+        <Flex>
+          {collections && data && (
+            <CollectionPreviewContainer
+              initial={{ visibility: "hidden", y: 10, opacity: 0 }}
+              animate={{
+                visibility: "visible",
+                y: 0,
+                height: "auto",
+                opacity: 1,
+              }}
+            >
+              <h2>{data["overViewContent"]["title"]}</h2>
+              <CollectionPreviewTitle>
+                <p style={{ fontSize: "2rem" }}>
+                  {data["overViewContent"]["content"]}
+                </p>
+                <ReactSVG
+                  style={{ height: "20rem" }}
+                  beforeInjection={(svg) => {
+                    svg.setAttribute(
+                      "style",
+                      `height:20rem; fill:${theme.color}`
+                    );
+                  }}
+                  src={mclarenXOnesecLogo}
+                />
+              </CollectionPreviewTitle>
+              <CollectionCartContainer>
+                {collections.map(({ _id, ...otherProps }) => (
+                  <Card key={_id} {...otherProps} />
+                ))}
+              </CollectionCartContainer>
+            </CollectionPreviewContainer>
+          )}
+        </Flex>
+      </CollectionPreviewPageContainer>
+      <Outlet />
+    </>
   );
 };
 

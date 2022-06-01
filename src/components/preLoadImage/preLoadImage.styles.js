@@ -1,7 +1,6 @@
 /** @format */
 
 import styled from "styled-components";
-import maxWidth from "../../config/screen.size";
 
 export const PreloadImageContainer = styled.div`
   position: relative;
@@ -10,18 +9,7 @@ export const PreloadImageContainer = styled.div`
   justify-content: center;
 
   img {
-    height: 100%;
-    position: absolute;
-    top: 50%;
-
-    width: 100%;
     object-fit: cover;
-
-    transform: translateY(-50%);
-
-    @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
-      width: unset;
-      height: 100%;
-    }
+    width: 100%;
   }
 `;

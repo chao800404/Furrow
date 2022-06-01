@@ -39,19 +39,24 @@
     <link href="splashscreen/ipadpro2_splashs.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <meta name="apple-mobile-web-app-capable" content="yes">
 
+    
+
     <title>ONESCE | Electrochromic Sunglasses</title>
   </head>
   <body style="margin:0">
     <div id="root"></div>
-    <script type="text/javascript" >
+
+
+    <script type="text/javascript">
       const imgContainer = new Image();
       const root =  document.getElementById('root');
       const imgLoader = document.createElement('div');
-      imgContainer.src = './dynamicLogo/onsec-logo-dynamic.webp';
-      imgContainer.style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:90%;';
+      imgContainer.src = 'http://localhost:8888/dynamicLogo/onesec-logo-dynamic.png' ;
+      imgContainer.style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:50%; ';
       imgLoader.style="width: 100%; height:100vh;background-color:#161616; overflow:hidden;";
       imgLoader.appendChild(imgContainer);
       root.appendChild(imgLoader);
+
     </script>
   </body>
 </html>

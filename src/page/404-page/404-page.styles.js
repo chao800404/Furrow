@@ -29,7 +29,7 @@ export const NotFoundContent = styled.div`
   grid-gap: 1rem;
 
   h1 {
-    font-size: calc(8vw + 6rem);
+    font-size: calc(6vw + 6rem);
     display: flex;
     align-items: center;
     justify-content: center;

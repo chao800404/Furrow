@@ -41,6 +41,11 @@ glTF Pipeline - 05 / 12 / 2022
    
 -----------------------
 
+
+## Frontend 
+* FB sign-in - account: auth12345000@gmail.com / password: a88448844
+* payment visa - account: 4242 4242 4242 4242 /  random number
 ## Backend use Sanity CMS
+* CMS sign-in - account: auth12345000@gmail.com / password : a88448844
 
 <img alt="cms" src="https://i.ibb.co/3BTXqyZ/CMS.webp" width="90%">

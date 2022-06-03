@@ -6,7 +6,7 @@ import maxWidth from "../../../config/screen.size";
 
 export const HomeArticleSection = styled(motion.section)`
   width: 100%;
-  height: 80rem;
+  height: 60rem;
   margin-top: 10rem;
   display: grid;
   grid-template-columns: 2fr 1fr;

@@ -131,6 +131,7 @@ const Popup = ({ collection, collectionId }) => {
     <PopupContainer data-item="popup-bg" onClick={handleClick}>
       <PopupBoxContainer data-item="popup-bg">
         <PopupBox
+          className="popup-guide-container"
           initial={{ scale: 0.5 }}
           animate={{ scale: 1 }}
           onAnimationComplete={() => setTransitionEnd(true)}
@@ -138,13 +139,15 @@ const Popup = ({ collection, collectionId }) => {
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
           {collection && transitionEnd && popupData && (
             <>
-              {transitionEnd && (
-                <GlassesModel
-                  type={collection.productName}
-                  color={color}
-                  toggleElectrochromic={toggleElectrochromic}
-                />
-              )}
+              <div className="popup-guide-glasses">
+                {transitionEnd && (
+                  <GlassesModel
+                    type={collection.productName}
+                    color={color}
+                    toggleElectrochromic={toggleElectrochromic}
+                  />
+                )}
+              </div>
               <PopupForm>
                 <h3>{title}</h3>
                 <div className="popup-text_container">

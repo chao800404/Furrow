@@ -54,6 +54,8 @@ const Payment = ({ cartItem }) => {
     ConfirmAddressLine: "",
   });
 
+  console.log(cartItem);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -107,9 +109,16 @@ const Payment = ({ cartItem }) => {
         card: elements.getElement(CardElement),
         billing_details: {
           name: `${userData.firstName} ${userData.secondName}`,
+          address: {
+            line1: `${userData.addressLine}`,
+            city: `${userData.city}`,
+          },
+          email: `${userData.paymentEmail}`,
+          phone: `${userData.phone}`,
         },
       },
     });
+
     setLoading((prev) => (prev = false));
     if (paymentResult.error) {
       toast.error(paymentResult.error.message);

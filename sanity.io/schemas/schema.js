@@ -17,6 +17,7 @@ import aboutPage from "./aboutPage";
 import post from "./post";
 import youtube from "./youtube";
 import bodyPortableText from "./bodyPortableText";
+import orders from "./orders";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -40,5 +41,6 @@ export default createSchema({
     post,
     youtube,
     bodyPortableText,
+    orders,
   ]),
 });

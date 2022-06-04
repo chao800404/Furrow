@@ -6,6 +6,7 @@ import {
   ShopPageSubtitle,
   ShopPageImgContainer,
   ShopPageProduct,
+  ShopUnpublished,
 } from "./shopPage.styles";
 
 import PreLoadImage from "../preLoadImage/preLoadImage.component";
@@ -14,11 +15,11 @@ import { urlFor } from "../../lib/client";
 
 const ShopPage = ({ shopPageData, collectionId }) => {
   const { bettery, electrochromic, feature, image, product, bannerImage } =
-    shopPageData;
+    shopPageData || {};
 
   return (
     <ShopPageContainer>
-      {shopPageData && electrochromic && (
+      {shopPageData ? (
         <>
           <ShopPageBanner>
             <h4>{electrochromic.Title}</h4>
@@ -76,6 +77,11 @@ const ShopPage = ({ shopPageData, collectionId }) => {
             />
           </ShopPageProduct>
         </>
+      ) : (
+        <ShopUnpublished>
+          <h2>Sorry!</h2>
+          <p>The content of this product has not been published yet. </p>
+        </ShopUnpublished>
       )}
     </ShopPageContainer>
   );

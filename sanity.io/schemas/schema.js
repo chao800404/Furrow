@@ -41,6 +41,6 @@ export default createSchema({
     post,
     youtube,
     bodyPortableText,
-    orders,
+    // orders,
   ]),
 });

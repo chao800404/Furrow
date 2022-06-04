@@ -140,3 +140,24 @@ export const ShopPageProduct = styled.div`
     }
   }
 `;
+
+export const ShopUnpublished = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 30rem;
+  background-color: #ffffff;
+  padding: 5rem;
+
+  h2 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  h2,
+  p {
+    color: #161616;
+    text-align: center;
+  }
+`;

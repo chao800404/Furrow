@@ -12,9 +12,9 @@ import {
 } from "./resolveProductionUrl";
 
 export const getDefaultDocumentNode = ({ schemaType }) => {
-  if (schemaType === "orders") {
-    return S.document();
-  }
+  // if (schemaType === "orders") {
+  //   return S.document();
+  // }
   return S.document().views([
     S.view.form(),
     S.view
@@ -36,6 +36,10 @@ export const getDefaultDocumentNode = ({ schemaType }) => {
               return resolveShopPageUrl(doc);
           }
         },
+        reload: {
+          button: true,
+          revision: true,
+        },
       })
       .title("Preview"),
   ]);
@@ -50,5 +54,5 @@ export default () =>
       S.documentTypeListItem("shop_page_data").id("shop_page_data"),
       S.documentTypeListItem("featurePage").id("featurePage"),
       S.documentTypeListItem("collection").id("collection"),
-      S.documentTypeListItem("orders"),
+      // S.documentTypeListItem("orders"),
     ]);

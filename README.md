@@ -48,11 +48,11 @@ glTF Pipeline - 05 / 12 / 2022
 ## Backend use Sanity CMS
 * CMS sign-in - account: auth12345000@gmail.com / password : a88448844
 
-<img alt="cms" src="https://i.ibb.co/3BTXqyZ/CMS.webp" width="50%">
+<img alt="cms" src="https://i.ibb.co/3BTXqyZ/CMS.webp" width="80%">
 
 -----------------------
 ## UI Sketch
 [Link to Figma](https://www.figma.com/file/fq6M0itCAthnrb52Xe1gCY/Untitled?node-id=0%3A1) </br>
-<img src="https://i.ibb.co/NtB2y6G/sketch.webp" alt="sketch" width="50%">
+<img src="https://i.ibb.co/NtB2y6G/sketch.webp" alt="sketch" width="80%">
 
 

@@ -116,7 +116,7 @@ const Popup = ({ collection, collectionId }) => {
             color,
             quantity: parseIntQuantity,
             productName: collection?.productName,
-            description: collection.description,
+            description: collection?.description,
           })
         );
         const addToCartMessage = message["ADDTOCART"].replace(

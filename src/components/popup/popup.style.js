@@ -241,19 +241,18 @@ export const PopupBox = styled(motion.div)`
     &:before {
       content: "Click the button to change lenses color";
       position: absolute;
-      width: 15rem;
+      width: 25rem;
       height: 2px;
-      top: -6.5rem;
+      top: -9rem;
       text-align: center;
       left: 50%;
       transform: translateX(-50%);
+      font-size: 2rem;
 
       @media only screen and (max-width: ${maxWidth.medium}) {
         text-align: left;
         transform: translateX(0);
         left: 0;
-        width: 20rem;
-        top: -7rem;
       }
     }
   }

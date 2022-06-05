@@ -1,9 +1,17 @@
 /** @format */
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 import primaryColor from "../../theme/priamry.styles";
 import maxWidth from "../../config/screen.size";
+
+const basicAfter = css`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
 
 export const PopupContainer = styled.div`
   width: 100%;
@@ -76,6 +84,24 @@ export const PopupBox = styled(motion.div)`
   position: relative;
   grid-gap: 0 5rem;
 
+  &.popup-guide-container {
+    &:after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 30;
+    }
+  }
+
+  div.popup-glasses {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
   .popup_close {
     width: 5rem;
     height: 5rem;
@@ -102,9 +128,7 @@ export const PopupBox = styled(motion.div)`
     width: 100%;
     flex: 1;
   }
-  button {
-    margin-top: 3rem;
-  }
+
   .popup-text_container {
     display: flex;
     justify-content: space-between;
@@ -187,7 +211,53 @@ export const PopupBox = styled(motion.div)`
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-column-gap: 1rem;
+    margin-top: 3rem;
+    position: relative;
   }
+
+  .button_electrochromic_container {
+    position: relative;
+    button {
+      height: 100%;
+    }
+  }
+
+  .button-electrochromic-guide {
+    ${basicAfter}
+    border: 2px solid #ffffff;
+    z-index: 300;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 2rem;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      background-color: #ffffff;
+    }
+    &:before {
+      content: "Click the button to change lenses color";
+      position: absolute;
+      width: 15rem;
+      height: 2px;
+      top: -6.5rem;
+      text-align: center;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @media only screen and (max-width: ${maxWidth.medium}) {
+        text-align: left;
+        transform: translateX(0);
+        left: 0;
+        width: 20rem;
+        top: -7rem;
+      }
+    }
+  }
+
   @media only screen and (max-width: ${maxWidth.mediumAlpha}) {
     grid-template-columns: 1fr;
     grid-template-rows: 30rem 1fr;
@@ -196,9 +266,6 @@ export const PopupBox = styled(motion.div)`
     h3 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
-    }
-    button {
-      margin-top: 3rem;
     }
     .popup_calculator_container {
       transform: unset;
@@ -236,4 +303,9 @@ export const PopupForm = styled.div`
   @media only screen and (max-width: ${maxWidth.small}) {
     padding: 0 4rem 4rem 4rem;
   }
+`;
+
+export const PopupCover = styled.div`
+  ${basicAfter}
+  z-index:500;
 `;

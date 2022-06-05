@@ -4,6 +4,7 @@ import {
   PopupBox,
   PopupForm,
   PopupBoxContainer,
+  PopupCover,
 } from "./popup.style";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
@@ -25,6 +26,8 @@ import { message } from "../../config/message";
 import { cartToggleHidden } from "../../redux/cart/cart.action";
 import toast from "react-hot-toast";
 import useNotFoundPage from "../../utils/useNotFoundPage";
+import { selectCardIsPointer } from "../../redux/card/card.select";
+import { checkARIsPointer } from "../../redux/card/card.action";
 
 const SvgIcon = ({ src, toggleElectrochromic, light }) => (
   <ReactSVG
@@ -57,6 +60,8 @@ const Popup = ({ collection, collectionId }) => {
   const [quantity, setQuantity] = useState(1);
   const [transitionEnd, setTransitionEnd] = useState(false);
   const [toggleElectrochromic, setToggleElectrochromic] = useState(false);
+  const [pageStart, setPageStart] = useState(false);
+  const pointDown = useSelector(selectCardIsPointer);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -75,6 +80,7 @@ const Popup = ({ collection, collectionId }) => {
 
   const goToPrevPage = () => {
     navigate(`${prevPage}`);
+    setPageStart((prev) => !prev);
     document.body.style.overflow = "unset";
   };
 
@@ -87,6 +93,7 @@ const Popup = ({ collection, collectionId }) => {
     const target = e.target.dataset.item;
     const addToCartBtn = e.target.dataset.type;
     const parseIntQuantity = Number.parseInt(quantity);
+
     if (target === "popup-close" || target === "popup-bg") {
       goToPrevPage();
       return;
@@ -123,15 +130,23 @@ const Popup = ({ collection, collectionId }) => {
     }
   };
 
+  const handleGuide = (e) => {
+    const target = e.target.dataset.item;
+    if (target === "popup-container" && pointDown <= 1) {
+      dispatch(checkARIsPointer());
+    }
+  };
+
   useEffect(() => {
     dispatch(cartToggleHidden("hidden"));
+    setPageStart((prev) => !prev);
   }, [dispatch]);
 
   return (
     <PopupContainer data-item="popup-bg" onClick={handleClick}>
       <PopupBoxContainer data-item="popup-bg">
         <PopupBox
-          className="popup-guide-container"
+          className={pointDown === 2 ? null : "popup-guide-container"}
           initial={{ scale: 0.5 }}
           animate={{ scale: 1 }}
           onAnimationComplete={() => setTransitionEnd(true)}
@@ -139,8 +154,8 @@ const Popup = ({ collection, collectionId }) => {
           <IoCloseCircleSharp data-item="popup-close" className="popup_close" />
           {collection && transitionEnd && popupData && (
             <>
-              <div className="popup-guide-glasses">
-                {transitionEnd && (
+              <div className="popup-glasses">
+                {transitionEnd && pageStart && (
                   <GlassesModel
                     type={collection.productName}
                     color={color}
@@ -203,26 +218,34 @@ const Popup = ({ collection, collectionId }) => {
                   </div>
                 </div>
                 <div className="button_container">
-                  <Button
-                    data="electrochromic"
-                    style={{ position: "relative" }}
-                  >
-                    <SvgIcon
-                      src={glassesIconDark}
-                      toggleElectrochromic={toggleElectrochromic}
-                      light={true}
-                    />
-                    <SvgIcon
-                      src={glassesIcon}
-                      toggleElectrochromic={toggleElectrochromic}
-                      ligth={false}
-                    />
-                  </Button>
+                  <div className="button_electrochromic_container">
+                    <Button
+                      data="electrochromic"
+                      style={{ position: "relative" }}
+                    >
+                      <SvgIcon
+                        src={glassesIconDark}
+                        toggleElectrochromic={toggleElectrochromic}
+                        light={true}
+                      />
+                      <SvgIcon
+                        src={glassesIcon}
+                        toggleElectrochromic={toggleElectrochromic}
+                        ligth={false}
+                      />
+                    </Button>
+                    {pointDown === 1 && (
+                      <div className="button-electrochromic-guide " />
+                    )}
+                  </div>
                   <Button style={{ fontSize: "2rem" }} data="add-cart-btn">
                     Add To Cart
                   </Button>
                 </div>
               </PopupForm>
+              {pointDown <= 1 && (
+                <PopupCover onClick={handleGuide} data-item="popup-container" />
+              )}
             </>
           )}
         </PopupBox>

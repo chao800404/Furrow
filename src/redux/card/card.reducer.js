@@ -4,7 +4,7 @@ import CardActionType from "./card,type";
 
 const INITIAL_STATE = {
   imageLoad: false,
-  isPointer: false,
+  isPointer: 0,
 };
 
 const cardReducer = (state = INITIAL_STATE, action) => {
@@ -15,9 +15,10 @@ const cardReducer = (state = INITIAL_STATE, action) => {
         imageLoad: true,
       };
     case CardActionType.AR_ALREADY_POINTER:
+      if (state.isPointer >= 2) return;
       return {
         ...state,
-        isPointer: true,
+        isPointer: state.isPointer + 1,
       };
 
     default:

@@ -12,7 +12,10 @@ export const ClassesModelContainer = styled.div`
   overflow: hidden;
 
   .vr {
-    position: absolute;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 300;
     top: 0;
     left: 0;
     transform: unset !important;

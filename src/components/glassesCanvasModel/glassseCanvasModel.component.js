@@ -7,16 +7,16 @@ import {
   Loader,
   Html,
 } from "@react-three/drei";
-import { Suspense, useMemo, useRef, useEffect } from "react";
-import { SvgIcon, ClassesModelContainer } from "./glassesCanvasModel.styles";
-import { ReactSVG } from "react-svg";
-import svg from "../../assets/svgIcon/AR-icon.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { checkARIsPointer } from "../../redux/card/card.action";
+import { Suspense, useMemo } from "react";
+import { ClassesModelContainer } from "./glassesCanvasModel.styles";
+
+import { useSelector } from "react-redux";
+
 import { selectCardIsPointer } from "../../redux/card/card.select";
 import { transferClassesTypeName } from "../../utils/transferGlassesTypeName";
 import { Canvas } from "@react-three/fiber";
 import { glassesModel } from "./glassesCanvasToMaps";
+import Guide from "../guide/guide.component";
 
 const GlassesModel = ({
   type,
@@ -25,27 +25,17 @@ const GlassesModel = ({
   style,
   onUpdate,
 }) => {
-  const dispatch = useDispatch();
   const pointDown = useSelector(selectCardIsPointer);
 
   const { curType, curColor } = transferClassesTypeName({ type, color });
-  const canvasElem = useRef(null);
 
   const CurGlassesModel = useMemo(
     () => glassesModel[curType][curColor],
     [curColor, curType]
   );
 
-  useEffect(() => {
-    const onPointDown = () => dispatch(checkARIsPointer());
-    const canvas = canvasElem.current;
-
-    if (canvas) canvas.addEventListener("pointerdown", onPointDown);
-    return () => canvas.removeEventListener("pointerdown", onPointDown);
-  }, [dispatch]);
-
   return (
-    <ClassesModelContainer style={style} ref={canvasElem}>
+    <ClassesModelContainer style={style}>
       <>
         <Canvas
           shadows
@@ -68,31 +58,15 @@ const GlassesModel = ({
               }
               onUpdate={onUpdate}
             />
-
-            <Html as="div" wrapperClass="vr">
-              {!pointDown && (
-                <SvgIcon
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 2,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <ReactSVG
-                    src={svg}
-                    fontSize="1rem"
-                    beforeInjection={(svg) =>
-                      svg.setAttribute(
-                        "style",
-                        "display:flex;align-items:center;justify-content:center;width:3.5rem;height:3.5rem"
-                      )
-                    }
-                  />
-                </SvgIcon>
-              )}
-            </Html>
+            {pointDown <= 0 && (
+              <Html
+                style={{ width: "100%", height: "100%" }}
+                as="div"
+                wrapperClass="vr"
+              >
+                <Guide pointDown={pointDown} />
+              </Html>
+            )}
             <ContactShadows
               rotation-x={Math.PI / 2}
               position={[0, -2.5, 0]}

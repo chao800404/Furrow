@@ -1,4 +1,5 @@
 /** @format */
+import { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { selectShopCollectionPreview } from "../../redux/shop/shop.select";
 import { Flex } from "../../components/Flex/flex.styles";
@@ -13,6 +14,8 @@ import { ReactSVG } from "react-svg";
 import mclarenXOnesecLogo from "../../assets/svg/mclaren_x_onesec.svg";
 import { selectThemeStyle } from "../../redux/theme/theme.select";
 import { Outlet } from "react-router-dom";
+import GlassesModel from "../../components/glassesCanvasModel/glassseCanvasModel.component";
+import useCheckScreenIsMobile from "../../utils/useCheckScreen";
 
 const data = {
   overViewContent: {
@@ -25,6 +28,35 @@ const data = {
 const CollectionPreview = () => {
   const collections = useSelector(selectShopCollectionPreview);
   const theme = useSelector(selectThemeStyle);
+  const isMobile = useCheckScreenIsMobile();
+  const [firstLoad, setFirstLoad] = useState(true);
+  const callbackUnMount = useCallback(() => {
+    const timeOut = setTimeout(() => {
+      setFirstLoad((prev) => (prev = false));
+    }, 100);
+    return () => clearTimeout(timeOut);
+  }, []);
+
+  const PreLoadGlasses = () => {
+    // Glasses model in ios mobile have bug, need to preload glasses model once
+    return (
+      isMobile &&
+      firstLoad && (
+        <GlassesModel
+          style={{
+            position: "absolute",
+            bottom: "0",
+            width: "100%",
+            height: "20rem",
+            right: "500%",
+          }}
+          type="marki"
+          color="black"
+          onUpdate={callbackUnMount}
+        />
+      )
+    );
+  };
 
   return (
     <>
@@ -66,6 +98,7 @@ const CollectionPreview = () => {
         </Flex>
       </CollectionPreviewPageContainer>
       <Outlet />
+      <PreLoadGlasses />
     </>
   );
 };

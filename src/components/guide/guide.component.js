@@ -12,7 +12,8 @@ const Guide = ({ pointDown }) => {
   const x = useMotionValue(0);
 
   useEffect(() => {
-    if (pointDown >= 0) return;
+    if (pointDown <= 0) return;
+
     const updateRotate = (latest) => {
       if (latest > 0) {
         setRotateIcon((prev) => (prev = true));

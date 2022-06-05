@@ -21,7 +21,7 @@ function init() {
       </React.StrictMode>,
       document.getElementById("root")
     );
-  }, 2000);
+  }, 2200);
 
   return () => clearTimeout(timeout);
 }

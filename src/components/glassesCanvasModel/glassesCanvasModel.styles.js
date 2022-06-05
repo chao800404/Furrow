@@ -15,7 +15,7 @@ export const ClassesModelContainer = styled.div`
     width: 100%;
     height: 100%;
     position: relative;
-    z-index: 300;
+    z-index: 100 !important;
     top: 0;
     left: 0;
     transform: unset !important;

@@ -9,7 +9,7 @@ import MobileMenuBar from "./components/mobile-menu-bar/mobileMenuBar.component"
 import Footer from "./components/footer/footer.component";
 import { Routes, Route } from "react-router-dom";
 import routes from "./router.config";
-import { useEffect, lazy, Suspense, useState } from "react";
+import { useEffect, lazy, Suspense, useState, useCallback } from "react";
 import { checkUserSession } from "./redux/user/user.actions";
 import { useDispatch, useSelector } from "react-redux";
 import CubeSpinner from "./components/cube-spinner/cube-spinner.component";
@@ -18,6 +18,8 @@ import { Toaster } from "react-hot-toast";
 import { selectHeaderAnComplete } from "./redux/header/header.select";
 import CartList from "./components/cartList/cartList.conponent";
 import useCheckScreenIsMobile from "./utils/useCheckScreen";
+
+import GlassesModel from "./components/glassesCanvasModel/glassseCanvasModel.component";
 
 const AboutPage = lazy(() => import("./page/about-Page/aboutPage.component"));
 const FeaturePage = lazy(() =>
@@ -40,6 +42,16 @@ const App = ({ theme }) => {
   const dispatch = useDispatch();
   const isMobile = useCheckScreenIsMobile();
   const [fontLoaded, setFontLoaded] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(true);
+
+  const headerAnComplete = useSelector(selectHeaderAnComplete);
+
+  const callbackUnMount = useCallback(() => {
+    const timeOut = setTimeout(() => {
+      setFirstLoad((prev) => (prev = false));
+    }, 100);
+    return () => clearTimeout(timeOut);
+  }, []);
 
   useEffect(() => {
     dispatch(checkUserSession());
@@ -52,13 +64,32 @@ const App = ({ theme }) => {
     });
   }, []);
 
-  const headerAnComplete = useSelector(selectHeaderAnComplete);
+  const PreLoadGlasses = () => {
+    // Glasses model in ios mobile have bug, need to preload glasses model once
+    return (
+      isMobile &&
+      firstLoad && (
+        <GlassesModel
+          style={{
+            position: "absolute",
+            bottom: "0",
+            width: "100%",
+            height: "20rem",
+            right: "500%",
+          }}
+          type="marki"
+          color="black"
+          onUpdate={callbackUnMount}
+        />
+      )
+    );
+  };
 
   return (
     <section
       style={{
         position: "relative",
-        visibility: `${fontLoaded ? "visible" : "hidden"}`,
+        visibility: `${fontLoaded && !firstLoad ? "visible" : "hidden"}`,
       }}
     >
       {/* <CurstomCursor /> */}
@@ -94,7 +125,10 @@ const App = ({ theme }) => {
           },
         }}
       />
+
       <Footer />
+
+      <PreLoadGlasses />
     </section>
   );
 };

@@ -58,7 +58,7 @@ const GlassesModel = ({
               }
               onUpdate={onUpdate}
             />
-            {pointDown <= 0 && (
+            {pointDown <= 1 && (
               <Html
                 style={{ width: "100%", height: "100%" }}
                 as="div"

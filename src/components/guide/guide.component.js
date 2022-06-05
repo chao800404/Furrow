@@ -10,51 +10,55 @@ const Guide = ({ pointDown }) => {
   const [rotateIcon, setRotateIcon] = useState(false);
 
   const x = useMotionValue(0);
-
   useEffect(() => {
-    if (pointDown <= 0) return;
-
+    if (pointDown > 0) return;
     const updateRotate = (latest) => {
-      if (latest > 0) {
+      if (latest > 0 && pointDown <= 0) {
         setRotateIcon((prev) => (prev = true));
       }
-      if (latest < 0) {
+      if (latest < 0 && pointDown <= 0) {
         setRotateIcon((prev) => (prev = false));
       }
     };
 
     const unsubscribeRotate = x.onChange(updateRotate);
 
-    return () => unsubscribeRotate;
+    return () => {
+      unsubscribeRotate();
+      x.set(0);
+    };
   }, [x, pointDown]);
-  return (
-    <PopupGuide>
-      <PopupIcon
-        initial={{ x: 0, opacity: 1, rotateY: 0 }}
-        transition={{
-          repeat: Infinity,
-          duration: 3,
-          type: "tween",
-        }}
-        animate={{
-          x: [0, 40, 0, -40, 0],
-        }}
-        style={{ x }}
-      >
-        <ReactSVG
-          className={`popup-guide-icon `}
-          src={swipeIcon}
-          style={
-            rotateIcon
-              ? { transform: "rotateY(-189deg)" }
-              : { transform: "rotateY(0deg)" }
-          }
-        />
-      </PopupIcon>
 
-      <span className="popup-guide-text">Swipe</span>
-      <p className="popup-guide-context">( Swipe to see more details )</p>
-    </PopupGuide>
+  return (
+    pointDown <= 0 && (
+      <PopupGuide>
+        <PopupIcon
+          initial={{ x: 0, opacity: 1, rotateY: 0 }}
+          transition={{
+            repeat: Infinity,
+            duration: 3,
+            type: "tween",
+          }}
+          animate={{
+            x: [0, 40, 0, -40, 0],
+          }}
+          style={{ x }}
+        >
+          <ReactSVG
+            className={`popup-guide-icon `}
+            src={swipeIcon}
+            style={
+              rotateIcon && pointDown <= 0
+                ? { transform: "rotateY(-189deg)" }
+                : { transform: "rotateY(0deg)" }
+            }
+          />
+        </PopupIcon>
+
+        <span className="popup-guide-text">Swipe</span>
+        <p className="popup-guide-context">( Swipe to see more details )</p>
+      </PopupGuide>
+    )
   );
 };
 

@@ -7,7 +7,11 @@ const useNotFoundPage = (data) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (data === undefined) navigate("/not-found");
+    new Promise((reject) => {
+      reject(data);
+    }).then((res) => {
+      if (!res) navigate("/not-found");
+    });
   }, [data, navigate]);
 };
 

@@ -33,7 +33,6 @@ const CollectionOverView = () => {
   const { curColor } = transferClassesTypeName({
     color: collection?.product[0]?.color,
   });
-
   useNotFoundPage(collection);
 
   return (

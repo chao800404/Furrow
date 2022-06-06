@@ -3,13 +3,15 @@
 import { all, takeLatest, put, call } from "redux-saga/effects";
 import AboutPageType from "./aboutPage.type";
 import { aboutPageFailure, aboutPageSuccess } from "./aboutPage.actions";
-import { client } from "../../lib/client";
+import { proFetch, fetchTimeout } from "../utils";
 
 function* aboutPageFetchingSuccess() {
   try {
     const query = '*[_type == "aboutPage"]';
-    const aboutPageData = yield client.fetch(query);
-    yield put(aboutPageSuccess(aboutPageData[0]));
+    const { data: aboutPageData } = yield call(proFetch, query);
+    aboutPageData
+      ? yield put(aboutPageSuccess(aboutPageData[0]))
+      : yield put(aboutPageFailure(fetchTimeout));
   } catch (error) {
     yield put(aboutPageFailure(error));
   }

@@ -3,13 +3,15 @@
 import { all, takeLatest, put, call } from "redux-saga/effects";
 import ShopActionTypes from "./shop.type";
 import { fetchCollectionSuccess, fetchCollectionFailure } from "./shop.actions";
-import { client } from "../../lib/client";
+import { proFetch, fetchTimeout } from "../utils";
 
 function* fetchCollectionsAsync() {
   try {
     const query = '*[_type == "collection"]';
-    const collection = yield client.fetch(query);
-    yield put(fetchCollectionSuccess(collection));
+    const { data: collection } = yield call(proFetch, query);
+    collection
+      ? yield put(fetchCollectionSuccess(collection))
+      : yield put(fetchCollectionFailure(fetchTimeout));
   } catch (error) {
     yield put(fetchCollectionFailure(error));
   }

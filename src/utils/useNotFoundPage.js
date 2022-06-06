@@ -8,14 +8,24 @@ const useNotFoundPage = (data) => {
 
   useEffect(() => {
     let canceled = false;
-    new Promise((reject) => {
+    const timeout = new Promise((reject) => {
+      if (canceled) return;
+      setTimeout(() => reject(undefined), 8000);
+    });
+
+    const resData = new Promise((reject) => {
       if (canceled) return;
       reject(data);
-    }).then((res) => {
+    });
+
+    Promise.race([timeout, resData]).then((res) => {
       if (!res) navigate("/not-found");
     });
 
-    return () => (canceled = true);
+    return () => {
+      canceled = true;
+      clearTimeout(timeout);
+    };
   }, [data, navigate]);
 };
 
